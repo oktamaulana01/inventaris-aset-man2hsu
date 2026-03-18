@@ -1,0 +1,71 @@
+<?php
+$pageTitle = 'Peminjaman Aset';
+require_once __DIR__ . '/../../includes/auth_check.php';
+$pdo = getConnection();
+
+$filterStatus = $_GET['status'] ?? '';
+$where = "";
+$params = [];
+if ($filterStatus) { $where = "WHERE p.status = ?"; $params[] = $filterStatus; }
+
+$peminjamanList = $pdo->prepare("SELECT p.*, a.nama_aset, a.kode_aset, u.nama as user_nama 
+    FROM peminjaman p 
+    JOIN aset a ON p.id_aset = a.id 
+    LEFT JOIN users u ON p.id_user = u.id 
+    $where
+    ORDER BY p.created_at DESC");
+$peminjamanList->execute($params);
+$peminjamanList = $peminjamanList->fetchAll();
+
+require_once __DIR__ . '/../../includes/header.php';
+require_once __DIR__ . '/../../includes/sidebar.php';
+?>
+
+<div class="page-header">
+    <div><h2><i class="fas fa-handshake"></i> Peminjaman Aset</h2>
+        <div class="breadcrumb"><a href="/inventaris-aset-man2hsu/pages/dashboard.php">Dashboard</a><span class="separator">/</span><span>Peminjaman</span></div>
+    </div>
+    <a href="tambah.php" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Peminjaman</a>
+</div>
+
+<!-- Filter -->
+<div class="card mb-4"><div class="card-body">
+    <form method="GET" class="search-bar">
+        <select class="form-control" name="status" style="max-width:200px;">
+            <option value="">Semua Status</option>
+            <option value="Dipinjam" <?= $filterStatus === 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
+            <option value="Dikembalikan" <?= $filterStatus === 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
+        <a href="index.php" class="btn btn-secondary btn-sm">Reset</a>
+    </form>
+</div></div>
+
+<div class="card animate-fadeInUp"><div class="card-header"><h3>Daftar Peminjaman</h3></div><div class="card-body">
+    <div class="table-wrapper">
+        <table><thead><tr><th>No</th><th>Kode Aset</th><th>Nama Aset</th><th>Peminjam</th><th>Tgl Pinjam</th><th>Batas Kembali</th><th>Status</th><th>Aksi</th></tr></thead>
+        <tbody>
+            <?php if (empty($peminjamanList)): ?>
+                <tr><td colspan="8" class="text-center text-muted">Belum ada data peminjaman</td></tr>
+            <?php else: foreach ($peminjamanList as $i => $p): ?>
+            <tr>
+                <td><?= $i+1 ?></td>
+                <td><span class="badge badge-primary"><?= htmlspecialchars($p['kode_aset']) ?></span></td>
+                <td><?= htmlspecialchars($p['nama_aset']) ?></td>
+                <td><?= htmlspecialchars($p['nama_peminjam']) ?></td>
+                <td><?= date('d/m/Y', strtotime($p['tanggal_pinjam'])) ?></td>
+                <td><?= date('d/m/Y', strtotime($p['tanggal_kembali_rencana'])) ?></td>
+                <td><span class="badge badge-<?= $p['status'] === 'Dipinjam' ? 'warning' : 'success' ?>"><?= $p['status'] ?></span></td>
+                <td><div class="btn-group">
+                    <?php if ($p['status'] === 'Dipinjam'): ?>
+                        <a href="kembali.php?id=<?= $p['id'] ?>" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
+                    <?php endif; ?>
+                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', 'hapus.php?id=<?= $p['id'] ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                </div></td>
+            </tr>
+            <?php endforeach; endif; ?>
+        </tbody></table>
+    </div>
+</div></div>
+
+<?php require_once __DIR__ . '/../../includes/footer.php'; ?>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bagan Arsitektur Inventaris Aset MAN 2 HSU</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .mermaid {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 100%;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Arsitektur Sistem Inventaris Aset MAN 2 HSU</h1>
+
+    <div class="mermaid">
+    graph TD
+        %% Nodes
+        User[Pengguna / Petugas / Admin]
+        Browser[Web Browser]
+        
+        subroot((Aplikasi <br/>Sistem Inventaris))
+        
+        subgraph Core[File Utama & Konfigurasi]
+            Config[config/database.php <br/>Koneksi PDO & Helper]
+            Auth[includes/auth_check.php <br/>Guard & Cek Sesi]
+            Index[index.php <br/>Redirect to Login]
+            Login[login.php <br/>Validasi Kredensial]
+        end
+
+        subgraph Modules[Modul Pages]
+            Dashboard[Dashboard <br/>Ringkasan Data]
+            Aset[Modul Aset <br/>CRUD & QR Code]
+            Kategori_Lokasi[Master Data <br/>Kategori & Lokasi]
+            Sirkulasi[Modul Peminjaman <br/>Pinjam & Kembali]
+            UserMod[Modul Pengguna <br/>Kelola Akses]
+            Laporan[Modul Laporan <br/>Export PDF via DomPDF]
+            Scan[Scan QR Code <br/>scan_qr.php]
+        end
+        
+        Database[(Database MySQL <br/>db_inventaris_man2hsu)]
+        
+        %% Hubungan / Edge
+        User -->|Akses UI| Browser
+        Browser -->|Request URL| Index
+        Index -.->|Redirect| Login
+        Login -->|Cari Data & Cek Password| Database
+        Browser -->|Mengisi Form| Login
+        
+        Login -->|Berhasil Login| Auth
+        Auth -->|Akses Halaman| Modules
+        
+        Aset <-->|Query Tambah, Edit, Hapus| Database
+        Kategori_Lokasi <-->|Master Data| Database
+        Sirkulasi <-->|Transaksi Pinjam| Database
+        UserMod <-->|Kelola User| Database
+        Scan -->|Cari ID Aset| Aset
+        
+        Config -->|Menyediakan Koneksi PDO| Modules
+        Config <-->|Koneksi Nyata| Database
+        Auth -.->|Memaksa Login Ulang jika Sesi Habis| Login
+        
+        Laporan -->|Baca Data View| Database
+    </div>
+
+    <!-- Script library Mermaid.js untuk membuat visualisasi diagram dari text di atas -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>
