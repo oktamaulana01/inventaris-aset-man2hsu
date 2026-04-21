@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe Lengkap - Inventaris Aset MAN 2 HSU</title>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+:root{--stroke:#2c2c2c;--bg:#fff;--lw:2px;--green:#1e7256}
+*{box-sizing:border-box}
+body{font-family:'Patrick Hand',cursive;background:#f0f0f0;margin:0;padding:20px;color:var(--stroke)}
+.wf-nav{text-align:center;margin-bottom:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.wf-nav button{background:#fff;border:var(--lw) solid var(--stroke);padding:6px 12px;font-family:inherit;font-size:.9rem;cursor:pointer;box-shadow:3px 3px 0 rgba(0,0,0,.1);transition:all .1s}
+.wf-nav button:active,.wf-nav button.active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(0,0,0,.1);background:#2c2c2c;color:#fff}
+.sc{max-width:1200px;margin:0 auto;background:#fff;border:var(--lw) solid var(--stroke);min-height:800px;display:none;position:relative;box-shadow:10px 10px 0 rgba(0,0,0,.1)}
+.sc.active{display:flex}
+.btn{border:var(--lw) solid var(--stroke);padding:5px 15px;background:#fff;display:inline-block;cursor:pointer;text-align:center;font-family:inherit}
+.inp{border:var(--lw) solid var(--stroke);padding:8px;background:#fff;width:100%;margin-bottom:10px;font-family:inherit}
+.sel{border:var(--lw) solid var(--stroke);padding:8px;background:#fff;width:100%;margin-bottom:10px;font-family:inherit}
+.sb{width:250px;border-right:var(--lw) solid var(--stroke);display:flex;flex-direction:column;flex-shrink:0;background:#fff}
+.sb-hd{height:65px;border-bottom:var(--lw) solid var(--stroke);display:flex;align-items:center;padding:0 15px;font-weight:bold;font-size:1rem;gap:8px}
+.sb-mn{padding:12px;flex:1;overflow-y:auto}
+.sb-sec{font-size:.7rem;text-transform:uppercase;color:#999;margin:12px 0 4px;letter-spacing:1px}
+.mi{margin-bottom:6px;display:flex;align-items:center;gap:8px;cursor:pointer;padding:5px 8px;font-size:.9rem;border-left:3px solid transparent}
+.mi:hover{background:#f0f0f0}
+.mi.a{font-weight:bold;background:#e8f5e9;border-left-color:var(--green)}
+.mn{flex:1;display:flex;flex-direction:column;background:#fafafa}
+.hd{height:55px;border-bottom:var(--lw) solid var(--stroke);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.ct{padding:20px;overflow-y:auto}
+.tbl{width:100%;border-collapse:collapse;border:var(--lw) solid var(--stroke);background:#fff;margin-top:10px;font-size:.88rem}
+.tbl th,.tbl td{border:var(--lw) solid var(--stroke);padding:7px;text-align:left}
+.tbl th{background:#eee}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px}
+.sc-card{background:#fff;border:var(--lw) solid var(--stroke);padding:12px;height:85px}
+.bg{padding:2px 8px;font-size:.78rem;border:1px solid;display:inline-block}
+.bg-g{background:#e8f5e9;border-color:#4caf50;color:#2e7d32}
+.bg-y{background:#fff8e1;border-color:#ffc107;color:#f57f17}
+.bg-r{background:#ffebee;border-color:#f44336;color:#c62828}
+.bg-b{background:#e3f2fd;border-color:#2196f3;color:#1565c0}
+.bg-p{background:#f3e5f5;border-color:#9c27b0;color:#6a1b9a}
+.l-split{display:flex;width:100%;height:100%}
+.l-left{flex:1;background:linear-gradient(135deg,#1e7256,#114a36);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.l-right{flex:1;display:flex;flex-direction:column;justify-content:center;padding:50px}
+.cd{border:var(--lw) solid var(--stroke);padding:18px;background:#fff;margin-bottom:12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.bc{font-size:.82rem;color:#888;margin-bottom:12px}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.a4c{padding:30px;background:#555;display:flex;justify-content:center;width:100%}
+.a4{width:794px;min-height:1050px;background:#fff;padding:35px 45px;position:relative;box-shadow:0 0 20px rgba(0,0,0,.5);font-family:'Times New Roman',serif;color:#000}
+.kop{text-align:center;border-bottom:3px double #000;padding-bottom:8px;margin-bottom:15px}
+.kop h2{margin:0;font-size:15px} .kop h3{margin:3px 0;font-size:17px} .kop p{margin:2px 0;font-size:10px}
+.ttd{margin-top:35px;display:flex;justify-content:flex-end}
+.ttd-box{text-align:center;width:240px;font-size:11px}
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.sb-ft{border-top:var(--lw) solid var(--stroke);padding:12px;display:flex;align-items:center;gap:8px}
+.usr-av{width:35px;height:35px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:.9rem}
+.qr-svg{image-rendering:pixelated}
+</style>
+</head>
+<body>
+<h1 style="text-align:center;">Wireframe Lengkap - Inventaris Aset MAN 2 HSU</h1>
+<div class="wf-nav">
+<button onclick="show('login')" id="n-login">Login</button>
+<button onclick="show('dashboard')" id="n-dashboard" class="active">Dashboard</button>
+<button onclick="show('scan')" id="n-scan">Scan QR</button>
+<button onclick="show('aset')" id="n-aset">Data Aset</button>
+<button onclick="show('taset')" id="n-taset">Tambah Aset</button>
+<button onclick="show('detail')" id="n-detail">Detail Aset</button>
+<button onclick="show('kat')" id="n-kat">Kategori</button>
+<button onclick="show('lok')" id="n-lok">Lokasi</button>
+<button onclick="show('pinjam')" id="n-pinjam">Peminjaman</button>
+<button onclick="show('tpinjam')" id="n-tpinjam">Tambah Pinjam</button>
+<button onclick="show('laporan')" id="n-laporan">Laporan</button>
+<button onclick="show('cetak')" id="n-cetak" style="background:yellow">&#128424; PDF Preview</button>
+<button onclick="show('user')" id="n-user">Pengguna</button>
+<button onclick="show('riwayat')" id="n-riwayat">Riwayat</button>
+<button onclick="show('profil')" id="n-profil">Profil</button>
+<button onclick="show('tkat')" id="n-tkat">Tambah Kategori</button>
+<button onclick="show('tlok')" id="n-tlok">Tambah Lokasi</button>
+<button onclick="show('tuser')" id="n-tuser">Tambah User</button>
+<button onclick="show('qrcode')" id="n-qrcode" style="background:#e3f2fd">&#9635; QR Code Aset</button>
+<button onclick="show('lpinjam')" id="n-lpinjam" style="background:yellow">&#128424; Lap. Pinjam</button>
+<button onclick="show('lmutasi')" id="n-lmutasi" style="background:yellow">&#128424; Lap. Mutasi</button>
+</div><div id="s-login" class="sc">
+<div class="l-split">
+<div class="l-left">
+<div style="width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin-bottom:15px;border:2px dashed rgba(255,255,255,.5)">LOGO</div>
+<h2 style="margin:5px 0">INVENTARISASI ASET</h2>
+<p style="opacity:.7">Madrasah Aliyah Negeri 2<br>Hulu Sungai Utara</p>
+</div>
+<div class="l-right">
+<h2>Selamat Datang!</h2>
+<p style="color:#888">Silakan masukkan akun Anda untuk melanjutkan.</p><br>
+<label>Username</label><input type="text" class="inp" placeholder="admin">
+<label>Password</label><input type="password" class="inp" placeholder="********">
+<div style="margin-top:15px"><div class="btn" style="width:100%;background:var(--green);color:#fff;padding:12px;font-size:1.1rem">MASUK SEKARANG &#8594;</div></div>
+<p style="text-align:center;color:#aaa;font-size:.8rem;margin-top:10px">Default: admin / admin123</p>
+</div></div></div>
+<div id="s-dashboard" class="sc active"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi a">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Dashboard</h3><div>&#128100; Admin &nbsp; &#128682;</div></div>
+<div class="ct">
+<div class="sg">
+<div class="sc-card" style="border-left:4px solid #9c27b0"><h3>42</h3><small>Total Aset</small></div>
+<div class="sc-card" style="border-left:4px solid #009688"><h3>8</h3><small>Kategori</small></div>
+<div class="sc-card" style="border-left:4px solid #e91e63"><h3>12</h3><small>Lokasi</small></div>
+<div class="sc-card" style="border-left:4px solid #ff9800"><h3>3</h3><small>Peminjaman Aktif</small></div>
+</div>
+<div class="cd" style="text-align:center"><p style="color:#888">Total Nilai Aset Keseluruhan</p><h2 style="color:var(--green)">Rp 285.750.000</h2></div>
+<div class="g2">
+<div class="cd"><h4>&#128200; Distribusi Kondisi Aset</h4>
+<div style="display:flex;align-items:flex-end;height:150px;gap:15px;padding-top:15px">
+<div style="text-align:center"><div style="width:45px;height:110px;background:#c8e6c9;border:2px solid #4caf50"></div><small>Baik</small></div>
+<div style="text-align:center"><div style="width:45px;height:50px;background:#fff9c4;border:2px solid #ffc107"></div><small>R.Ringan</small></div>
+<div style="text-align:center"><div style="width:45px;height:25px;background:#ffcdd2;border:2px solid #f44336"></div><small>R.Berat</small></div>
+</div></div>
+<div class="cd"><h4>&#128336; Aktivitas Terbaru</h4>
+<div style="border-bottom:1px solid #eee;padding:6px 0"><small>&#8505; Menambah aset: Laptop ASUS</small><br><small style="color:#999">Admin - 21/03/2026 09:00</small></div>
+<div style="border-bottom:1px solid #eee;padding:6px 0"><small>&#8505; Peminjaman: Proyektor</small><br><small style="color:#999">Petugas - 20/03/2026 14:30</small></div>
+<div style="padding:6px 0"><small>&#8505; Login ke sistem</small><br><small style="color:#999">Admin - 20/03/2026 08:00</small></div>
+</div></div>
+<div class="cd"><h4>&#128197; Aset Terbaru Ditambahkan</h4>
+<table class="tbl"><thead><tr><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Lokasi</th><th>Kondisi</th><th>Jml</th></tr></thead>
+<tbody>
+<tr><td><span class="bg bg-b">AST-001</span></td><td>Laptop ASUS ROG</td><td>Elektronik</td><td>Lab Komputer</td><td><span class="bg bg-g">Baik</span></td><td>5</td></tr>
+<tr><td><span class="bg bg-b">AST-002</span></td><td>Meja Guru</td><td>Meubelair</td><td>R. Guru</td><td><span class="bg bg-g">Baik</span></td><td>12</td></tr>
+<tr><td><span class="bg bg-b">AST-003</span></td><td>Proyektor Epson</td><td>Elektronik</td><td>R. Kelas X</td><td><span class="bg bg-y">R. Ringan</span></td><td>2</td></tr>
+</tbody></table></div>
+<div class="cd"><h4>&#129309; Peminjaman Aktif</h4>
+<table class="tbl"><thead><tr><th>Kode</th><th>Nama Aset</th><th>Peminjam</th><th>Tgl Pinjam</th><th>Batas</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><span class="bg bg-b">AST-003</span></td><td>Proyektor Epson</td><td>Pak Ahmad</td><td>18/03/2026</td><td>25/03/2026</td><td><span class="bg bg-y">Dipinjam</span></td></tr>
+</tbody></table></div>
+</div></div></div>
+<div id="s-scan" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi a">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Scan QR Code</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Scan QR Code</div>
+<div class="g2">
+<div class="cd"><h4>&#128247; Scan dengan Kamera</h4>
+<div style="height:200px;background:#f4f4f4;border:2px dashed var(--stroke);display:flex;align-items:center;justify-content:center;flex-direction:column">
+<div style="font-size:3rem">&#128247;</div><span>Area Kamera QR Scanner</span></div>
+<p style="color:#888;text-align:center;font-size:.85rem;margin-top:8px">Arahkan kamera ke QR Code aset</p></div>
+<div class="cd"><h4>&#9000; Input Manual</h4>
+<div style="display:flex;gap:8px"><input type="text" class="inp" placeholder="Masukkan kode aset (AST-2024-001)" style="margin:0"><div class="btn" style="background:var(--green);color:#fff">&#128270; Cari</div></div>
+</div></div>
+<div class="cd" style="margin-top:10px"><h4>&#9989; Aset Ditemukan</h4>
+<div class="g2" style="font-size:.9rem">
+<div><b>Kode Aset:</b> <span class="bg bg-b">AST-001</span></div>
+<div><b>Nama:</b> Laptop ASUS ROG</div>
+<div><b>Kategori:</b> Elektronik</div>
+<div><b>Lokasi:</b> Lab Komputer</div>
+<div><b>Kondisi:</b> <span class="bg bg-g">Baik</span></div>
+<div><b>Jumlah:</b> 5</div>
+<div><b>Tahun:</b> 2024</div>
+<div><b>Nilai:</b> Rp 15.000.000</div>
+</div></div>
+</div></div></div>
+<div id="s-aset" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi a">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Data Aset</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="ph"><div><h2 style="margin:0">&#128230; Data Aset</h2><div class="bc">Dashboard / Data Aset</div></div>
+<div class="btn" style="background:var(--green);color:#fff" onclick="show('taset')">+ Tambah Aset</div></div>
+<div class="cd"><div style="display:flex;gap:8px;align-items:center">
+<input type="text" class="inp" placeholder="Cari kode atau nama aset..." style="margin:0;flex:1">
+<select class="sel" style="width:150px;margin:0"><option>Semua Kondisi</option><option>Baik</option><option>Rusak Ringan</option><option>Rusak Berat</option></select>
+<select class="sel" style="width:160px;margin:0"><option>Semua Kategori</option><option>Elektronik</option><option>Meubelair</option></select>
+<div class="btn" style="background:var(--green);color:#fff">&#128270; Cari</div>
+<div class="btn">&#128260; Reset</div></div></div>
+<div class="cd"><h4>Daftar Aset (42 data)</h4>
+<table class="tbl"><thead><tr><th>No</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Lokasi</th><th>Jml</th><th>Kondisi</th><th>QR</th><th>Aksi</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><span class="bg bg-b">AST-001</span></td><td>Laptop ASUS ROG</td><td>Elektronik</td><td>Lab Komputer</td><td>5</td><td><span class="bg bg-g">Baik</span></td><td>&#9635;</td><td>&#128065; &#9999; &#128465;</td></tr>
+<tr><td>2</td><td><span class="bg bg-b">AST-002</span></td><td>Meja Guru</td><td>Meubelair</td><td>R. Guru</td><td>12</td><td><span class="bg bg-g">Baik</span></td><td>&#9635;</td><td>&#128065; &#9999; &#128465;</td></tr>
+<tr><td>3</td><td><span class="bg bg-b">AST-003</span></td><td>Proyektor Epson</td><td>Elektronik</td><td>R. Kelas X</td><td>2</td><td><span class="bg bg-y">R. Ringan</span></td><td>&#9635;</td><td>&#128065; &#9999; &#128465;</td></tr>
+<tr><td>4</td><td><span class="bg bg-b">AST-004</span></td><td>AC Daikin 1PK</td><td>Elektronik</td><td>R. Kepala</td><td>1</td><td><span class="bg bg-r">R. Berat</span></td><td>&#9635;</td><td>&#128065; &#9999; &#128465;</td></tr>
+</tbody></table>
+<div style="text-align:center;margin-top:10px"><span class="btn">&laquo;</span> <span class="btn" style="background:#2c2c2c;color:#fff">1</span> <span class="btn">2</span> <span class="btn">3</span> <span class="btn">&raquo;</span></div>
+</div></div></div></div>
+<div id="s-taset" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi a">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Tambah Aset Baru</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Data Aset / Tambah</div>
+<div class="cd"><h3 style="margin-top:0">Form Tambah Aset</h3>
+<div class="g2">
+<div><label>Kode Aset</label><input class="inp" value="AST-2026-043">
+<label>Kategori</label><select class="sel"><option>-- Pilih Kategori --</option><option>Elektronik</option><option>Meubelair</option><option>Alat Olahraga</option></select>
+<label>Jumlah *</label><input type="number" class="inp" value="1">
+<label>Tahun Perolehan</label><input class="inp" placeholder="2024">
+<label>Sumber Dana</label><input class="inp" placeholder="Dana BOS, APBD"></div>
+<div><label>Nama Aset *</label><input class="inp" placeholder="Masukkan nama aset">
+<label>Lokasi / Ruangan</label><select class="sel"><option>-- Pilih Lokasi --</option><option>Lab Komputer</option><option>R. Guru</option><option>R. Kelas X</option></select>
+<label>Kondisi *</label><select class="sel"><option>Baik</option><option>Rusak Ringan</option><option>Rusak Berat</option></select>
+<label>Nilai Perolehan (Rp)</label><input class="inp" placeholder="0">
+<label>Gambar Aset</label>
+<div style="border:2px dashed var(--stroke);background:#f9f9f9;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer">
+<span style="font-size:2rem">&#128247;</span><small>Klik untuk upload</small></div></div></div>
+<label>Keterangan</label><textarea class="inp" style="height:60px" placeholder="Keterangan tambahan..."></textarea>
+<div style="margin-top:15px"><div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan</div> <div class="btn" onclick="show('aset')">&#8592; Batal</div></div>
+</div></div></div></div>
+<div id="s-detail" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi a">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Detail Aset</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Data Aset / Detail</div>
+<div class="g2">
+<div class="cd"><h4>Informasi Aset</h4>
+<div style="display:grid;grid-template-columns:140px 1fr;gap:6px;font-size:.9rem">
+<b>Kode Aset:</b><span class="bg bg-b">AST-001</span>
+<b>Nama Aset:</b><span>Laptop ASUS ROG</span>
+<b>Kategori:</b><span>Elektronik</span>
+<b>Lokasi:</b><span>Lab Komputer</span>
+<b>Jumlah:</b><span>5 unit</span>
+<b>Kondisi:</b><span class="bg bg-g">Baik</span>
+<b>Tahun:</b><span>2024</span>
+<b>Nilai:</b><span>Rp 15.000.000</span>
+<b>Sumber Dana:</b><span>Dana BOS</span>
+<b>Keterangan:</b><span>Laptop untuk lab komputer</span>
+</div></div>
+<div class="cd" style="text-align:center"><h4>QR Code</h4>
+<div style="width:150px;height:150px;border:2px dashed var(--stroke);margin:10px auto;display:flex;align-items:center;justify-content:center;background:#f9f9f9">
+<span style="font-size:4rem">&#9635;</span></div>
+<small>AST-001</small><br>
+<div class="btn" style="margin-top:8px">&#128424; Cetak QR</div></div>
+</div>
+<div class="cd"><h4>Gambar Aset</h4>
+<div style="width:200px;height:150px;border:2px dashed var(--stroke);display:flex;align-items:center;justify-content:center;background:#f9f9f9">
+<span style="font-size:3rem">&#128444;</span></div></div>
+<div style="margin-top:10px"><div class="btn" style="background:#ff9800;color:#fff">&#9999; Edit</div> <div class="btn" style="background:#f44336;color:#fff">&#128465; Hapus</div> <div class="btn" onclick="show('aset')">&#8592; Kembali</div></div>
+</div></div></div>
+<div id="s-kat" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi a">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Master Kategori</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="ph"><div><h2 style="margin:0">&#127991; Kategori</h2><div class="bc">Dashboard / Kategori</div></div>
+<div class="btn" style="background:var(--green);color:#fff" onclick="show('tkat')">+ Tambah Kategori</div></div>
+<div class="cd">
+<table class="tbl"><thead><tr><th>No</th><th>Nama Kategori</th><th>Jumlah Aset</th><th>Aksi</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Elektronik</td><td>15</td><td>&#9999; &#128465;</td></tr>
+<tr><td>2</td><td>Meubelair</td><td>20</td><td>&#9999; &#128465;</td></tr>
+<tr><td>3</td><td>Alat Olahraga</td><td>8</td><td>&#9999; &#128465;</td></tr>
+<tr><td>4</td><td>Alat Laboratorium</td><td>5</td><td>&#9999; &#128465;</td></tr>
+</tbody></table></div>
+<div class="cd" style="max-width:400px"><h4>Form Tambah/Edit Kategori</h4>
+<label>Nama Kategori</label><input class="inp" placeholder="Nama kategori baru">
+<div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan</div></div>
+</div></div></div>
+<div id="s-lok" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi a">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Master Lokasi / Ruangan</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="ph"><div><h2 style="margin:0">&#128205; Lokasi / Ruangan</h2><div class="bc">Dashboard / Lokasi</div></div>
+<div class="btn" style="background:var(--green);color:#fff" onclick="show('tlok')">+ Tambah Lokasi</div></div>
+<div class="cd">
+<table class="tbl"><thead><tr><th>No</th><th>Nama Lokasi</th><th>Keterangan</th><th>Jumlah Aset</th><th>Aksi</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Lab Komputer</td><td>Lantai 2</td><td>15</td><td>&#9999; &#128465;</td></tr>
+<tr><td>2</td><td>Ruang Guru</td><td>Lantai 1</td><td>20</td><td>&#9999; &#128465;</td></tr>
+<tr><td>3</td><td>Ruang Kepala</td><td>Lantai 1</td><td>8</td><td>&#9999; &#128465;</td></tr>
+<tr><td>4</td><td>Ruang Kelas X-A</td><td>Gedung A</td><td>10</td><td>&#9999; &#128465;</td></tr>
+<tr><td>5</td><td>Musholla</td><td>Gedung B</td><td>3</td><td>&#9999; &#128465;</td></tr>
+</tbody></table></div>
+<div class="cd" style="max-width:400px"><h4>Form Tambah/Edit Lokasi</h4>
+<label>Nama Lokasi</label><input class="inp" placeholder="Nama lokasi/ruangan">
+<label>Keterangan</label><input class="inp" placeholder="Keterangan (opsional)">
+<div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan</div></div>
+</div></div></div>
+<div id="s-pinjam" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi a">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Peminjaman Aset</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="ph"><div><h2 style="margin:0">&#129309; Peminjaman</h2><div class="bc">Dashboard / Peminjaman</div></div>
+<div class="btn" style="background:var(--green);color:#fff" onclick="show('tpinjam')">+ Tambah Peminjaman</div></div>
+<div class="cd"><div style="display:flex;gap:8px;align-items:center">
+<select class="sel" style="width:180px;margin:0"><option>Semua Status</option><option>Dipinjam</option><option>Dikembalikan</option></select>
+<div class="btn" style="background:var(--green);color:#fff">&#128270; Filter</div><div class="btn">Reset</div></div></div>
+<div class="cd"><h4>Daftar Peminjaman</h4>
+<table class="tbl"><thead><tr><th>No</th><th>Kode</th><th>Nama Aset</th><th>Peminjam</th><th>Tgl Pinjam</th><th>Batas Kembali</th><th>Status</th><th>Aksi</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><span class="bg bg-b">AST-003</span></td><td>Proyektor Epson</td><td>Pak Ahmad</td><td>18/03/2026</td><td>25/03/2026</td><td><span class="bg bg-y">Dipinjam</span></td><td>&#128260; &#128465;</td></tr>
+<tr><td>2</td><td><span class="bg bg-b">AST-001</span></td><td>Laptop ASUS</td><td>Bu Sari</td><td>10/03/2026</td><td>17/03/2026</td><td><span class="bg bg-g">Dikembalikan</span></td><td>&#128465;</td></tr>
+<tr><td>3</td><td><span class="bg bg-b">AST-005</span></td><td>Speaker Portable</td><td>Pak Budi</td><td>15/03/2026</td><td>22/03/2026</td><td><span class="bg bg-y">Dipinjam</span></td><td>&#128260; &#128465;</td></tr>
+</tbody></table></div>
+</div></div></div>
+<div id="s-tpinjam" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi a">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Tambah Peminjaman</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Peminjaman / Tambah</div>
+<div class="cd" style="max-width:700px"><h3 style="margin-top:0">Form Peminjaman Baru</h3>
+<div class="g2">
+<div><label>Pilih Aset *</label><select class="sel"><option>-- Pilih Aset --</option><option>AST-001 - Laptop ASUS</option><option>AST-003 - Proyektor</option></select></div>
+<div><label>Nama Peminjam *</label><input class="inp" placeholder="Nama lengkap peminjam"></div>
+<div><label>Tanggal Pinjam *</label><input type="date" class="inp"></div>
+<div><label>Batas Pengembalian *</label><input type="date" class="inp"></div>
+</div>
+<label>Keterangan</label><textarea class="inp" style="height:50px" placeholder="Keterangan peminjaman..."></textarea>
+<div style="margin-top:15px"><div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan</div> <div class="btn" onclick="show('pinjam')">&#8592; Batal</div></div>
+</div></div></div></div>
+<div id="s-laporan" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi a">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Laporan</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<h2 style="margin-top:0">&#128196; Halaman Laporan</h2>
+<div class="lg">
+<div class="cd"><h4>&#128196; Inventaris Keseluruhan</h4><p style="font-size:.85rem;color:#666">Laporan semua data aset lengkap dengan nilai.</p>
+<div class="btn" style="width:100%;background:#e53935;color:#fff" onclick="show('cetak')">&#128424; Cetak PDF</div></div>
+<div class="cd"><h4>&#127991; Aset per Kategori</h4><p style="font-size:.85rem;color:#666">Rekapitulasi aset dikelompokkan per kategori.</p>
+<label>Kategori:</label><select class="sel"><option>Semua Kategori</option><option>Elektronik</option><option>Meubelair</option></select>
+<div class="btn" style="width:100%;background:#e53935;color:#fff">&#128424; Cetak PDF</div></div>
+<div class="cd"><h4>&#128205; Aset per Lokasi</h4><p style="font-size:.85rem;color:#666">Rekapitulasi aset dikelompokkan per lokasi/ruangan.</p>
+<label>Lokasi:</label><select class="sel"><option>Semua Lokasi</option><option>Lab Komputer</option><option>R. Guru</option></select>
+<div class="btn" style="width:100%;background:#e53935;color:#fff">&#128424; Cetak PDF</div></div>
+<div class="cd"><h4>&#9989; Kondisi Aset</h4><p style="font-size:.85rem;color:#666">Laporan berdasarkan kondisi baik/rusak ringan/berat.</p>
+<div class="btn" style="width:100%;background:#e53935;color:#fff">&#128424; Cetak PDF</div></div>
+<div class="cd"><h4>&#129309; Laporan Peminjaman</h4><p style="font-size:.85rem;color:#666">Rekap data peminjaman dan pengembalian aset.</p>
+<div class="g2"><div><label>Dari:</label><input type="date" class="inp"></div><div><label>Sampai:</label><input type="date" class="inp"></div></div>
+<div class="btn" style="width:100%;background:#e53935;color:#fff" onclick="show('lpinjam')">&#128424; Cetak PDF</div></div>
+<div class="cd"><h4>&#128229; Aset Masuk</h4><p style="font-size:.85rem;color:#666">Laporan aset yang baru ditambahkan per periode.</p>
+<div class="g2"><div><label>Dari:</label><input type="date" class="inp"></div><div><label>Sampai:</label><input type="date" class="inp"></div></div>
+<div class="btn" style="width:100%;background:#e53935;color:#fff">&#128424; Cetak PDF</div></div>
+<div class="cd" style="border-style:dashed;background:#f0f8ff"><h4>&#128260; Mutasi Aset</h4><p style="font-size:.85rem;color:#666">Perpindahan aset antar lokasi/ruangan.</p>
+<div class="btn" style="width:100%;background:#e53935;color:#fff" onclick="show('lmutasi')">&#128424; Cetak PDF</div></div>
+<div class="cd" style="border-style:dashed;background:#fff8e1"><h4>&#128465; Penghapusan Aset</h4><p style="font-size:.85rem;color:#666">Daftar aset yang telah dihapus dari inventaris.</p>
+<div class="btn" style="width:100%;background:#e53935;color:#fff">&#128424; Cetak PDF</div></div>
+</div></div></div></div>
+<div id="s-cetak" class="sc a4c">
+<div class="a4">
+<div class="kop">
+<div style="position:absolute;left:0;top:0;width:65px;height:75px;border:2px dashed #000;display:flex;align-items:center;justify-content:center;font-family:'Patrick Hand',cursive">LOGO</div>
+<div>
+<h2>KEMENTERIAN AGAMA REPUBLIK INDONESIA</h2>
+<h3>MADRASAH ALIYAH NEGERI 2 HULU SUNGAI UTARA</h3>
+<p>Alamat : Jl. Masjid Raya No. 1, Amuntai, Hulu Sungai Utara</p>
+<p>Website : man2hsu.sch.id - E-mail : man2hsu@kemenag.go.id</p>
+</div></div>
+<div style="text-align:center;font-weight:bold;font-size:14px;margin:15px 0;text-decoration:underline">LAPORAN INVENTARIS ASET KESELURUHAN</div>
+<table class="tbl" style="font-size:11px;border-color:#000">
+<thead><tr style="background:#e6e6e6"><th style="width:25px;border-color:#000;text-align:center">No</th><th style="border-color:#000">Kode</th><th style="border-color:#000">Nama Aset</th><th style="border-color:#000">Kategori</th><th style="border-color:#000">Lokasi</th><th style="border-color:#000;text-align:center;width:35px">Jml</th><th style="border-color:#000">Kondisi</th><th style="border-color:#000;text-align:right">Nilai</th></tr></thead>
+<tbody>
+<tr><td style="border-color:#000;text-align:center">1</td><td style="border-color:#000">AST-001</td><td style="border-color:#000">Laptop ASUS ROG</td><td style="border-color:#000">Elektronik</td><td style="border-color:#000">Lab Komputer</td><td style="border-color:#000;text-align:center">5</td><td style="border-color:#000">Baik</td><td style="border-color:#000;text-align:right">75.000.000</td></tr>
+<tr><td style="border-color:#000;text-align:center">2</td><td style="border-color:#000">AST-002</td><td style="border-color:#000">Meja Guru</td><td style="border-color:#000">Meubelair</td><td style="border-color:#000">R. Guru</td><td style="border-color:#000;text-align:center">12</td><td style="border-color:#000">Baik</td><td style="border-color:#000;text-align:right">18.000.000</td></tr>
+<tr><td style="border-color:#000;text-align:center">3</td><td style="border-color:#000">AST-003</td><td style="border-color:#000">Proyektor Epson</td><td style="border-color:#000">Elektronik</td><td style="border-color:#000">R. Kelas X</td><td style="border-color:#000;text-align:center">2</td><td style="border-color:#000">Rusak Ringan</td><td style="border-color:#000;text-align:right">14.000.000</td></tr>
+<tr><td style="border-color:#000;text-align:center">4</td><td style="border-color:#000">AST-004</td><td style="border-color:#000">AC Daikin 1PK</td><td style="border-color:#000">Elektronik</td><td style="border-color:#000">R. Kepala</td><td style="border-color:#000;text-align:center">1</td><td style="border-color:#000">Rusak Berat</td><td style="border-color:#000;text-align:right">4.500.000</td></tr>
+<tr style="font-weight:bold"><td colspan="7" style="border-color:#000;text-align:right">TOTAL</td><td style="border-color:#000;text-align:right">111.500.000</td></tr>
+</tbody></table>
+<div class="ttd"><div class="ttd-box">
+<p>Amuntai, 21 Maret 2026</p><p>Mengetahui,</p><p>Kepala Madrasah</p>
+<p style="margin-bottom:45px"></p>
+<p style="text-decoration:underline;font-weight:bold">( .............................................. )</p>
+<p>NIP. ................................</p>
+</div></div>
+<div style="position:absolute;bottom:15px;left:0;width:100%;text-align:center;font-size:9px;font-style:italic">Halaman 1 - Dicetak pada: 21-03-2026 15:00</div>
+</div></div>
+
+<div id="s-lpinjam" class="sc a4c">
+<div class="a4">
+<div class="kop">
+<div style="position:absolute;left:0;top:0;width:65px;height:75px;border:2px dashed #000;display:flex;align-items:center;justify-content:center;font-family:'Patrick Hand',cursive">LOGO</div>
+<div>
+<h2>KEMENTERIAN AGAMA REPUBLIK INDONESIA</h2>
+<h3>MADRASAH ALIYAH NEGERI 2 HULU SUNGAI UTARA</h3>
+<p>Alamat : Jl. Masjid Raya No. 1, Amuntai, Hulu Sungai Utara</p>
+<p>Website : man2hsu.sch.id - E-mail : man2hsu@kemenag.go.id</p>
+</div></div>
+<div style="text-align:center;font-weight:bold;font-size:14px;margin:15px 0;text-decoration:underline">LAPORAN PEMINJAMAN ASET</div>
+<p style="text-align:center;font-size:11px;margin-top:-10px">Periode: 01 Maret 2026 s.d 31 Maret 2026</p>
+<table class="tbl" style="font-size:11px;border-color:#000">
+<thead><tr style="background:#e6e6e6"><th style="width:25px;border-color:#000;text-align:center">No</th><th style="border-color:#000">Nama Peminjam</th><th style="border-color:#000">Nama Aset</th><th style="border-color:#000;text-align:center">Tgl Pinjam</th><th style="border-color:#000;text-align:center">Tgl Kembali</th><th style="border-color:#000">Status</th><th style="border-color:#000">Keterangan</th></tr></thead>
+<tbody>
+<tr><td style="border-color:#000;text-align:center">1</td><td style="border-color:#000">Pak Ahmad</td><td style="border-color:#000">Proyektor Epson</td><td style="border-color:#000;text-align:center">18/03/2026</td><td style="border-color:#000;text-align:center">25/03/2026</td><td style="border-color:#000">Dipinjam</td><td style="border-color:#000">Untuk rapat guru</td></tr>
+<tr><td style="border-color:#000;text-align:center">2</td><td style="border-color:#000">Bu Sari</td><td style="border-color:#000">Laptop ASUS</td><td style="border-color:#000;text-align:center">10/03/2026</td><td style="border-color:#000;text-align:center">17/03/2026</td><td style="border-color:#000">Dikembalikan</td><td style="border-color:#000">Presentasi KBM</td></tr>
+<tr><td style="border-color:#000;text-align:center">3</td><td style="border-color:#000">Pak Budi</td><td style="border-color:#000">Speaker Portable</td><td style="border-color:#000;text-align:center">15/03/2026</td><td style="border-color:#000;text-align:center">22/03/2026</td><td style="border-color:#000">Dipinjam</td><td style="border-color:#000">Senam pagi</td></tr>
+</tbody></table>
+<div class="ttd"><div class="ttd-box">
+<p>Amuntai, 01 April 2026</p><p>Mengetahui,</p><p>Kepala Madrasah</p>
+<p style="margin-bottom:45px"></p>
+<p style="text-decoration:underline;font-weight:bold">( .............................................. )</p>
+<p>NIP. ................................</p>
+</div></div>
+<div style="position:absolute;bottom:15px;left:0;width:100%;text-align:center;font-size:9px;font-style:italic">Halaman 1 - Dicetak pada: 01-04-2026 09:00</div>
+</div></div>
+
+<div id="s-lmutasi" class="sc a4c">
+<div class="a4">
+<div class="kop">
+<div style="position:absolute;left:0;top:0;width:65px;height:75px;border:2px dashed #000;display:flex;align-items:center;justify-content:center;font-family:'Patrick Hand',cursive">LOGO</div>
+<div>
+<h2>KEMENTERIAN AGAMA REPUBLIK INDONESIA</h2>
+<h3>MADRASAH ALIYAH NEGERI 2 HULU SUNGAI UTARA</h3>
+<p>Alamat : Jl. Masjid Raya No. 1, Amuntai, Hulu Sungai Utara</p>
+<p>Website : man2hsu.sch.id - E-mail : man2hsu@kemenag.go.id</p>
+</div></div>
+<div style="text-align:center;font-weight:bold;font-size:14px;margin:15px 0;text-decoration:underline">LAPORAN MUTASI ASET</div>
+<p style="text-align:center;font-size:11px;margin-top:-10px">Periode: Tahun 2026</p>
+<table class="tbl" style="font-size:11px;border-color:#000">
+<thead><tr style="background:#e6e6e6"><th style="width:25px;border-color:#000;text-align:center">No</th><th style="border-color:#000;text-align:center">Tgl Mutasi</th><th style="border-color:#000">Nama Aset</th><th style="border-color:#000">Lokasi Asal</th><th style="border-color:#000">Lokasi Tujuan</th><th style="border-color:#000">Petugas</th><th style="border-color:#000">Keterangan</th></tr></thead>
+<tbody>
+<tr><td style="border-color:#000;text-align:center">1</td><td style="border-color:#000;text-align:center">20/03/2026</td><td style="border-color:#000">Proyektor Epson (AST-003)</td><td style="border-color:#000">R. Guru</td><td style="border-color:#000">R. Kelas X</td><td style="border-color:#000">Admin</td><td style="border-color:#000">Pemindahan fasilitas</td></tr>
+<tr><td style="border-color:#000;text-align:center">2</td><td style="border-color:#000;text-align:center">15/02/2026</td><td style="border-color:#000">Meja Guru (AST-002)</td><td style="border-color:#000">Gudang</td><td style="border-color:#000">R. Guru</td><td style="border-color:#000">Admin</td><td style="border-color:#000">Penambahan meja</td></tr>
+</tbody></table>
+<div class="ttd"><div class="ttd-box">
+<p>Amuntai, 01 April 2026</p><p>Mengetahui,</p><p>Kepala Madrasah</p>
+<p style="margin-bottom:45px"></p>
+<p style="text-decoration:underline;font-weight:bold">( .............................................. )</p>
+<p>NIP. ................................</p>
+</div></div>
+<div style="position:absolute;bottom:15px;left:0;width:100%;text-align:center;font-size:9px;font-style:italic">Halaman 1 - Dicetak pada: 01-04-2026 09:15</div>
+</div></div>
+<div id="s-user" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi a">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Manajemen Pengguna</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="ph"><div><h2 style="margin:0">&#128101; Pengguna</h2><div class="bc">Dashboard / Pengguna</div></div>
+<div class="btn" style="background:var(--green);color:#fff" onclick="show('tuser')">+ Tambah User</div></div>
+<div class="cd">
+<table class="tbl"><thead><tr><th>No</th><th>Nama</th><th>Username</th><th>Role</th><th>Aksi</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Administrator</td><td>admin</td><td><span class="bg bg-p">Admin</span></td><td>&#9999; &#128465;</td></tr>
+<tr><td>2</td><td>Ahmad Rivai</td><td>ahmad01</td><td><span class="bg bg-b">Petugas</span></td><td>&#9999; &#128465;</td></tr>
+<tr><td>3</td><td>Siti Nurhaliza</td><td>siti02</td><td><span class="bg bg-b">Petugas</span></td><td>&#9999; &#128465;</td></tr>
+</tbody></table></div>
+<div class="cd" style="max-width:500px"><h4>Form Tambah Pengguna</h4>
+<label>Nama Lengkap</label><input class="inp" placeholder="Nama lengkap user">
+<div class="g2"><div><label>Username</label><input class="inp" placeholder="Username login"></div>
+<div><label>Password</label><input type="password" class="inp" placeholder="Password awal"></div></div>
+<label>Role</label><select class="sel"><option>-- Pilih Role --</option><option>Admin (Full Akses)</option><option>Petugas (Input &amp; Laporan)</option></select>
+<div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan User</div></div>
+</div></div></div>
+<div id="s-riwayat" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi a">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Riwayat Aktivitas</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<h2 style="margin:0">&#128336; Riwayat Aktivitas</h2>
+<div class="bc">Dashboard / Riwayat Aktivitas</div>
+<div class="cd">
+<table class="tbl"><thead><tr><th>Waktu</th><th>User</th><th>Aktivitas</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>21/03/2026 09:00</td><td>Admin</td><td>Tambah Aset</td><td>Menambah aset: Laptop ASUS ROG (AST-001)</td></tr>
+<tr><td>20/03/2026 14:30</td><td>Ahmad</td><td>Peminjaman</td><td>Meminjamkan Proyektor Epson ke Pak Ahmad</td></tr>
+<tr><td>20/03/2026 10:00</td><td>Admin</td><td>Edit Aset</td><td>Mengubah data: Meja Guru (AST-002)</td></tr>
+<tr><td>19/03/2026 09:15</td><td>Admin</td><td>Tambah User</td><td>Menambahkan user: Ahmad Rivai</td></tr>
+<tr><td>19/03/2026 08:00</td><td>Admin</td><td>Login</td><td>Admin berhasil login</td></tr>
+</tbody></table></div>
+</div></div></div>
+<div id="s-profil" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Profil Saya</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Profil</div>
+<div class="g2" style="align-items:start">
+<!-- Bagian Detail -->
+<div class="cd">
+	<div style="background:linear-gradient(135deg,#1e7256,#114a36);padding:20px;border-radius:10px;text-align:center;color:#fff;margin-bottom:15px;position:relative">
+		<div class="btn" style="position:absolute;top:10px;right:10px;font-size:.8rem;padding:4px 10px;background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.5)">&#9999; Edit Profil</div>
+		<div style="width:90px;height:90px;background:rgba(255,255,255,.2);border:3px solid rgba(255,255,255,.5);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:bold;margin-bottom:10px">A</div>
+		<h3 style="margin:0 0 5px">Administrator</h3>
+		<span style="background:rgba(255,255,255,.2);padding:3px 12px;border-radius:15px;font-size:.8rem">&#128081; Admin</span>
+	</div>
+	<h4>&#128100; Informasi Akun</h4>
+	<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+		<div style="background:#f9f9f9;padding:10px;border:1px solid #eee;border-radius:8px">
+			<div style="font-size:.75rem;color:#888;margin-bottom:3px">NAMA LENGKAP</div>
+			<div style="font-weight:bold">Administrator</div>
+		</div>
+		<div style="background:#f9f9f9;padding:10px;border:1px solid #eee;border-radius:8px">
+			<div style="font-size:.75rem;color:#888;margin-bottom:3px">USERNAME</div>
+			<div style="font-weight:bold">admin</div>
+		</div>
+		<div style="background:#f9f9f9;padding:10px;border:1px solid #eee;border-radius:8px">
+			<div style="font-size:.75rem;color:#888;margin-bottom:3px">ROLE</div>
+			<div><span class="bg bg-p">Admin</span></div>
+		</div>
+		<div style="background:#f9f9f9;padding:10px;border:1px solid #eee;border-radius:8px">
+			<div style="font-size:.75rem;color:#888;margin-bottom:3px">BERGABUNG SEJAK</div>
+			<div style="font-weight:bold">12 Maret 2026</div>
+		</div>
+	</div>
+	<h4 style="margin-top:20px">&#128274; Keamanan</h4>
+	<div style="background:#f9f9f9;padding:12px;border:1px solid #eee;border-radius:8px;display:flex;justify-content:space-between;align-items:center">
+		<div>
+			<div style="font-size:.75rem;color:#888;margin-bottom:3px">PASSWORD</div>
+			<div style="font-weight:bold;letter-spacing:2px">••••••••</div>
+		</div>
+		<div class="btn" style="font-size:.8rem;padding:4px 12px">&#9999; Ubah</div>
+	</div>
+</div>
+
+<!-- Bagian Edit (Simulasi jika tombol edit ditekan) -->
+<div class="cd">
+	<h3 style="margin-top:0">&#9999; Edit Profil</h3>
+	<p style="color:#888;font-size:.85rem;margin-top:0">Perbarui informasi profil dan foto Anda.</p>
+	<div style="text-align:center;margin-bottom:15px">
+		<div style="width:100px;height:100px;border:2px dashed #ccc;border-radius:50%;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#f9f9f9;cursor:pointer">
+			<span style="font-size:1.5rem;color:#aaa">&#128247;</span>
+			<small style="color:#aaa">Upload Foto</small>
+		</div>
+		<div style="font-size:.8rem;color:#888;margin-top:8px">JPG, PNG, WEBP · Maks 2MB</div>
+	</div>
+	<hr style="border:none;border-top:1px solid #eee;margin:15px 0">
+	<label>Nama Lengkap <span style="color:red">*</span></label>
+	<input class="inp" value="Administrator">
+	<label>Username <span style="color:red">*</span></label>
+	<input class="inp" value="admin">
+	<small style="color:#888;display:block;margin-top:-8px;margin-bottom:10px">Username digunakan untuk login ke sistem.</small>
+	
+	<hr style="border:none;border-top:1px solid #eee;margin:15px 0">
+	<h4 style="margin-top:0;margin-bottom:10px">&#128274; Ubah Password <small style="color:#888;font-weight:normal">— kosongkan jika tidak diubah</small></h4>
+	<label>Password Baru</label>
+	<input type="password" class="inp" placeholder="Minimal 6 karakter">
+	<label>Konfirmasi Password Baru</label>
+	<input type="password" class="inp" placeholder="Ketik ulang password baru">
+	
+	<div style="display:flex;gap:10px;margin-top:10px">
+		<div class="btn" style="background:var(--green);color:#fff;flex:1">&#128190; Simpan Perubahan</div>
+		<div class="btn" style="flex:0 0 auto">&#10006; Batal</div>
+	</div>
+</div>
+</div>
+</div></div></div>
+
+<div id="s-tkat" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi a">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Tambah Kategori</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Kategori / Tambah</div>
+<div class="cd" style="max-width:550px">
+<h3 style="margin-top:0">&#127991; Form Tambah Kategori Baru</h3>
+<p style="color:#888;font-size:.85rem;margin-top:0">Tambahkan kategori baru untuk mengelompokkan aset berdasarkan jenis barang.</p>
+<label>Nama Kategori <span style="color:red">*</span></label>
+<input class="inp" placeholder="Contoh: Elektronik, Meubelair, Alat Olahraga">
+<label>Deskripsi <small>(opsional)</small></label>
+<textarea class="inp" style="height:70px" placeholder="Deskripsi singkat tentang kategori ini..."></textarea>
+<div style="background:#f0f8ff;border:1px solid #bbdefb;padding:10px;margin:10px 0;font-size:.85rem">&#128161; <b>Tips:</b> Gunakan nama kategori yang jelas dan konsisten agar pengelompokan aset lebih mudah.</div>
+<div style="margin-top:15px"><div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan Kategori</div> <div class="btn" onclick="show('kat')">&#8592; Batal</div></div>
+</div>
+<div class="cd" style="max-width:550px;margin-top:15px">
+<h4>&#127991; Kategori yang Sudah Ada</h4>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span class="bg bg-b">Elektronik (15)</span>
+<span class="bg bg-g">Meubelair (20)</span>
+<span class="bg bg-y">Alat Olahraga (8)</span>
+<span class="bg bg-p">Alat Laboratorium (5)</span>
+</div>
+</div>
+</div></div></div>
+
+<div id="s-tlok" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi a">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Tambah Lokasi</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Lokasi / Tambah</div>
+<div class="cd" style="max-width:550px">
+<h3 style="margin-top:0">&#128205; Form Tambah Lokasi Baru</h3>
+<p style="color:#888;font-size:.85rem;margin-top:0">Tambahkan lokasi/ruangan baru sebagai tempat penyimpanan aset.</p>
+<label>Nama Lokasi / Ruangan <span style="color:red">*</span></label>
+<input class="inp" placeholder="Contoh: Lab Komputer, Ruang Guru, Musholla">
+<label>Gedung / Lantai</label>
+<div class="g2"><div><label>Gedung</label><input class="inp" placeholder="Gedung A"></div><div><label>Lantai</label><input class="inp" placeholder="Lantai 1"></div></div>
+<label>Keterangan <small>(opsional)</small></label>
+<textarea class="inp" style="height:70px" placeholder="Detail lokasi, misalnya: Ruang di lantai 2, sebelah perpustakaan"></textarea>
+<div style="background:#f0fff0;border:1px solid #a5d6a7;padding:10px;margin:10px 0;font-size:.85rem">&#128205; <b>Info:</b> Pastikan nama lokasi sesuai dengan denah sekolah agar mudah ditemukan.</div>
+<div style="margin-top:15px"><div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan Lokasi</div> <div class="btn" onclick="show('lok')">&#8592; Batal</div></div>
+</div>
+<div class="cd" style="max-width:550px;margin-top:15px">
+<h4>&#128205; Lokasi yang Sudah Ada</h4>
+<table class="tbl" style="font-size:.85rem"><thead><tr><th>No</th><th>Nama Lokasi</th><th>Keterangan</th><th>Jml Aset</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Lab Komputer</td><td>Lantai 2</td><td>15</td></tr>
+<tr><td>2</td><td>Ruang Guru</td><td>Lantai 1</td><td>20</td></tr>
+<tr><td>3</td><td>Ruang Kepala</td><td>Lantai 1</td><td>8</td></tr>
+<tr><td>4</td><td>Ruang Kelas X-A</td><td>Gedung A</td><td>10</td></tr>
+<tr><td>5</td><td>Musholla</td><td>Gedung B</td><td>3</td></tr>
+</tbody></table>
+</div>
+</div></div></div>
+
+<div id="s-tuser" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi a">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>Tambah Pengguna</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Pengguna / Tambah</div>
+<div class="cd" style="max-width:600px">
+<h3 style="margin-top:0">&#128101; Form Tambah Pengguna Baru</h3>
+<p style="color:#888;font-size:.85rem;margin-top:0">Buat akun pengguna baru untuk mengakses sistem inventaris aset.</p>
+<label>Nama Lengkap <span style="color:red">*</span></label>
+<input class="inp" placeholder="Masukkan nama lengkap pengguna">
+<div class="g2">
+<div><label>Username <span style="color:red">*</span></label><input class="inp" placeholder="Contoh: ahmad01"></div>
+<div><label>Password <span style="color:red">*</span></label><input type="password" class="inp" placeholder="Minimal 6 karakter"></div>
+</div>
+<label>Konfirmasi Password <span style="color:red">*</span></label>
+<input type="password" class="inp" placeholder="Ketik ulang password">
+<label>Role / Hak Akses <span style="color:red">*</span></label>
+<select class="sel"><option>-- Pilih Role --</option><option>Admin (Full Akses)</option><option>Petugas (Input &amp; Laporan)</option></select>
+<div class="g2" style="margin-top:5px">
+<div class="cd" style="border-color:#9c27b0;border-left:4px solid #9c27b0;padding:10px">
+<b style="color:#6a1b9a">&#128081; Admin</b><br>
+<small style="color:#666">• Kelola semua data aset<br>• Manajemen pengguna<br>• Akses semua laporan<br>• Riwayat aktivitas</small>
+</div>
+<div class="cd" style="border-color:#2196f3;border-left:4px solid #2196f3;padding:10px">
+<b style="color:#1565c0">&#128100; Petugas</b><br>
+<small style="color:#666">• Input &amp; edit aset<br>• Kelola peminjaman<br>• Cetak laporan<br>• Tidak kelola user</small>
+</div>
+</div>
+<div style="background:#fff3e0;border:1px solid #ffcc80;padding:10px;margin:10px 0;font-size:.85rem">&#9888; <b>Perhatian:</b> Pastikan password minimal 6 karakter dan sudah dikonfirmasi dengan benar.</div>
+<div style="margin-top:15px"><div class="btn" style="background:var(--green);color:#fff">&#128190; Simpan Pengguna</div> <div class="btn" onclick="show('user')">&#8592; Batal</div></div>
+</div>
+</div></div></div>
+
+<div id="s-qrcode" class="sc"><div class="sb"><div class="sb-hd">&#128230; Inventaris Aset</div><div class="sb-mn"><div class="sb-sec">Menu Utama</div><div class="mi">&#127968; Dashboard</div><div class="mi">&#128274; Scan QR Code</div><div class="sb-sec">Master Data</div><div class="mi a">&#128230; Data Aset</div><div class="mi">&#127991; Kategori</div><div class="mi">&#128205; Lokasi / Ruangan</div><div class="sb-sec">Transaksi</div><div class="mi">&#129309; Peminjaman</div><div class="sb-sec">Laporan</div><div class="mi">&#128196; Laporan</div><div class="sb-sec">Administrasi</div><div class="mi">&#128101; Manajemen Pengguna</div><div class="mi">&#128336; Riwayat Aktivitas</div></div><div class="sb-ft"><div class="usr-av">A</div><div><small><b>Admin</b><br>administrator</small></div></div></div><div class="mn"><div class="hd"><h3>QR Code Aset</h3><div>&#128100; Admin</div></div>
+<div class="ct">
+<div class="bc">Dashboard / Data Aset / QR Code</div>
+<div class="ph"><div><h2 style="margin:0">&#9635; QR Code Aset</h2><p style="color:#888;font-size:.85rem;margin:2px 0">Contoh tampilan QR Code untuk aset: <b>Laptop ASUS ROG</b></p></div>
+<div class="btn" onclick="show('aset')">&#8592; Kembali ke Data Aset</div></div>
+<div class="g2">
+<div class="cd" style="text-align:center">
+<h4>QR Code - AST-001</h4>
+<div style="background:#fff;border:2px solid var(--stroke);padding:20px;display:inline-block;margin:10px 0">
+<svg class="qr-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" width="200" height="200" shape-rendering="crispEdges">
+<rect width="29" height="29" fill="#fff"/>
+<g fill="#000">
+<!-- Position pattern top-left -->
+<rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
+<rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
+<rect x="2" y="2" width="3" height="3"/>
+<!-- Position pattern top-right -->
+<rect x="22" y="0" width="7" height="1"/><rect x="22" y="6" width="7" height="1"/>
+<rect x="22" y="0" width="1" height="7"/><rect x="28" y="0" width="1" height="7"/>
+<rect x="24" y="2" width="3" height="3"/>
+<!-- Position pattern bottom-left -->
+<rect x="0" y="22" width="7" height="1"/><rect x="0" y="28" width="7" height="1"/>
+<rect x="0" y="22" width="1" height="7"/><rect x="6" y="22" width="1" height="7"/>
+<rect x="2" y="24" width="3" height="3"/>
+<!-- Timing patterns -->
+<rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/>
+<rect x="6" y="8" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/>
+<!-- Alignment pattern -->
+<rect x="20" y="20" width="5" height="1"/><rect x="20" y="24" width="5" height="1"/>
+<rect x="20" y="20" width="1" height="5"/><rect x="24" y="20" width="1" height="5"/>
+<rect x="22" y="22" width="1" height="1"/>
+<!-- Data modules (AST-001 pattern) -->
+<rect x="8" y="1" width="1" height="1"/><rect x="10" y="1" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/>
+<rect x="9" y="3" width="1" height="1"/><rect x="11" y="3" width="2" height="1"/><rect x="14" y="1" width="1" height="1"/>
+<rect x="8" y="4" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/>
+<rect x="15" y="2" width="1" height="1"/><rect x="17" y="1" width="1" height="1"/><rect x="19" y="3" width="1" height="1"/>
+<rect x="16" y="4" width="1" height="1"/><rect x="18" y="5" width="1" height="1"/><rect x="20" y="2" width="1" height="1"/>
+<rect x="8" y="8" width="1" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/>
+<rect x="9" y="10" width="1" height="1"/><rect x="11" y="10" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/>
+<rect x="8" y="12" width="1" height="1"/><rect x="13" y="11" width="1" height="1"/><rect x="15" y="9" width="1" height="1"/>
+<rect x="16" y="10" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="20" y="9" width="1" height="1"/>
+<rect x="17" y="11" width="1" height="1"/><rect x="19" y="12" width="1" height="1"/><rect x="21" y="11" width="1" height="1"/>
+<rect x="22" y="8" width="1" height="1"/><rect x="24" y="9" width="1" height="1"/><rect x="26" y="8" width="1" height="1"/>
+<rect x="23" y="10" width="1" height="1"/><rect x="25" y="11" width="1" height="1"/><rect x="27" y="10" width="1" height="1"/>
+<rect x="1" y="8" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/>
+<rect x="2" y="11" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/>
+<rect x="1" y="14" width="1" height="1"/><rect x="3" y="15" width="1" height="1"/><rect x="5" y="14" width="1" height="1"/>
+<rect x="8" y="14" width="1" height="1"/><rect x="10" y="15" width="1" height="1"/><rect x="12" y="14" width="1" height="1"/>
+<rect x="9" y="16" width="1" height="1"/><rect x="11" y="17" width="1" height="1"/><rect x="14" y="15" width="1" height="1"/>
+<rect x="13" y="17" width="1" height="1"/><rect x="15" y="16" width="1" height="1"/><rect x="17" y="14" width="1" height="1"/>
+<rect x="16" y="17" width="1" height="1"/><rect x="18" y="16" width="1" height="1"/><rect x="20" y="15" width="1" height="1"/>
+<rect x="2" y="17" width="1" height="1"/><rect x="4" y="16" width="1" height="1"/>
+<rect x="22" y="14" width="1" height="1"/><rect x="24" y="15" width="1" height="1"/><rect x="26" y="17" width="1" height="1"/>
+<rect x="27" y="14" width="1" height="1"/><rect x="25" y="16" width="1" height="1"/>
+<rect x="8" y="19" width="1" height="1"/><rect x="10" y="18" width="1" height="1"/><rect x="12" y="19" width="1" height="1"/>
+<rect x="14" y="18" width="1" height="1"/><rect x="9" y="20" width="1" height="1"/><rect x="11" y="21" width="1" height="1"/>
+<rect x="13" y="20" width="1" height="1"/><rect x="15" y="19" width="1" height="1"/><rect x="17" y="18" width="1" height="1"/>
+<rect x="1" y="19" width="1" height="1"/><rect x="3" y="18" width="1" height="1"/><rect x="5" y="20" width="1" height="1"/>
+<rect x="2" y="21" width="1" height="1"/><rect x="4" y="20" width="1" height="1"/>
+<rect x="8" y="22" width="1" height="1"/><rect x="10" y="23" width="1" height="1"/><rect x="12" y="22" width="1" height="1"/>
+<rect x="9" y="24" width="1" height="1"/><rect x="11" y="25" width="1" height="1"/><rect x="14" y="23" width="1" height="1"/>
+<rect x="13" y="25" width="1" height="1"/><rect x="15" y="24" width="1" height="1"/><rect x="16" y="22" width="1" height="1"/>
+<rect x="17" y="25" width="1" height="1"/><rect x="18" y="23" width="1" height="1"/><rect x="19" y="25" width="1" height="1"/>
+<rect x="8" y="26" width="1" height="1"/><rect x="10" y="27" width="1" height="1"/><rect x="12" y="26" width="1" height="1"/>
+<rect x="14" y="27" width="1" height="1"/><rect x="16" y="26" width="1" height="1"/><rect x="18" y="27" width="1" height="1"/>
+<rect x="26" y="22" width="1" height="1"/><rect x="27" y="24" width="1" height="1"/><rect x="28" y="26" width="1" height="1"/>
+<rect x="26" y="25" width="1" height="1"/><rect x="28" y="23" width="1" height="1"/>
+</g>
+</svg>
+</div>
+<p style="font-size:1rem;margin:5px 0"><b>AST-001</b></p>
+<p style="color:#666;font-size:.85rem;margin:2px 0">Laptop ASUS ROG</p>
+<div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
+<div class="btn" style="background:var(--green);color:#fff">&#128424; Cetak QR Code</div>
+<div class="btn" style="background:#2196f3;color:#fff">&#128229; Download PNG</div>
+</div>
+</div>
+<div class="cd">
+<h4>&#128196; Informasi Aset</h4>
+<div style="display:grid;grid-template-columns:140px 1fr;gap:6px;font-size:.9rem">
+<b>Kode Aset:</b><span class="bg bg-b">AST-001</span>
+<b>Nama Aset:</b><span>Laptop ASUS ROG</span>
+<b>Kategori:</b><span>Elektronik</span>
+<b>Lokasi:</b><span>Lab Komputer</span>
+<b>Jumlah:</b><span>5 unit</span>
+<b>Kondisi:</b><span class="bg bg-g">Baik</span>
+<b>Tahun:</b><span>2024</span>
+<b>Nilai:</b><span>Rp 15.000.000</span>
+</div>
+<div style="margin-top:15px;padding:12px;background:#f5f5f5;border:1px solid #ddd;font-size:.82rem">
+<b>&#9635; Cara penggunaan QR Code:</b><br>
+1. Cetak QR Code dan tempelkan pada aset<br>
+2. Gunakan fitur <b>Scan QR</b> di sidebar untuk memindai<br>
+3. Informasi aset akan tampil otomatis dari hasil scan
+</div>
+</div>
+</div>
+<div class="cd" style="margin-top:12px">
+<h4>&#128424; Preview Cetak Label QR Code</h4>
+<div style="display:flex;gap:15px;flex-wrap:wrap">
+<div style="border:2px solid #000;padding:10px;width:200px;text-align:center;background:#fff">
+<div style="font-size:.7rem;font-weight:bold;margin-bottom:4px">MAN 2 HULU SUNGAI UTARA</div>
+<div style="width:100px;height:100px;border:1px solid #ccc;margin:0 auto;display:flex;align-items:center;justify-content:center;background:#f9f9f9">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" width="90" height="90" shape-rendering="crispEdges">
+<rect width="29" height="29" fill="#fff"/>
+<g fill="#000">
+<rect x="0" y="0" width="7" height="1"/><rect x="0" y="6" width="7" height="1"/>
+<rect x="0" y="0" width="1" height="7"/><rect x="6" y="0" width="1" height="7"/>
+<rect x="2" y="2" width="3" height="3"/>
+<rect x="22" y="0" width="7" height="1"/><rect x="22" y="6" width="7" height="1"/>
+<rect x="22" y="0" width="1" height="7"/><rect x="28" y="0" width="1" height="7"/>
+<rect x="24" y="2" width="3" height="3"/>
+<rect x="0" y="22" width="7" height="1"/><rect x="0" y="28" width="7" height="1"/>
+<rect x="0" y="22" width="1" height="7"/><rect x="6" y="22" width="1" height="7"/>
+<rect x="2" y="24" width="3" height="3"/>
+<rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/>
+<rect x="6" y="8" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/>
+<rect x="8" y="1" width="1" height="1"/><rect x="10" y="1" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/>
+<rect x="9" y="3" width="1" height="1"/><rect x="11" y="3" width="2" height="1"/><rect x="14" y="1" width="1" height="1"/>
+<rect x="8" y="8" width="1" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/>
+<rect x="9" y="10" width="1" height="1"/><rect x="11" y="10" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/>
+<rect x="16" y="10" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="20" y="9" width="1" height="1"/>
+</g>
+</svg>
+</div>
+<div style="font-weight:bold;font-size:.8rem;margin-top:4px">AST-001</div>
+<div style="font-size:.7rem;color:#555">Laptop ASUS ROG</div>
+</div>
+<div style="border:2px dashed #aaa;padding:10px;width:200px;text-align:center;background:#fafafa;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#aaa">
+<span style="font-size:2rem">+</span>
+<small>Label QR lainnya</small>
+</div>
+</div>
+</div>
+</div></div></div>
+
+<script>
+function show(id) {
+    document.querySelectorAll('.sc').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.wf-nav button').forEach(el => el.classList.remove('active'));
+    document.getElementById('s-' + id).classList.add('active');
+    var nav = document.getElementById('n-' + id);
+    if (nav) nav.classList.add('active');
+}
+</script>
+</body>
+</html>

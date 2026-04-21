@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Case Diagram - Inventaris Aset MAN 2 HSU</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; padding: 30px; color: #333; }
+        h1 { text-align: center; font-size: 1.6rem; margin-bottom: 5px; color: #1e7256; }
+        .subtitle { text-align: center; color: #888; font-size: 0.9rem; margin-bottom: 30px; }
+
+        .diagram-wrapper { max-width: 1100px; margin: 0 auto; position: relative; display: flex; gap: 0; align-items: stretch; }
+
+        /* Actors */
+        .actor-col { width: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; flex-shrink: 0; position: relative; z-index: 2; }
+        .actor { text-align: center; margin: 20px 0; }
+        .actor-icon { width: 60px; height: 60px; margin: 0 auto 8px; }
+        .actor-icon svg { width: 100%; height: 100%; }
+        .actor-name { font-weight: 600; font-size: 0.85rem; }
+        .actor-role { font-size: 0.72rem; color: #888; }
+
+        /* System Box */
+        .system-box { flex: 1; border: 2.5px solid #1e7256; border-radius: 16px; background: white; padding: 30px 25px; position: relative; min-height: 700px; }
+        .system-title { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #1e7256; color: white; padding: 5px 25px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+
+        /* Use Case Groups */
+        .uc-group { margin-bottom: 18px; }
+        .uc-group-title { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: #1e7256; font-weight: 700; margin-bottom: 8px; padding-left: 5px; border-left: 3px solid #1e7256; }
+        .uc-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+
+        /* Use Case Ellipse */
+        .uc { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 2px solid #2c8a6b; border-radius: 50px; background: #f0faf5; font-size: 0.82rem; font-weight: 500; color: #1a5c3f; transition: all 0.2s; cursor: default; position: relative; }
+        .uc:hover { background: #d4f0e4; transform: scale(1.03); box-shadow: 0 3px 12px rgba(30,114,86,0.15); }
+        .uc .icon { font-size: 0.9rem; }
+
+        /* Admin-only styling */
+        .uc.admin-only { border-color: #9c27b0; background: #faf0fc; color: #6a1b9a; }
+        .uc.admin-only:hover { background: #f0d4f7; }
+
+        /* Include/Extend labels */
+        .uc-include { font-size: 0.7rem; color: #888; font-style: italic; margin-left: 20px; margin-top: 2px; margin-bottom: 6px; }
+        .uc-include::before { content: '↳ '; color: #aaa; }
+
+        /* Connection lines */
+        .connections-left, .connections-right { position: absolute; top: 0; height: 100%; pointer-events: none; z-index: 1; }
+        .connections-left { left: 90px; width: 40px; }
+        .connections-right { right: 90px; width: 40px; }
+
+        /* Legend */
+        .legend { max-width: 1100px; margin: 25px auto 0; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; padding: 15px 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; }
+        .legend-dot { width: 28px; height: 16px; border-radius: 20px; border: 2px solid; }
+        .legend-dot.shared { border-color: #2c8a6b; background: #f0faf5; }
+        .legend-dot.admin { border-color: #9c27b0; background: #faf0fc; }
+        .legend-line { width: 30px; height: 2px; }
+        .legend-line.solid { background: #555; }
+        .legend-line.dashed { border-top: 2px dashed #999; background: none; }
+
+        /* Info Table */
+        .info-section { max-width: 1100px; margin: 25px auto 0; background: white; border-radius: 10px; padding: 20px 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .info-section h3 { font-size: 1rem; color: #1e7256; margin-bottom: 12px; }
+        .info-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+        .info-table th { background: #f0faf5; text-align: left; padding: 8px 12px; border: 1px solid #e0e0e0; color: #1e7256; }
+        .info-table td { padding: 8px 12px; border: 1px solid #e0e0e0; }
+        .info-table tr:hover td { background: #fafafa; }
+        .badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 0.72rem; font-weight: 600; }
+        .badge-green { background: #e8f5e9; color: #2e7d32; }
+        .badge-purple { background: #f3e5f5; color: #7b1fa2; }
+    </style>
+</head>
+<body>
+
+<h1>📋 Use Case Diagram</h1>
+<p class="subtitle">Sistem Inventarisasi Aset — Madrasah Aliyah Negeri 2 Hulu Sungai Utara</p>
+
+<div class="diagram-wrapper">
+
+    <!-- ACTOR LEFT: Admin -->
+    <div class="actor-col">
+        <div class="actor">
+            <div class="actor-icon">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="18" r="12" fill="#7b1fa2" stroke="#4a148c" stroke-width="2"/>
+                    <path d="M10 58c0-14 10-22 22-22s22 8 22 22" fill="#7b1fa2" stroke="#4a148c" stroke-width="2"/>
+                    <circle cx="32" cy="15" r="4" fill="white"/>
+                    <rect x="24" y="10" rx="2" width="16" height="3" fill="#ce93d8" opacity="0.5"/>
+                </svg>
+            </div>
+            <div class="actor-name">Admin</div>
+            <div class="actor-role">Full Akses</div>
+        </div>
+    </div>
+
+    <!-- SYSTEM BOX -->
+    <div class="system-box">
+        <div class="system-title">🏫 Sistem Inventarisasi Aset MAN 2 HSU</div>
+
+        <!-- Auth -->
+        <div class="uc-group">
+            <div class="uc-group-title">Autentikasi</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">🔐</span> Login</div>
+                <div class="uc"><span class="icon">🚪</span> Logout</div>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="uc-group">
+            <div class="uc-group-title">Dashboard</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">📊</span> Lihat Dashboard</div>
+            </div>
+            <div class="uc-include">«include» Lihat Statistik Aset, Kondisi, Nilai, Peminjaman Aktif, Aktivitas Terbaru</div>
+        </div>
+
+        <!-- Scan QR -->
+        <div class="uc-group">
+            <div class="uc-group-title">QR Code</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">📷</span> Scan QR Code</div>
+                <div class="uc"><span class="icon">⌨️</span> Input Manual Kode Aset</div>
+            </div>
+            <div class="uc-include">«include» Lihat Detail Aset dari QR</div>
+        </div>
+
+        <!-- Master Data: Aset -->
+        <div class="uc-group">
+            <div class="uc-group-title">Manajemen Aset</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">📋</span> Lihat Data Aset</div>
+                <div class="uc"><span class="icon">➕</span> Tambah Aset</div>
+                <div class="uc"><span class="icon">✏️</span> Edit Aset</div>
+                <div class="uc"><span class="icon">🗑️</span> Hapus Aset (Soft Delete)</div>
+            </div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">🔍</span> Cari & Filter Aset</div>
+                <div class="uc"><span class="icon">👁️</span> Lihat Detail Aset</div>
+                <div class="uc"><span class="icon">📱</span> Generate QR Code</div>
+            </div>
+            <div class="uc-include">«include» Upload Gambar Aset</div>
+        </div>
+
+        <!-- Kategori & Lokasi -->
+        <div class="uc-group">
+            <div class="uc-group-title">Master Data</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">🏷️</span> Kelola Kategori (CRUD)</div>
+                <div class="uc"><span class="icon">📍</span> Kelola Lokasi / Ruangan (CRUD)</div>
+            </div>
+        </div>
+
+        <!-- Peminjaman -->
+        <div class="uc-group">
+            <div class="uc-group-title">Transaksi Peminjaman</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">📋</span> Lihat Data Peminjaman</div>
+                <div class="uc"><span class="icon">🤝</span> Tambah Peminjaman</div>
+                <div class="uc"><span class="icon">↩️</span> Pengembalian Aset</div>
+                <div class="uc"><span class="icon">🗑️</span> Hapus Peminjaman</div>
+            </div>
+            <div class="uc-include">«include» Filter Status (Dipinjam / Dikembalikan)</div>
+        </div>
+
+        <!-- Laporan -->
+        <div class="uc-group">
+            <div class="uc-group-title">Laporan</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">📄</span> Lap. Inventaris Keseluruhan</div>
+                <div class="uc"><span class="icon">🏷️</span> Lap. Aset per Kategori</div>
+                <div class="uc"><span class="icon">📍</span> Lap. Aset per Lokasi</div>
+                <div class="uc"><span class="icon">✅</span> Lap. Kondisi Aset</div>
+            </div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">🤝</span> Lap. Peminjaman</div>
+                <div class="uc"><span class="icon">📦</span> Lap. Aset Masuk</div>
+                <div class="uc"><span class="icon">🔄</span> Lap. Mutasi Aset</div>
+                <div class="uc"><span class="icon">🗑️</span> Lap. Penghapusan Aset</div>
+            </div>
+            <div class="uc-include">«extend» Export PDF | Export Excel | Preview PDF</div>
+        </div>
+
+        <!-- Profil -->
+        <div class="uc-group">
+            <div class="uc-group-title">Profil</div>
+            <div class="uc-row">
+                <div class="uc"><span class="icon">👤</span> Edit Profil</div>
+                <div class="uc"><span class="icon">🔑</span> Ganti Password</div>
+            </div>
+        </div>
+
+        <!-- Admin Only -->
+        <div class="uc-group">
+            <div class="uc-group-title" style="color:#9c27b0;border-color:#9c27b0;">🔒 Admin Only</div>
+            <div class="uc-row">
+                <div class="uc admin-only"><span class="icon">👥</span> Lihat Data Pengguna</div>
+                <div class="uc admin-only"><span class="icon">➕</span> Tambah Pengguna</div>
+                <div class="uc admin-only"><span class="icon">✏️</span> Edit Pengguna</div>
+                <div class="uc admin-only"><span class="icon">🗑️</span> Hapus Pengguna</div>
+            </div>
+            <div class="uc-row">
+                <div class="uc admin-only"><span class="icon">📜</span> Lihat Riwayat Aktivitas</div>
+            </div>
+            <div class="uc-include" style="color:#9c27b0;">«include» Logging otomatis untuk semua aktivitas user</div>
+        </div>
+    </div>
+
+    <!-- ACTOR RIGHT: Petugas -->
+    <div class="actor-col">
+        <div class="actor">
+            <div class="actor-icon">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="18" r="12" fill="#1e7256" stroke="#114a36" stroke-width="2"/>
+                    <path d="M10 58c0-14 10-22 22-22s22 8 22 22" fill="#1e7256" stroke="#114a36" stroke-width="2"/>
+                    <circle cx="32" cy="15" r="4" fill="white"/>
+                </svg>
+            </div>
+            <div class="actor-name">Petugas</div>
+            <div class="actor-role">Input & Laporan</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Legend -->
+<div class="legend">
+    <div class="legend-item"><div class="legend-dot shared"></div> Use Case — Semua User</div>
+    <div class="legend-item"><div class="legend-dot admin"></div> Use Case — Admin Only</div>
+    <div class="legend-item"><div class="legend-line solid"></div> Asosiasi (actor ↔ use case)</div>
+    <div class="legend-item"><div class="legend-line dashed"></div> «include» / «extend»</div>
+    <div class="legend-item">
+        <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="6" r="4" fill="#555"/><path d="M3 18c0-5 3-8 7-8s7 3 7 8" fill="#555"/></svg>
+        Aktor
+    </div>
+</div>
+
+<!-- Detail Table -->
+<div class="info-section">
+    <h3>📌 Ringkasan Aktor & Hak Akses</h3>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th style="width:120px">Aktor</th>
+                <th>Deskripsi</th>
+                <th>Hak Akses</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Admin</strong><br><span class="badge badge-purple">admin</span></td>
+                <td>Administrator sistem dengan akses penuh ke semua fitur</td>
+                <td>Semua use case termasuk: Manajemen Pengguna, Riwayat Aktivitas</td>
+            </tr>
+            <tr>
+                <td><strong>Petugas</strong><br><span class="badge badge-green">petugas</span></td>
+                <td>Petugas inventaris yang melakukan input data dan melihat laporan</td>
+                <td>Semua use case <strong>kecuali</strong>: Manajemen Pengguna, Riwayat Aktivitas</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="info-section">
+    <h3>📊 Detail Use Case</h3>
+    <table class="info-table">
+        <thead>
+            <tr><th style="width:40px">No</th><th>Use Case</th><th style="width:100px">Aktor</th><th>Deskripsi Singkat</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>UC-01</td><td>Login</td><td><span class="badge badge-green">Semua</span></td><td>Autentikasi username & password, redirect ke dashboard</td></tr>
+            <tr><td>UC-02</td><td>Logout</td><td><span class="badge badge-green">Semua</span></td><td>Menghapus sesi dan kembali ke halaman login</td></tr>
+            <tr><td>UC-03</td><td>Lihat Dashboard</td><td><span class="badge badge-green">Semua</span></td><td>Melihat statistik total aset, kategori, lokasi, peminjaman aktif, total nilai, chart kondisi, dan aktivitas terbaru</td></tr>
+            <tr><td>UC-04</td><td>Scan QR Code</td><td><span class="badge badge-green">Semua</span></td><td>Scan QR via kamera atau input manual kode aset untuk melihat detail</td></tr>
+            <tr><td>UC-05</td><td>Kelola Data Aset</td><td><span class="badge badge-green">Semua</span></td><td>CRUD aset: tambah, edit, hapus (soft delete), lihat detail, cari & filter, upload gambar</td></tr>
+            <tr><td>UC-06</td><td>Generate QR Code</td><td><span class="badge badge-green">Semua</span></td><td>Generate dan mencetak QR code untuk setiap aset</td></tr>
+            <tr><td>UC-07</td><td>Kelola Kategori</td><td><span class="badge badge-green">Semua</span></td><td>CRUD master data kategori aset</td></tr>
+            <tr><td>UC-08</td><td>Kelola Lokasi</td><td><span class="badge badge-green">Semua</span></td><td>CRUD master data lokasi/ruangan</td></tr>
+            <tr><td>UC-09</td><td>Kelola Peminjaman</td><td><span class="badge badge-green">Semua</span></td><td>Tambah peminjaman, proses pengembalian, filter status</td></tr>
+            <tr><td>UC-10</td><td>Cetak Laporan</td><td><span class="badge badge-green">Semua</span></td><td>8 jenis laporan: Keseluruhan, Per Kategori, Per Lokasi, Kondisi, Peminjaman, Aset Masuk, Mutasi, Penghapusan</td></tr>
+            <tr><td>UC-11</td><td>Export PDF / Excel</td><td><span class="badge badge-green">Semua</span></td><td>Export laporan ke format PDF (DomPDF) dan Excel</td></tr>
+            <tr><td>UC-12</td><td>Edit Profil</td><td><span class="badge badge-green">Semua</span></td><td>Mengubah nama lengkap dan ganti password</td></tr>
+            <tr><td>UC-13</td><td>Kelola Pengguna</td><td><span class="badge badge-purple">Admin</span></td><td>CRUD user: tambah, edit, hapus pengguna sistem</td></tr>
+            <tr><td>UC-14</td><td>Lihat Riwayat Aktivitas</td><td><span class="badge badge-purple">Admin</span></td><td>Melihat log semua aktivitas yang tercatat di sistem</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<p style="text-align:center;color:#999;font-size:0.75rem;margin-top:20px;">Use Case Diagram — Sistem Inventarisasi Aset MAN 2 HSU — Dianalisis dari source code proyek</p>
+
+</body>
+</html>
