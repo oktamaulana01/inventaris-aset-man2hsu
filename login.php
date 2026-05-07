@@ -22,11 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_username'] = $user['username'];
             $_SESSION['user_role'] = $user['role'];
             $_SESSION['user_foto'] = $user['foto'];
+            $_SESSION['user_nip'] = $user['nip'];
+            $_SESSION['user_jabatan'] = $user['jabatan'];
+            $_SESSION['user_no_telepon'] = $user['no_telepon'];
             
             // Log aktivitas login
             logActivity($pdo, $user['id'], 'Login', $user['nama'] . ' berhasil login');
             
-            header('Location: /inventaris-aset-man2hsu/pages/dashboard.php');
+            // Redirect berdasarkan role
+            if ($user['role'] === 'guru') {
+                header('Location: /inventaris-aset-man2hsu/pages/guru/dashboard.php');
+            } else {
+                header('Location: /inventaris-aset-man2hsu/pages/dashboard.php');
+            }
             exit;
         } else {
             $error = 'Username atau password salah!';
@@ -36,7 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Redirect jika sudah login
 if (isset($_SESSION['user_id'])) {
-    header('Location: /inventaris-aset-man2hsu/pages/dashboard.php');
+    if ($_SESSION['user_role'] === 'guru') {
+        header('Location: /inventaris-aset-man2hsu/pages/guru/dashboard.php');
+    } else {
+        header('Location: /inventaris-aset-man2hsu/pages/dashboard.php');
+    }
     exit;
 }
 ?>

@@ -11,6 +11,46 @@
             </div>
 
             <nav class="sidebar-nav">
+            <?php if ($_SESSION['user_role'] === 'guru'): ?>
+                <!-- ========== MENU GURU ========== -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Menu Utama</div>
+                    <a href="/inventaris-aset-man2hsu/pages/guru/dashboard.php" 
+                       class="nav-link <?= ($currentDir === 'guru' && $currentPage === 'dashboard') ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        Dashboard
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Peminjaman</div>
+                    <a href="/inventaris-aset-man2hsu/pages/guru/katalog.php" 
+                       class="nav-link <?= ($currentDir === 'guru' && $currentPage === 'katalog') ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fas fa-boxes-stacked"></i></span>
+                        Katalog Aset
+                    </a>
+                    <a href="/inventaris-aset-man2hsu/pages/guru/pinjam.php" 
+                       class="nav-link <?= ($currentDir === 'guru' && $currentPage === 'pinjam') ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fas fa-hand-holding-hand"></i></span>
+                        Ajukan Peminjaman
+                    </a>
+                    <a href="/inventaris-aset-man2hsu/pages/guru/riwayat.php" 
+                       class="nav-link <?= ($currentDir === 'guru' && $currentPage === 'riwayat') ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fas fa-clock-rotate-left"></i></span>
+                        Riwayat Peminjaman
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Akun</div>
+                    <a href="/inventaris-aset-man2hsu/pages/guru/profil.php" 
+                       class="nav-link <?= ($currentDir === 'guru' && $currentPage === 'profil') ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fas fa-user-circle"></i></span>
+                        Profil Saya
+                    </a>
+                </div>
+            <?php else: ?>
+                <!-- ========== MENU ADMIN/PETUGAS ========== -->
                 <!-- Menu Utama -->
                 <div class="nav-section">
                     <div class="nav-section-title">Menu Utama</div>
@@ -117,6 +157,7 @@
                     </a>
                 </div>
                 <?php endif; ?>
+            <?php endif; ?>
             </nav>
 
             <div class="sidebar-footer">
@@ -145,9 +186,15 @@
                     </div>
                 </div>
                 <div class="topbar-right">
-                    <a href="/inventaris-aset-man2hsu/pages/profil.php" class="topbar-btn" title="Profil">
-                        <i class="fas fa-user"></i>
-                    </a>
+                    <?php if ($_SESSION['user_role'] === 'guru'): ?>
+                        <a href="/inventaris-aset-man2hsu/pages/guru/profil.php" class="topbar-btn" title="Profil">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    <?php else: ?>
+                        <a href="/inventaris-aset-man2hsu/pages/profil.php" class="topbar-btn" title="Profil">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    <?php endif; ?>
                     <a href="/inventaris-aset-man2hsu/includes/header.php?logout=1" class="topbar-btn btn-logout" title="Logout">
                         <i class="fas fa-right-from-bracket"></i>
                     </a>

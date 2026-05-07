@@ -8,10 +8,11 @@ $where = "";
 $params = [];
 if ($filterStatus) { $where = "WHERE p.status = ?"; $params[] = $filterStatus; }
 
-$peminjamanList = $pdo->prepare("SELECT p.*, a.nama_aset, a.kode_aset, u.nama as user_nama 
+$peminjamanList = $pdo->prepare("SELECT p.*, a.nama_aset, a.kode_aset, u.nama as user_nama, pu.nama as peminjam_nama 
     FROM peminjaman p 
     JOIN aset a ON p.id_aset = a.id 
     LEFT JOIN users u ON p.id_user = u.id 
+    LEFT JOIN users pu ON p.id_peminjam = pu.id
     $where
     ORDER BY p.created_at DESC");
 $peminjamanList->execute($params);
@@ -52,7 +53,14 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <td><?= $i+1 ?></td>
                 <td><span class="badge badge-primary"><?= htmlspecialchars($p['kode_aset']) ?></span></td>
                 <td><?= htmlspecialchars($p['nama_aset']) ?></td>
-                <td><?= htmlspecialchars($p['nama_peminjam']) ?></td>
+                <td>
+                    <?php if ($p['peminjam_nama']): ?>
+                        <?= htmlspecialchars($p['peminjam_nama']) ?>
+                        <span class="badge badge-success" style="font-size:0.68rem;margin-left:4px;">Guru</span>
+                    <?php else: ?>
+                        <?= htmlspecialchars($p['nama_peminjam']) ?>
+                    <?php endif; ?>
+                </td>
                 <td><?= date('d/m/Y', strtotime($p['tanggal_pinjam'])) ?></td>
                 <td><?= date('d/m/Y', strtotime($p['tanggal_kembali_rencana'])) ?></td>
                 <td><span class="badge badge-<?= $p['status'] === 'Dipinjam' ? 'warning' : 'success' ?>"><?= $p['status'] ?></span></td>

@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <td><?= $i+1 ?></td>
             <td style="font-weight:500;"><?= htmlspecialchars($u['nama']) ?></td>
             <td><?= htmlspecialchars($u['username']) ?></td>
-            <td><span class="badge badge-<?= $u['role'] === 'admin' ? 'primary' : 'info' ?>"><?= ucfirst($u['role']) ?></span></td>
+            <td><span class="badge badge-<?= $u['role'] === 'admin' ? 'primary' : ($u['role'] === 'guru' ? 'success' : 'info') ?>"><?= ucfirst($u['role']) ?></span></td>
             <td><?= date('d/m/Y', strtotime($u['created_at'])) ?></td>
             <td><div class="btn-group">
                 <a href="edit.php?id=<?= $u['id'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>

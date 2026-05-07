@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Dashboard';
 require_once __DIR__ . '/../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 // Statistik
