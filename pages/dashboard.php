@@ -16,6 +16,19 @@ $kondisi = $pdo->query("SELECT kondisi, COUNT(*) as total FROM aset WHERE delete
 $kondisiLabels = array_column($kondisi, 'kondisi');
 $kondisiData = array_column($kondisi, 'total');
 
+// Aset paling sering dipinjam (top 5 semua status peminjaman)
+$topDipinjam = $pdo->query("SELECT a.kode_aset, a.nama_aset,
+        COUNT(p.id) AS total_pinjam,
+        SUM(CASE WHEN p.status = 'Dipinjam' THEN 1 ELSE 0 END) AS sedang_dipinjam,
+        SUM(CASE WHEN p.status = 'Dikembalikan' THEN 1 ELSE 0 END) AS sudah_kembali
+    FROM peminjaman p
+    JOIN aset a ON p.id_aset = a.id
+    GROUP BY a.id, a.kode_aset, a.nama_aset
+    ORDER BY total_pinjam DESC, a.nama_aset ASC
+    LIMIT 5")->fetchAll();
+$topLabels = array_column($topDipinjam, 'nama_aset');
+$topData = array_map('intval', array_column($topDipinjam, 'total_pinjam'));
+
 // Aset terbaru
 $asetTerbaru = $pdo->query("SELECT a.*, k.nama_kategori, l.nama_lokasi FROM aset a 
     LEFT JOIN kategori k ON a.id_kategori = k.id 
@@ -164,6 +177,51 @@ require_once __DIR__ . '/../includes/sidebar.php';
     </div>
 </div>
 
+<!-- Aset Paling Sering Dipinjam -->
+<div class="card mt-4 animate-fadeInUp">
+    <div class="card-header">
+        <h3><i class="fas fa-fire"></i> Aset Paling Sering Dipinjam</h3>
+        <a href="/inventaris-aset-man2hsu/pages/laporan/peminjaman.php" class="btn btn-sm btn-secondary">Laporan Peminjaman</a>
+    </div>
+    <div class="card-body">
+        <?php if (empty($topDipinjam)): ?>
+            <div class="empty-state"><p>Belum ada data peminjaman</p></div>
+        <?php else: ?>
+        <div class="grid-2" style="align-items:start;">
+            <div class="chart-container" style="height:280px;">
+                <canvas id="topPinjamChart"></canvas>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Kode</th>
+                            <th>Nama Aset</th>
+                            <th style="text-align:center;">Total</th>
+                            <th style="text-align:center;">Aktif</th>
+                            <th style="text-align:center;">Selesai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($topDipinjam as $i => $t): ?>
+                        <tr>
+                            <td><?= $i + 1 ?></td>
+                            <td><span class="badge badge-primary"><?= htmlspecialchars($t['kode_aset']) ?></span></td>
+                            <td><?= htmlspecialchars($t['nama_aset']) ?></td>
+                            <td style="text-align:center; font-weight:600;"><?= $t['total_pinjam'] ?></td>
+                            <td style="text-align:center;"><?= $t['sedang_dipinjam'] ?></td>
+                            <td style="text-align:center;"><?= $t['sudah_kembali'] ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+
 <!-- Peminjaman Aktif -->
 <?php if (!empty($pinjamanAktif)): ?>
 <div class="card mt-4 animate-fadeInUp">
@@ -234,6 +292,49 @@ if (ctx) {
                 }
             },
             cutout: '65%'
+        }
+    });
+}
+
+// Horizontal Bar Chart - Aset Paling Sering Dipinjam
+const ctxPinjam = document.getElementById('topPinjamChart');
+if (ctxPinjam) {
+    new Chart(ctxPinjam, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($topLabels) ?>,
+            datasets: [{
+                label: 'Jumlah Peminjaman',
+                data: <?= json_encode($topData) ?>,
+                backgroundColor: ['#6366f1', '#14b8a6', '#ec4899', '#f59e0b', '#10b981'],
+                borderRadius: 6,
+                borderSkipped: false,
+                barThickness: 22
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => ` ${ctx.parsed.x} kali dipinjam`
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: { precision: 0, color: '#4b6355' },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                y: {
+                    ticks: { color: '#4b6355', font: { family: 'Inter', size: 12 } },
+                    grid: { display: false }
+                }
+            }
         }
     });
 }

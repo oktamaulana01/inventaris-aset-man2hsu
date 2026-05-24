@@ -9,14 +9,15 @@ $data = $stmt->fetch(); if (!$data) { header('Location: index.php'); exit; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = trim($_POST['nama']); $username = trim($_POST['username']); $role = $_POST['role'];
+    $email = trim($_POST['email'] ?? '');
     $nip = trim($_POST['nip'] ?? '');
     $jabatan = trim($_POST['jabatan'] ?? '');
     $noTelepon = trim($_POST['no_telepon'] ?? '');
     if (!empty($_POST['password'])) {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $pdo->prepare("UPDATE users SET nama=?, username=?, password=?, role=?, nip=?, jabatan=?, no_telepon=? WHERE id=?")->execute([$nama, $username, $password, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null, $id]);
+        $pdo->prepare("UPDATE users SET nama=?, username=?, email=?, password=?, role=?, nip=?, jabatan=?, no_telepon=? WHERE id=?")->execute([$nama, $username, $email ?: null, $password, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null, $id]);
     } else {
-        $pdo->prepare("UPDATE users SET nama=?, username=?, role=?, nip=?, jabatan=?, no_telepon=? WHERE id=?")->execute([$nama, $username, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null, $id]);
+        $pdo->prepare("UPDATE users SET nama=?, username=?, email=?, role=?, nip=?, jabatan=?, no_telepon=? WHERE id=?")->execute([$nama, $username, $email ?: null, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null, $id]);
     }
     logActivity($pdo, $_SESSION['user_id'], 'Edit User', "Mengedit pengguna: $nama");
     setFlash('success', 'Pengguna berhasil diperbarui!'); header('Location: index.php'); exit;
@@ -30,6 +31,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <div class="grid-2">
             <div class="form-group"><label>Nama Lengkap *</label><input type="text" class="form-control" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" required></div>
             <div class="form-group"><label>Username *</label><input type="text" class="form-control" name="username" value="<?= htmlspecialchars($data['username']) ?>" required></div>
+            <div class="form-group"><label>Alamat Email</label><input type="email" class="form-control" name="email" value="<?= htmlspecialchars($data['email'] ?? '') ?>" placeholder="contoh@email.com"></div>
             <div class="form-group"><label>Password Baru <small>(kosongkan jika tidak diubah)</small></label><input type="password" class="form-control" name="password" minlength="6"></div>
             <div class="form-group"><label>Role *</label>
                 <select class="form-control" name="role" required id="roleSelect" onchange="toggleGuruFields()">

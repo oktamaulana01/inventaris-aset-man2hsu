@@ -8,6 +8,8 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'db_inventaris_man2hsu');
 define('DB_USER', 'root');
 define('DB_PASS', '');
+define('BASE_URL', '/inventaris-aset-man2hsu');
+define('SESSION_TIMEOUT', 1800); // 30 menit
 
 function getConnection() {
     try {
@@ -23,7 +25,8 @@ function getConnection() {
         );
         return $pdo;
     } catch (PDOException $e) {
-        die("Koneksi database gagal: " . $e->getMessage());
+        error_log("Koneksi database gagal: " . $e->getMessage());
+        die("Terjadi kesalahan pada sistem. Silakan hubungi administrator.");
     }
 }
 
@@ -43,10 +46,17 @@ function logActivity($pdo, $userId, $aktivitas, $keterangan = '') {
 // Helper: Generate kode aset otomatis
 function generateKodeAset($pdo) {
     $tahun = date('Y');
-    $stmt = $pdo->query("SELECT MAX(id) as max_id FROM aset");
-    $result = $stmt->fetch();
-    $nextId = ($result['max_id'] ?? 0) + 1;
-    return sprintf("AST-%s-%03d", $tahun, $nextId);
+    $prefix = "AST-$tahun-";
+    $stmt = $pdo->prepare("SELECT kode_aset FROM aset WHERE kode_aset LIKE ? ORDER BY kode_aset DESC LIMIT 1");
+    $stmt->execute([$prefix . '%']);
+    $last = $stmt->fetchColumn();
+    if ($last) {
+        $lastNumber = intval(substr($last, strrpos($last, '-') + 1));
+        $nextNumber = $lastNumber + 1;
+    } else {
+        $nextNumber = 1;
+    }
+    return sprintf("AST-%s-%03d", $tahun, $nextNumber);
 }
 
 // Helper: Format Rupiah
@@ -68,5 +78,30 @@ function getFlash() {
         return $flash;
     }
     return null;
+}
+
+// Helper: Generate CSRF Token (returns hidden input HTML)
+function generateCsrfToken() {
+    $token = getCsrfTokenValue();
+    return '<input type="hidden" name="csrf_token" value="' . $token . '">';
+}
+
+// Helper: Get current CSRF token value
+function getCsrfTokenValue() {
+    startSession();
+    if (!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+// Helper: Validate CSRF Token
+function validateCsrfToken() {
+    startSession();
+    $token = $_POST['csrf_token'] ?? '';
+    if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
+        http_response_code(403);
+        die('Akses ditolak: Token keamanan tidak valid. Silakan muat ulang halaman.');
+    }
 }
 ?>

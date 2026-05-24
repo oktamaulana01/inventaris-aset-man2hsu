@@ -5,12 +5,13 @@ requireAdmin();
 $pdo = getConnection();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = trim($_POST['nama']); $username = trim($_POST['username']);
+    $email = trim($_POST['email'] ?? '');
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = $_POST['role'];
     $nip = trim($_POST['nip'] ?? '');
     $jabatan = trim($_POST['jabatan'] ?? '');
     $noTelepon = trim($_POST['no_telepon'] ?? '');
-    $pdo->prepare("INSERT INTO users (nama, username, password, role, nip, jabatan, no_telepon) VALUES (?, ?, ?, ?, ?, ?, ?)")->execute([$nama, $username, $password, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null]);
+    $pdo->prepare("INSERT INTO users (nama, username, email, password, role, nip, jabatan, no_telepon) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")->execute([$nama, $username, $email ?: null, $password, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null]);
     logActivity($pdo, $_SESSION['user_id'], 'Tambah User', "Menambah pengguna: $nama ($role)");
     setFlash('success', 'Pengguna berhasil ditambahkan!'); header('Location: index.php'); exit;
 }
@@ -23,6 +24,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <div class="grid-2">
             <div class="form-group"><label>Nama Lengkap *</label><input type="text" class="form-control" name="nama" required></div>
             <div class="form-group"><label>Username *</label><input type="text" class="form-control" name="username" required></div>
+            <div class="form-group"><label>Alamat Email</label><input type="email" class="form-control" name="email" placeholder="contoh@email.com"></div>
             <div class="form-group"><label>Password *</label><input type="password" class="form-control" name="password" required minlength="6"></div>
             <div class="form-group"><label>Role *</label>
                 <select class="form-control" name="role" required id="roleSelect" onchange="toggleGuruFields()">

@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../../includes/auth_check.php';
+validateCsrfToken();
 $pdo = getConnection();
 
-$id = intval($_GET['id'] ?? 0);
+$id = intval($_POST['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM aset WHERE id = ? AND deleted_at IS NULL");
 $stmt->execute([$id]);
 $aset = $stmt->fetch();
@@ -16,6 +17,6 @@ if ($aset) {
     setFlash('danger', 'Aset tidak ditemukan!');
 }
 
-header('Location: /inventaris-aset-man2hsu/pages/aset/index.php');
+header('Location: ' . BASE_URL . '/pages/aset/index.php');
 exit;
 ?>

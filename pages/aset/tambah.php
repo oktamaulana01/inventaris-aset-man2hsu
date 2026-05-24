@@ -8,6 +8,7 @@ $lokasiList = $pdo->query("SELECT * FROM lokasi ORDER BY nama_lokasi")->fetchAll
 $kodeAset = generateKodeAset($pdo);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $kode = trim($_POST['kode_aset']);
     $nama = trim($_POST['nama_aset']);
     $idKategori = $_POST['id_kategori'] ?: null;
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     logActivity($pdo, $_SESSION['user_id'], 'Tambah Aset', "Menambah aset: $nama ($kode)");
     setFlash('success', 'Aset berhasil ditambahkan!');
-    header('Location: /inventaris-aset-man2hsu/pages/aset/index.php');
+    header('Location: ' . BASE_URL . '/pages/aset/index.php');
     exit;
 }
 
@@ -47,9 +48,9 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-plus-circle"></i> Tambah Aset Baru</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
-            <a href="/inventaris-aset-man2hsu/pages/aset/index.php">Data Aset</a>
+            <a href="<?= BASE_URL ?>/pages/aset/index.php">Data Aset</a>
             <span class="separator">/</span>
             <span>Tambah</span>
         </div>
@@ -62,6 +63,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     </div>
     <div class="card-body">
         <form method="POST" enctype="multipart/form-data">
+            <?= generateCsrfToken() ?>
             <div class="grid-2">
                 <div class="form-group">
                     <label>Kode Aset</label>
@@ -125,7 +127,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             </div>
             <div class="btn-group mt-3">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-                <a href="/inventaris-aset-man2hsu/pages/aset/index.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Batal</a>
+                <a href="<?= BASE_URL ?>/pages/aset/index.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Batal</a>
             </div>
         </form>
     </div>

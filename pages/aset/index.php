@@ -58,12 +58,12 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-boxes-stacked"></i> Data Aset</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
             <span>Data Aset</span>
         </div>
     </div>
-    <a href="/inventaris-aset-man2hsu/pages/aset/tambah.php" class="btn btn-primary">
+    <a href="<?= BASE_URL ?>/pages/aset/tambah.php" class="btn btn-primary">
         <i class="fas fa-plus"></i> Tambah Aset
     </a>
 </div>
@@ -86,7 +86,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <?php endforeach; ?>
             </select>
             <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Cari</button>
-            <a href="/inventaris-aset-man2hsu/pages/aset/index.php" class="btn btn-secondary btn-sm"><i class="fas fa-rotate"></i> Reset</a>
+            <a href="<?= BASE_URL ?>/pages/aset/index.php" class="btn btn-secondary btn-sm"><i class="fas fa-rotate"></i> Reset</a>
         </form>
     </div>
 </div>
@@ -148,7 +148,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                                 <div class="btn-group">
                                     <a href="detail.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-info" title="Detail"><i class="fas fa-eye"></i></a>
                                     <a href="edit.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
-                                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus aset <?= htmlspecialchars($a['nama_aset']) ?>?', 'hapus.php?id=<?= $a['id'] ?>')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
+                                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus aset <?= htmlspecialchars($a['nama_aset']) ?>?', 'hapus.php', '<?= $a['id'] ?>')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

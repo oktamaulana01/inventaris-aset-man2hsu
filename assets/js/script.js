@@ -73,10 +73,60 @@ function animateCounters() {
     });
 }
 
-// Confirm Delete
-function confirmDelete(message, url) {
+// Confirm Delete — menggunakan POST method dengan CSRF token
+function confirmDelete(message, actionUrl, itemId) {
     if (confirm(message || 'Apakah Anda yakin ingin menghapus data ini?')) {
-        window.location.href = url;
+        const csrfToken = document.querySelector('meta[name="csrf-token"]');
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = actionUrl;
+        form.style.display = 'none';
+
+        const idInput = document.createElement('input');
+        idInput.type = 'hidden';
+        idInput.name = 'id';
+        idInput.value = itemId;
+        form.appendChild(idInput);
+
+        if (csrfToken) {
+            const tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = 'csrf_token';
+            tokenInput.value = csrfToken.getAttribute('content');
+            form.appendChild(tokenInput);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+    return false;
+}
+
+// Confirm Action — POST method untuk aksi non-hapus (kembali, dll)
+function confirmAction(message, actionUrl, itemId) {
+    if (confirm(message || 'Apakah Anda yakin?')) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]');
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = actionUrl;
+        form.style.display = 'none';
+
+        const idInput = document.createElement('input');
+        idInput.type = 'hidden';
+        idInput.name = 'id';
+        idInput.value = itemId;
+        form.appendChild(idInput);
+
+        if (csrfToken) {
+            const tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = 'csrf_token';
+            tokenInput.value = csrfToken.getAttribute('content');
+            form.appendChild(tokenInput);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
     }
     return false;
 }

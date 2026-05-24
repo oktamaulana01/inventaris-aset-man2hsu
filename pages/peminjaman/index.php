@@ -66,9 +66,10 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <td><span class="badge badge-<?= $p['status'] === 'Dipinjam' ? 'warning' : 'success' ?>"><?= $p['status'] ?></span></td>
                 <td><div class="btn-group">
                     <?php if ($p['status'] === 'Dipinjam'): ?>
-                        <a href="kembali.php?id=<?= $p['id'] ?>" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Kirim email reminder ke peminjam?', 'kirim_notif.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-info" title="Kirim Reminder Email"><i class="fas fa-envelope"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Kembalikan aset ini?', 'kembali.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
                     <?php endif; ?>
-                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', 'hapus.php?id=<?= $p['id'] ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', 'hapus.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                 </div></td>
             </tr>
             <?php endforeach; endif; ?>

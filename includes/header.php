@@ -7,7 +7,7 @@ if (isset($_GET['logout'])) {
     $pdo = getConnection();
     logActivity($pdo, $_SESSION['user_id'], 'Logout', $_SESSION['user_nama'] . ' melakukan logout');
     session_destroy();
-    header('Location: /inventaris-aset-man2hsu/login.php');
+    header('Location: ' . BASE_URL . '/login.php');
     exit;
 }
 
@@ -21,7 +21,8 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?? 'Inventarisasi Aset' ?> - MAN 2 HSU</title>
     <meta name="description" content="Sistem Informasi Inventarisasi Aset Madrasah Aliyah Negeri 2 Hulu Sungai Utara">
-    <link rel="stylesheet" href="/inventaris-aset-man2hsu/assets/css/style.css">
+    <meta name="csrf-token" content="<?= getCsrfTokenValue() ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>

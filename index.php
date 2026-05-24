@@ -1,5 +1,6 @@
 <?php
 // Redirect to login page
-header('Location: /inventaris-aset-man2hsu/login.php');
+require_once __DIR__ . '/config/database.php';
+header('Location: ' . BASE_URL . '/login.php');
 exit;
 ?>

@@ -6,6 +6,6 @@
         </div><!-- .main-content -->
     </div><!-- .app-layout -->
 
-    <script src="/inventaris-aset-man2hsu/assets/js/script.js"></script>
+    <script src="<?= BASE_URL ?>/assets/js/script.js"></script>
 </body>
 </html>

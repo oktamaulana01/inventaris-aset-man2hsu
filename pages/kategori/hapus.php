@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../../includes/auth_check.php';
+validateCsrfToken();
 $pdo = getConnection();
-$id = intval($_GET['id'] ?? 0);
+$id = intval($_POST['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM kategori WHERE id = ?"); $stmt->execute([$id]);
 $data = $stmt->fetch();
 if ($data) {

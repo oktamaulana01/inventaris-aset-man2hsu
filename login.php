@@ -5,6 +5,7 @@ startSession();
 // Proses Login
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
     
@@ -31,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Redirect berdasarkan role
             if ($user['role'] === 'guru') {
-                header('Location: /inventaris-aset-man2hsu/pages/guru/dashboard.php');
+                header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
             } else {
-                header('Location: /inventaris-aset-man2hsu/pages/dashboard.php');
+                header('Location: ' . BASE_URL . '/pages/dashboard.php');
             }
             exit;
         } else {
@@ -45,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Redirect jika sudah login
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_role'] === 'guru') {
-        header('Location: /inventaris-aset-man2hsu/pages/guru/dashboard.php');
+        header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
     } else {
-        header('Location: /inventaris-aset-man2hsu/pages/dashboard.php');
+        header('Location: ' . BASE_URL . '/pages/dashboard.php');
     }
     exit;
 }
@@ -209,7 +210,7 @@ if (isset($_SESSION['user_id'])) {
             
             <div class="login-brand text-center">
                 <div class="brand-logo">
-                    <img src="/inventaris-aset-man2hsu/assets/uploads/logo_man2.jpg" alt="Logo MAN 2 HSU"> 
+                    <img src="<?= BASE_URL ?>/assets/uploads/logo_man2.jpg" alt="Logo MAN 2 HSU"> 
                 </div>
                 <h3 class="fw-bold mb-1">INVENTARISASI ASET</h3>
                 <p class="text-white-50 small mb-0">Madrasah Aliyah Negeri 2<br>Hulu Sungai Utara</p>
@@ -229,6 +230,7 @@ if (isset($_SESSION['user_id'])) {
                     <?php endif; ?>
 
                     <form action="" method="POST">
+                        <?= generateCsrfToken() ?>
                         
                         <div class="form-floating mb-3">
                             <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username" required autofocus value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
@@ -247,9 +249,6 @@ if (isset($_SESSION['user_id'])) {
                             </button>
                         </div>
 
-                        <div class="text-center mt-3">
-                            <p class="text-muted" style="font-size: 0.8rem;">Default: admin / admin123</p>
-                        </div>
                     </form>
                 </div>
             </div>
