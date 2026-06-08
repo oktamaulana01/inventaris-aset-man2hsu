@@ -141,8 +141,8 @@
                     </a>
                 </div>
 
-                <?php if ($_SESSION['user_role'] === 'admin'): ?>
                 <!-- Admin Only -->
+                <?php if ($_SESSION['user_role'] === 'admin'): ?>
                 <div class="nav-section">
                     <div class="nav-section-title">Administrasi</div>
                     <a href="<?= BASE_URL ?>/pages/pengguna/index.php" 
@@ -155,6 +155,12 @@
                         <span class="nav-icon"><i class="fas fa-clock-rotate-left"></i></span>
                         Riwayat Aktivitas
                     </a>
+                </div>
+                <?php endif; ?>
+
+                <!-- Sistem & Notifikasi (Admin & Petugas) -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Sistem & Notifikasi</div>
                     <a href="<?= BASE_URL ?>/pages/pengaturan/index.php" 
                        class="nav-link <?= ($currentDir === 'pengaturan' && $currentPage === 'index') ? 'active' : '' ?>">
                         <span class="nav-icon"><i class="fas fa-envelope-circle-check"></i></span>
@@ -166,7 +172,6 @@
                         Log Notifikasi
                     </a>
                 </div>
-                <?php endif; ?>
             <?php endif; ?>
             </nav>
 

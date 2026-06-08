@@ -19,9 +19,9 @@ $isCli = (php_sapi_name() === 'cli');
 require_once __DIR__ . '/../config/mailer.php';
 
 if (!$isCli) {
-    // Jika diakses via browser, harus admin
+    // Jika diakses via browser, harus staff (admin/petugas)
     require_once __DIR__ . '/../includes/auth_check.php';
-    requireAdmin();
+    requireStaff();
 }
 
 $pdo = getConnection();

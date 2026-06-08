@@ -27,6 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_jabatan'] = $user['jabatan'];
             $_SESSION['user_no_telepon'] = $user['no_telepon'];
             
+            // Remember Me
+            if (isset($_POST['remember'])) {
+                $token = bin2hex(random_bytes(32));
+                $stmtToken = $pdo->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
+                $stmtToken->execute([$token, $user['id']]);
+                // Set cookie untuk 30 hari
+                setcookie('remember_token', $token, time() + (86400 * 30), '/');
+            }
+            
             // Log aktivitas login
             logActivity($pdo, $user['id'], 'Login', $user['nama'] . ' berhasil login');
             
@@ -43,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Redirect jika sudah login
+// Redirect jika sudah login atau punya remember token yang valid
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_role'] === 'guru') {
         header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
@@ -51,6 +60,33 @@ if (isset($_SESSION['user_id'])) {
         header('Location: ' . BASE_URL . '/pages/dashboard.php');
     }
     exit;
+} elseif (isset($_COOKIE['remember_token'])) {
+    $pdo = getConnection();
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE remember_token = ?");
+    $stmt->execute([$_COOKIE['remember_token']]);
+    $user = $stmt->fetch();
+    
+    if ($user) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_nama'] = $user['nama'];
+        $_SESSION['user_username'] = $user['username'];
+        $_SESSION['user_role'] = $user['role'];
+        $_SESSION['user_foto'] = $user['foto'];
+        $_SESSION['user_nip'] = $user['nip'];
+        $_SESSION['user_jabatan'] = $user['jabatan'];
+        $_SESSION['user_no_telepon'] = $user['no_telepon'];
+        
+        $_SESSION['last_activity'] = time();
+        
+        if ($user['role'] === 'guru') {
+            header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
+        } else {
+            header('Location: ' . BASE_URL . '/pages/dashboard.php');
+        }
+        exit;
+    } else {
+        setcookie('remember_token', '', time() - 3600, '/');
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -241,6 +277,16 @@ if (isset($_SESSION['user_id'])) {
                             <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                             <label for="floatingPassword"><i class="fas fa-lock me-2 text-muted"></i>Password</label>
                             <i class="fa-solid fa-eye password-toggle" id="toggleEye"></i>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4 text-start">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="rememberMe">
+                                <label class="form-check-label text-muted" for="rememberMe">
+                                    Ingat Saya
+                                </label>
+                            </div>
+                            <a href="lupa_password.php" class="text-decoration-none small text-primary fw-medium">Lupa Password?</a>
                         </div>
 
                         <div class="d-grid mb-4">

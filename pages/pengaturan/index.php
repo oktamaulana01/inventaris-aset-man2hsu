@@ -1,7 +1,7 @@
 <?php
 $pageTitle = 'Pengaturan Email';
 require_once __DIR__ . '/../../includes/auth_check.php';
-requireAdmin();
+requireStaff();
 $pdo = getConnection();
 require_once __DIR__ . '/../../config/mailer.php';
 

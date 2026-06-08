@@ -5,7 +5,17 @@ startSession();
 // Proses Logout
 if (isset($_GET['logout'])) {
     $pdo = getConnection();
-    logActivity($pdo, $_SESSION['user_id'], 'Logout', $_SESSION['user_nama'] . ' melakukan logout');
+    
+    // Hapus token remember me jika ada
+    if (isset($_SESSION['user_id'])) {
+        $stmtToken = $pdo->prepare("UPDATE users SET remember_token = NULL WHERE id = ?");
+        $stmtToken->execute([$_SESSION['user_id']]);
+    }
+    
+    // Hapus cookie
+    setcookie('remember_token', '', time() - 3600, '/');
+    
+    logActivity($pdo, $_SESSION['user_id'] ?? 0, 'Logout', ($_SESSION['user_nama'] ?? 'User') . ' melakukan logout');
     session_destroy();
     header('Location: ' . BASE_URL . '/login.php');
     exit;

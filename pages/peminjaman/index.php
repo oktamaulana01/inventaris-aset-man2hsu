@@ -8,11 +8,12 @@ $where = "";
 $params = [];
 if ($filterStatus) { $where = "WHERE p.status = ?"; $params[] = $filterStatus; }
 
-$peminjamanList = $pdo->prepare("SELECT p.*, a.nama_aset, a.kode_aset, u.nama as user_nama, pu.nama as peminjam_nama 
+$peminjamanList = $pdo->prepare("SELECT p.*, a.nama_aset, a.kode_aset, u.nama as user_nama, pu.nama as peminjam_nama, l.nama_lokasi 
     FROM peminjaman p 
     JOIN aset a ON p.id_aset = a.id 
     LEFT JOIN users u ON p.id_user = u.id 
     LEFT JOIN users pu ON p.id_peminjam = pu.id
+    LEFT JOIN lokasi l ON p.id_lokasi = l.id
     $where
     ORDER BY p.created_at DESC");
 $peminjamanList->execute($params);
@@ -60,6 +61,9 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <?php else: ?>
                         <?= htmlspecialchars($p['nama_peminjam']) ?>
                     <?php endif; ?>
+                    <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">
+                        <i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($p['nama_lokasi'] ?? 'Tidak ditentukan') ?>
+                    </div>
                 </td>
                 <td><?= date('d/m/Y', strtotime($p['tanggal_pinjam'])) ?></td>
                 <td><?= date('d/m/Y', strtotime($p['tanggal_kembali_rencana'])) ?></td>

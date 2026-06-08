@@ -4,20 +4,43 @@ require_once __DIR__ . '/../../includes/auth_check.php';
 requireGuru();
 $pdo = getConnection();
 
-$asetList = $pdo->query("SELECT id, kode_aset, nama_aset FROM aset WHERE deleted_at IS NULL AND kondisi = 'Baik' ORDER BY nama_aset")->fetchAll();
+$asetList = $pdo->query("
+    SELECT a.id, a.kode_aset, a.nama_aset, a.jumlah,
+           (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status = 'Dipinjam') as terpinjam
+    FROM aset a 
+    WHERE a.deleted_at IS NULL AND a.kondisi = 'Baik' 
+    ORDER BY a.nama_aset
+")->fetchAll();
+
+$lokasiList = $pdo->query("SELECT * FROM lokasi ORDER BY nama_lokasi")->fetchAll();
 
 // Pre-select aset jika dari query parameter
 $preselectedAset = intval($_GET['id_aset'] ?? 0);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idAset = intval($_POST['id_aset']);
+    
+    // Validasi apakah stok aset masih ada
+    $cekStok = $pdo->prepare("
+        SELECT a.jumlah, 
+               (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status = 'Dipinjam') as terpinjam
+        FROM aset a WHERE a.id = ?
+    ");
+    $cekStok->execute([$idAset]);
+    $stok = $cekStok->fetch();
+    if ($stok && $stok['terpinjam'] >= $stok['jumlah']) {
+        setFlash('danger', 'Maaf, semua unit dari aset tersebut saat ini sedang dipinjam oleh orang lain.');
+        header('Location: pinjam.php'); exit;
+    }
+    
     $tglPinjam = $_POST['tanggal_pinjam'];
     $tglKembali = $_POST['tanggal_kembali_rencana'];
     $ket = trim($_POST['keterangan']);
+    $idLokasi = !empty($_POST['id_lokasi']) ? intval($_POST['id_lokasi']) : null;
     $namaPeminjam = $_SESSION['user_nama']; // Otomatis dari session
     
-    $stmt = $pdo->prepare("INSERT INTO peminjaman (id_aset, nama_peminjam, id_peminjam, tanggal_pinjam, tanggal_kembali_rencana, keterangan, id_user) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$idAset, $namaPeminjam, $_SESSION['user_id'], $tglPinjam, $tglKembali, $ket, $_SESSION['user_id']]);
+    $stmt = $pdo->prepare("INSERT INTO peminjaman (id_aset, nama_peminjam, id_peminjam, id_lokasi, tanggal_pinjam, tanggal_kembali_rencana, keterangan, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$idAset, $namaPeminjam, $_SESSION['user_id'], $idLokasi, $tglPinjam, $tglKembali, $ket, $_SESSION['user_id']]);
     
     $asetNama = $pdo->query("SELECT nama_aset FROM aset WHERE id = $idAset")->fetchColumn();
     logActivity($pdo, $_SESSION['user_id'], 'Peminjaman', "Peminjaman aset: $asetNama oleh $namaPeminjam");
@@ -70,9 +93,19 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <select class="form-control" name="id_aset" required id="selectAset">
                         <option value="">-- Pilih Aset untuk Dipinjam --</option>
                         <?php foreach ($asetList as $a): ?>
-                            <option value="<?= $a['id'] ?>" <?= $preselectedAset == $a['id'] ? 'selected' : '' ?>>
-                                [<?= $a['kode_aset'] ?>] <?= htmlspecialchars($a['nama_aset']) ?>
+                            <?php $sisa = $a['jumlah'] - $a['terpinjam']; ?>
+                            <option value="<?= $a['id'] ?>" <?= $sisa <= 0 ? 'disabled' : '' ?> <?= $preselectedAset == $a['id'] ? 'selected' : '' ?>>
+                                [<?= $a['kode_aset'] ?>] <?= htmlspecialchars($a['nama_aset']) ?> <?= $sisa <= 0 ? '(Stok Habis Terpinjam)' : "(Tersisa: $sisa)" ?>
                             </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt" style="margin-right:4px;"></i> Lokasi / Ruangan Penggunaan *</label>
+                    <select class="form-control" name="id_lokasi" required>
+                        <option value="">-- Pilih Ruangan --</option>
+                        <?php foreach ($lokasiList as $l): ?>
+                            <option value="<?= $l['id'] ?>"><?= htmlspecialchars($l['nama_lokasi']) ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

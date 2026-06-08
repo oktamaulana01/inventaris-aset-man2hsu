@@ -160,6 +160,7 @@ CREATE TABLE `peminjaman` (
   `id_aset` int NOT NULL,
   `nama_peminjam` varchar(100) NOT NULL,
   `id_peminjam` int DEFAULT NULL,
+  `id_lokasi` int DEFAULT NULL,
   `tanggal_pinjam` date NOT NULL,
   `tanggal_kembali_rencana` date NOT NULL,
   `tanggal_kembali_aktual` date DEFAULT NULL,
@@ -171,7 +172,9 @@ CREATE TABLE `peminjaman` (
   KEY `id_aset` (`id_aset`),
   KEY `id_user` (`id_user`),
   KEY `fk_peminjaman_peminjam` (`id_peminjam`),
+  KEY `fk_peminjaman_lokasi` (`id_lokasi`),
   CONSTRAINT `fk_peminjaman_peminjam` FOREIGN KEY (`id_peminjam`) REFERENCES `users` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_peminjaman_lokasi` FOREIGN KEY (`id_lokasi`) REFERENCES `lokasi` (`id`) ON DELETE SET NULL,
   CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`id_aset`) REFERENCES `aset` (`id`) ON DELETE CASCADE,
   CONSTRAINT `peminjaman_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -234,6 +237,10 @@ CREATE TABLE `users` (
   `jabatan` varchar(100) DEFAULT NULL,
   `no_telepon` varchar(20) DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL,
+  `Ingat_Token` varchar(255) DEFAULT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `reset_token_expires_at` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)

@@ -8,6 +8,19 @@ $result = null;
 $error = '';
 if (isset($_GET['kode'])) {
     $kode = trim($_GET['kode']);
+    
+    // Jika kode berisi URL (dari QR format baru), redirect langsung ke URL tersebut
+    if (preg_match('/^https?:\/\//', $kode)) {
+        // Cek apakah URL mengarah ke publik_aset.php, ambil parameter kode-nya
+        $parsed = parse_url($kode);
+        if (isset($parsed['query'])) {
+            parse_str($parsed['query'], $queryParams);
+            if (isset($queryParams['kode'])) {
+                $kode = $queryParams['kode'];
+            }
+        }
+    }
+    
     $stmt = $pdo->prepare("SELECT a.*, k.nama_kategori, l.nama_lokasi FROM aset a 
         LEFT JOIN kategori k ON a.id_kategori = k.id 
         LEFT JOIN lokasi l ON a.id_lokasi = l.id 
@@ -114,15 +127,23 @@ document.addEventListener('DOMContentLoaded', function() {
             { fps: 10, qrbox: { width: 250, height: 250 } },
             (decodedText) => {
                 html5QrCode.stop();
+                
+                // Cek apakah QR berisi URL (format baru)
+                if (decodedText.startsWith('http://') || decodedText.startsWith('https://')) {
+                    window.location.href = decodedText;
+                    return;
+                }
+                
                 try {
+                    // Format lama: JSON dengan kode & url
                     const data = JSON.parse(decodedText);
-                    if (data.kode) {
-                        window.location.href = '?kode=' + encodeURIComponent(data.kode);
-                    } else if (data.url) {
+                    if (data.url) {
                         window.location.href = data.url;
+                    } else if (data.kode) {
+                        window.location.href = '?kode=' + encodeURIComponent(data.kode);
                     }
                 } catch(e) {
-                    // Try as plain text kode
+                    // Plain text: anggap sebagai kode aset
                     window.location.href = '?kode=' + encodeURIComponent(decodedText);
                 }
             },

@@ -22,14 +22,9 @@ if (!is_dir($qrDir)) {
     mkdir($qrDir, 0755, true);
 }
 
-$qrData = json_encode([
-    'kode' => $aset['kode_aset'],
-    'nama' => $aset['nama_aset'],
-    'kategori' => $aset['nama_kategori'] ?? '-',
-    'lokasi' => $aset['nama_lokasi'] ?? '-',
-    'kondisi' => $aset['kondisi'],
-    'url' => 'http://localhost/inventaris-aset-man2hsu/pages/aset/detail.php?id=' . $aset['id']
-]);
+// QR Code berisi URL ke halaman publik detail aset
+// Saat discan → langsung buka halaman web dengan gambar & detail aset
+$qrData = 'http://' . ($_SERVER['HTTP_HOST'] ?? 'localhost') . BASE_URL . '/publik_aset.php?kode=' . urlencode($aset['kode_aset']);
 
 $qrFilename = 'qr_' . $aset['kode_aset'] . '.png';
 $qrPath = $qrDir . $qrFilename;

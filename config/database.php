@@ -9,7 +9,7 @@ define('DB_NAME', 'db_inventaris_man2hsu');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('BASE_URL', '/inventaris-aset-man2hsu');
-define('SESSION_TIMEOUT', 1800); // 30 menit
+define('SESSION_TIMEOUT', 600); // 10 menit
 
 function getConnection() {
     try {

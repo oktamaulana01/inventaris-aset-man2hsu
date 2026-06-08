@@ -289,4 +289,39 @@ function sendTestEmail($pdo, $emailTujuan) {
         return ['success' => false, 'message' => 'Gagal: ' . $e->getMessage()];
     }
 }
+
+/**
+ * Kirim email untuk reset password
+ */
+function sendResetPasswordEmail($pdo, $emailTujuan, $nama, $resetLink) {
+    try {
+        $mail = getMailer($pdo);
+        $mail->addAddress($emailTujuan);
+        $mail->isHTML(true);
+        $mail->Subject = '🔑 Reset Password — Sistem Inventarisasi Aset MAN 2 HSU';
+        $mail->Body = "
+        <div style='font-family:Arial,sans-serif;max-width:500px;margin:20px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);'>
+            <div style='background:linear-gradient(135deg,#1e7256,#28956e);padding:24px;text-align:center;'>
+                <h2 style='color:#fff;margin:0;'>Reset Password</h2>
+            </div>
+            <div style='padding:24px;'>
+                <p style='color:#333;'>Halo <strong>" . htmlspecialchars($nama) . "</strong>,</p>
+                <p style='color:#333;line-height:1.5;'>Kami menerima permintaan untuk mengatur ulang password akun Anda. Klik tombol di bawah ini untuk melanjutkan proses reset password. Link ini hanya berlaku selama 30 menit.</p>
+                <div style='text-align:center;margin:30px 0;'>
+                    <a href='" . htmlspecialchars($resetLink) . "' style='background:#1e7256;color:#fff;text-decoration:none;padding:12px 24px;border-radius:6px;font-weight:bold;display:inline-block;'>Reset Password Sekarang</a>
+                </div>
+                <p style='color:#888;font-size:0.85rem;line-height:1.4;'>Jika Anda tidak meminta reset password, abaikan email ini. Akun Anda akan tetap aman.</p>
+            </div>
+            <div style='background:#f0f5f1;padding:16px;text-align:center;color:#888;font-size:0.8rem;'>
+                &copy; " . date('Y') . " MAN 2 Hulu Sungai Utara
+            </div>
+        </div>";
+        $mail->AltBody = "Halo $nama,\n\nKami menerima permintaan untuk mereset password Anda. Silakan klik link berikut untuk melanjutkan: $resetLink \n\nLink ini berlaku selama 30 menit.";
+        $mail->send();
+        
+        return ['success' => true];
+    } catch (Exception $e) {
+        return ['success' => false, 'message' => $e->getMessage()];
+    }
+}
 ?>

@@ -1,7 +1,7 @@
 <?php
 $pageTitle = 'Log Notifikasi Email';
 require_once __DIR__ . '/../../includes/auth_check.php';
-requireAdmin();
+requireStaff();
 $pdo = getConnection();
 
 // Filter
