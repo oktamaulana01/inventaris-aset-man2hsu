@@ -38,4 +38,4 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
 </head>
 <body>
     <div class="app-layout">
-        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+        <div class="sidebar-overlay"></div>
