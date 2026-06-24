@@ -443,6 +443,63 @@ textarea.form-control {
     font-size: 1.1rem;
 }
 
+/* Sidebar Dropdown */
+.nav-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.nav-dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.nav-dropdown-toggle .nav-dropdown-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-dropdown-toggle .caret {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.has-dropdown.open .nav-dropdown-toggle .caret {
+    transform: rotate(180deg);
+}
+
+.has-dropdown.open .nav-dropdown-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    flex-direction: column;
+    padding-left: 28px;
+    margin-top: 4px;
+}
+
+.has-dropdown.open .nav-dropdown-menu {
+    display: flex;
+}
+
+.nav-dropdown-menu .nav-link {
+    padding: 8px 14px;
+    font-size: 0.83rem;
+    margin-bottom: 2px;
+}
+
 .sidebar-footer {
     padding: 16px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.12);

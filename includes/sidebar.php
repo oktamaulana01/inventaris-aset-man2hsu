@@ -97,53 +97,61 @@
                 </div>
 
                 <!-- Laporan -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Laporan</div>
-                    <a href="<?= BASE_URL ?>/pages/laporan/aset_keseluruhan.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_keseluruhan') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-file-lines"></i></span>
-                        Inventaris Keseluruhan
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/aset_per_kategori.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_per_kategori') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-layer-group"></i></span>
-                        Aset per Kategori
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/aset_per_lokasi.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_per_lokasi') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-map-location-dot"></i></span>
-                        Aset per Lokasi
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/kondisi_aset.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'kondisi_aset') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-clipboard-check"></i></span>
-                        Kondisi Aset
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/peminjaman.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'peminjaman') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-hand-holding"></i></span>
-                        Laporan Peminjaman
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/riwayat_aset.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'riwayat_aset') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-history"></i></span>
-                        Riwayat per Aset
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/aset_masuk.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_masuk') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-arrow-right-to-bracket"></i></span>
-                        Aset Masuk
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/mutasi_aset.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'mutasi_aset') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-right-left"></i></span>
-                        Mutasi Aset
-                    </a>
-                    <a href="<?= BASE_URL ?>/pages/laporan/penghapusan_aset.php" 
-                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'penghapusan_aset') ? 'active' : '' ?>">
-                        <span class="nav-icon"><i class="fas fa-trash-can"></i></span>
-                        Penghapusan Aset
-                    </a>
+                <div class="nav-section has-dropdown <?= ($currentDir === 'laporan') ? 'open' : '' ?>">
+                    <div class="nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">
+                        <span class="nav-dropdown-title">
+                            <i class="fas fa-folder-open nav-icon"></i>
+                            Laporan
+                        </span>
+                        <i class="fas fa-chevron-down caret"></i>
+                    </div>
+                    <div class="nav-dropdown-menu">
+                        <a href="<?= BASE_URL ?>/pages/laporan/aset_keseluruhan.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_keseluruhan') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-file-lines"></i></span>
+                            Inventaris Keseluruhan
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/aset_per_kategori.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_per_kategori') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-layer-group"></i></span>
+                            Aset per Kategori
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/aset_per_lokasi.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_per_lokasi') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-map-location-dot"></i></span>
+                            Aset per Lokasi
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/kondisi_aset.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'kondisi_aset') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-clipboard-check"></i></span>
+                            Kondisi Aset
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/peminjaman.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'peminjaman') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-hand-holding"></i></span>
+                            Laporan Peminjaman
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/riwayat_aset.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'riwayat_aset') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-history"></i></span>
+                            Riwayat per Aset
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/aset_masuk.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_masuk') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-arrow-right-to-bracket"></i></span>
+                            Aset Masuk
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/mutasi_aset.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'mutasi_aset') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-right-left"></i></span>
+                            Mutasi Aset
+                        </a>
+                        <a href="<?= BASE_URL ?>/pages/laporan/penghapusan_aset.php" 
+                           class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'penghapusan_aset') ? 'active' : '' ?>">
+                            <span class="nav-icon"><i class="fas fa-trash-can"></i></span>
+                            Penghapusan Aset
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Admin Only -->
