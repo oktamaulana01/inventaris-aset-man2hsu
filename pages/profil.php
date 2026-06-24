@@ -10,6 +10,7 @@ $editMode = isset($_GET['edit']);
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $nama = trim($_POST['nama']);
     $username = trim($_POST['username']);
     $foto = $user['foto']; // keep existing
@@ -238,7 +239,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
         <a href="?edit=1" class="btn-edit-profil"><i class="fas fa-pen"></i> Edit Profil</a>
         <div class="profile-avatar">
             <?php if ($user['foto'] && file_exists(__DIR__ . '/../assets/uploads/' . $user['foto'])): ?>
-                <img src="/inventaris-aset-man2hsu/assets/uploads/<?= htmlspecialchars($user['foto']) ?>" alt="Foto Profil">
+                <img src="<?= BASE_URL ?>/assets/uploads/<?= htmlspecialchars($user['foto']) ?>" alt="Foto Profil">
             <?php else: ?>
                 <?= strtoupper(substr($user['nama'], 0, 1)) ?>
             <?php endif; ?>
@@ -318,11 +319,12 @@ require_once __DIR__ . '/../includes/sidebar.php';
             <?php endif; ?>
 
             <form method="POST" enctype="multipart/form-data">
+            <?= generateCsrfToken() ?>
                 <!-- Foto Upload -->
                 <div style="text-align:center;margin-bottom:20px;">
                     <label for="foto-input" class="foto-upload-area" id="foto-preview-area">
                         <?php if ($user['foto'] && file_exists(__DIR__ . '/../assets/uploads/' . $user['foto'])): ?>
-                            <img src="/inventaris-aset-man2hsu/assets/uploads/<?= htmlspecialchars($user['foto']) ?>" alt="Foto" id="foto-preview">
+                            <img src="<?= BASE_URL ?>/assets/uploads/<?= htmlspecialchars($user['foto']) ?>" alt="Foto" id="foto-preview">
                         <?php else: ?>
                             <div id="foto-placeholder">
                                 <i class="fas fa-camera" style="font-size:1.8rem;color:#aaa;"></i>
@@ -442,3 +444,5 @@ function togglePassword(inputId, btn) {
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+
+

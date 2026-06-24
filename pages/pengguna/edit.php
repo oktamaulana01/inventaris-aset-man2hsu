@@ -8,6 +8,7 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?"); $stmt->execute([$id])
 $data = $stmt->fetch(); if (!$data) { header('Location: index.php'); exit; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $nama = trim($_POST['nama']); $username = trim($_POST['username']); $role = $_POST['role'];
     $email = trim($_POST['email'] ?? '');
     $nip = trim($_POST['nip'] ?? '');
@@ -28,6 +29,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <div class="page-header"><div><h2><i class="fas fa-user-edit"></i> Edit Pengguna</h2></div></div>
 <div class="card animate-fadeInUp"><div class="card-body">
     <form method="POST">
+            <?= generateCsrfToken() ?>
         <div class="grid-2">
             <div class="form-group"><label>Nama Lengkap *</label><input type="text" class="form-control" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" required></div>
             <div class="form-group"><label>Username *</label><input type="text" class="form-control" name="username" value="<?= htmlspecialchars($data['username']) ?>" required></div>
@@ -59,4 +61,6 @@ function toggleGuruFields() {
 }
 </script>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+
+
 

@@ -39,7 +39,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-boxes-stacked"></i> Katalog Aset</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/guru/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/guru/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
             <span>Katalog Aset</span>
         </div>
@@ -109,7 +109,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <?php endif; ?>
                 
                 <?php if ($a['kondisi'] === 'Baik'): ?>
-                    <a href="/inventaris-aset-man2hsu/pages/guru/pinjam.php?id_aset=<?= $a['id'] ?>" class="btn btn-primary btn-sm" style="width:100%;">
+                    <a href="<?= BASE_URL ?>/pages/guru/pinjam.php?id_aset=<?= $a['id'] ?>" class="btn btn-primary btn-sm" style="width:100%;">
                         <i class="fas fa-hand-holding-hand"></i> Ajukan Peminjaman
                     </a>
                 <?php else: ?>

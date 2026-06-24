@@ -197,6 +197,7 @@ if ($tokenValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <?php if ($tokenValid): ?>
                 <form action="" method="POST">
+            <?= generateCsrfToken() ?>
                     
                     <div class="form-floating mb-3 position-relative">
                         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password Baru" required minlength="6">
@@ -263,3 +264,5 @@ if ($tokenValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </body>
 </html>
+
+

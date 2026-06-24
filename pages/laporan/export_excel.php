@@ -136,7 +136,7 @@ switch ($type) {
         fputcsv($output, ['LAPORAN PENGHAPUSAN ASET - MAN 2 HSU']);
         fputcsv($output, ['Tanggal: ' . date('d/m/Y')]);
         fputcsv($output, []);
-        fputcsv($output, ['No', 'Tgl Hapus', 'Kode', 'Nama Aset', 'Kategori', 'Lokasi', 'Kondisi', 'Nilai']);
+        fputcsv($output, ['No', 'Tgl Hapus', 'Kode', 'Nama Aset', 'Kategori', 'Kondisi', 'Alasan Hapus', 'Bukti Foto']);
         
         $where = "WHERE a.deleted_at IS NOT NULL"; $params = [];
         if ($startDate) { $where .= " AND DATE(a.deleted_at) >= ?"; $params[] = $startDate; }
@@ -145,7 +145,43 @@ switch ($type) {
         $stmt->execute($params);
         $data = $stmt->fetchAll();
         $no = 1;
-        foreach ($data as $d) { fputcsv($output, [$no++, date('d/m/Y', strtotime($d['deleted_at'])), $d['kode_aset'], $d['nama_aset'], $d['nama_kategori'] ?? '-', $d['nama_lokasi'] ?? '-', $d['kondisi'], $d['nilai_perolehan'] * $d['jumlah']]); }
+        foreach ($data as $d) { fputcsv($output, [$no++, date('d/m/Y', strtotime($d['deleted_at'])), $d['kode_aset'], $d['nama_aset'], $d['nama_kategori'] ?? '-', $d['kondisi'], $d['alasan_hapus'] ?? '-', $d['bukti_hapus'] ? 'Terlampir' : '-']); }
+        break;
+    case 'riwayat_aset':
+        $filterAsetId = $_GET['id_aset'] ?? '';
+        if (!$filterAsetId) die('Silakan pilih aset terlebih dahulu.');
+        
+        $stmtInfo = $pdo->prepare("SELECT kode_aset, nama_aset FROM aset WHERE id = ?");
+        $stmtInfo->execute([$filterAsetId]);
+        $asetInfo = $stmtInfo->fetch();
+        
+        fputcsv($output, ['RIWAYAT PEMINJAMAN ASET: ' . strtoupper($asetInfo['nama_aset'])]);
+        fputcsv($output, ['Tanggal: ' . date('d/m/Y')]);
+        fputcsv($output, []);
+        fputcsv($output, ['No', 'Nama Peminjam', 'Tgl Pinjam', 'Tgl Kembali (Rencana)', 'Tgl Kembali (Aktual)', 'Kondisi Pengembalian', 'Status']);
+        
+        $where = "WHERE p.id_aset = ?"; 
+        $params = [$filterAsetId];
+        
+        if ($startDate) { $where .= " AND p.tanggal_pinjam >= ?"; $params[] = $startDate; }
+        if ($endDate) { $where .= " AND p.tanggal_pinjam <= ?"; $params[] = $endDate; }
+        
+        $stmt = $pdo->prepare("SELECT p.* FROM peminjaman p $where ORDER BY p.tanggal_pinjam DESC");
+        $stmt->execute($params);
+        $data = $stmt->fetchAll();
+        
+        $no = 1;
+        foreach ($data as $d) { 
+            fputcsv($output, [
+                $no++, 
+                $d['nama_peminjam'], 
+                $d['tanggal_pinjam'], 
+                $d['tanggal_kembali_rencana'], 
+                $d['tanggal_kembali_aktual'] ?? '-', 
+                $d['kondisi_saat_dikembalikan'] ?? '-', 
+                $d['status']
+            ]); 
+        }
         break;
 }
 

@@ -51,9 +51,9 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-qrcode"></i> QR Code Aset</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
-            <a href="/inventaris-aset-man2hsu/pages/aset/index.php">Data Aset</a>
+            <a href="<?= BASE_URL ?>/pages/aset/index.php">Data Aset</a>
             <span class="separator">/</span>
             <span>QR Code</span>
         </div>
@@ -72,7 +72,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         </div>
         <div class="card-body">
             <div class="qr-container" id="qr-print-area">
-                <img src="/inventaris-aset-man2hsu/qrcodes/<?= $qrFilename ?>?t=<?= time() ?>" alt="QR Code <?= htmlspecialchars($aset['kode_aset']) ?>">
+                <img src="<?= BASE_URL ?>/qrcodes/<?= $qrFilename ?>?t=<?= time() ?>" alt="QR Code <?= htmlspecialchars($aset['kode_aset']) ?>">
                 <div class="qr-info">
                     <h3 style="font-size:1.1rem; color:var(--text-primary);"><?= htmlspecialchars($aset['kode_aset']) ?></h3>
                     <p><?= htmlspecialchars($aset['nama_aset']) ?></p>

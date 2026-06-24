@@ -37,7 +37,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     </form>
 </div></div>
 <div class="card animate-fadeInUp"><div class="card-header"><h3>Aset Dihapus (<?= count($data) ?> item)</h3></div><div class="card-body"><div class="table-wrapper">
-    <table><thead><tr><th>No</th><th>Tgl Hapus</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Lokasi</th><th>Kondisi</th><th>Nilai</th></tr></thead>
+    <table><thead><tr><th>No</th><th>Tgl Hapus</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Kondisi</th><th>Alasan</th><th>Bukti Foto</th></tr></thead>
     <tbody>
         <?php if (empty($data)): ?>
             <tr><td colspan="8" class="text-center text-muted">Belum ada aset yang dihapus</td></tr>
@@ -46,12 +46,20 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <td><?= $i+1 ?></td>
             <td><?= date('d/m/Y', strtotime($a['deleted_at'])) ?></td>
             <td><?= htmlspecialchars($a['kode_aset']) ?></td><td><?= htmlspecialchars($a['nama_aset']) ?></td>
-            <td><?= htmlspecialchars($a['nama_kategori'] ?? '-') ?></td><td><?= htmlspecialchars($a['nama_lokasi'] ?? '-') ?></td>
+            <td><?= htmlspecialchars($a['nama_kategori'] ?? '-') ?></td>
             <td><span class="badge badge-<?= $a['kondisi'] === 'Baik' ? 'success' : ($a['kondisi'] === 'Rusak Ringan' ? 'warning' : 'danger') ?>"><?= $a['kondisi'] ?></span></td>
-            <td style="text-align:right;"><?= formatRupiah($a['nilai_perolehan'] * $a['jumlah']) ?></td>
+            <td style="max-width: 200px; white-space: normal;"><?= nl2br(htmlspecialchars($a['alasan_hapus'] ?? '-')) ?></td>
+            <td>
+                <?php if ($a['bukti_hapus']): ?>
+                    <a href="<?= BASE_URL ?>/assets/uploads/bukti_hapus/<?= htmlspecialchars($a['bukti_hapus']) ?>" target="_blank" class="btn btn-sm btn-info" title="Lihat Bukti Foto">
+                        <i class="fas fa-image"></i>
+                    </a>
+                <?php else: ?>
+                    <span class="text-muted">-</span>
+                <?php endif; ?>
+            </td>
         </tr>
         <?php endforeach; ?>
-        <tr style="font-weight:700;"><td colspan="7" class="text-right">TOTAL NILAI TERHAPUS</td><td style="text-align:right;"><?= formatRupiah($total) ?></td></tr>
         <?php endif; ?>
     </tbody></table>
 </div></div></div>

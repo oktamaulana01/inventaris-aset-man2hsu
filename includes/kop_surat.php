@@ -1,6 +1,6 @@
 <div class="print-header">
     <div class="kop-surat">
-        <img src="/inventaris-aset-man2hsu/assets/uploads/logo_km.png" alt="Logo Kemenag" class="kop-logo">
+        <img src="<?= BASE_URL ?>/assets/uploads/logo_km.png" alt="Logo Kemenag" class="kop-logo">
         <div class="kop-text">
             <h2>KEMENTERIAN AGAMA REPUBLIK INDONESIA</h2>
             <h3>KANTOR KEMENTERIAN AGAMA KABUPATEN HULU SUNGAI UTARA</h3>

@@ -122,7 +122,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 </div>
                 <div class="form-group">
                     <label>Nilai Perolehan (Rp)</label>
-                    <input type="text" class="form-control" name="nilai_perolehan" value="<?= $aset['nilai_perolehan'] ?>">
+                    <input type="number" class="form-control" name="nilai_perolehan" value="<?= $aset['nilai_perolehan'] ? (int)$aset['nilai_perolehan'] : '' ?>">
                 </div>
                 <div class="form-group">
                     <label>Sumber Dana</label>

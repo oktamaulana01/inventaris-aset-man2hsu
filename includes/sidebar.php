@@ -2,7 +2,7 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
-                    <img src="<?= BASE_URL ?>/assets/uploads/logo.png" alt="Logo MAN 2 HSU" class="logo-img">
+                    <img src="<?= BASE_URL ?>/assets/uploads/logo.png.PNG" alt="Logo MAN 2 HSU" class="logo-img">
                 </div>
                 <div class="sidebar-brand">
                     <h2>Inventaris Aset</h2>
@@ -123,6 +123,11 @@
                        class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'peminjaman') ? 'active' : '' ?>">
                         <span class="nav-icon"><i class="fas fa-hand-holding"></i></span>
                         Laporan Peminjaman
+                    </a>
+                    <a href="<?= BASE_URL ?>/pages/laporan/riwayat_aset.php" 
+                       class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'riwayat_aset') ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fas fa-history"></i></span>
+                        Riwayat per Aset
                     </a>
                     <a href="<?= BASE_URL ?>/pages/laporan/aset_masuk.php" 
                        class="nav-link <?= ($currentDir === 'laporan' && $currentPage === 'aset_masuk') ? 'active' : '' ?>">

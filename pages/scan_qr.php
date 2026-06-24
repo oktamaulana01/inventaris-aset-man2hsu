@@ -38,7 +38,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-qrcode"></i> Scan QR Code</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
             <span>Scan QR Code</span>
         </div>
@@ -84,7 +84,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
 <div class="card mt-4 animate-fadeInUp">
     <div class="card-header">
         <h3><i class="fas fa-check-circle"></i> Aset Ditemukan</h3>
-        <a href="/inventaris-aset-man2hsu/pages/aset/detail.php?id=<?= $result['id'] ?>" class="btn btn-sm btn-info">
+        <a href="<?= BASE_URL ?>/pages/aset/detail.php?id=<?= $result['id'] ?>" class="btn btn-sm btn-info">
             <i class="fas fa-eye"></i> Detail Lengkap
         </a>
     </div>

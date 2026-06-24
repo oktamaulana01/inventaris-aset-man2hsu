@@ -30,7 +30,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-clock-rotate-left"></i> Riwayat Peminjaman Saya</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/guru/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/guru/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
             <span>Riwayat Peminjaman</span>
         </div>
@@ -44,8 +44,10 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <form method="GET" class="search-bar">
             <select class="form-control" name="status" style="max-width:200px;">
                 <option value="">Semua Status</option>
+                <option value="Menunggu Konfirmasi" <?= $filterStatus === 'Menunggu Konfirmasi' ? 'selected' : '' ?>>Menunggu Konfirmasi</option>
                 <option value="Dipinjam" <?= $filterStatus === 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
                 <option value="Dikembalikan" <?= $filterStatus === 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
+                <option value="Ditolak" <?= $filterStatus === 'Ditolak' ? 'selected' : '' ?>>Ditolak</option>
             </select>
             <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
             <a href="riwayat.php" class="btn btn-secondary btn-sm">Reset</a>
@@ -97,7 +99,13 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             </td>
                             <td><?= $p['tanggal_kembali_aktual'] ? date('d/m/Y', strtotime($p['tanggal_kembali_aktual'])) : '-' ?></td>
                             <td>
-                                <span class="badge badge-<?= $p['status'] === 'Dipinjam' ? 'warning' : 'success' ?>">
+                                <?php
+                                $badgeClass = 'success';
+                                if ($p['status'] === 'Dipinjam') $badgeClass = 'warning';
+                                elseif ($p['status'] === 'Menunggu Konfirmasi') $badgeClass = 'info';
+                                elseif ($p['status'] === 'Ditolak') $badgeClass = 'danger';
+                                ?>
+                                <span class="badge badge-<?= $badgeClass ?>">
                                     <?= $p['status'] ?>
                                 </span>
                             </td>

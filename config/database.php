@@ -39,6 +39,7 @@ function startSession() {
 
 // Helper: Log aktivitas
 function logActivity($pdo, $userId, $aktivitas, $keterangan = '') {
+    $userId = empty($userId) ? null : $userId; // Convert 0 or empty to null
     $stmt = $pdo->prepare("INSERT INTO riwayat_aktivitas (id_user, aktivitas, keterangan) VALUES (?, ?, ?)");
     $stmt->execute([$userId, $aktivitas, $keterangan]);
 }

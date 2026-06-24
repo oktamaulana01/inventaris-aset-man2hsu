@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../includes/auth_check.php';
 requireAdmin();
 $pdo = getConnection();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $nama = trim($_POST['nama']); $username = trim($_POST['username']);
     $email = trim($_POST['email'] ?? '');
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -21,6 +22,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <div class="page-header"><div><h2><i class="fas fa-user-plus"></i> Tambah Pengguna</h2></div></div>
 <div class="card animate-fadeInUp"><div class="card-body">
     <form method="POST">
+            <?= generateCsrfToken() ?>
         <div class="grid-2">
             <div class="form-group"><label>Nama Lengkap *</label><input type="text" class="form-control" name="nama" required></div>
             <div class="form-group"><label>Username *</label><input type="text" class="form-control" name="username" required></div>
@@ -52,4 +54,6 @@ function toggleGuruFields() {
 }
 </script>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+
+
 

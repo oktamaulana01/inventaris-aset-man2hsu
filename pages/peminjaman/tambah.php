@@ -5,7 +5,7 @@ $pdo = getConnection();
 
 $asetList = $pdo->query("
     SELECT a.id, a.kode_aset, a.nama_aset, a.jumlah,
-           (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status = 'Dipinjam') as terpinjam
+           (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status IN ('Dipinjam', 'Menunggu Konfirmasi')) as terpinjam
     FROM aset a 
     WHERE a.deleted_at IS NULL AND a.kondisi = 'Baik'
     ORDER BY a.nama_aset
@@ -14,18 +14,19 @@ $asetList = $pdo->query("
 $lokasiList = $pdo->query("SELECT * FROM lokasi ORDER BY nama_lokasi")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $idAset = intval($_POST['id_aset']);
     
     // Validasi apakah stok aset masih ada
     $cekStok = $pdo->prepare("
         SELECT a.jumlah, 
-               (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status = 'Dipinjam') as terpinjam
+               (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status IN ('Dipinjam', 'Menunggu Konfirmasi')) as terpinjam
         FROM aset a WHERE a.id = ?
     ");
     $cekStok->execute([$idAset]);
     $stok = $cekStok->fetch();
     if ($stok && $stok['terpinjam'] >= $stok['jumlah']) {
-        setFlash('danger', 'Maaf, semua unit dari aset tersebut saat ini sedang dipinjam oleh orang lain.');
+        setFlash('danger', 'Maaf, semua unit dari aset tersebut saat ini sedang dipinjam atau dalam proses pengajuan.');
         header('Location: tambah.php'); exit;
     }
     
@@ -50,6 +51,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <div class="page-header"><div><h2><i class="fas fa-plus-circle"></i> Tambah Peminjaman</h2></div></div>
 <div class="card animate-fadeInUp"><div class="card-body">
     <form method="POST">
+            <?= generateCsrfToken() ?>
         <div class="grid-2">
             <div class="form-group">
                 <label>Pilih Aset *</label>
@@ -82,3 +84,5 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     </form>
 </div></div>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+
+

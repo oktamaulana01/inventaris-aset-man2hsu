@@ -9,7 +9,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 ?>
 <div class="page-header">
     <div><h2><i class="fas fa-location-dot"></i> Data Lokasi / Ruangan</h2>
-        <div class="breadcrumb"><a href="/inventaris-aset-man2hsu/pages/dashboard.php">Dashboard</a><span class="separator">/</span><span>Lokasi</span></div>
+        <div class="breadcrumb"><a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a><span class="separator">/</span><span>Lokasi</span></div>
     </div>
     <a href="tambah.php" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Lokasi</a>
 </div>

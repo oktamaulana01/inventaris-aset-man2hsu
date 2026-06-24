@@ -97,11 +97,8 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 </div>
                 <div class="form-group">
                     <label>Kondisi *</label>
-                    <select class="form-control" name="kondisi" required>
-                        <option value="Baik">Baik</option>
-                        <option value="Rusak Ringan">Rusak Ringan</option>
-                        <option value="Rusak Berat">Rusak Berat</option>
-                    </select>
+                    <input type="text" class="form-control" name="kondisi" value="Baik" readonly style="background-color: #e9ecef; cursor: not-allowed;">
+                    <small class="text-muted">Aset baru otomatis berstatus Baik. Untuk aset rusak, gunakan menu "Tambah Aset Rusak".</small>
                 </div>
                 <div class="form-group">
                     <label>Tahun Perolehan</label>
@@ -109,7 +106,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 </div>
                 <div class="form-group">
                     <label>Nilai Perolehan (Rp)</label>
-                    <input type="text" class="form-control" name="nilai_perolehan" placeholder="0">
+                    <input type="number" class="form-control" name="nilai_perolehan" placeholder="0">
                 </div>
                 <div class="form-group">
                     <label>Sumber Dana</label>

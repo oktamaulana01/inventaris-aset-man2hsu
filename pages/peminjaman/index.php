@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
 <div class="page-header">
     <div><h2><i class="fas fa-handshake"></i> Peminjaman Aset</h2>
-        <div class="breadcrumb"><a href="/inventaris-aset-man2hsu/pages/dashboard.php">Dashboard</a><span class="separator">/</span><span>Peminjaman</span></div>
+        <div class="breadcrumb"><a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a><span class="separator">/</span><span>Peminjaman</span></div>
     </div>
     <a href="tambah.php" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Peminjaman</a>
 </div>
@@ -35,8 +35,10 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <form method="GET" class="search-bar">
         <select class="form-control" name="status" style="max-width:200px;">
             <option value="">Semua Status</option>
+            <option value="Menunggu Konfirmasi" <?= $filterStatus === 'Menunggu Konfirmasi' ? 'selected' : '' ?>>Menunggu Konfirmasi</option>
             <option value="Dipinjam" <?= $filterStatus === 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
             <option value="Dikembalikan" <?= $filterStatus === 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
+            <option value="Ditolak" <?= $filterStatus === 'Ditolak' ? 'selected' : '' ?>>Ditolak</option>
         </select>
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
         <a href="index.php" class="btn btn-secondary btn-sm">Reset</a>
@@ -67,13 +69,25 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 </td>
                 <td><?= date('d/m/Y', strtotime($p['tanggal_pinjam'])) ?></td>
                 <td><?= date('d/m/Y', strtotime($p['tanggal_kembali_rencana'])) ?></td>
-                <td><span class="badge badge-<?= $p['status'] === 'Dipinjam' ? 'warning' : 'success' ?>"><?= $p['status'] ?></span></td>
+                <td>
+                    <?php
+                    $badgeClass = 'success';
+                    if ($p['status'] === 'Dipinjam') $badgeClass = 'warning';
+                    elseif ($p['status'] === 'Menunggu Konfirmasi') $badgeClass = 'info';
+                    elseif ($p['status'] === 'Ditolak') $badgeClass = 'danger';
+                    ?>
+                    <span class="badge badge-<?= $badgeClass ?>"><?= $p['status'] ?></span>
+                </td>
                 <td><div class="btn-group">
+                    <?php if ($p['status'] === 'Menunggu Konfirmasi'): ?>
+                        <a href="javascript:void(0)" onclick="confirmAction('Setujui permintaan peminjaman ini?', 'proses_konfirmasi.php?action=approve', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Setujui"><i class="fas fa-check"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Tolak permintaan peminjaman ini?', 'proses_konfirmasi.php?action=reject', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Tolak"><i class="fas fa-times"></i></a>
+                    <?php endif; ?>
                     <?php if ($p['status'] === 'Dipinjam'): ?>
                         <a href="javascript:void(0)" onclick="confirmAction('Kirim email reminder ke peminjam?', 'kirim_notif.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-info" title="Kirim Reminder Email"><i class="fas fa-envelope"></i></a>
                         <a href="javascript:void(0)" onclick="confirmAction('Kembalikan aset ini?', 'kembali.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
                     <?php endif; ?>
-                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', 'hapus.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', 'hapus.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                 </div></td>
             </tr>
             <?php endforeach; endif; ?>

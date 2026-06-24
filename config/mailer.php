@@ -64,11 +64,11 @@ function generateEmailTemplate($data, $tipe) {
     $dueDate = new DateTime($data['tanggal_kembali_rencana']);
     $diff = $today->diff($dueDate);
     $daysLate = $today > $dueDate ? $diff->days : 0;
-    
+
     // Warna dan teks berdasarkan tipe
     switch ($tipe) {
         case 'reminder':
-            $headerColor = '#f59e0b';
+            $headerColor = '#1e7256'; // Warna hijau resmi MAN 2
             $headerIcon = '⏰';
             $headerText = 'Pengingat Pengembalian Aset';
             $messageText = "peminjaman aset berikut <strong>akan jatuh tempo besok</strong>. Mohon persiapkan pengembalian.";

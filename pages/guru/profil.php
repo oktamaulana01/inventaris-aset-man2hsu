@@ -11,6 +11,7 @@ $user = $stmt->fetch();
 
 // Update profil
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $action = $_POST['action'] ?? '';
     
     if ($action === 'update_profil') {
@@ -62,7 +63,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-user-circle"></i> Profil Saya</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/guru/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/guru/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
             <span>Profil</span>
         </div>
@@ -77,6 +78,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         </div>
         <div class="card-body">
             <form method="POST">
+            <?= generateCsrfToken() ?>
                 <input type="hidden" name="action" value="update_profil">
                 <div class="form-group">
                     <label>Nama Lengkap *</label>
@@ -114,6 +116,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             </div>
             <div class="card-body">
                 <form method="POST">
+            <?= generateCsrfToken() ?>
                     <input type="hidden" name="action" value="update_password">
                     <div class="form-group">
                         <label>Password Lama *</label>
@@ -159,3 +162,5 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 </div>
 
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+
+

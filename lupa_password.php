@@ -18,6 +18,7 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $email = trim($_POST['email'] ?? '');
     
     if (empty($email)) {
@@ -174,6 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
 
                 <form action="" method="POST">
+            <?= generateCsrfToken() ?>
                     <div class="form-floating mb-4">
                         <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required autofocus value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
                         <label for="floatingInput"><i class="fas fa-envelope me-2 text-muted"></i>Alamat Email</label>
@@ -199,3 +201,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

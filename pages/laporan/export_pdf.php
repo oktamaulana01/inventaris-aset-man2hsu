@@ -233,18 +233,48 @@ switch ($type) {
         $stmt = $pdo->prepare("SELECT a.*, k.nama_kategori, l.nama_lokasi FROM aset a LEFT JOIN kategori k ON a.id_kategori = k.id LEFT JOIN lokasi l ON a.id_lokasi = l.id $where ORDER BY a.deleted_at DESC");
         $stmt->execute($params);
         $data = $stmt->fetchAll();
-        $tableHtml = '<table class="data"><thead><tr><th>No</th><th>Tgl Hapus</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Lokasi</th><th>Kondisi</th><th style="text-align:right;">Nilai</th></tr></thead><tbody>';
+        $tableHtml = '<table class="data"><thead><tr><th>No</th><th>Tgl Hapus</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Kondisi</th><th>Alasan Hapus</th><th>Bukti Foto</th></tr></thead><tbody>';
         if (empty($data)) {
             $tableHtml .= '<tr><td colspan="8" class="text-center">Belum ada aset yang dihapus</td></tr>';
         } else {
-            $total = 0;
             foreach ($data as $i => $a) {
-                $nilai = $a['nilai_perolehan'] * $a['jumlah'];
-                $total += $nilai;
                 $badge = $a['kondisi'] === 'Baik' ? 'success' : ($a['kondisi'] === 'Rusak Ringan' ? 'warning' : 'danger');
-                $tableHtml .= '<tr><td class="text-center">' . ($i+1) . '</td><td class="text-center">' . date('d/m/Y', strtotime($a['deleted_at'])) . '</td><td>' . htmlspecialchars($a['kode_aset']) . '</td><td>' . htmlspecialchars($a['nama_aset']) . '</td><td>' . htmlspecialchars($a['nama_kategori'] ?? '-') . '</td><td>' . htmlspecialchars($a['nama_lokasi'] ?? '-') . '</td><td class="text-center"><span class="badge badge-' . $badge . '">' . $a['kondisi'] . '</span></td><td class="text-right">' . formatRp($nilai) . '</td></tr>';
+                $bukti = $a['bukti_hapus'] ? 'Terlampir' : '-';
+                $tableHtml .= '<tr><td class="text-center">' . ($i+1) . '</td><td class="text-center">' . date('d/m/Y', strtotime($a['deleted_at'])) . '</td><td>' . htmlspecialchars($a['kode_aset']) . '</td><td>' . htmlspecialchars($a['nama_aset']) . '</td><td>' . htmlspecialchars($a['nama_kategori'] ?? '-') . '</td><td class="text-center"><span class="badge badge-' . $badge . '">' . $a['kondisi'] . '</span></td><td>' . htmlspecialchars($a['alasan_hapus'] ?? '-') . '</td><td class="text-center">' . $bukti . '</td></tr>';
             }
-            $tableHtml .= '<tr class="total-row"><td colspan="7" class="text-right">TOTAL NILAI TERHAPUS</td><td class="text-right">' . formatRp($total) . '</td></tr>';
+        }
+        $tableHtml .= '</tbody></table>';
+        break;
+
+    case 'riwayat_aset':
+        $filterAsetId = $_GET['id_aset'] ?? '';
+        if (!$filterAsetId) die('Silakan pilih aset terlebih dahulu.');
+        
+        $stmtInfo = $pdo->prepare("SELECT kode_aset, nama_aset FROM aset WHERE id = ?");
+        $stmtInfo->execute([$filterAsetId]);
+        $asetInfo = $stmtInfo->fetch();
+        
+        $title = 'RIWAYAT PEMINJAMAN ASET: ' . strtoupper($asetInfo['nama_aset']);
+        $orientation = 'landscape';
+        $where = "WHERE p.id_aset = ?"; 
+        $params = [$filterAsetId];
+        
+        if ($startDate) { $where .= " AND p.tanggal_pinjam >= ?"; $params[] = $startDate; }
+        if ($endDate) { $where .= " AND p.tanggal_pinjam <= ?"; $params[] = $endDate; }
+        
+        $stmt = $pdo->prepare("SELECT p.* FROM peminjaman p $where ORDER BY p.tanggal_pinjam DESC");
+        $stmt->execute($params);
+        $data = $stmt->fetchAll();
+        
+        $tableHtml = '<table class="data"><thead><tr><th>No</th><th>Nama Peminjam</th><th>Tgl Pinjam</th><th>Tgl Kembali (Rencana)</th><th>Tgl Kembali (Aktual)</th><th>Kondisi Pengembalian</th><th>Status</th></tr></thead><tbody>';
+        if (empty($data)) {
+            $tableHtml .= '<tr><td colspan="7" class="text-center">Belum ada riwayat peminjaman untuk aset ini pada periode tersebut.</td></tr>';
+        } else {
+            foreach ($data as $i => $p) {
+                $badge = $p['status'] === 'Dipinjam' ? 'warning' : ($p['status'] === 'Dikembalikan' ? 'success' : 'info');
+                $tglAktual = $p['tanggal_kembali_aktual'] ? date('d/m/Y H:i', strtotime($p['tanggal_kembali_aktual'])) : '-';
+                $tableHtml .= '<tr><td class="text-center">' . ($i+1) . '</td><td>' . htmlspecialchars($p['nama_peminjam']) . '</td><td class="text-center">' . date('d/m/Y H:i', strtotime($p['tanggal_pinjam'])) . '</td><td class="text-center">' . date('d/m/Y', strtotime($p['tanggal_kembali_rencana'])) . '</td><td class="text-center">' . $tglAktual . '</td><td>' . htmlspecialchars($p['kondisi_saat_dikembalikan'] ?? '-') . '</td><td class="text-center"><span class="badge badge-' . $badge . '">' . $p['status'] . '</span></td></tr>';
+            }
         }
         $tableHtml .= '</tbody></table>';
         break;

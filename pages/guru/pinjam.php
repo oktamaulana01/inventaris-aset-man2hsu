@@ -6,7 +6,7 @@ $pdo = getConnection();
 
 $asetList = $pdo->query("
     SELECT a.id, a.kode_aset, a.nama_aset, a.jumlah,
-           (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status = 'Dipinjam') as terpinjam
+           (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status IN ('Dipinjam', 'Menunggu Konfirmasi')) as terpinjam
     FROM aset a 
     WHERE a.deleted_at IS NULL AND a.kondisi = 'Baik' 
     ORDER BY a.nama_aset
@@ -18,18 +18,19 @@ $lokasiList = $pdo->query("SELECT * FROM lokasi ORDER BY nama_lokasi")->fetchAll
 $preselectedAset = intval($_GET['id_aset'] ?? 0);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    validateCsrfToken();
     $idAset = intval($_POST['id_aset']);
     
     // Validasi apakah stok aset masih ada
     $cekStok = $pdo->prepare("
         SELECT a.jumlah, 
-               (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status = 'Dipinjam') as terpinjam
+               (SELECT COUNT(*) FROM peminjaman p WHERE p.id_aset = a.id AND p.status IN ('Dipinjam', 'Menunggu Konfirmasi')) as terpinjam
         FROM aset a WHERE a.id = ?
     ");
     $cekStok->execute([$idAset]);
     $stok = $cekStok->fetch();
     if ($stok && $stok['terpinjam'] >= $stok['jumlah']) {
-        setFlash('danger', 'Maaf, semua unit dari aset tersebut saat ini sedang dipinjam oleh orang lain.');
+        setFlash('danger', 'Maaf, semua unit dari aset tersebut saat ini sedang dipinjam atau dalam proses pengajuan.');
         header('Location: pinjam.php'); exit;
     }
     
@@ -39,12 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idLokasi = !empty($_POST['id_lokasi']) ? intval($_POST['id_lokasi']) : null;
     $namaPeminjam = $_SESSION['user_nama']; // Otomatis dari session
     
-    $stmt = $pdo->prepare("INSERT INTO peminjaman (id_aset, nama_peminjam, id_peminjam, id_lokasi, tanggal_pinjam, tanggal_kembali_rencana, keterangan, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO peminjaman (id_aset, nama_peminjam, id_peminjam, id_lokasi, tanggal_pinjam, tanggal_kembali_rencana, keterangan, id_user, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Menunggu Konfirmasi')");
     $stmt->execute([$idAset, $namaPeminjam, $_SESSION['user_id'], $idLokasi, $tglPinjam, $tglKembali, $ket, $_SESSION['user_id']]);
     
     $asetNama = $pdo->query("SELECT nama_aset FROM aset WHERE id = $idAset")->fetchColumn();
-    logActivity($pdo, $_SESSION['user_id'], 'Peminjaman', "Peminjaman aset: $asetNama oleh $namaPeminjam");
-    setFlash('success', 'Peminjaman berhasil diajukan! Silakan ambil aset sesuai tanggal pinjam.');
+    logActivity($pdo, $_SESSION['user_id'], 'Peminjaman', "Pengajuan peminjaman aset: $asetNama oleh $namaPeminjam");
+    setFlash('success', 'Peminjaman berhasil diajukan! Silakan menunggu konfirmasi dari Admin/Petugas.');
     header('Location: riwayat.php'); exit;
 }
 
@@ -56,7 +57,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-hand-holding-hand"></i> Ajukan Peminjaman</h2>
         <div class="breadcrumb">
-            <a href="/inventaris-aset-man2hsu/pages/guru/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/pages/guru/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
             <span>Ajukan Peminjaman</span>
         </div>
@@ -87,6 +88,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         </div>
 
         <form method="POST">
+            <?= generateCsrfToken() ?>
             <div class="grid-2">
                 <div class="form-group">
                     <label><i class="fas fa-box" style="margin-right:4px;"></i> Pilih Aset *</label>
@@ -131,3 +133,5 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 </div>
 
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+
+

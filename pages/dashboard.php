@@ -137,7 +137,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
 <div class="card mt-4 animate-fadeInUp">
     <div class="card-header">
         <h3><i class="fas fa-clock"></i> Aset Terbaru Ditambahkan</h3>
-        <a href="/inventaris-aset-man2hsu/pages/aset/index.php" class="btn btn-sm btn-secondary">Lihat Semua</a>
+        <a href="<?= BASE_URL ?>/pages/aset/index.php" class="btn btn-sm btn-secondary">Lihat Semua</a>
     </div>
     <div class="card-body">
         <div class="table-wrapper">
@@ -181,7 +181,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
 <div class="card mt-4 animate-fadeInUp">
     <div class="card-header">
         <h3><i class="fas fa-fire"></i> Aset Paling Sering Dipinjam</h3>
-        <a href="/inventaris-aset-man2hsu/pages/laporan/peminjaman.php" class="btn btn-sm btn-secondary">Laporan Peminjaman</a>
+        <a href="<?= BASE_URL ?>/pages/laporan/peminjaman.php" class="btn btn-sm btn-secondary">Laporan Peminjaman</a>
     </div>
     <div class="card-body">
         <?php if (empty($topDipinjam)): ?>
@@ -227,7 +227,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
 <div class="card mt-4 animate-fadeInUp">
     <div class="card-header">
         <h3><i class="fas fa-handshake"></i> Peminjaman Aktif</h3>
-        <a href="/inventaris-aset-man2hsu/pages/peminjaman/index.php" class="btn btn-sm btn-secondary">Lihat Semua</a>
+        <a href="<?= BASE_URL ?>/pages/peminjaman/index.php" class="btn btn-sm btn-secondary">Lihat Semua</a>
     </div>
     <div class="card-body">
         <div class="table-wrapper">
