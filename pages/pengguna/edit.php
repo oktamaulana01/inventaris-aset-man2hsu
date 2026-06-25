@@ -36,16 +36,16 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <div class="form-group"><label>Alamat Email</label><input type="email" class="form-control" name="email" value="<?= htmlspecialchars($data['email'] ?? '') ?>" placeholder="contoh@email.com"></div>
             <div class="form-group"><label>Password Baru <small>(kosongkan jika tidak diubah)</small></label><input type="password" class="form-control" name="password" minlength="6"></div>
             <div class="form-group"><label>Role *</label>
-                <select class="form-control" name="role" required id="roleSelect" onchange="toggleGuruFields()">
+                <select class="form-control" name="role" required>
                     <option value="petugas" <?= $data['role'] === 'petugas' ? 'selected' : '' ?>>Petugas</option>
                     <option value="admin" <?= $data['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
                     <option value="guru" <?= $data['role'] === 'guru' ? 'selected' : '' ?>>Guru / Karyawan</option>
                 </select>
             </div>
         </div>
-        <div id="guruFields" style="display:<?= $data['role'] === 'guru' ? 'block' : 'none' ?>;">
+        <div id="guruFields">
             <hr style="border-color:var(--border-glass); margin:16px 0;">
-            <p style="font-size:0.85rem; font-weight:600; color:var(--accent-primary); margin-bottom:12px;"><i class="fas fa-chalkboard-teacher"></i> Data Guru / Karyawan</p>
+            <p style="font-size:0.85rem; font-weight:600; color:var(--accent-primary); margin-bottom:12px;"><i class="fas fa-id-card"></i> Data Tambahan</p>
             <div class="grid-2">
                 <div class="form-group"><label>NIP</label><input type="text" class="form-control" name="nip" value="<?= htmlspecialchars($data['nip'] ?? '') ?>" placeholder="Nomor Induk Pegawai"></div>
                 <div class="form-group"><label>Jabatan</label><input type="text" class="form-control" name="jabatan" value="<?= htmlspecialchars($data['jabatan'] ?? '') ?>" placeholder="Contoh: Guru Matematika"></div>
@@ -55,12 +55,4 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <div class="btn-group" style="margin-top:16px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="index.php" class="btn btn-secondary">Batal</a></div>
     </form>
 </div></div>
-<script>
-function toggleGuruFields() {
-    document.getElementById('guruFields').style.display = document.getElementById('roleSelect').value === 'guru' ? 'block' : 'none';
-}
-</script>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
-
-
-

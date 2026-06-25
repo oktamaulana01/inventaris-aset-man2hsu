@@ -29,16 +29,16 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <div class="form-group"><label>Alamat Email</label><input type="email" class="form-control" name="email" placeholder="contoh@email.com"></div>
             <div class="form-group"><label>Password *</label><input type="password" class="form-control" name="password" required minlength="6"></div>
             <div class="form-group"><label>Role *</label>
-                <select class="form-control" name="role" required id="roleSelect" onchange="toggleGuruFields()">
+                <select class="form-control" name="role" required>
                     <option value="petugas">Petugas</option>
                     <option value="admin">Admin</option>
                     <option value="guru">Guru / Karyawan</option>
                 </select>
             </div>
         </div>
-        <div id="guruFields" style="display:none;">
+        <div id="guruFields">
             <hr style="border-color:var(--border-glass); margin:16px 0;">
-            <p style="font-size:0.85rem; font-weight:600; color:var(--accent-primary); margin-bottom:12px;"><i class="fas fa-chalkboard-teacher"></i> Data Guru / Karyawan</p>
+            <p style="font-size:0.85rem; font-weight:600; color:var(--accent-primary); margin-bottom:12px;"><i class="fas fa-id-card"></i> Data Tambahan</p>
             <div class="grid-2">
                 <div class="form-group"><label>NIP</label><input type="text" class="form-control" name="nip" placeholder="Nomor Induk Pegawai"></div>
                 <div class="form-group"><label>Jabatan</label><input type="text" class="form-control" name="jabatan" placeholder="Contoh: Guru Matematika"></div>
@@ -48,12 +48,4 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <div class="btn-group" style="margin-top:16px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="index.php" class="btn btn-secondary">Batal</a></div>
     </form>
 </div></div>
-<script>
-function toggleGuruFields() {
-    document.getElementById('guruFields').style.display = document.getElementById('roleSelect').value === 'guru' ? 'block' : 'none';
-}
-</script>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
-
-
-
