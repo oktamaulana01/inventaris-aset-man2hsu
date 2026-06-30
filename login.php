@@ -64,9 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Redirect berdasarkan role
             if ($user['role'] === 'guru') {
-                header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
+                header('Location: ' . BASE_URL . '/guru/dashboard');
             } else {
-                header('Location: ' . BASE_URL . '/pages/dashboard.php');
+                header('Location: ' . BASE_URL . '/dashboard');
             }
             exit;
         } else {
@@ -87,9 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Redirect jika sudah login atau punya remember token yang valid
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_role'] === 'guru') {
-        header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
+        header('Location: ' . BASE_URL . '/guru/dashboard');
     } else {
-        header('Location: ' . BASE_URL . '/pages/dashboard.php');
+        header('Location: ' . BASE_URL . '/dashboard');
     }
     exit;
 } elseif (isset($_COOKIE['remember_token'])) {
@@ -111,9 +111,9 @@ if (isset($_SESSION['user_id'])) {
         $_SESSION['last_activity'] = time();
         
         if ($user['role'] === 'guru') {
-            header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
+            header('Location: ' . BASE_URL . '/guru/dashboard');
         } else {
-            header('Location: ' . BASE_URL . '/pages/dashboard.php');
+            header('Location: ' . BASE_URL . '/dashboard');
         }
         exit;
     } else {

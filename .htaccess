@@ -1,0 +1,61 @@
+RewriteEngine On
+
+# Hindari loop jika file/folder asli ada
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Route Utama
+RewriteRule ^login$ login.php [L,QSA]
+RewriteRule ^logout$ includes/header.php?logout=1 [L,QSA]
+RewriteRule ^dashboard$ pages/dashboard.php [L,QSA]
+RewriteRule ^scan-qr$ pages/scan_qr.php [L,QSA]
+RewriteRule ^profil$ pages/profil.php [L,QSA]
+RewriteRule ^riwayat$ pages/riwayat.php [L,QSA]
+RewriteRule ^pengaturan-email$ pages/pengaturan/index.php [L,QSA]
+RewriteRule ^log-notifikasi$ pages/notifikasi/index.php [L,QSA]
+
+# Guru
+RewriteRule ^guru/dashboard$ pages/guru/dashboard.php [L,QSA]
+RewriteRule ^guru/katalog$ pages/guru/katalog.php [L,QSA]
+RewriteRule ^guru/pinjam$ pages/guru/pinjam.php [L,QSA]
+RewriteRule ^guru/riwayat$ pages/guru/riwayat.php [L,QSA]
+RewriteRule ^guru/profil$ pages/guru/profil.php [L,QSA]
+
+# Aset
+RewriteRule ^aset$ pages/aset/index.php [L,QSA]
+RewriteRule ^aset/tambah$ pages/aset/tambah.php [L,QSA]
+RewriteRule ^aset/tambah-rusak$ pages/aset/tambah_rusak.php [L,QSA]
+RewriteRule ^aset/detail$ pages/aset/detail.php [L,QSA]
+RewriteRule ^aset/edit$ pages/aset/edit.php [L,QSA]
+RewriteRule ^aset/hapus$ pages/aset/konfirmasi_hapus.php [L,QSA]
+
+# Kategori
+RewriteRule ^kategori$ pages/kategori/index.php [L,QSA]
+RewriteRule ^kategori/tambah$ pages/kategori/tambah.php [L,QSA]
+RewriteRule ^kategori/edit$ pages/kategori/edit.php [L,QSA]
+
+# Lokasi
+RewriteRule ^lokasi$ pages/lokasi/index.php [L,QSA]
+RewriteRule ^lokasi/tambah$ pages/lokasi/tambah.php [L,QSA]
+RewriteRule ^lokasi/edit$ pages/lokasi/edit.php [L,QSA]
+
+# Peminjaman
+RewriteRule ^peminjaman$ pages/peminjaman/index.php [L,QSA]
+RewriteRule ^peminjaman/tambah$ pages/peminjaman/tambah.php [L,QSA]
+RewriteRule ^peminjaman/kembalikan$ pages/peminjaman/kembalikan.php [L,QSA]
+
+# Laporan
+RewriteRule ^laporan/keseluruhan$ pages/laporan/aset_keseluruhan.php [L,QSA]
+RewriteRule ^laporan/kategori$ pages/laporan/aset_per_kategori.php [L,QSA]
+RewriteRule ^laporan/lokasi$ pages/laporan/aset_per_lokasi.php [L,QSA]
+RewriteRule ^laporan/kondisi$ pages/laporan/kondisi_aset.php [L,QSA]
+RewriteRule ^laporan/peminjaman$ pages/laporan/peminjaman.php [L,QSA]
+RewriteRule ^laporan/riwayat$ pages/laporan/riwayat_aset.php [L,QSA]
+RewriteRule ^laporan/masuk$ pages/laporan/aset_masuk.php [L,QSA]
+RewriteRule ^laporan/mutasi$ pages/laporan/mutasi_aset.php [L,QSA]
+RewriteRule ^laporan/penghapusan$ pages/laporan/penghapusan_aset.php [L,QSA]
+
+# Administrasi
+RewriteRule ^pengguna$ pages/pengguna/index.php [L,QSA]
+RewriteRule ^pengguna/tambah$ pages/pengguna/tambah.php [L,QSA]
+RewriteRule ^pengguna/edit$ pages/pengguna/edit.php [L,QSA]

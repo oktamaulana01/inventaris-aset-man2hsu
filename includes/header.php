@@ -17,7 +17,7 @@ if (isset($_GET['logout'])) {
     
     logActivity($pdo, $_SESSION['user_id'] ?? 0, 'Logout', ($_SESSION['user_nama'] ?? 'User') . ' melakukan logout');
     session_destroy();
-    header('Location: ' . BASE_URL . '/login.php');
+    header('Location: ' . BASE_URL . '/login');
     exit;
 }
 

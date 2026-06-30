@@ -25,11 +25,11 @@ if (!isset($_SESSION['user_id'])) {
         } else {
             // Token tidak valid, hapus cookie
             setcookie('remember_token', '', time() - 3600, '/');
-            header('Location: ' . BASE_URL . '/login.php');
+            header('Location: ' . BASE_URL . '/login');
             exit;
         }
     } else {
-        header('Location: ' . BASE_URL . '/login.php');
+        header('Location: ' . BASE_URL . '/login');
         exit;
     }
 }
@@ -44,7 +44,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) >
         session_destroy();
         session_start();
         setFlash('warning', 'Sesi Anda telah berakhir karena tidak aktif. Silakan login kembali.');
-        header('Location: ' . BASE_URL . '/login.php');
+        header('Location: ' . BASE_URL . '/login');
         exit;
     }
 }
