@@ -82,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+}
 
 // Redirect jika sudah login atau punya remember token yang valid
 if (isset($_SESSION['user_id'])) {
