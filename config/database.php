@@ -33,6 +33,15 @@ function getConnection() {
 // Helper: Start session jika belum
 function startSession() {
     if (session_status() === PHP_SESSION_NONE) {
+        // Konfigurasi Keamanan Session Cookie
+        session_set_cookie_params([
+            'lifetime' => 0,
+            'path' => '/',
+            'domain' => '',
+            'secure' => isset($_SERVER['HTTPS']), // True jika pakai HTTPS
+            'httponly' => true, // Mencegah akses cookie via JavaScript (XSS)
+            'samesite' => 'Lax' // Melindungi dari serangan CSRF
+        ]);
         session_start();
     }
 }

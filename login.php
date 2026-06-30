@@ -9,15 +9,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
     
-    if (empty($username) || empty($password)) {
-        $error = 'Username dan password harus diisi!';
-    } else {
+    // Rate Limiting (Anti Brute-Force)
+    $max_attempts = 5;
+    $lockout_time = 15 * 60; // 15 menit
+    
+    if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= $max_attempts) {
+        $time_since_last_attempt = time() - $_SESSION['last_login_attempt'];
+        if ($time_since_last_attempt < $lockout_time) {
+            $minutes_left = ceil(($lockout_time - $time_since_last_attempt) / 60);
+            $error = "Terlalu banyak percobaan login yang gagal. Silakan coba lagi dalam $minutes_left menit.";
+        } else {
+            // Reset setelah waktu tunggu selesai
+            $_SESSION['login_attempts'] = 0;
+        }
+    }
+    
+    if (empty($error)) {
+        if (empty($username) || empty($password)) {
+            $error = 'Username dan password harus diisi!';
+        } else {
         $pdo = getConnection();
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->execute([$username]);
         $user = $stmt->fetch();
         
         if ($user && password_verify($password, $user['password'])) {
+            // Mencegah pencurian sesi (Session Fixation)
+            session_regenerate_id(true);
+            
+            // Reset pencatat brute-force
+            unset($_SESSION['login_attempts']);
+            unset($_SESSION['last_login_attempt']);
+            
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_nama'] = $user['nama'];
             $_SESSION['user_username'] = $user['username'];
@@ -47,7 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             exit;
         } else {
-            $error = 'Username atau password salah!';
+            $_SESSION['login_attempts'] = ($_SESSION['login_attempts'] ?? 0) + 1;
+            $_SESSION['last_login_attempt'] = time();
+            $sisa = $max_attempts - $_SESSION['login_attempts'];
+            
+            if ($sisa > 0) {
+                $error = "Username atau password salah! (Sisa percobaan: $sisa)";
+            } else {
+                $error = "Terlalu banyak percobaan login yang gagal. Silakan coba lagi dalam 15 menit.";
+            }
         }
     }
 }
