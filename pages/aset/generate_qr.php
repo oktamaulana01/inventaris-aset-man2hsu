@@ -14,7 +14,7 @@ $stmt = $pdo->prepare("SELECT a.*, k.nama_kategori, l.nama_lokasi FROM aset a
     WHERE a.id = ? AND a.deleted_at IS NULL");
 $stmt->execute([$id]);
 $aset = $stmt->fetch();
-if (!$aset) { header('Location: index.php'); exit; }
+if (!$aset) { header('Location: ' . BASE_URL . '/aset'); exit; }
 
 // Generate QR Code using chillerlan/php-qrcode (offline, no external API)
 $qrDir = __DIR__ . '/../../qrcodes/';
@@ -53,12 +53,12 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <div class="breadcrumb">
             <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
             <span class="separator">/</span>
-            <a href="<?= BASE_URL ?>/pages/aset/index.php">Data Aset</a>
+            <a href="<?= BASE_URL ?>/aset">Data Aset</a>
             <span class="separator">/</span>
             <span>QR Code</span>
         </div>
     </div>
-    <a href="index.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <a href="<?= BASE_URL ?>/aset" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
 </div>
 
 <div class="grid-2">
@@ -107,7 +107,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <div class="detail-value"><?= $aset['jumlah'] ?></div>
             </div>
             <div class="mt-4">
-                <a href="detail.php?id=<?= $aset['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> Lihat Detail Lengkap</a>
+                <a href="<?= BASE_URL ?>/aset/detail?id=<?= $aset['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> Lihat Detail Lengkap</a>
             </div>
         </div>
     </div>

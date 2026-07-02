@@ -28,6 +28,7 @@ RewriteRule ^aset/tambah-rusak$ pages/aset/tambah_rusak.php [L,QSA]
 RewriteRule ^aset/detail$ pages/aset/detail.php [L,QSA]
 RewriteRule ^aset/edit$ pages/aset/edit.php [L,QSA]
 RewriteRule ^aset/hapus$ pages/aset/konfirmasi_hapus.php [L,QSA]
+RewriteRule ^aset/generate-qr$ pages/aset/generate_qr.php [L,QSA]
 
 # Kategori
 RewriteRule ^kategori$ pages/kategori/index.php [L,QSA]

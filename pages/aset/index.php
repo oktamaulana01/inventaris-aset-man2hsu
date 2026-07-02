@@ -126,7 +126,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             <td><?= $offset + $i + 1 ?></td>
                             <td><span class="badge badge-primary"><?= htmlspecialchars($a['kode_aset']) ?></span></td>
                             <td>
-                                <a href="detail.php?id=<?= $a['id'] ?>" style="font-weight:500;">
+                                <a href="<?= BASE_URL ?>/aset/detail?id=<?= $a['id'] ?>" style="font-weight:500;">
                                     <?= htmlspecialchars($a['nama_aset']) ?>
                                 </a>
                             </td>
@@ -140,20 +140,20 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             </td>
                             <td>
                                 <?php if ($a['qr_code_path']): ?>
-                                    <a href="generate_qr.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-info" title="Lihat QR">
+                                    <a href="<?= BASE_URL ?>/aset/generate-qr?id=<?= $a['id'] ?>" class="btn btn-sm btn-info" title="Lihat QR">
                                         <i class="fas fa-qrcode"></i>
                                     </a>
                                 <?php else: ?>
-                                    <a href="generate_qr.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-secondary" title="Generate QR">
+                                    <a href="<?= BASE_URL ?>/aset/generate-qr?id=<?= $a['id'] ?>" class="btn btn-sm btn-secondary" title="Generate QR">
                                         <i class="fas fa-qrcode"></i>
                                     </a>
                                 <?php endif; ?>
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="detail.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-info" title="Detail"><i class="fas fa-eye"></i></a>
-                                    <a href="edit.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
-                                    <a href="konfirmasi_hapus.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-danger" title="Hapus Aset"><i class="fas fa-trash"></i></a>
+                                    <a href="<?= BASE_URL ?>/aset/detail?id=<?= $a['id'] ?>" class="btn btn-sm btn-info" title="Detail"><i class="fas fa-eye"></i></a>
+                                    <a href="<?= BASE_URL ?>/aset/edit?id=<?= $a['id'] ?>" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <a href="<?= BASE_URL ?>/aset/hapus?id=<?= $a['id'] ?>" class="btn btn-sm btn-danger" title="Hapus Aset"><i class="fas fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>
