@@ -109,7 +109,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <?php endif; ?>
                 
                 <?php if ($a['kondisi'] === 'Baik'): ?>
-                    <a href="<?= BASE_URL ?>/pages/guru/pinjam.php?id_aset=<?= $a['id'] ?>" class="btn btn-primary btn-sm" style="width:100%;">
+                    <a href="<?= BASE_URL ?>/guru/pinjam?id_aset=<?= $a['id'] ?>" class="btn btn-primary btn-sm" style="width:100%;">
                         <i class="fas fa-hand-holding-hand"></i> Ajukan Peminjaman
                     </a>
                 <?php else: ?>

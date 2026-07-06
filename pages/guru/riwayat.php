@@ -35,7 +35,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <span>Riwayat Peminjaman</span>
         </div>
     </div>
-    <a href="pinjam.php" class="btn btn-primary"><i class="fas fa-plus"></i> Ajukan Peminjaman</a>
+    <a href="<?= BASE_URL ?>/guru/pinjam" class="btn btn-primary"><i class="fas fa-plus"></i> Ajukan Peminjaman</a>
 </div>
 
 <!-- Filter -->
