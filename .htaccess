@@ -44,6 +44,10 @@ RewriteRule ^lokasi/edit$ pages/lokasi/edit.php [L,QSA]
 RewriteRule ^peminjaman$ pages/peminjaman/index.php [L,QSA]
 RewriteRule ^peminjaman/tambah$ pages/peminjaman/tambah.php [L,QSA]
 RewriteRule ^peminjaman/kembalikan$ pages/peminjaman/kembalikan.php [L,QSA]
+RewriteRule ^peminjaman/proses-konfirmasi$ pages/peminjaman/proses_konfirmasi.php [L,QSA]
+RewriteRule ^peminjaman/kirim-notif$ pages/peminjaman/kirim_notif.php [L,QSA]
+RewriteRule ^peminjaman/kembali$ pages/peminjaman/kembali.php [L,QSA]
+RewriteRule ^peminjaman/hapus$ pages/peminjaman/hapus.php [L,QSA]
 
 # Laporan
 RewriteRule ^laporan/keseluruhan$ pages/laporan/aset_keseluruhan.php [L,QSA]

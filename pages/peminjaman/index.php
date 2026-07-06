@@ -27,7 +27,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div><h2><i class="fas fa-handshake"></i> Peminjaman Aset</h2>
         <div class="breadcrumb"><a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a><span class="separator">/</span><span>Peminjaman</span></div>
     </div>
-    <a href="tambah.php" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Peminjaman</a>
+    <a href="<?= BASE_URL ?>/peminjaman/tambah" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Peminjaman</a>
 </div>
 
 <!-- Filter -->
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <option value="Ditolak" <?= $filterStatus === 'Ditolak' ? 'selected' : '' ?>>Ditolak</option>
         </select>
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-        <a href="index.php" class="btn btn-secondary btn-sm">Reset</a>
+        <a href="<?= BASE_URL ?>/peminjaman" class="btn btn-secondary btn-sm">Reset</a>
     </form>
 </div></div>
 
@@ -80,14 +80,14 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 </td>
                 <td><div class="btn-group">
                     <?php if ($p['status'] === 'Menunggu Konfirmasi'): ?>
-                        <a href="javascript:void(0)" onclick="confirmAction('Setujui permintaan peminjaman ini?', 'proses_konfirmasi.php?action=approve', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Setujui"><i class="fas fa-check"></i></a>
-                        <a href="javascript:void(0)" onclick="confirmAction('Tolak permintaan peminjaman ini?', 'proses_konfirmasi.php?action=reject', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Tolak"><i class="fas fa-times"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Setujui permintaan peminjaman ini?', '<?= BASE_URL ?>/peminjaman/proses-konfirmasi?action=approve', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Setujui"><i class="fas fa-check"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Tolak permintaan peminjaman ini?', '<?= BASE_URL ?>/peminjaman/proses-konfirmasi?action=reject', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Tolak"><i class="fas fa-times"></i></a>
                     <?php endif; ?>
                     <?php if ($p['status'] === 'Dipinjam'): ?>
-                        <a href="javascript:void(0)" onclick="confirmAction('Kirim email reminder ke peminjam?', 'kirim_notif.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-info" title="Kirim Reminder Email"><i class="fas fa-envelope"></i></a>
-                        <a href="javascript:void(0)" onclick="confirmAction('Kembalikan aset ini?', 'kembali.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Kirim email reminder ke peminjam?', '<?= BASE_URL ?>/peminjaman/kirim-notif', '<?= $p['id'] ?>')" class="btn btn-sm btn-info" title="Kirim Reminder Email"><i class="fas fa-envelope"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Kembalikan aset ini?', '<?= BASE_URL ?>/peminjaman/kembali', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
                     <?php endif; ?>
-                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', 'hapus.php', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
+                    <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', '<?= BASE_URL ?>/peminjaman/hapus', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                 </div></td>
             </tr>
             <?php endforeach; endif; ?>
