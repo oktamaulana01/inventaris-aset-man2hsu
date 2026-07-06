@@ -58,7 +58,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <?php endforeach; ?>
             </select>
             <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Cari</button>
-            <a href="katalog.php" class="btn btn-secondary btn-sm">Reset</a>
+            <a href="<?= BASE_URL ?>/guru/katalog" class="btn btn-secondary btn-sm">Reset</a>
         </form>
     </div>
 </div>

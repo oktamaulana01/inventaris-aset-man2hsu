@@ -91,7 +91,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <?php endforeach; ?>
             </select>
             <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Cari</button>
-            <a href="<?= BASE_URL ?>/pages/aset/index.php" class="btn btn-secondary btn-sm"><i class="fas fa-rotate"></i> Reset</a>
+            <a href="<?= BASE_URL ?>/aset" class="btn btn-secondary btn-sm"><i class="fas fa-rotate"></i> Reset</a>
         </form>
     </div>
 </div>

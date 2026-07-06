@@ -50,7 +50,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <option value="Ditolak" <?= $filterStatus === 'Ditolak' ? 'selected' : '' ?>>Ditolak</option>
             </select>
             <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-            <a href="riwayat.php" class="btn btn-secondary btn-sm">Reset</a>
+            <a href="<?= BASE_URL ?>/guru/riwayat" class="btn btn-secondary btn-sm">Reset</a>
         </form>
     </div>
 </div>
