@@ -48,7 +48,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <?php endforeach; ?>
         </select>
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-        <a href="aset_keseluruhan.php" class="btn btn-secondary btn-sm">Reset</a>
+        <a href="<?= BASE_URL ?>/laporan/keseluruhan" class="btn btn-secondary btn-sm">Reset</a>
     </form>
 </div></div>
 

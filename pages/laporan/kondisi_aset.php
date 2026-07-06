@@ -51,7 +51,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <option value="Rusak Berat" <?= $filterKondisi === 'Rusak Berat' ? 'selected' : '' ?>>Rusak Berat</option>
         </select>
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-        <a href="kondisi_aset.php" class="btn btn-secondary btn-sm">Reset</a>
+        <a href="<?= BASE_URL ?>/laporan/kondisi" class="btn btn-secondary btn-sm">Reset</a>
     </form>
 </div></div>
 

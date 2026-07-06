@@ -47,7 +47,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <input type="date" class="form-control" name="start_date" value="<?= $startDate ?>" style="max-width:170px;" placeholder="Dari tanggal">
         <input type="date" class="form-control" name="end_date" value="<?= $endDate ?>" style="max-width:170px;" placeholder="Sampai tanggal">
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-        <a href="peminjaman.php" class="btn btn-secondary btn-sm">Reset</a>
+        <a href="<?= BASE_URL ?>/laporan/peminjaman" class="btn btn-secondary btn-sm">Reset</a>
     </form>
 </div></div>
 

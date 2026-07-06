@@ -33,7 +33,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <input type="date" class="form-control" name="start_date" value="<?= $startDate ?>" style="max-width:170px;">
         <input type="date" class="form-control" name="end_date" value="<?= $endDate ?>" style="max-width:170px;">
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-        <a href="aset_masuk.php" class="btn btn-secondary btn-sm">Reset</a>
+        <a href="<?= BASE_URL ?>/laporan/masuk" class="btn btn-secondary btn-sm">Reset</a>
     </form>
 </div></div>
 <div class="card animate-fadeInUp"><div class="card-header"><h3>Aset Masuk (<?= count($data) ?> item)</h3></div><div class="card-body"><div class="table-wrapper">

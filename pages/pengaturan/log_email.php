@@ -95,7 +95,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <option value="failed" <?= $filterStatus === 'failed' ? 'selected' : '' ?>>Gagal</option>
         </select>
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-        <a href="log_email.php" class="btn btn-secondary btn-sm">Reset</a>
+        <a href="<?= BASE_URL ?>/pages/pengaturan/log_email.php" class="btn btn-secondary btn-sm">Reset</a>
     </form>
 </div></div>
 
