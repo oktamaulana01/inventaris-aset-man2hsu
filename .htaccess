@@ -55,6 +55,8 @@ RewriteRule ^laporan/riwayat$ pages/laporan/riwayat_aset.php [L,QSA]
 RewriteRule ^laporan/masuk$ pages/laporan/aset_masuk.php [L,QSA]
 RewriteRule ^laporan/mutasi$ pages/laporan/mutasi_aset.php [L,QSA]
 RewriteRule ^laporan/penghapusan$ pages/laporan/penghapusan_aset.php [L,QSA]
+RewriteRule ^laporan/export_pdf\.php$ pages/laporan/export_pdf.php [L,QSA]
+RewriteRule ^laporan/export_excel\.php$ pages/laporan/export_excel.php [L,QSA]
 
 # Administrasi
 RewriteRule ^pengguna$ pages/pengguna/index.php [L,QSA]
