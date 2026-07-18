@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $noTelepon = trim($_POST['no_telepon'] ?? '');
     $pdo->prepare("INSERT INTO users (nama, username, email, password, role, nip, jabatan, no_telepon) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")->execute([$nama, $username, $email ?: null, $password, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null]);
     logActivity($pdo, $_SESSION['user_id'], 'Tambah User', "Menambah pengguna: $nama ($role)");
-    setFlash('success', 'Pengguna berhasil ditambahkan!'); header('Location: index.php'); exit;
+    setFlash('success', 'Pengguna berhasil ditambahkan!'); header('Location: ' . BASE_URL . '/pengguna'); exit;
 }
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../includes/sidebar.php';
@@ -45,7 +45,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <div class="form-group"><label>No. Telepon</label><input type="text" class="form-control" name="no_telepon" placeholder="08xxxxxxxxxx"></div>
             </div>
         </div>
-        <div class="btn-group" style="margin-top:16px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="index.php" class="btn btn-secondary">Batal</a></div>
+        <div class="btn-group" style="margin-top:16px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="<?= BASE_URL ?>/pengguna" class="btn btn-secondary">Batal</a></div>
     </form>
 </div></div>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>

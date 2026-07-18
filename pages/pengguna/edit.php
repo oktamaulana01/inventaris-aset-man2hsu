@@ -5,7 +5,7 @@ requireAdmin();
 $pdo = getConnection();
 $id = intval($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?"); $stmt->execute([$id]);
-$data = $stmt->fetch(); if (!$data) { header('Location: index.php'); exit; }
+$data = $stmt->fetch(); if (!$data) { header('Location: ' . BASE_URL . '/pengguna'); exit; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     validateCsrfToken();
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->prepare("UPDATE users SET nama=?, username=?, email=?, role=?, nip=?, jabatan=?, no_telepon=? WHERE id=?")->execute([$nama, $username, $email ?: null, $role, $nip ?: null, $jabatan ?: null, $noTelepon ?: null, $id]);
     }
     logActivity($pdo, $_SESSION['user_id'], 'Edit User', "Mengedit pengguna: $nama");
-    setFlash('success', 'Pengguna berhasil diperbarui!'); header('Location: index.php'); exit;
+    setFlash('success', 'Pengguna berhasil diperbarui!'); header('Location: ' . BASE_URL . '/pengguna'); exit;
 }
 require_once __DIR__ . '/../../includes/header.php';
 require_once __DIR__ . '/../../includes/sidebar.php';
@@ -52,7 +52,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <div class="form-group"><label>No. Telepon</label><input type="text" class="form-control" name="no_telepon" value="<?= htmlspecialchars($data['no_telepon'] ?? '') ?>" placeholder="08xxxxxxxxxx"></div>
             </div>
         </div>
-        <div class="btn-group" style="margin-top:16px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="index.php" class="btn btn-secondary">Batal</a></div>
+        <div class="btn-group" style="margin-top:16px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="<?= BASE_URL ?>/pengguna" class="btn btn-secondary">Batal</a></div>
     </form>
 </div></div>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>

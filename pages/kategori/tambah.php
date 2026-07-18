@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdo->prepare("INSERT INTO kategori (nama_kategori, keterangan) VALUES (?, ?)")->execute([$nama, $ket]);
     logActivity($pdo, $_SESSION['user_id'], 'Tambah Kategori', "Menambah kategori: $nama");
     setFlash('success', 'Kategori berhasil ditambahkan!');
-    header('Location: index.php'); exit;
+    header('Location: ' . BASE_URL . '/kategori'); exit;
 }
 
 require_once __DIR__ . '/../../includes/header.php';
@@ -22,9 +22,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <?= generateCsrfToken() ?>
         <div class="form-group"><label>Nama Kategori *</label><input type="text" class="form-control" name="nama_kategori" required></div>
         <div class="form-group"><label>Keterangan</label><textarea class="form-control" name="keterangan"></textarea></div>
-        <div class="btn-group"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="index.php" class="btn btn-secondary">Batal</a></div>
+        <div class="btn-group"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="<?= BASE_URL ?>/kategori" class="btn btn-secondary">Batal</a></div>
     </form>
 </div></div>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
-
-

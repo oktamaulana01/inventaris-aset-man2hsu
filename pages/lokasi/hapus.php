@@ -10,5 +10,5 @@ if ($data) {
     logActivity($pdo, $_SESSION['user_id'], 'Hapus Lokasi', "Menghapus lokasi: {$data['nama_lokasi']}");
     setFlash('success', 'Lokasi berhasil dihapus!');
 } else { setFlash('danger', 'Lokasi tidak ditemukan!'); }
-header('Location: index.php'); exit;
+header('Location: ' . BASE_URL . '/lokasi'); exit;
 ?>
