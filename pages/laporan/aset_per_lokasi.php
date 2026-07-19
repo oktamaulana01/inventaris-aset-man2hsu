@@ -32,9 +32,9 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <td style="font-weight:500;"><?= htmlspecialchars($d['nama_lokasi']) ?></td>
             <td><?= $d['total_aset'] ?></td>
             <td><?= $d['total_unit'] ?? 0 ?></td>
-            <td><span class="badge badge-success"><?= $d['baik'] ?? 0 ?></span></td>
-            <td><span class="badge badge-warning"><?= $d['rusak_ringan'] ?? 0 ?></span></td>
-            <td><span class="badge badge-danger"><?= $d['rusak_berat'] ?? 0 ?></span></td>
+            <td><?= $d['baik'] ?? 0 ?></td>
+            <td><?= $d['rusak_ringan'] ?? 0 ?></td>
+            <td><?= $d['rusak_berat'] ?? 0 ?></td>
             <td style="text-align:right;"><?= formatRupiah($d['total_nilai']) ?></td>
         </tr>
         <?php endforeach; ?>

@@ -63,7 +63,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <td><?= $i+1 ?></td><td><?= htmlspecialchars($a['kode_aset']) ?></td><td><?= htmlspecialchars($a['nama_aset']) ?></td>
             <td><?= htmlspecialchars($a['nama_kategori'] ?? '-') ?></td><td><?= htmlspecialchars($a['nama_lokasi'] ?? '-') ?></td>
             <td><?= $a['jumlah'] ?></td>
-            <td><span class="badge badge-<?= $a['kondisi'] === 'Baik' ? 'success' : ($a['kondisi'] === 'Rusak Ringan' ? 'warning' : 'danger') ?>"><?= $a['kondisi'] ?></span></td>
+            <td><?= htmlspecialchars($a['kondisi']) ?></td>
             <td><?= $a['tahun_perolehan'] ?? '-' ?></td>
         </tr>
         <?php endforeach; ?>

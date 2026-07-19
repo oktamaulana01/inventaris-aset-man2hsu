@@ -132,7 +132,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                                         default => 'secondary'
                                     };
                                     ?>
-                                    <span class="badge badge-<?= $badge ?>"><?= $p['status'] ?></span>
+                                    <?= htmlspecialchars($p['status']) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

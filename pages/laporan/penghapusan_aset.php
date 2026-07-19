@@ -47,7 +47,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <td><?= date('d/m/Y', strtotime($a['deleted_at'])) ?></td>
             <td><?= htmlspecialchars($a['kode_aset']) ?></td><td><?= htmlspecialchars($a['nama_aset']) ?></td>
             <td><?= htmlspecialchars($a['nama_kategori'] ?? '-') ?></td>
-            <td><span class="badge badge-<?= $a['kondisi'] === 'Baik' ? 'success' : ($a['kondisi'] === 'Rusak Ringan' ? 'warning' : 'danger') ?>"><?= $a['kondisi'] ?></span></td>
+            <td><?= htmlspecialchars($a['kondisi']) ?></td>
             <td style="max-width: 200px; white-space: normal;"><?= nl2br(htmlspecialchars($a['alasan_hapus'] ?? '-')) ?></td>
             <td>
                 <?php if ($a['bukti_hapus']): ?>

@@ -81,18 +81,16 @@ $css = '
     .report-title { text-align: center; font-size: 12pt; font-weight: bold; margin-bottom: 3px; text-transform: uppercase; }
     .report-date { text-align: center; font-size: 9pt; color: #555; margin-bottom: 15px; }
     table.data { width: 100%; border-collapse: collapse; margin-top: 8px; }
-    table.data th { background: #1e7256; color: #fff; padding: 6px 8px; font-size: 8pt; text-align: left; text-transform: uppercase; letter-spacing: 0.3px; border: 1px solid #166347; }
+    table.data th { background: #f2f2f2; color: #000; padding: 6px 8px; font-size: 8pt; text-align: left; text-transform: uppercase; letter-spacing: 0.3px; border: 1px solid #333; }
     table.data td { padding: 5px 8px; font-size: 8.5pt; border: 1px solid #ccc; vertical-align: top; }
-    table.data tr:nth-child(even) td { background: #f5faf7; }
+    table.data tr:nth-child(even) td { background: #ffffff; }
     .text-right { text-align: right; }
     .text-center { text-align: center; }
-    .total-row td { background: #e8f5e9 !important; font-weight: bold; border-top: 2px solid #1e7256; }
-    .badge { padding: 2px 8px; border-radius: 10px; font-size: 7.5pt; font-weight: bold; }
-    .badge-success { background: #d1fae5; color: #065f46; }
-    .badge-warning { background: #fef3c7; color: #92400e; }
-    .badge-danger { background: #fee2e2; color: #991b1b; }
+    .total-row td { background: #f5f5f5 !important; color: #000; font-weight: bold; border-top: 2px solid #000; border-bottom: 2px solid #000; }
+    .badge { padding: 0; border-radius: 0; font-size: 8.5pt; font-weight: normal; background: transparent !important; color: #000 !important; border: none !important; }
+    .badge-success, .badge-warning, .badge-danger, .badge-info, .badge-primary, .badge-secondary { background: transparent !important; color: #000 !important; border: none !important; }
     .summary-box { display: inline-block; border: 1px solid #ccc; border-radius: 6px; padding: 8px 16px; margin: 0 8px 12px 0; text-align: center; }
-    .summary-box .num { font-size: 16pt; font-weight: bold; color: #1e7256; }
+    .summary-box .num { font-size: 16pt; font-weight: bold; color: #000; }
     .summary-box .lbl { font-size: 7.5pt; color: #666; }
     .footer { margin-top: 20px; text-align: right; font-size: 8pt; color: #888; }
 </style>';

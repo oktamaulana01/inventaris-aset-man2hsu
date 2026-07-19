@@ -61,7 +61,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <td><?= date('d/m/Y', strtotime($p['tanggal_pinjam'])) ?></td>
             <td><?= date('d/m/Y', strtotime($p['tanggal_kembali_rencana'])) ?></td>
             <td><?= $p['tanggal_kembali_aktual'] ? date('d/m/Y', strtotime($p['tanggal_kembali_aktual'])) : '-' ?></td>
-            <td><span class="badge badge-<?= $p['status'] === 'Dipinjam' ? 'warning' : 'success' ?>"><?= $p['status'] ?></span></td>
+            <td><?= htmlspecialchars($p['status']) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody></table>
