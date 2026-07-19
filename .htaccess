@@ -12,7 +12,7 @@ RewriteRule ^scan-qr$ pages/scan_qr.php [L,QSA]
 RewriteRule ^profil$ pages/profil.php [L,QSA]
 RewriteRule ^riwayat$ pages/riwayat.php [L,QSA]
 RewriteRule ^pengaturan-email$ pages/pengaturan/index.php [L,QSA]
-RewriteRule ^log-notifikasi$ pages/notifikasi/index.php [L,QSA]
+RewriteRule ^log-notifikasi$ pages/pengaturan/log_email.php [L,QSA]
 
 # Guru
 RewriteRule ^guru/dashboard$ pages/guru/dashboard.php [L,QSA]

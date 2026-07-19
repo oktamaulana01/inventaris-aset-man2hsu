@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         logActivity($pdo, $_SESSION['user_id'], 'Update Pengaturan', 'Memperbarui konfigurasi SMTP email');
         setFlash('success', 'Pengaturan SMTP berhasil disimpan!');
-        header('Location: index.php'); exit;
+        header('Location: ' . BASE_URL . '/pengaturan-email'); exit;
     }
     
     if ($action === 'test_email') {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlash('danger', 'Alamat email tidak valid!');
         }
-        header('Location: index.php'); exit;
+        header('Location: ' . BASE_URL . '/pengaturan-email'); exit;
     }
 }
 
@@ -64,12 +64,12 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-gear"></i> Pengaturan Email</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
             <span>Pengaturan Email</span>
         </div>
     </div>
-    <a href="log_email.php" class="btn btn-info"><i class="fas fa-list"></i> Log Notifikasi</a>
+    <a href="<?= BASE_URL ?>/log-notifikasi" class="btn btn-info"><i class="fas fa-list"></i> Log Notifikasi</a>
 </div>
 
 <div class="settings-card">

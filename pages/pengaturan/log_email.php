@@ -54,14 +54,14 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-envelope-open-text"></i> Log Notifikasi Email</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
-            <a href="<?= BASE_URL ?>/pages/pengaturan/index.php">Pengaturan</a>
+            <a href="<?= BASE_URL ?>/pengaturan-email">Pengaturan</a>
             <span class="separator">/</span>
             <span>Log Email</span>
         </div>
     </div>
-    <a href="index.php" class="btn btn-secondary"><i class="fas fa-gear"></i> Pengaturan SMTP</a>
+    <a href="<?= BASE_URL ?>/pengaturan-email" class="btn btn-secondary"><i class="fas fa-gear"></i> Pengaturan SMTP</a>
 </div>
 
 <!-- Stats -->
@@ -95,7 +95,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <option value="failed" <?= $filterStatus === 'failed' ? 'selected' : '' ?>>Gagal</option>
         </select>
         <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
-        <a href="<?= BASE_URL ?>/pages/pengaturan/log_email.php" class="btn btn-secondary btn-sm">Reset</a>
+        <a href="<?= BASE_URL ?>/log-notifikasi" class="btn btn-secondary btn-sm">Reset</a>
     </form>
 </div></div>
 
