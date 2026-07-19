@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_nama'] = $nama;
         logActivity($pdo, $_SESSION['user_id'], 'Edit Profil', $nama . ' memperbarui profil');
         setFlash('success', 'Profil berhasil diperbarui!');
-        header('Location: profil.php'); exit;
+        header('Location: ' . BASE_URL . '/profil'); exit;
     } else {
         $editMode = true;
     }
@@ -402,7 +402,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                     <button type="submit" class="btn btn-primary" style="flex:1;">
                         <i class="fas fa-save"></i> Simpan Perubahan
                     </button>
-                    <a href="profil.php" class="btn btn-secondary" style="flex:0 0 auto;">
+                    <a href="<?= BASE_URL ?>/profil" class="btn btn-secondary" style="flex:0 0 auto;">
                         <i class="fas fa-times"></i> Batal
                     </a>
                 </div>
