@@ -85,7 +85,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <?php endif; ?>
                     <?php if ($p['status'] === 'Dipinjam'): ?>
                         <a href="javascript:void(0)" onclick="confirmAction('Kirim email reminder ke peminjam?', '<?= BASE_URL ?>/peminjaman/kirim-notif', '<?= $p['id'] ?>')" class="btn btn-sm btn-info" title="Kirim Reminder Email"><i class="fas fa-envelope"></i></a>
-                        <a href="javascript:void(0)" onclick="confirmAction('Kembalikan aset ini?', '<?= BASE_URL ?>/peminjaman/kembali', '<?= $p['id'] ?>')" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
+                        <a href="<?= BASE_URL ?>/peminjaman/kembali?id=<?= $p['id'] ?>" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
                     <?php endif; ?>
                     <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', '<?= BASE_URL ?>/peminjaman/hapus', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                 </div></td>
