@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stok = $cekStok->fetch();
     if ($stok && $stok['terpinjam'] >= $stok['jumlah']) {
         setFlash('danger', 'Maaf, semua unit dari aset tersebut saat ini sedang dipinjam atau dalam proses pengajuan.');
-        header('Location: tambah.php'); exit;
+        header('Location: ' . BASE_URL . '/peminjaman/tambah'); exit;
     }
     
     $peminjam = trim($_POST['nama_peminjam']);
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $asetNama = $pdo->query("SELECT nama_aset FROM aset WHERE id = $idAset")->fetchColumn();
     logActivity($pdo, $_SESSION['user_id'], 'Peminjaman', "Peminjaman aset: $asetNama oleh $peminjam");
     setFlash('success', 'Peminjaman berhasil dicatat!');
-    header('Location: index.php'); exit;
+    header('Location: ' . BASE_URL . '/peminjaman'); exit;
 }
 
 require_once __DIR__ . '/../../includes/header.php';
@@ -80,7 +80,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             </div>
             <div class="form-group"><label>Keperluan / Keterangan</label><input type="text" class="form-control" name="keterangan" placeholder="Keterangan opsional"></div>
         </div>
-        <div class="btn-group" style="margin-top:20px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="index.php" class="btn btn-secondary">Batal</a></div>
+        <div class="btn-group" style="margin-top:20px;"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button><a href="<?= BASE_URL ?>/peminjaman" class="btn btn-secondary">Batal</a></div>
     </form>
 </div></div>
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>

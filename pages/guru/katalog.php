@@ -39,7 +39,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-boxes-stacked"></i> Katalog Aset</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/guru/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/guru/dashboard">Dashboard</a>
             <span class="separator">/</span>
             <span>Katalog Aset</span>
         </div>

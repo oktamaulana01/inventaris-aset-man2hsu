@@ -65,7 +65,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <?php endif; ?>
                 </div>
             </div>
-            <a href="<?= BASE_URL ?>/pages/guru/pinjam.php" class="btn btn-primary">
+            <a href="<?= BASE_URL ?>/guru/pinjam" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Ajukan Peminjaman
             </a>
         </div>
@@ -108,7 +108,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <div class="card mb-4 animate-fadeInUp">
     <div class="card-header">
         <h3><i class="fas fa-handshake" style="color:var(--warning);margin-right:8px;"></i> Peminjaman Aktif Saya</h3>
-        <a href="<?= BASE_URL ?>/pages/guru/riwayat.php" class="btn btn-sm btn-secondary">Lihat Semua</a>
+        <a href="<?= BASE_URL ?>/guru/riwayat" class="btn btn-sm btn-secondary">Lihat Semua</a>
     </div>
     <div class="card-body">
         <?php if (empty($pinjamanAktif)): ?>
@@ -161,7 +161,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <div class="card animate-fadeInUp">
     <div class="card-header">
         <h3><i class="fas fa-boxes-stacked" style="color:var(--accent-primary);margin-right:8px;"></i> Aset Terbaru Tersedia</h3>
-        <a href="<?= BASE_URL ?>/pages/guru/katalog.php" class="btn btn-sm btn-secondary">Lihat Katalog</a>
+        <a href="<?= BASE_URL ?>/guru/katalog" class="btn btn-sm btn-secondary">Lihat Katalog</a>
     </div>
     <div class="card-body">
         <div class="table-wrapper">
@@ -188,7 +188,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             <td><?= htmlspecialchars($a['nama_lokasi'] ?? '-') ?></td>
                             <td><?= $a['jumlah'] ?></td>
                             <td>
-                                <a href="<?= BASE_URL ?>/pages/guru/pinjam.php?id_aset=<?= $a['id'] ?>" class="btn btn-sm btn-primary">
+                                <a href="<?= BASE_URL ?>/guru/pinjam?id_aset=<?= $a['id'] ?>" class="btn btn-sm btn-primary">
                                     <i class="fas fa-hand-holding-hand"></i> Pinjam
                                 </a>
                             </td>

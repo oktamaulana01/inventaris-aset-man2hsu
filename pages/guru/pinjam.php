@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stok = $cekStok->fetch();
     if ($stok && $stok['terpinjam'] >= $stok['jumlah']) {
         setFlash('danger', 'Maaf, semua unit dari aset tersebut saat ini sedang dipinjam atau dalam proses pengajuan.');
-        header('Location: pinjam.php'); exit;
+        header('Location: ' . BASE_URL . '/guru/pinjam'); exit;
     }
     
     $tglPinjam = $_POST['tanggal_pinjam'];
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $asetNama = $pdo->query("SELECT nama_aset FROM aset WHERE id = $idAset")->fetchColumn();
     logActivity($pdo, $_SESSION['user_id'], 'Peminjaman', "Pengajuan peminjaman aset: $asetNama oleh $namaPeminjam");
     setFlash('success', 'Peminjaman berhasil diajukan! Silakan menunggu konfirmasi dari Admin/Petugas.');
-    header('Location: riwayat.php'); exit;
+    header('Location: ' . BASE_URL . '/guru/riwayat'); exit;
 }
 
 require_once __DIR__ . '/../../includes/header.php';
@@ -57,7 +57,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-hand-holding-hand"></i> Ajukan Peminjaman</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/guru/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/guru/dashboard">Dashboard</a>
             <span class="separator">/</span>
             <span>Ajukan Peminjaman</span>
         </div>
@@ -126,12 +126,10 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             </div>
             <div class="btn-group" style="margin-top:8px;">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Ajukan Peminjaman</button>
-                <a href="dashboard.php" class="btn btn-secondary">Batal</a>
+                <a href="<?= BASE_URL ?>/guru/dashboard" class="btn btn-secondary">Batal</a>
             </div>
         </form>
     </div>
 </div>
 
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
-
-

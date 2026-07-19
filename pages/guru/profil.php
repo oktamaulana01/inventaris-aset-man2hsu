@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         logActivity($pdo, $userId, 'Edit Profil', "$nama memperbarui profil");
         setFlash('success', 'Profil berhasil diperbarui!');
-        header('Location: profil.php'); exit;
+        header('Location: ' . BASE_URL . '/guru/profil'); exit;
     }
     
     if ($action === 'update_password') {
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             logActivity($pdo, $userId, 'Ganti Password', $_SESSION['user_nama'] . ' mengganti password');
             setFlash('success', 'Password berhasil diganti!');
         }
-        header('Location: profil.php'); exit;
+        header('Location: ' . BASE_URL . '/guru/profil'); exit;
     }
 }
 
@@ -63,7 +63,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-user-circle"></i> Profil Saya</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/guru/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/guru/dashboard">Dashboard</a>
             <span class="separator">/</span>
             <span>Profil</span>
         </div>
@@ -119,7 +119,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <?= generateCsrfToken() ?>
                     <input type="hidden" name="action" value="update_password">
                     <div class="form-group">
-                        <label>Password Lama *</label>
+                        <label>Password Saat Ini *</label>
                         <input type="password" class="form-control" name="current_password" required>
                     </div>
                     <div class="form-group">
@@ -136,31 +136,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 </form>
             </div>
         </div>
-
-        <!-- Info Card -->
-        <div class="card animate-fadeInUp">
-            <div class="card-body" style="padding:20px;">
-                <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
-                    <div class="stat-icon purple" style="width:56px;height:56px;font-size:1.4rem;border-radius:14px;">
-                        <?= strtoupper(substr($user['nama'], 0, 1)) ?>
-                    </div>
-                    <div>
-                        <h4 style="font-size:1.05rem; font-weight:600;"><?= htmlspecialchars($user['nama']) ?></h4>
-                        <span class="badge badge-info">Guru / Karyawan</span>
-                    </div>
-                </div>
-                <div style="font-size:0.82rem; color:var(--text-muted); line-height:2;">
-                    <div><i class="fas fa-user" style="width:20px;"></i> Username: <strong><?= htmlspecialchars($user['username']) ?></strong></div>
-                    <div><i class="fas fa-id-card" style="width:20px;"></i> NIP: <strong><?= htmlspecialchars($user['nip'] ?? '-') ?></strong></div>
-                    <div><i class="fas fa-briefcase" style="width:20px;"></i> Jabatan: <strong><?= htmlspecialchars($user['jabatan'] ?? '-') ?></strong></div>
-                    <div><i class="fas fa-phone" style="width:20px;"></i> Telepon: <strong><?= htmlspecialchars($user['no_telepon'] ?? '-') ?></strong></div>
-                    <div><i class="fas fa-calendar" style="width:20px;"></i> Terdaftar: <strong><?= date('d/m/Y', strtotime($user['created_at'])) ?></strong></div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>
-
-
