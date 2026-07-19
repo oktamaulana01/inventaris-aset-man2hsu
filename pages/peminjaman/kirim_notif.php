@@ -22,12 +22,12 @@ $data = $stmt->fetch();
 
 if (!$data) {
     setFlash('danger', 'Data peminjaman tidak ditemukan atau sudah dikembalikan!');
-    header('Location: index.php'); exit;
+    header('Location: ' . BASE_URL . '/peminjaman'); exit;
 }
 
 if (empty($data['email'])) {
     setFlash('danger', 'Peminjam tidak memiliki alamat email! Silakan tambahkan email di data pengguna.');
-    header('Location: index.php'); exit;
+    header('Location: ' . BASE_URL . '/peminjaman'); exit;
 }
 
 // Tentukan tipe berdasarkan tanggal
@@ -48,5 +48,5 @@ $result = sendNotification($pdo, $data, $tipe, $data['email']);
 logActivity($pdo, $_SESSION['user_id'], 'Kirim Notifikasi', "Kirim email {$tipe} untuk aset: {$data['nama_aset']} ke {$data['email']}");
 
 setFlash($result['success'] ? 'success' : 'danger', $result['message']);
-header('Location: index.php'); exit;
+header('Location: ' . BASE_URL . '/peminjaman'); exit;
 ?>

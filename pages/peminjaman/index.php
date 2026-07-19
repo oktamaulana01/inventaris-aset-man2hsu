@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
 <div class="page-header">
     <div><h2><i class="fas fa-handshake"></i> Peminjaman Aset</h2>
-        <div class="breadcrumb"><a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a><span class="separator">/</span><span>Peminjaman</span></div>
+        <div class="breadcrumb"><a href="<?= BASE_URL ?>/dashboard">Dashboard</a><span class="separator">/</span><span>Peminjaman</span></div>
     </div>
     <a href="<?= BASE_URL ?>/peminjaman/tambah" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Peminjaman</a>
 </div>

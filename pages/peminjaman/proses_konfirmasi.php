@@ -25,5 +25,5 @@ if ($data && $data['status'] === 'Menunggu Konfirmasi') {
 } else {
     setFlash('danger', 'Data peminjaman tidak valid atau sudah diproses!');
 }
-header('Location: index.php'); 
+header('Location: ' . BASE_URL . '/peminjaman'); 
 exit;

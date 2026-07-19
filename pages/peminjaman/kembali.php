@@ -10,5 +10,5 @@ if ($data && $data['status'] === 'Dipinjam') {
     logActivity($pdo, $_SESSION['user_id'], 'Pengembalian', "Pengembalian aset: {$data['nama_aset']} oleh {$data['nama_peminjam']}");
     setFlash('success', 'Aset berhasil dikembalikan!');
 } else { setFlash('danger', 'Data peminjaman tidak valid!'); }
-header('Location: index.php'); exit;
+header('Location: ' . BASE_URL . '/peminjaman'); exit;
 ?>

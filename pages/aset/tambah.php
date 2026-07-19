@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     logActivity($pdo, $_SESSION['user_id'], 'Tambah Aset', "Menambah aset: $nama ($kode)");
     setFlash('success', 'Aset berhasil ditambahkan!');
-    header('Location: ' . BASE_URL . '/pages/aset/index.php');
+    header('Location: ' . BASE_URL . '/aset');
     exit;
 }
 

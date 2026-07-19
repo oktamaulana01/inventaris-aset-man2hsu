@@ -7,7 +7,7 @@ $id = intval($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM aset WHERE id = ? AND deleted_at IS NULL");
 $stmt->execute([$id]);
 $aset = $stmt->fetch();
-if (!$aset) { header('Location: index.php'); exit; }
+if (!$aset) { header('Location: ' . BASE_URL . '/aset'); exit; }
 
 $kategoriList = $pdo->query("SELECT * FROM kategori ORDER BY nama_kategori")->fetchAll();
 $lokasiList = $pdo->query("SELECT * FROM lokasi ORDER BY nama_lokasi")->fetchAll();
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     logActivity($pdo, $_SESSION['user_id'], 'Edit Aset', "Mengedit aset: $nama ({$aset['kode_aset']})");
     setFlash('success', 'Aset berhasil diperbarui!');
-    header('Location: ' . BASE_URL . '/pages/aset/index.php');
+    header('Location: ' . BASE_URL . '/aset');
     exit;
 }
 

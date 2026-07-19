@@ -10,7 +10,7 @@ $aset = $stmt->fetch();
 
 if (!$aset) {
     setFlash('danger', 'Data aset tidak ditemukan atau sudah dihapus!');
-    header('Location: index.php');
+    header('Location: ' . BASE_URL . '/aset');
     exit;
 }
 
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 logActivity($pdo, $_SESSION['user_id'], 'Penghapusan', "Penghapusan aset: {$aset['nama_aset']} (Kode: {$aset['kode_aset']})");
                 setFlash('success', 'Aset berhasil dihapus beserta bukti fotonya!');
-                header('Location: index.php');
+                header('Location: ' . BASE_URL . '/aset');
                 exit;
             } else {
                 setFlash('danger', 'Gagal mengunggah foto bukti.');

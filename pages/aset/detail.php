@@ -10,7 +10,7 @@ $stmt = $pdo->prepare("SELECT a.*, k.nama_kategori, l.nama_lokasi FROM aset a
     WHERE a.id = ? AND a.deleted_at IS NULL");
 $stmt->execute([$id]);
 $aset = $stmt->fetch();
-if (!$aset) { header('Location: index.php'); exit; }
+if (!$aset) { header('Location: ' . BASE_URL . '/aset'); exit; }
 
 // Get peminjaman history
 $stmtPinjam = $pdo->prepare("SELECT * FROM peminjaman WHERE id_aset = ? ORDER BY created_at DESC LIMIT 10");

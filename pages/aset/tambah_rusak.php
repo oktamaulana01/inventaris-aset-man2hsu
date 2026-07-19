@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$asetAsli) {
         setFlash('danger', 'Aset tidak ditemukan!');
-        header('Location: tambah_rusak.php');
+        header('Location: ' . BASE_URL . '/aset/tambah-rusak');
         exit;
     }
 
     if ($jumlahRusak <= 0 || $jumlahRusak > $asetAsli['jumlah']) {
         setFlash('danger', 'Jumlah rusak tidak valid! Harus antara 1 sampai ' . $asetAsli['jumlah']);
-        header('Location: tambah_rusak.php');
+        header('Location: ' . BASE_URL . '/aset/tambah-rusak');
         exit;
     }
 
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     setFlash('success', 'Laporan aset rusak berhasil diproses!');
-    header('Location: ' . BASE_URL . '/pages/aset/index.php');
+    header('Location: ' . BASE_URL . '/aset');
     exit;
 }
 
