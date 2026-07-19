@@ -58,16 +58,16 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-boxes-stacked"></i> Data Aset</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
             <span>Data Aset</span>
         </div>
     </div>
     <div class="btn-group">
-        <a href="<?= BASE_URL ?>/pages/aset/tambah.php" class="btn btn-primary">
+        <a href="<?= BASE_URL ?>/aset/tambah" class="btn btn-primary">
             <i class="fas fa-plus"></i> Tambah Aset Baru
         </a>
-        <a href="<?= BASE_URL ?>/pages/aset/tambah_rusak.php" class="btn btn-warning" style="color: #fff;">
+        <a href="<?= BASE_URL ?>/aset/tambah-rusak" class="btn btn-warning" style="color: #fff;">
             <i class="fas fa-plus-circle"></i> Tambah Aset Rusak
         </a>
     </div>

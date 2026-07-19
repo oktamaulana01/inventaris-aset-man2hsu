@@ -35,17 +35,17 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-eye"></i> Detail Aset</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
-            <a href="<?= BASE_URL ?>/pages/aset/index.php">Data Aset</a>
+            <a href="<?= BASE_URL ?>/aset">Data Aset</a>
             <span class="separator">/</span>
             <span>Detail</span>
         </div>
     </div>
     <div class="btn-group">
-        <a href="generate_qr.php?id=<?= $aset['id'] ?>" class="btn btn-info"><i class="fas fa-qrcode"></i> QR Code</a>
-        <a href="edit.php?id=<?= $aset['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-        <a href="index.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+        <a href="<?= BASE_URL ?>/aset/generate-qr?id=<?= $aset['id'] ?>" class="btn btn-info"><i class="fas fa-qrcode"></i> QR Code</a>
+        <a href="<?= BASE_URL ?>/aset/edit?id=<?= $aset['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+        <a href="<?= BASE_URL ?>/aset" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
     </div>
 </div>
 

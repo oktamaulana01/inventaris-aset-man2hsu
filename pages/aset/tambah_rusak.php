@@ -75,9 +75,9 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <div>
         <h2><i class="fas fa-plus-circle text-warning"></i> Lapor Aset Rusak</h2>
         <div class="breadcrumb">
-            <a href="<?= BASE_URL ?>/pages/dashboard.php">Dashboard</a>
+            <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
-            <a href="<?= BASE_URL ?>/pages/aset/index.php">Data Aset</a>
+            <a href="<?= BASE_URL ?>/aset">Data Aset</a>
             <span class="separator">/</span>
             <span>Lapor Rusak</span>
         </div>
@@ -124,7 +124,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             </div>
             <div class="btn-group mt-3">
                 <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Proses Laporan</button>
-                <a href="<?= BASE_URL ?>/pages/aset/index.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Batal</a>
+                <a href="<?= BASE_URL ?>/aset" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Batal</a>
             </div>
         </form>
     </div>
