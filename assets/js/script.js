@@ -3,16 +3,34 @@
 // MAN 2 Hulu Sungai Utara
 // ============================================
 
-// Sidebar Toggle (Mobile)
+// Sidebar Toggle (Mobile & Desktop)
 function toggleSidebar() {
+    const appLayout = document.querySelector('.app-layout');
     const sidebar = document.querySelector('.sidebar');
     const overlay = document.querySelector('.sidebar-overlay');
-    sidebar.classList.toggle('open');
-    if (overlay) overlay.classList.toggle('active');
+    
+    if (window.innerWidth <= 768) {
+        sidebar.classList.toggle('open');
+        if (overlay) overlay.classList.toggle('active');
+    } else {
+        if (appLayout) {
+            appLayout.classList.toggle('sidebar-collapsed');
+            const isCollapsed = appLayout.classList.contains('sidebar-collapsed');
+            localStorage.setItem('sidebarCollapsed', isCollapsed ? 'true' : 'false');
+        }
+    }
 }
 
-// Close sidebar when clicking overlay
+// Restore state & close sidebar when clicking overlay
 document.addEventListener('DOMContentLoaded', function() {
+    // Restore state desktop collapsed sidebar
+    if (window.innerWidth > 768) {
+        const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+        if (isCollapsed) {
+            document.querySelector('.app-layout')?.classList.add('sidebar-collapsed');
+        }
+    }
+
     const overlay = document.querySelector('.sidebar-overlay');
     if (overlay) {
         overlay.addEventListener('click', function() {

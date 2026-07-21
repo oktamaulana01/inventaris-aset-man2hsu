@@ -553,6 +553,17 @@ textarea.form-control {
     transition: var(--transition);
 }
 
+/* ── Desktop Collapsed Sidebar ── */
+@media (min-width: 769px) {
+    .app-layout.sidebar-collapsed .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .app-layout.sidebar-collapsed .main-content {
+        margin-left: 0;
+    }
+}
+
 /* ── Header / Topbar ── */
 .topbar {
     height: var(--header-height);
@@ -575,13 +586,15 @@ textarea.form-control {
 }
 
 .topbar-toggle {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
-    border: none;
+    border: 1px solid var(--border-glass);
     color: var(--text-primary);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     cursor: pointer;
-    padding: 8px;
+    padding: 6px 10px;
     border-radius: var(--radius-sm);
     transition: var(--transition);
 }
