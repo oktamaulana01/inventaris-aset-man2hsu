@@ -44,6 +44,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     </div>
     <div class="btn-group">
         <a href="<?= BASE_URL ?>/aset/generate-qr?id=<?= $aset['id'] ?>" class="btn btn-info"><i class="fas fa-qrcode"></i> QR Code</a>
+        <a href="<?= BASE_URL ?>/mutasi/tambah?id_aset=<?= $aset['id'] ?>" class="btn btn-primary"><i class="fas fa-arrows-split-up-and-left"></i> Mutasi</a>
         <a href="<?= BASE_URL ?>/aset/edit?id=<?= $aset['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
         <a href="<?= BASE_URL ?>/aset" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
     </div>

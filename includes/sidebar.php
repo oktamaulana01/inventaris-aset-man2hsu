@@ -94,6 +94,11 @@
                         <span class="nav-icon"><i class="fas fa-handshake"></i></span>
                         Peminjaman
                     </a>
+                    <a href="<?= BASE_URL ?>/mutasi" 
+                       class="nav-link <?= ($currentDir === 'mutasi') ? 'active' : '' ?>">
+                        <span class="nav-icon"><i class="fas fa-arrows-split-up-and-left"></i></span>
+                        Mutasi Aset
+                    </a>
                 </div>
 
                 <!-- Laporan -->

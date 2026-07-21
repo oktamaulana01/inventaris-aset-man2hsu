@@ -152,6 +152,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             <td>
                                 <div class="btn-group">
                                     <a href="<?= BASE_URL ?>/aset/detail?id=<?= $a['id'] ?>" class="btn btn-sm btn-info" title="Detail"><i class="fas fa-eye"></i></a>
+                                    <a href="<?= BASE_URL ?>/mutasi/tambah?id_aset=<?= $a['id'] ?>" class="btn btn-sm btn-primary" title="Mutasi Lokasi"><i class="fas fa-arrows-split-up-and-left"></i></a>
                                     <a href="<?= BASE_URL ?>/aset/edit?id=<?= $a['id'] ?>" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
                                     <a href="<?= BASE_URL ?>/aset/hapus?id=<?= $a['id'] ?>" class="btn btn-sm btn-danger" title="Hapus Aset"><i class="fas fa-trash"></i></a>
                                 </div>

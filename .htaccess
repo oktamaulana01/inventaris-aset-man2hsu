@@ -49,6 +49,10 @@ RewriteRule ^peminjaman/kirim-notif$ pages/peminjaman/kirim_notif.php [L,QSA]
 RewriteRule ^peminjaman/kembali$ pages/peminjaman/kembali.php [L,QSA]
 RewriteRule ^peminjaman/hapus$ pages/peminjaman/hapus.php [L,QSA]
 
+# Mutasi
+RewriteRule ^mutasi$ pages/mutasi/index.php [L,QSA]
+RewriteRule ^mutasi/tambah$ pages/mutasi/tambah.php [L,QSA]
+
 # Laporan
 RewriteRule ^laporan/keseluruhan$ pages/laporan/aset_keseluruhan.php [L,QSA]
 RewriteRule ^laporan/kategori$ pages/laporan/aset_per_kategori.php [L,QSA]
