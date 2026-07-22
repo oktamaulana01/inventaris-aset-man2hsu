@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Data Lokasi';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 $lokasiList = $pdo->query("SELECT l.*, (SELECT COUNT(*) FROM aset WHERE id_lokasi = l.id AND deleted_at IS NULL) as total_aset FROM lokasi l ORDER BY l.nama_lokasi")->fetchAll();
 

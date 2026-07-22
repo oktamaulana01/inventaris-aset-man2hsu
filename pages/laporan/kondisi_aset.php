@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Laporan Kondisi Aset';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $filterKondisi = $_GET['kondisi'] ?? '';

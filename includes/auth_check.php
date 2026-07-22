@@ -61,7 +61,7 @@ if (!isset($_SESSION['last_regeneration'])) {
 // Cek role admin untuk halaman admin-only
 function requireAdmin() {
     if ($_SESSION['user_role'] !== 'admin') {
-        $redirect = $_SESSION['user_role'] === 'guru' ? BASE_URL . '/pages/guru/dashboard.php' : BASE_URL . '/pages/dashboard.php';
+        $redirect = $_SESSION['user_role'] === 'guru' ? BASE_URL . '/guru/dashboard' : BASE_URL . '/dashboard';
         header('Location: ' . $redirect);
         exit;
     }
@@ -70,7 +70,7 @@ function requireAdmin() {
 // Cek role guru untuk halaman guru-only
 function requireGuru() {
     if ($_SESSION['user_role'] !== 'guru') {
-        header('Location: ' . BASE_URL . '/pages/dashboard.php');
+        header('Location: ' . BASE_URL . '/dashboard');
         exit;
     }
 }
@@ -78,7 +78,7 @@ function requireGuru() {
 // Cek role staff (admin/petugas) — block guru
 function requireStaff() {
     if ($_SESSION['user_role'] === 'guru') {
-        header('Location: ' . BASE_URL . '/pages/guru/dashboard.php');
+        header('Location: ' . BASE_URL . '/guru/dashboard');
         exit;
     }
 }

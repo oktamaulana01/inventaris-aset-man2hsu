@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Laporan Peminjaman';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $filterStatus = $_GET['status'] ?? '';

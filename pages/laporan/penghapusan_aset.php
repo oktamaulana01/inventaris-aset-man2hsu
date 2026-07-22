@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Laporan Penghapusan Aset';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $startDate = $_GET['start_date'] ?? '';

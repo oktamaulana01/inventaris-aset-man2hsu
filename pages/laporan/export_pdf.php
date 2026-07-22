@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Dompdf\Dompdf;

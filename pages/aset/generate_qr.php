@@ -2,6 +2,7 @@
 $pageTitle = 'Generate QR Code';
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 use chillerlan\QRCode\QRCode;

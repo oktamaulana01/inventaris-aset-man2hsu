@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Tambah Aset';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $kategoriList = $pdo->query("SELECT * FROM kategori ORDER BY nama_kategori")->fetchAll();

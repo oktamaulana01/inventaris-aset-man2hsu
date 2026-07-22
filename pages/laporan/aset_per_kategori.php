@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Laporan Aset per Kategori';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $data = $pdo->query("SELECT k.nama_kategori, COUNT(a.id) as total_aset, SUM(a.jumlah) as total_unit, 

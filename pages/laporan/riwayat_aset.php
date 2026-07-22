@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Riwayat Peminjaman per Aset';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 // Ambil daftar semua aset untuk opsi dropdown (termasuk yang dihapus, jaga-jaga kalau mau lihat riwayat aset lama)

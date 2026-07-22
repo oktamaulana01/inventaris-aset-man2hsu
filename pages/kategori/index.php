@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Data Kategori';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $kategoriList = $pdo->query("SELECT k.*, (SELECT COUNT(*) FROM aset WHERE id_kategori = k.id AND deleted_at IS NULL) as total_aset FROM kategori k ORDER BY k.nama_kategori")->fetchAll();

@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Tambah Peminjaman';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $asetList = $pdo->query("

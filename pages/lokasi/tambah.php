@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Tambah Lokasi';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     validateCsrfToken();

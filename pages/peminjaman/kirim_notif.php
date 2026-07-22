@@ -3,6 +3,7 @@
  * Kirim notifikasi email manual untuk satu peminjaman
  */
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 validateCsrfToken();
 $pdo = getConnection();
 require_once __DIR__ . '/../../config/mailer.php';

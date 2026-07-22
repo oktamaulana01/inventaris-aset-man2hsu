@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Detail Aset';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $id = intval($_GET['id'] ?? 0);

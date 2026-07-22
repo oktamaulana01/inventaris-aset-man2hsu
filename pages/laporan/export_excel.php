@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 $type = $_GET['type'] ?? 'keseluruhan';

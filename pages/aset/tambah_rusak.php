@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Lapor Aset Rusak';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 
 // Ambil data aset yang kondisinya Baik

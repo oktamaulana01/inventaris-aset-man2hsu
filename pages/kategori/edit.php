@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Edit Kategori';
 require_once __DIR__ . '/../../includes/auth_check.php';
+requireStaff();
 $pdo = getConnection();
 $id = intval($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM kategori WHERE id = ?"); $stmt->execute([$id]);
