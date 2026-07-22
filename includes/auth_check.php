@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
     }
 }
 
-// Session timeout: auto-logout setelah 10 menit tidak aktif
+// Session timeout: auto-logout setelah 30 menit tidak aktif
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > SESSION_TIMEOUT) {
     if (isset($_COOKIE['remember_token'])) {
         // Jika ada "Remember Me", otomatis perpanjang sesi tanpa perlu peringatan
