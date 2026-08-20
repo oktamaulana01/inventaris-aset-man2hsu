@@ -347,22 +347,27 @@ function sendTelegramNotification($pdo, $message) {
             'parse_mode' => 'HTML'
         ];
         
-        $options = [
-            'http' => [
-                'header'  => "Content-type: application-x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($data),
-                'timeout' => 5
-            ],
-        ];
-        $context  = stream_context_create($options);
-        $result = @file_get_contents($url, false, $context);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        $result = curl_exec($ch);
+        $err = curl_error($ch);
+        curl_close($ch);
         
         if ($result === false) {
-            return ['success' => false, 'message' => 'Gagal mengirim request ke API Telegram.'];
+            return ['success' => false, 'message' => 'Gagal mengirim request ke API Telegram: ' . $err];
         }
         
-        return ['success' => true];
+        $resObj = json_decode($result, true);
+        if (isset($resObj['ok']) && $resObj['ok'] === true) {
+            return ['success' => true];
+        } else {
+            return ['success' => false, 'message' => $resObj['description'] ?? 'Gagal mengirim pesan ke Telegram.'];
+        }
     } catch (Exception $e) {
         return ['success' => false, 'message' => $e->getMessage()];
     }
@@ -380,19 +385,19 @@ function sendTestTelegramMessage($pdo, $token, $chatId, $message) {
             'parse_mode' => 'HTML'
         ];
         
-        $options = [
-            'http' => [
-                'header'  => "Content-type: application-x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($data),
-                'timeout' => 5
-            ],
-        ];
-        $context  = stream_context_create($options);
-        $result = @file_get_contents($url, false, $context);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        $result = curl_exec($ch);
+        $err = curl_error($ch);
+        curl_close($ch);
         
         if ($result === false) {
-            return ['success' => false, 'message' => 'Koneksi gagal atau Token/Chat ID salah.'];
+            return ['success' => false, 'message' => 'Koneksi gagal: ' . $err];
         }
         
         $resObj = json_decode($result, true);
