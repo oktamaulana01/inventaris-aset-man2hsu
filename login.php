@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_nip'] = $user['nip'];
             $_SESSION['user_jabatan'] = $user['jabatan'];
             $_SESSION['user_no_telepon'] = $user['no_telepon'];
+            $_SESSION['user_telegram_chat_id'] = $user['telegram_chat_id'];
             
             // Remember Me
             if (isset($_POST['remember'])) {

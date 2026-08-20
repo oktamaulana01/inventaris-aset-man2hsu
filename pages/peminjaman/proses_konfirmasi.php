@@ -7,7 +7,7 @@ $pdo = getConnection();
 $action = $_GET['action'] ?? '';
 $id = intval($_POST['id'] ?? 0);
 
-$stmt = $pdo->prepare("SELECT p.*, a.nama_aset FROM peminjaman p JOIN aset a ON p.id_aset = a.id WHERE p.id = ?");
+$stmt = $pdo->prepare("SELECT p.*, a.nama_aset, u.telegram_chat_id FROM peminjaman p JOIN aset a ON p.id_aset = a.id LEFT JOIN users u ON p.id_peminjam = u.id WHERE p.id = ?");
 $stmt->execute([$id]); 
 $data = $stmt->fetch();
 
@@ -22,7 +22,7 @@ if ($data && $data['status'] === 'Menunggu Konfirmasi') {
                "Peminjam: <b>" . htmlspecialchars($data['nama_peminjam']) . "</b>\n" .
                "Aset: <b>" . htmlspecialchars($data['nama_aset']) . "</b>\n" .
                "Petugas: " . htmlspecialchars($_SESSION['user_nama']);
-        sendTelegramNotification($pdo, $msg);
+        sendTelegramNotification($pdo, $msg, $data['telegram_chat_id']);
         
         setFlash('success', 'Permintaan peminjaman berhasil disetujui!');
     } elseif ($action === 'reject') {
@@ -34,7 +34,7 @@ if ($data && $data['status'] === 'Menunggu Konfirmasi') {
                "Peminjam: <b>" . htmlspecialchars($data['nama_peminjam']) . "</b>\n" .
                "Aset: <b>" . htmlspecialchars($data['nama_aset']) . "</b>\n" .
                "Petugas: " . htmlspecialchars($_SESSION['user_nama']);
-        sendTelegramNotification($pdo, $msg);
+        sendTelegramNotification($pdo, $msg, $data['telegram_chat_id']);
         
         setFlash('warning', 'Permintaan peminjaman telah ditolak.');
     } else {

@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     validateCsrfToken();
     $nama = trim($_POST['nama']);
     $username = trim($_POST['username']);
+    $telegramChatId = trim($_POST['telegram_chat_id'] ?? '');
     $foto = $user['foto']; // keep existing
 
     // Validate nama
@@ -79,13 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         if (!empty($_POST['password'])) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $pdo->prepare("UPDATE users SET nama=?, username=?, password=?, foto=? WHERE id=?")
-                ->execute([$nama, $username, $password, $foto, $_SESSION['user_id']]);
+            $pdo->prepare("UPDATE users SET nama=?, username=?, password=?, foto=?, telegram_chat_id=? WHERE id=?")
+                ->execute([$nama, $username, $password, $foto, $telegramChatId ?: null, $_SESSION['user_id']]);
         } else {
-            $pdo->prepare("UPDATE users SET nama=?, username=?, foto=? WHERE id=?")
-                ->execute([$nama, $username, $foto, $_SESSION['user_id']]);
+            $pdo->prepare("UPDATE users SET nama=?, username=?, foto=?, telegram_chat_id=? WHERE id=?")
+                ->execute([$nama, $username, $foto, $telegramChatId ?: null, $_SESSION['user_id']]);
         }
         $_SESSION['user_nama'] = $nama;
+        $_SESSION['user_telegram_chat_id'] = $telegramChatId;
         logActivity($pdo, $_SESSION['user_id'], 'Edit Profil', $nama . ' memperbarui profil');
         setFlash('success', 'Profil berhasil diperbarui!');
         header('Location: ' . BASE_URL . '/profil'); exit;
@@ -277,6 +279,10 @@ require_once __DIR__ . '/../includes/sidebar.php';
                     <div class="detail-label"><i class="fas fa-calendar"></i> Bergabung Sejak</div>
                     <div class="detail-value"><?= $createdAt ?></div>
                 </div>
+                <div class="detail-item">
+                    <div class="detail-label"><i class="fab fa-telegram-plane"></i> Chat ID Telegram</div>
+                    <div class="detail-value"><?= htmlspecialchars($user['telegram_chat_id'] ?? 'Belum diisi') ?></div>
+                </div>
             </div>
         </div>
     </div>
@@ -361,6 +367,14 @@ require_once __DIR__ . '/../includes/sidebar.php';
                     <input type="text" class="form-control" name="username" 
                            value="<?= htmlspecialchars($_POST['username'] ?? $user['username']) ?>" required>
                     <small style="color:#888;">Username digunakan untuk login ke sistem.</small>
+                </div>
+
+                <!-- Telegram Chat ID -->
+                <div class="form-group">
+                    <label><i class="fab fa-telegram-plane" style="color:#0088cc;margin-right:4px;"></i> Chat ID Telegram Pribadi</label>
+                    <input type="text" class="form-control" name="telegram_chat_id" 
+                           value="<?= htmlspecialchars($_POST['telegram_chat_id'] ?? $user['telegram_chat_id'] ?? '') ?>" placeholder="Contoh: 6873151654">
+                    <small style="color:#888;">Gunakan chat ID Anda agar bot Telegram dapat mengirimkan pesan notifikasi secara langsung ke chat pribadi Anda.</small>
                 </div>
 
                 <hr style="border:none;border-top:1px solid #eee;margin:20px 0;">

@@ -19,15 +19,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nip = trim($_POST['nip']);
         $jabatan = trim($_POST['jabatan']);
         $noTelepon = trim($_POST['no_telepon']);
+        $telegramChatId = trim($_POST['telegram_chat_id']);
         
-        $stmt = $pdo->prepare("UPDATE users SET nama=?, nip=?, jabatan=?, no_telepon=? WHERE id=?");
-        $stmt->execute([$nama, $nip, $jabatan, $noTelepon, $userId]);
+        $stmt = $pdo->prepare("UPDATE users SET nama=?, nip=?, jabatan=?, no_telepon=?, telegram_chat_id=? WHERE id=?");
+        $stmt->execute([$nama, $nip, $jabatan, $noTelepon, $telegramChatId ?: null, $userId]);
         
         // Update session
         $_SESSION['user_nama'] = $nama;
         $_SESSION['user_nip'] = $nip;
         $_SESSION['user_jabatan'] = $jabatan;
         $_SESSION['user_no_telepon'] = $noTelepon;
+        $_SESSION['user_telegram_chat_id'] = $telegramChatId;
         
         logActivity($pdo, $userId, 'Edit Profil', "$nama memperbarui profil");
         setFlash('success', 'Profil berhasil diperbarui!');
@@ -95,6 +97,11 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <div class="form-group">
                     <label>No. Telepon</label>
                     <input type="text" class="form-control" name="no_telepon" value="<?= htmlspecialchars($user['no_telepon'] ?? '') ?>" placeholder="08xxxxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label><i class="fab fa-telegram-plane" style="color:#0088cc;margin-right:4px;"></i> Chat ID Telegram Pribadi</label>
+                    <input type="text" class="form-control" name="telegram_chat_id" value="<?= htmlspecialchars($user['telegram_chat_id'] ?? '') ?>" placeholder="Contoh: 1477944735">
+                    <small style="color:var(--text-muted);font-size:0.78rem;">Digunakan untuk menerima notifikasi persetujuan & pengembalian aset dari Bot Telegram secara pribadi.</small>
                 </div>
                 <div class="form-group">
                     <label>Username</label>

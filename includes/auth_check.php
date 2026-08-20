@@ -19,6 +19,7 @@ if (!isset($_SESSION['user_id'])) {
             $_SESSION['user_nip'] = $user['nip'];
             $_SESSION['user_jabatan'] = $user['jabatan'];
             $_SESSION['user_no_telepon'] = $user['no_telepon'];
+            $_SESSION['user_telegram_chat_id'] = $user['telegram_chat_id'];
             
             // Perbarui waktu aktif sesi
             $_SESSION['last_activity'] = time();

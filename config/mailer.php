@@ -328,13 +328,13 @@ function sendResetPasswordEmail($pdo, $emailTujuan, $nama, $resetLink) {
 /**
  * Mengirim pesan notifikasi ke Telegram Bot
  */
-function sendTelegramNotification($pdo, $message) {
+function sendTelegramNotification($pdo, $message, $customChatId = null) {
     try {
         $settings = getSmtpSettings($pdo);
         
         $notifAktif = $settings['telegram_notif_aktif'] ?? '0';
         $token = $settings['telegram_bot_token'] ?? '';
-        $chatId = $settings['telegram_chat_id'] ?? '';
+        $chatId = $customChatId ?: ($settings['telegram_chat_id'] ?? '');
         
         if ($notifAktif !== '1' || empty($token) || empty($chatId)) {
             return ['success' => false, 'message' => 'Notifikasi Telegram dinonaktifkan atau konfigurasi tidak lengkap.'];

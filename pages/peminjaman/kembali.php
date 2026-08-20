@@ -8,9 +8,10 @@ $id = intval($_GET['id'] ?? $_POST['id'] ?? 0);
 
 // Ambil data peminjaman
 $stmt = $pdo->prepare("
-    SELECT p.*, a.nama_aset, a.kode_aset, a.jumlah as total_stok
+    SELECT p.*, a.nama_aset, a.kode_aset, a.jumlah as total_stok, u.telegram_chat_id
     FROM peminjaman p 
     JOIN aset a ON p.id_aset = a.id 
+    LEFT JOIN users u ON p.id_peminjam = u.id
     WHERE p.id = ?
 ");
 $stmt->execute([$id]);
@@ -57,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            "Kondisi saat kembali: <b>" . htmlspecialchars($kondisi) . "</b>\n" .
            "Catatan: " . htmlspecialchars($catatan ?: '-') . "\n\n" .
            "Petugas: " . htmlspecialchars($_SESSION['user_nama']);
-    sendTelegramNotification($pdo, $msg);
+    sendTelegramNotification($pdo, $msg, $data['telegram_chat_id']);
 
     setFlash('success', 'Aset berhasil dikembalikan!');
     header('Location: ' . BASE_URL . '/peminjaman');
