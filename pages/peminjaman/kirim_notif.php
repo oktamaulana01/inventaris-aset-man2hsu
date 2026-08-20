@@ -12,7 +12,7 @@ $id = intval($_POST['id'] ?? 0);
 
 // Ambil data peminjaman
 $stmt = $pdo->prepare("
-    SELECT p.*, a.nama_aset, a.kode_aset, u.email
+    SELECT p.*, a.nama_aset, a.kode_aset, u.email, u.telegram_chat_id
     FROM peminjaman p
     JOIN aset a ON p.id_aset = a.id
     LEFT JOIN users u ON p.id_peminjam = u.id

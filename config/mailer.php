@@ -190,6 +190,31 @@ function sendNotification($pdo, $peminjaman, $tipe, $emailTujuan) {
         $stmt = $pdo->prepare("INSERT INTO email_notifications (id_peminjaman, tipe, email_tujuan, status) VALUES (?, ?, ?, 'sent')");
         $stmt->execute([$peminjaman['id'], $tipe, $emailTujuan]);
         
+        // Kirim notifikasi Telegram jika chat_id tersedia
+        if (!empty($peminjaman['telegram_chat_id'])) {
+            $namaPeminjam = htmlspecialchars($peminjaman['nama_peminjam']);
+            $namaAset = htmlspecialchars($peminjaman['nama_aset']);
+            $kodeAset = htmlspecialchars($peminjaman['kode_aset']);
+            $tglKembali = date('d/m/Y', strtotime($peminjaman['tanggal_kembali_rencana']));
+            
+            $teleMsg = '';
+            switch ($tipe) {
+                case 'reminder':
+                    $teleMsg = "⏰ <b>Pengingat Pengembalian Aset (H-1)</b>\n\nHalo <b>{$namaPeminjam}</b>,\nBatas waktu pengembalian aset berikut adalah <b>BESOK</b>:\n\n• Aset: <b>{$namaAset}</b> ({$kodeAset})\n• Batas Kembali: <b>{$tglKembali}</b>\n\nMohon kembalikan tepat waktu ke petugas. Terima kasih!";
+                    break;
+                case 'due':
+                    $teleMsg = "⚠️ <b>Jatuh Tempo Pengembalian Aset</b>\n\nHalo <b>{$namaPeminjam}</b>,\nBatas waktu pengembalian aset berikut adalah <b>HARI INI</b>:\n\n• Aset: <b>{$namaAset}</b> ({$kodeAset})\n• Batas Kembali: <b>{$tglKembali}</b>\n\nHarap segera mengembalikan aset tersebut ke petugas. Terima kasih!";
+                    break;
+                case 'overdue':
+                    $teleMsg = "🚨 <b>Keterlambatan Pengembalian Aset!</b>\n\nHalo <b>{$namaPeminjam}</b>,\nAnda telah <b>MELEWATI BATAS WAKTU</b> peminjaman untuk aset berikut:\n\n• Aset: <b>{$namaAset}</b> ({$kodeAset})\n• Batas Kembali: <b>{$tglKembali}</b>\n\nMohon segera kembalikan aset ke petugas inventaris madrasah. Terima kasih!";
+                    break;
+            }
+            
+            if ($teleMsg) {
+                sendTelegramNotification($pdo, $teleMsg, $peminjaman['telegram_chat_id']);
+            }
+        }
+        
         return ['success' => true, 'message' => 'Email berhasil dikirim'];
         
     } catch (Exception $e) {
@@ -212,7 +237,7 @@ function checkAndSendNotifications($pdo) {
     
     // Ambil semua peminjaman aktif yang peminjamnya punya email
     $stmt = $pdo->query("
-        SELECT p.*, a.nama_aset, a.kode_aset, u.email, u.nama as user_nama
+        SELECT p.*, a.nama_aset, a.kode_aset, u.email, u.nama as user_nama, u.telegram_chat_id
         FROM peminjaman p
         JOIN aset a ON p.id_aset = a.id
         LEFT JOIN users u ON p.id_peminjam = u.id
