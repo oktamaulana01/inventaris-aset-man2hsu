@@ -187,7 +187,7 @@ function sendNotification($pdo, $peminjaman, $tipe, $emailTujuan) {
         $mail->send();
         
         // Log success
-        $stmt = $pdo->prepare("INSERT INTO email_notifications (id_peminjaman, tipe, email_tujuan, status) VALUES (?, ?, ?, 'sent')");
+        $stmt = $pdo->prepare("INSERT INTO email_notifications (id_peminjaman, tipe, media, email_tujuan, status) VALUES (?, ?, 'email', ?, 'sent')");
         $stmt->execute([$peminjaman['id'], $tipe, $emailTujuan]);
         
         // Kirim notifikasi Telegram jika chat_id tersedia
@@ -211,7 +211,13 @@ function sendNotification($pdo, $peminjaman, $tipe, $emailTujuan) {
             }
             
             if ($teleMsg) {
-                sendTelegramNotification($pdo, $teleMsg, $peminjaman['telegram_chat_id']);
+                $teleResult = sendTelegramNotification($pdo, $teleMsg, $peminjaman['telegram_chat_id']);
+                
+                $teleStatus = $teleResult['success'] ? 'sent' : 'failed';
+                $teleError = $teleResult['success'] ? null : ($teleResult['message'] ?? 'Gagal');
+                
+                $stmtTele = $pdo->prepare("INSERT INTO email_notifications (id_peminjaman, tipe, media, email_tujuan, status, pesan_error) VALUES (?, ?, 'telegram', ?, ?, ?)");
+                $stmtTele->execute([$peminjaman['id'], $tipe, $peminjaman['telegram_chat_id'], $teleStatus, $teleError]);
             }
         }
         
@@ -220,7 +226,7 @@ function sendNotification($pdo, $peminjaman, $tipe, $emailTujuan) {
     } catch (Exception $e) {
         // Log failure
         $errorMsg = $e->getMessage();
-        $stmt = $pdo->prepare("INSERT INTO email_notifications (id_peminjaman, tipe, email_tujuan, status, pesan_error) VALUES (?, ?, ?, 'failed', ?)");
+        $stmt = $pdo->prepare("INSERT INTO email_notifications (id_peminjaman, tipe, media, email_tujuan, status, pesan_error) VALUES (?, ?, 'email', ?, 'failed', ?)");
         $stmt->execute([$peminjaman['id'], $tipe, $emailTujuan, $errorMsg]);
         
         return ['success' => false, 'message' => 'Gagal kirim email: ' . $errorMsg];

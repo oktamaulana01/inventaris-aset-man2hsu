@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Log Notifikasi Email';
+$pageTitle = 'Log Notifikasi';
 require_once __DIR__ . '/../../includes/auth_check.php';
 requireStaff();
 $pdo = getConnection();
@@ -7,6 +7,7 @@ $pdo = getConnection();
 // Filter
 $filterTipe = $_GET['tipe'] ?? '';
 $filterStatus = $_GET['status'] ?? '';
+$filterMedia = $_GET['media'] ?? '';
 
 $page = max(1, intval($_GET['page'] ?? 1));
 $perPage = 20;
@@ -22,6 +23,10 @@ if ($filterTipe) {
 if ($filterStatus) {
     $where .= " AND en.status = ?";
     $params[] = $filterStatus;
+}
+if ($filterMedia) {
+    $where .= " AND en.media = ?";
+    $params[] = $filterMedia;
 }
 
 $countStmt = $pdo->prepare("SELECT COUNT(*) FROM email_notifications en $where");
@@ -52,23 +57,23 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
 <div class="page-header">
     <div>
-        <h2><i class="fas fa-envelope-open-text"></i> Log Notifikasi Email</h2>
+        <h2><i class="fas fa-bell"></i> Log Notifikasi</h2>
         <div class="breadcrumb">
             <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
             <a href="<?= BASE_URL ?>/pengaturan-email">Pengaturan</a>
             <span class="separator">/</span>
-            <span>Log Email</span>
+            <span>Log Notifikasi</span>
         </div>
     </div>
-    <a href="<?= BASE_URL ?>/pengaturan-email" class="btn btn-secondary"><i class="fas fa-gear"></i> Pengaturan SMTP</a>
+    <a href="<?= BASE_URL ?>/pengaturan-email" class="btn btn-secondary"><i class="fas fa-gear"></i> Pengaturan Notifikasi</a>
 </div>
 
 <!-- Stats -->
 <div class="stats-grid" style="grid-template-columns:repeat(3, 1fr);">
     <div class="stat-card animate-fadeInUp">
         <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
-        <div class="stat-info"><h3><?= $statSent ?></h3><p>Email Terkirim</p></div>
+        <div class="stat-info"><h3><?= $statSent ?></h3><p>Notifikasi Terkirim</p></div>
     </div>
     <div class="stat-card animate-fadeInUp">
         <div class="stat-icon red"><i class="fas fa-times-circle"></i></div>
@@ -89,6 +94,11 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <option value="due" <?= $filterTipe === 'due' ? 'selected' : '' ?>>Due (H+0)</option>
             <option value="overdue" <?= $filterTipe === 'overdue' ? 'selected' : '' ?>>Overdue (H+1)</option>
         </select>
+        <select class="form-control" name="media" style="max-width:160px;">
+            <option value="">Semua Media</option>
+            <option value="email" <?= $filterMedia === 'email' ? 'selected' : '' ?>>Email</option>
+            <option value="telegram" <?= $filterMedia === 'telegram' ? 'selected' : '' ?>>Telegram</option>
+        </select>
         <select class="form-control" name="status" style="max-width:160px;">
             <option value="">Semua Status</option>
             <option value="sent" <?= $filterStatus === 'sent' ? 'selected' : '' ?>>Terkirim</option>
@@ -102,7 +112,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <!-- Tabel Log -->
 <div class="card animate-fadeInUp"><div class="card-header"><h3>Riwayat Notifikasi (<?= $total ?> total)</h3></div><div class="card-body"><div class="table-wrapper">
     <table><thead><tr>
-        <th>No</th><th>Waktu</th><th>Tipe</th><th>Aset</th><th>Peminjam</th><th>Email Tujuan</th><th>Status</th><th>Keterangan</th>
+        <th>No</th><th>Waktu</th><th>Tipe</th><th>Aset</th><th>Peminjam</th><th>Media & Tujuan</th><th>Status</th><th>Keterangan</th>
     </tr></thead>
     <tbody>
         <?php if (empty($logs)): ?>
@@ -127,7 +137,15 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <span style="font-size:0.82rem;"><?= htmlspecialchars($log['nama_aset']) ?></span>
             </td>
             <td><?= htmlspecialchars($log['nama_peminjam']) ?></td>
-            <td style="font-size:0.82rem;"><?= htmlspecialchars($log['email_tujuan']) ?></td>
+            <td>
+                <?php if (($log['media'] ?? 'email') === 'telegram'): ?>
+                    <span class="badge badge-info" style="background:#0088cc;color:#fff;font-size:0.7rem;"><i class="fab fa-telegram-plane"></i> Telegram</span><br>
+                    <span style="font-size:0.78rem;color:#666;"><?= htmlspecialchars($log['email_tujuan']) ?></span>
+                <?php else: ?>
+                    <span class="badge badge-secondary" style="background:#4b5563;color:#fff;font-size:0.7rem;"><i class="fas fa-envelope"></i> Email</span><br>
+                    <span style="font-size:0.78rem;color:#666;"><?= htmlspecialchars($log['email_tujuan']) ?></span>
+                <?php endif; ?>
+            </td>
             <td>
                 <?php if ($log['status'] === 'sent'): ?>
                     <span class="badge badge-success"><i class="fas fa-check"></i> Terkirim</span>
@@ -145,12 +163,12 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
 <?php if ($totalPages > 1): ?>
 <div class="pagination">
-    <?php if ($page > 1): ?><a href="?page=<?= $page-1 ?>&tipe=<?= $filterTipe ?>&status=<?= $filterStatus ?>">&laquo;</a><?php endif; ?>
+    <?php if ($page > 1): ?><a href="?page=<?= $page-1 ?>&tipe=<?= $filterTipe ?>&status=<?= $filterStatus ?>&media=<?= $filterMedia ?>">&laquo;</a><?php endif; ?>
     <?php for ($p = max(1,$page-2); $p <= min($totalPages,$page+2); $p++): ?>
         <?php if ($p == $page): ?><span class="active"><?= $p ?></span>
-        <?php else: ?><a href="?page=<?= $p ?>&tipe=<?= $filterTipe ?>&status=<?= $filterStatus ?>"><?= $p ?></a><?php endif; ?>
+        <?php else: ?><a href="?page=<?= $p ?>&tipe=<?= $filterTipe ?>&status=<?= $filterStatus ?>&media=<?= $filterMedia ?>"><?= $p ?></a><?php endif; ?>
     <?php endfor; ?>
-    <?php if ($page < $totalPages): ?><a href="?page=<?= $page+1 ?>&tipe=<?= $filterTipe ?>&status=<?= $filterStatus ?>">&raquo;</a><?php endif; ?>
+    <?php if ($page < $totalPages): ?><a href="?page=<?= $page+1 ?>&tipe=<?= $filterTipe ?>&status=<?= $filterStatus ?>&media=<?= $filterMedia ?>">&raquo;</a><?php endif; ?>
 </div>
 <?php endif; ?>
 
