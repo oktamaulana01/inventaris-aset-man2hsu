@@ -45,6 +45,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $asetNama = $pdo->query("SELECT nama_aset FROM aset WHERE id = $idAset")->fetchColumn();
     logActivity($pdo, $_SESSION['user_id'], 'Peminjaman', "Pengajuan peminjaman aset: $asetNama oleh $namaPeminjam");
+    
+    // Telegram Notification
+    require_once __DIR__ . '/../../config/mailer.php';
+    $msg = "🔔 <b>Pengajuan Peminjaman Baru</b>\n\n" .
+           "Peminjam: <b>" . htmlspecialchars($namaPeminjam) . "</b>\n" .
+           "Aset: <b>" . htmlspecialchars($asetNama) . "</b>\n" .
+           "Tanggal Pinjam: " . date('d/m/Y', strtotime($tglPinjam)) . "\n" .
+           "Rencana Kembali: " . date('d/m/Y', strtotime($tglKembali)) . "\n" .
+           "Keterangan: " . htmlspecialchars($ket) . "\n\n" .
+           "<i>Silakan tinjau pengajuan ini di Sistem Inventaris.</i>";
+    sendTelegramNotification($pdo, $msg);
+
     setFlash('success', 'Peminjaman berhasil diajukan! Silakan menunggu konfirmasi dari Admin/Petugas.');
     header('Location: ' . BASE_URL . '/guru/riwayat'); exit;
 }

@@ -47,6 +47,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmtUpdate->execute([$tglKembali, $kondisi, $catatan ?: null, $id]);
     
     logActivity($pdo, $_SESSION['user_id'], 'Pengembalian', "Pengembalian aset: {$data['nama_aset']} oleh {$data['nama_peminjam']} (Kondisi: $kondisi)");
+    
+    // Telegram Notification
+    require_once __DIR__ . '/../../config/mailer.php';
+    $msg = "✅ <b>Pengembalian Aset Berhasil</b>\n\n" .
+           "Peminjam: <b>" . htmlspecialchars($data['nama_peminjam']) . "</b>\n" .
+           "Aset: <b>" . htmlspecialchars($data['nama_aset']) . "</b>\n" .
+           "Tanggal Pengembalian: " . date('d/m/Y', strtotime($tglKembali)) . "\n" .
+           "Kondisi saat kembali: <b>" . htmlspecialchars($kondisi) . "</b>\n" .
+           "Catatan: " . htmlspecialchars($catatan ?: '-') . "\n\n" .
+           "Petugas: " . htmlspecialchars($_SESSION['user_nama']);
+    sendTelegramNotification($pdo, $msg);
+
     setFlash('success', 'Aset berhasil dikembalikan!');
     header('Location: ' . BASE_URL . '/peminjaman');
     exit;

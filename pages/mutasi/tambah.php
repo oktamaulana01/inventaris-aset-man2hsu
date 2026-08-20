@@ -59,6 +59,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             logActivity($pdo, $_SESSION['user_id'], 'Mutasi Aset', "Mutasi aset {$aset['nama_aset']} ({$aset['kode_aset']}) dari " . ($aset['nama_lokasi'] ?? 'Tanpa Lokasi') . " ke $namaTujuan");
 
+            // Telegram Notification
+            require_once __DIR__ . '/../../config/mailer.php';
+            $msg = "🔄 <b>Mutasi Aset Sekolah</b>\n\n" .
+                   "Aset: <b>" . htmlspecialchars($aset['nama_aset']) . " (" . htmlspecialchars($aset['kode_aset']) . ")</b>\n" .
+                   "Dari Ruangan: <b>" . htmlspecialchars($aset['nama_lokasi'] ?? 'Tanpa Lokasi') . "</b>\n" .
+                   "Ke Ruangan: <b>" . htmlspecialchars($namaTujuan) . "</b>\n" .
+                   "Tanggal Mutasi: " . date('d/m/Y', strtotime($tglMutasi)) . "\n" .
+                   "Alasan: " . htmlspecialchars($keterangan ?: '-') . "\n\n" .
+                   "Petugas: " . htmlspecialchars($_SESSION['user_nama']);
+            sendTelegramNotification($pdo, $msg);
+
             $pdo->commit();
             setFlash('success', "Mutasi lokasi aset {$aset['nama_aset']} berhasil dilakukan!");
             header('Location: ' . BASE_URL . '/mutasi');

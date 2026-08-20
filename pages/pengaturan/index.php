@@ -11,18 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     
     if ($action === 'save_smtp') {
-        $fields = ['smtp_host', 'smtp_port', 'smtp_username', 'smtp_password', 'smtp_sender_name', 'smtp_sender_email', 'notif_h_minus_1', 'notif_h_0', 'notif_h_plus_1'];
+        $fields = ['smtp_host', 'smtp_port', 'smtp_username', 'smtp_password', 'smtp_sender_name', 'smtp_sender_email', 'notif_h_minus_1', 'notif_h_0', 'notif_h_plus_1', 'telegram_bot_token', 'telegram_chat_id', 'telegram_notif_aktif'];
         $stmt = $pdo->prepare("UPDATE pengaturan SET nilai = ? WHERE kunci = ?");
         foreach ($fields as $f) {
             $val = $_POST[$f] ?? '';
             // Checkbox: jika tidak dikirim, berarti 0
-            if (in_array($f, ['notif_h_minus_1', 'notif_h_0', 'notif_h_plus_1'])) {
+            if (in_array($f, ['notif_h_minus_1', 'notif_h_0', 'notif_h_plus_1', 'telegram_notif_aktif'])) {
                 $val = isset($_POST[$f]) ? '1' : '0';
             }
             $stmt->execute([$val, $f]);
         }
-        logActivity($pdo, $_SESSION['user_id'], 'Update Pengaturan', 'Memperbarui konfigurasi SMTP email');
-        setFlash('success', 'Pengaturan SMTP berhasil disimpan!');
+        logActivity($pdo, $_SESSION['user_id'], 'Update Pengaturan', 'Memperbarui konfigurasi SMTP email & Telegram');
+        setFlash('success', 'Pengaturan berhasil disimpan!');
         header('Location: ' . BASE_URL . '/pengaturan-email'); exit;
     }
     
@@ -33,6 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlash($result['success'] ? 'success' : 'danger', $result['message']);
         } else {
             setFlash('danger', 'Alamat email tidak valid!');
+        }
+        header('Location: ' . BASE_URL . '/pengaturan-email'); exit;
+    }
+
+    if ($action === 'test_telegram') {
+        $token = trim($_POST['test_token'] ?? '');
+        $chatId = trim($_POST['test_chat_id'] ?? '');
+        if ($token && $chatId) {
+            $result = sendTestTelegramMessage($pdo, $token, $chatId, "⚡ <b>Koneksi Berhasil!</b>\nIni adalah pesan uji coba dari Sistem Inventarisasi Aset MAN 2 HSU.");
+            setFlash($result['success'] ? 'success' : 'danger', $result['success'] ? 'Notifikasi Telegram uji coba berhasil dikirim!' : 'Gagal mengirim notifikasi: ' . $result['message']);
+        } else {
+            setFlash('danger', 'Token Bot dan Chat ID wajib diisi!');
         }
         header('Location: ' . BASE_URL . '/pengaturan-email'); exit;
     }
@@ -125,6 +137,28 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <hr style="border:none;border-top:1px solid #eee;margin:20px 0;">
                 
                 <h4 style="font-size:0.95rem;margin-bottom:12px;">
+                    <i class="fab fa-telegram" style="color:#0088cc;margin-right:4px;"></i> Konfigurasi Notifikasi Telegram
+                </h4>
+                
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label><i class="fab fa-telegram-plane" style="margin-right:4px;color:#0088cc;"></i> Token Bot Telegram</label>
+                        <input type="text" class="form-control" name="telegram_bot_token" value="<?= htmlspecialchars($settings['telegram_bot_token'] ?? '') ?>" placeholder="1234567890:ABCdefGhIJKlmNoPQRsTUVwxyZ">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-id-card" style="margin-right:4px;color:#0088cc;"></i> Chat ID Penerima (Grup / Pribadi)</label>
+                        <input type="text" class="form-control" name="telegram_chat_id" value="<?= htmlspecialchars($settings['telegram_chat_id'] ?? '') ?>" placeholder="-123456789 atau 123456789">
+                    </div>
+                </div>
+                
+                <div class="notif-toggle mt-3">
+                    <input type="checkbox" name="telegram_notif_aktif" id="notif_tg" value="1" <?= ($settings['telegram_notif_aktif'] ?? '0') === '1' ? 'checked' : '' ?>>
+                    <label for="notif_tg"><strong>Aktifkan Telegram</strong> — Kirim notifikasi otomatis secara real-time ke Telegram</label>
+                </div>
+
+                <hr style="border:none;border-top:1px solid #eee;margin:20px 0;">
+                
+                <h4 style="font-size:0.95rem;margin-bottom:12px;">
                     <i class="fas fa-bell" style="color:var(--accent-primary);margin-right:4px;"></i> Jadwal Notifikasi
                 </h4>
                 
@@ -164,6 +198,35 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <input type="email" class="form-control" name="test_email" placeholder="Masukkan email tujuan test..." required style="flex:1;min-width:250px;">
                     <button type="submit" class="btn btn-warning">
                         <i class="fas fa-paper-plane"></i> Kirim Test
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Telegram -->
+    <div class="card animate-fadeInUp" style="animation-delay:.12s;margin-top:20px;">
+        <div class="card-header">
+            <h3><i class="fab fa-telegram" style="color:#0088cc;margin-right:8px;"></i> Test Kirim Telegram</h3>
+        </div>
+        <div class="card-body">
+            <div class="test-section" style="background:#e0f2fe; border-color:#bae6fd;">
+                <p style="font-size:0.85rem;color:#0369a1;margin-top:0;">
+                    <i class="fas fa-info-circle"></i> Kirim pesan uji coba ke bot Telegram untuk memverifikasi token dan chat ID.
+                </p>
+                <form method="POST" style="display:flex;flex-direction:column;gap:12px;">
+                    <?= generateCsrfToken() ?>
+                    <input type="hidden" name="action" value="test_telegram">
+                    <div class="grid-2" style="margin-bottom:0;grid-gap:15px;">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <input type="text" class="form-control" name="test_token" placeholder="Token Bot Telegram..." required value="<?= htmlspecialchars($settings['telegram_bot_token'] ?? '') ?>">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <input type="text" class="form-control" name="test_chat_id" placeholder="Chat ID Penerima..." required value="<?= htmlspecialchars($settings['telegram_chat_id'] ?? '') ?>">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="background:#0284c7;border-color:#0284c7;align-self:flex-end;">
+                        <i class="fas fa-paper-plane"></i> Kirim Test Telegram
                     </button>
                 </form>
             </div>

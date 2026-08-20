@@ -324,4 +324,85 @@ function sendResetPasswordEmail($pdo, $emailTujuan, $nama, $resetLink) {
         return ['success' => false, 'message' => $e->getMessage()];
     }
 }
+
+/**
+ * Mengirim pesan notifikasi ke Telegram Bot
+ */
+function sendTelegramNotification($pdo, $message) {
+    try {
+        $settings = getSmtpSettings($pdo);
+        
+        $notifAktif = $settings['telegram_notif_aktif'] ?? '0';
+        $token = $settings['telegram_bot_token'] ?? '';
+        $chatId = $settings['telegram_chat_id'] ?? '';
+        
+        if ($notifAktif !== '1' || empty($token) || empty($chatId)) {
+            return ['success' => false, 'message' => 'Notifikasi Telegram dinonaktifkan atau konfigurasi tidak lengkap.'];
+        }
+        
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $data = [
+            'chat_id' => $chatId,
+            'text' => $message,
+            'parse_mode' => 'HTML'
+        ];
+        
+        $options = [
+            'http' => [
+                'header'  => "Content-type: application-x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data),
+                'timeout' => 5
+            ],
+        ];
+        $context  = stream_context_create($options);
+        $result = @file_get_contents($url, false, $context);
+        
+        if ($result === false) {
+            return ['success' => false, 'message' => 'Gagal mengirim request ke API Telegram.'];
+        }
+        
+        return ['success' => true];
+    } catch (Exception $e) {
+        return ['success' => false, 'message' => $e->getMessage()];
+    }
+}
+
+/**
+ * Menguji koneksi dan pengiriman pesan ke Telegram Bot
+ */
+function sendTestTelegramMessage($pdo, $token, $chatId, $message) {
+    try {
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $data = [
+            'chat_id' => $chatId,
+            'text' => $message,
+            'parse_mode' => 'HTML'
+        ];
+        
+        $options = [
+            'http' => [
+                'header'  => "Content-type: application-x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data),
+                'timeout' => 5
+            ],
+        ];
+        $context  = stream_context_create($options);
+        $result = @file_get_contents($url, false, $context);
+        
+        if ($result === false) {
+            return ['success' => false, 'message' => 'Koneksi gagal atau Token/Chat ID salah.'];
+        }
+        
+        $resObj = json_decode($result, true);
+        if (isset($resObj['ok']) && $resObj['ok'] === true) {
+            return ['success' => true];
+        } else {
+            return ['success' => false, 'message' => $resObj['description'] ?? 'Gagal mengirim pesan.'];
+        }
+    } catch (Exception $e) {
+        return ['success' => false, 'message' => $e->getMessage()];
+    }
+}
 ?>
