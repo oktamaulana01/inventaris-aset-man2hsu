@@ -44,11 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle foto upload
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/jfif', 'image/pjpeg'];
         $maxSize = 2 * 1024 * 1024; // 2MB
 
         if (!in_array($_FILES['foto']['type'], $allowedTypes)) {
-            $errors[] = 'Format foto harus JPG, PNG, GIF, atau WEBP.';
+            $errors[] = 'Format foto harus JPG, JPEG, PNG, GIF, WEBP, atau JFIF.';
         } elseif ($_FILES['foto']['size'] > $maxSize) {
             $errors[] = 'Ukuran foto maksimal 2MB.';
         } else {

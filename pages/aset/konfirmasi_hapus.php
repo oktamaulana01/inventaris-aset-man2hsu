@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $file = $_FILES['bukti_hapus'];
         $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-        $allowed = ['jpg', 'jpeg', 'png', 'webp'];
+        $allowed = ['jpg', 'jpeg', 'png', 'webp', 'jfif', 'gif', 'bmp', 'svg'];
         
         if (!in_array($ext, $allowed)) {
-            setFlash('danger', 'Format foto tidak didukung. Gunakan JPG, PNG, atau WEBP.');
+            setFlash('danger', 'Format foto tidak didukung. Gunakan JPG, JPEG, PNG, WEBP, atau JFIF.');
         } else {
             $uploadDir = __DIR__ . '/../../assets/uploads/bukti_hapus/';
             if (!is_dir($uploadDir)) {

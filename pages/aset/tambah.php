@@ -55,20 +55,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $gambar = null;
         if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
             $ext = strtolower(pathinfo($_FILES['gambar']['name'], PATHINFO_EXTENSION));
-            $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'jfif', 'bmp', 'svg'];
             if (in_array($ext, $allowed)) {
-                $gambar = 'aset_' . time() . '.' . $ext;
-                move_uploaded_file($_FILES['gambar']['tmp_name'], __DIR__ . '/../../assets/uploads/' . $gambar);
+                $gambar = 'aset_' . time() . '_' . rand(100, 999) . '.' . $ext;
+                $destination = __DIR__ . '/../../assets/uploads/' . $gambar;
+                if (!move_uploaded_file($_FILES['gambar']['tmp_name'], $destination)) {
+                    $errors[] = "Gagal memindahkan berkas gambar ke folder upload.";
+                }
+            } else {
+                $errors[] = "Format gambar tidak didukung (.{$ext}). Gunakan format JPG, JPEG, PNG, GIF, WEBP, atau JFIF.";
             }
+        } elseif (isset($_FILES['gambar']) && $_FILES['gambar']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $errors[] = "Terjadi kesalahan saat mengupload gambar (Error code: " . $_FILES['gambar']['error'] . ").";
         }
         
-        $stmt = $pdo->prepare("INSERT INTO aset (kode_aset, nama_aset, id_kategori, id_lokasi, jumlah, kondisi, tahun_perolehan, nilai_perolehan, sumber_dana, gambar, keterangan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$kode, $nama, $idKategori, $idLokasi, $jumlah, $kondisi, $tahun, $nilai, $sumber, $gambar, $keterangan]);
-        
-        logActivity($pdo, $_SESSION['user_id'], 'Tambah Aset', "Menambah aset: $nama ($kode)");
-        setFlash('success', 'Aset berhasil ditambahkan!');
-        header('Location: ' . BASE_URL . '/aset');
-        exit;
+        if (empty($errors)) {
+            $stmt = $pdo->prepare("INSERT INTO aset (kode_aset, nama_aset, id_kategori, id_lokasi, jumlah, kondisi, tahun_perolehan, nilai_perolehan, sumber_dana, gambar, keterangan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$kode, $nama, $idKategori, $idLokasi, $jumlah, $kondisi, $tahun, $nilai, $sumber, $gambar, $keterangan]);
+            
+            logActivity($pdo, $_SESSION['user_id'], 'Tambah Aset', "Menambah aset: $nama ($kode)");
+            setFlash('success', 'Aset berhasil ditambahkan!');
+            header('Location: ' . BASE_URL . '/aset');
+            exit;
+        }
     }
 }
 
