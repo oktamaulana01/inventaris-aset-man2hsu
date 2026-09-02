@@ -71,6 +71,15 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <div class="detail-label">Nama Aset</div>
                 <div class="detail-value" style="font-weight:600;"><?= htmlspecialchars($aset['nama_aset']) ?></div>
                 
+                <div class="detail-label">Klasifikasi</div>
+                <div class="detail-value">
+                    <?php if (($aset['jenis_barang'] ?? 'Aset Tetap') === 'Aset Tetap'): ?>
+                        <span class="badge badge-primary"><i class="fas fa-landmark"></i> Aset Tetap (Kapitalisasi BMN)</span>
+                    <?php else: ?>
+                        <span class="badge badge-info"><i class="fas fa-boxes-packing"></i> Inventaris Barang (Operasional / Non-Kapitalisasi)</span>
+                    <?php endif; ?>
+                </div>
+
                 <div class="detail-label">Kategori</div>
                 <div class="detail-value"><?= htmlspecialchars($aset['nama_kategori'] ?? '-') ?></div>
                 

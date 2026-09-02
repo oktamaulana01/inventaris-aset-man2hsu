@@ -13,6 +13,7 @@ $offset = ($page - 1) * $perPage;
 $search = $_GET['search'] ?? '';
 $filterKondisi = $_GET['kondisi'] ?? '';
 $filterKategori = $_GET['kategori'] ?? '';
+$filterJenis = $_GET['jenis'] ?? '';
 
 $where = "WHERE a.deleted_at IS NULL";
 $params = [];
@@ -30,12 +31,20 @@ if ($filterKategori) {
     $where .= " AND a.id_kategori = ?";
     $params[] = $filterKategori;
 }
+if ($filterJenis) {
+    $where .= " AND a.jenis_barang = ?";
+    $params[] = $filterJenis;
+}
 
 // Count total
 $stmtCount = $pdo->prepare("SELECT COUNT(*) FROM aset a $where");
 $stmtCount->execute($params);
 $total = $stmtCount->fetchColumn();
 $totalPages = ceil($total / $perPage);
+
+// Stats by jenis
+$statAsetTetap = $pdo->query("SELECT COUNT(*) FROM aset WHERE deleted_at IS NULL AND jenis_barang = 'Aset Tetap'")->fetchColumn();
+$statInventaris = $pdo->query("SELECT COUNT(*) FROM aset WHERE deleted_at IS NULL AND jenis_barang = 'Inventaris Barang'")->fetchColumn();
 
 // Get aset
 $stmt = $pdo->prepare("SELECT a.*, k.nama_kategori, l.nama_lokasi 
@@ -57,35 +66,56 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
 <div class="page-header">
     <div>
-        <h2><i class="fas fa-boxes-stacked"></i> Data Aset</h2>
+        <h2><i class="fas fa-boxes-stacked"></i> Data Aset & Inventaris</h2>
         <div class="breadcrumb">
             <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
-            <span>Data Aset</span>
+            <span>Data Aset & Inventaris</span>
         </div>
     </div>
     <div class="btn-group">
         <a href="<?= BASE_URL ?>/aset/tambah" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Tambah Aset Baru
+            <i class="fas fa-plus"></i> Tambah Barang Baru
         </a>
         <a href="<?= BASE_URL ?>/aset/tambah-rusak" class="btn btn-warning" style="color: #fff;">
-            <i class="fas fa-plus-circle"></i> Tambah Aset Rusak
+            <i class="fas fa-plus-circle"></i> Tambah Barang Rusak
         </a>
     </div>
+</div>
+
+<!-- Tabs Klasifikasi Barang -->
+<div style="display:flex; gap:10px; margin-bottom:16px;">
+    <a href="<?= BASE_URL ?>/aset" class="btn <?= empty($filterJenis) ? 'btn-primary' : 'btn-secondary' ?>" style="border-radius:20px; font-size:13px;">
+        <i class="fas fa-layer-group"></i> Semua Barang (<?= $statAsetTetap + $statInventaris ?>)
+    </a>
+    <a href="<?= BASE_URL ?>/aset?jenis=Aset+Tetap" class="btn <?= $filterJenis === 'Aset Tetap' ? 'btn-primary' : 'btn-secondary' ?>" style="border-radius:20px; font-size:13px;">
+        <i class="fas fa-landmark"></i> Aset Tetap / BMN Modal (<?= $statAsetTetap ?>)
+    </a>
+    <a href="<?= BASE_URL ?>/aset?jenis=Inventaris+Barang" class="btn <?= $filterJenis === 'Inventaris Barang' ? 'btn-primary' : 'btn-secondary' ?>" style="border-radius:20px; font-size:13px;">
+        <i class="fas fa-boxes-packing"></i> Inventaris / Perlengkapan (<?= $statInventaris ?>)
+    </a>
 </div>
 
 <!-- Filter -->
 <div class="card mb-4">
     <div class="card-body">
         <form method="GET" class="search-bar">
-            <input type="text" class="search-input" name="search" placeholder="Cari kode atau nama aset..." value="<?= htmlspecialchars($search) ?>">
-            <select class="form-control" name="kondisi" style="max-width:180px;">
+            <?php if ($filterJenis): ?>
+                <input type="hidden" name="jenis" value="<?= htmlspecialchars($filterJenis) ?>">
+            <?php endif; ?>
+            <input type="text" class="search-input" name="search" placeholder="Cari kode atau nama barang..." value="<?= htmlspecialchars($search) ?>">
+            <select class="form-control" name="jenis" style="max-width:180px;">
+                <option value="">Semua Jenis</option>
+                <option value="Aset Tetap" <?= $filterJenis === 'Aset Tetap' ? 'selected' : '' ?>>Aset Tetap</option>
+                <option value="Inventaris Barang" <?= $filterJenis === 'Inventaris Barang' ? 'selected' : '' ?>>Inventaris Barang</option>
+            </select>
+            <select class="form-control" name="kondisi" style="max-width:160px;">
                 <option value="">Semua Kondisi</option>
                 <option value="Baik" <?= $filterKondisi === 'Baik' ? 'selected' : '' ?>>Baik</option>
                 <option value="Rusak Ringan" <?= $filterKondisi === 'Rusak Ringan' ? 'selected' : '' ?>>Rusak Ringan</option>
                 <option value="Rusak Berat" <?= $filterKondisi === 'Rusak Berat' ? 'selected' : '' ?>>Rusak Berat</option>
             </select>
-            <select class="form-control" name="kategori" style="max-width:200px;">
+            <select class="form-control" name="kategori" style="max-width:180px;">
                 <option value="">Semua Kategori</option>
                 <?php foreach ($kategoriList as $kat): ?>
                     <option value="<?= $kat['id'] ?>" <?= $filterKategori == $kat['id'] ? 'selected' : '' ?>><?= htmlspecialchars($kat['nama_kategori']) ?></option>
@@ -100,7 +130,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <!-- Data Table -->
 <div class="card animate-fadeInUp">
     <div class="card-header">
-        <h3>Daftar Aset (<?= $total ?> data)</h3>
+        <h3>Daftar Barang (<?= $total ?> data)</h3>
     </div>
     <div class="card-body">
         <div class="table-wrapper">
@@ -109,7 +139,8 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <tr>
                         <th>No</th>
                         <th>Kode</th>
-                        <th>Nama Aset</th>
+                        <th>Nama Barang</th>
+                        <th>Klasifikasi</th>
                         <th>Kategori</th>
                         <th>Lokasi</th>
                         <th>Jumlah</th>
@@ -120,16 +151,23 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 </thead>
                 <tbody>
                     <?php if (empty($asetList)): ?>
-                        <tr><td colspan="9" class="text-center text-muted">Tidak ada data aset.</td></tr>
+                        <tr><td colspan="10" class="text-center text-muted">Tidak ada data aset / inventaris.</td></tr>
                     <?php else: ?>
                         <?php foreach ($asetList as $i => $a): ?>
                         <tr>
                             <td><?= $offset + $i + 1 ?></td>
                             <td><span class="badge badge-primary"><?= htmlspecialchars($a['kode_aset']) ?></span></td>
                             <td>
-                                <a href="<?= BASE_URL ?>/aset/detail?id=<?= $a['id'] ?>" style="font-weight:500;">
+                                <a href="<?= BASE_URL ?>/aset/detail?id=<?= $a['id'] ?>" style="font-weight:600;">
                                     <?= htmlspecialchars($a['nama_aset']) ?>
                                 </a>
+                            </td>
+                            <td>
+                                <?php if ($a['jenis_barang'] === 'Aset Tetap'): ?>
+                                    <span class="badge badge-primary" style="font-size:0.75rem;"><i class="fas fa-landmark"></i> Aset Tetap</span>
+                                <?php else: ?>
+                                    <span class="badge badge-info" style="font-size:0.75rem;"><i class="fas fa-box-open"></i> Inventaris</span>
+                                <?php endif; ?>
                             </td>
                             <td><?= htmlspecialchars($a['nama_kategori'] ?? '-') ?></td>
                             <td><?= htmlspecialchars($a['nama_lokasi'] ?? '-') ?></td>

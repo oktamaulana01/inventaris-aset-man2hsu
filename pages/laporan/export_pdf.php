@@ -11,6 +11,7 @@ $pdo = getConnection();
 $type = $_GET['type'] ?? 'keseluruhan';
 $filterKondisi = $_GET['kondisi'] ?? '';
 $filterKategori = $_GET['kategori'] ?? '';
+$filterJenis = $_GET['jenis'] ?? '';
 $filterStatus = $_GET['status'] ?? '';
 $startDate = $_GET['start_date'] ?? '';
 $endDate = $_GET['end_date'] ?? '';
@@ -103,23 +104,24 @@ $orientation = 'portrait';
 
 switch ($type) {
     case 'keseluruhan':
-        $title = 'LAPORAN INVENTARIS ASET KESELURUHAN';
+        $title = $filterJenis ? ('LAPORAN DATA ' . strtoupper($filterJenis)) : 'LAPORAN INVENTARIS ASET KESELURUHAN';
         $orientation = 'landscape';
         $where = "WHERE a.deleted_at IS NULL"; $params = [];
         if ($filterKondisi) { $where .= " AND a.kondisi = ?"; $params[] = $filterKondisi; }
         if ($filterKategori) { $where .= " AND a.id_kategori = ?"; $params[] = $filterKategori; }
+        if ($filterJenis) { $where .= " AND a.jenis_barang = ?"; $params[] = $filterJenis; }
         $stmt = $pdo->prepare("SELECT a.*, k.nama_kategori, l.nama_lokasi FROM aset a LEFT JOIN kategori k ON a.id_kategori = k.id LEFT JOIN lokasi l ON a.id_lokasi = l.id $where ORDER BY a.kode_aset");
         $stmt->execute($params);
         $data = $stmt->fetchAll();
-        $tableHtml = '<table class="data"><thead><tr><th>No</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Lokasi</th><th>Jumlah</th><th>Kondisi</th><th>Tahun</th><th style="text-align:right;">Nilai</th></tr></thead><tbody>';
+        $tableHtml = '<table class="data"><thead><tr><th>No</th><th>Kode</th><th>Nama Barang</th><th>Klasifikasi</th><th>Kategori</th><th>Lokasi</th><th>Jumlah</th><th>Kondisi</th><th>Tahun</th><th style="text-align:right;">Nilai</th></tr></thead><tbody>';
         $total = 0;
         foreach ($data as $i => $a) {
             $nilai = $a['nilai_perolehan'] * $a['jumlah'];
             $total += $nilai;
             $badge = $a['kondisi'] === 'Baik' ? 'success' : ($a['kondisi'] === 'Rusak Ringan' ? 'warning' : 'danger');
-            $tableHtml .= '<tr><td class="text-center">' . ($i+1) . '</td><td>' . htmlspecialchars($a['kode_aset']) . '</td><td>' . htmlspecialchars($a['nama_aset']) . '</td><td>' . htmlspecialchars($a['nama_kategori'] ?? '-') . '</td><td>' . htmlspecialchars($a['nama_lokasi'] ?? '-') . '</td><td class="text-center">' . $a['jumlah'] . '</td><td class="text-center"><span class="badge badge-' . $badge . '">' . $a['kondisi'] . '</span></td><td class="text-center">' . ($a['tahun_perolehan'] ?? '-') . '</td><td class="text-right">' . formatRp($nilai) . '</td></tr>';
+            $tableHtml .= '<tr><td class="text-center">' . ($i+1) . '</td><td>' . htmlspecialchars($a['kode_aset']) . '</td><td>' . htmlspecialchars($a['nama_aset']) . '</td><td>' . htmlspecialchars($a['jenis_barang']) . '</td><td>' . htmlspecialchars($a['nama_kategori'] ?? '-') . '</td><td>' . htmlspecialchars($a['nama_lokasi'] ?? '-') . '</td><td class="text-center">' . $a['jumlah'] . '</td><td class="text-center"><span class="badge badge-' . $badge . '">' . $a['kondisi'] . '</span></td><td class="text-center">' . ($a['tahun_perolehan'] ?? '-') . '</td><td class="text-right">' . formatRp($nilai) . '</td></tr>';
         }
-        $tableHtml .= '<tr class="total-row"><td colspan="8" class="text-right">TOTAL</td><td class="text-right">' . formatRp($total) . '</td></tr>';
+        $tableHtml .= '<tr class="total-row"><td colspan="9" class="text-right">TOTAL</td><td class="text-right">' . formatRp($total) . '</td></tr>';
         $tableHtml .= '</tbody></table>';
         break;
 

@@ -1,5 +1,5 @@
 -- Database Dump Inventaris MAN 2 HSU
--- Date: 2026-09-02 01:53:19
+-- Date: 2026-09-02 03:42:08
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -9,6 +9,7 @@ CREATE TABLE `aset` (
   `kode_aset` varchar(50) NOT NULL,
   `nama_aset` varchar(150) NOT NULL,
   `id_kategori` int DEFAULT NULL,
+  `jenis_barang` enum('Aset Tetap','Inventaris Barang') NOT NULL DEFAULT 'Aset Tetap',
   `id_lokasi` int DEFAULT NULL,
   `jumlah` int NOT NULL DEFAULT '1',
   `kondisi` enum('Baik','Rusak Ringan','Rusak Berat') NOT NULL DEFAULT 'Baik',
@@ -35,31 +36,31 @@ CREATE TABLE `aset` (
   CONSTRAINT `aset_ibfk_2` FOREIGN KEY (`id_lokasi`) REFERENCES `lokasi` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `aset` (`id`, `kode_aset`, `nama_aset`, `id_kategori`, `id_lokasi`, `jumlah`, `kondisi`, `tahun_perolehan`, `nilai_perolehan`, `sumber_dana`, `gambar`, `keterangan`, `qr_code_path`, `created_at`, `updated_at`, `deleted_at`, `bukti_hapus`, `status_penghapusan`, `status_mutasi`, `tgl_pengajuan_hapus`, `file_ba_scan`, `alasan_hapus`) VALUES
-('3', 'AST-2024-003', 'Komputer Desktop', '2', '11', '10', 'Baik', '2024', '8950000.00', 'Dana BOS', 'aset_1780621971.png', 'PC Desktop Core i5', 'qr_AST-2024-003.png', '2026-03-12 20:51:46', '2026-06-05 09:21:03', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('8', 'AST-2021-008', 'Mikroskop Monokuler 40X-2000X', '3', '12', '2', 'Rusak Berat', '2021', '1185000.00', 'Dana BOS', 'aset_1788312927_395.png', 'Mikroskop binokuler', 'qr_AST-2021-008.png', '2026-03-12 20:51:46', '2026-09-02 09:43:39', '2026-09-02 09:43:39', 'bukti_AST-2021-008_1788312953.png', 'approved', 'none', '2026-09-02 09:35:53', 'BA_HAPUS_SIGNED_AST-2021-008_1788313419.pdf', 'barang sudah tidak bisa di perbaiki'),
-('9', 'AST-2024-009', 'Bola Basket', '5', '15', '1', 'Baik', '2024', '250000.00', 'Dana BOS', NULL, 'Bola basket Molten', 'qr_AST-2024-009.png', '2026-03-12 20:51:46', '2026-07-21 13:32:12', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('11', 'AST-2026-011', 'Bola Futsal', '5', '15', '1', 'Baik', '2026', '300000.00', 'APBD', 'aset_1773414927.png', 'alat olahraga', 'qr_AST-2026-011.png', '2026-03-13 23:15:27', '2026-06-10 10:58:00', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('12', 'AST-2026-012', 'Bola Voli', '5', '15', '1', 'Baik', '2026', '200000.00', 'APBD', 'aset_1773415043.png', '', 'qr_AST-2026-012.png', '2026-03-13 23:17:23', '2026-09-02 09:13:03', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('14', 'AST-2026-014', 'PROYEKTOR', '2', '3', '2', 'Baik', '2025', '7650000.00', 'Dana BOS', 'aset_1783338529.png', 'EPSON EB-E500', 'qr_AST-2026-014.png', '2026-07-06 19:48:49', '2026-09-02 09:25:45', '2026-08-20 15:20:00', 'bukti_AST-2026-014_1787210400.png', 'approved', 'none', NULL, NULL, 'barang rusak'),
-('19', 'AST-2026-015', 'Laptop ASUS ExpertBook B1400', '2', '11', '15', 'Baik', '2026', '8500000.00', 'BOS Reguler', 'aset_1787320090_770.png', 'Laptop pembelajaran dan ujian berbasis komputer di Lab Komputer', NULL, '2026-08-21 21:29:34', '2026-08-21 21:48:10', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('20', 'AST-2026-016', 'Smart TV Samsung 55 Inch Crystal UHD', '2', '14', '1', 'Baik', '2026', '7200000.00', 'Komite Madrasah', 'aset_1787320128_555.png', 'Smart TV presentasi, video conference, dan acara di Aula', NULL, '2026-08-21 21:29:34', '2026-08-21 21:48:48', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('21', 'AST-2025-017', 'Sound System Portable Baretone 15 Inch', '2', '2', '2', 'Baik', '2025', '3500000.00', 'BOS Reguler', 'aset_1787320687_880.png', 'Speaker portable + 2 wireless mic untuk upacara dan rapat', NULL, '2026-08-21 21:29:34', '2026-08-21 21:58:07', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('22', 'AST-2025-018', 'Meja Rapat Kayu Jati Oval', '1', '1', '1', 'Baik', '2025', '4800000.00', 'APBN', NULL, 'Meja rapat pimpinan kayu jati ukuran 300x120 cm', NULL, '2026-08-21 21:29:34', '2026-08-21 21:29:34', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('23', 'AST-2024-019', 'Set Kursi & Meja Siswa Ergonomis', '1', '4', '36', 'Baik', '2024', '350000.00', 'BOS Reguler', 'aset_1787320703_834.png', 'Satu set meja kursi belajar siswa bahan kayu lapis dan besi', 'qr_AST-2024-019.png', '2026-08-21 21:29:34', '2026-08-21 21:58:23', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('24', 'AST-2024-020', 'Lemari Arsip Besi 4 Pintu Lion', '1', '3', '2', 'Baik', '2024', '2750000.00', 'APBN', 'aset_1787320769_854.png', 'Lemari filing cabinet tahan api untuk arsip ijazah dan kepegawaian', NULL, '2026-08-21 21:29:34', '2026-08-21 21:59:29', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('25', 'AST-2025-021', 'Mikroskop Binokuler Olympus CX23', '3', '12', '5', 'Baik', '2025', '12500000.00', 'Hibah Kemenag', 'aset_1787320821_916.png', 'Mikroskop praktikum biologi siswa resolusi tinggi', NULL, '2026-08-21 21:29:34', '2026-08-21 22:00:21', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('26', 'AST-2024-022', 'Torso Model Anatomi Tubuh Manusia', '3', '12', '2', 'Baik', '2024', '1850000.00', 'BOS Reguler', 'aset_1787320860_537.png', 'Model organ tubuh manusia lengkap ukuran dewasa untuk peraga IPA', NULL, '2026-08-21 21:29:34', '2026-08-21 22:01:00', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('27', 'AST-2025-023', 'Paket Ensiklopedia Islam Tematik (10 Jilid)', '4', '10', '3', 'Baik', '2025', '4500000.00', 'Komite Madrasah', 'aset_1787320940_819.png', 'Referensi sejarah peradaban Islam dan sains Islam perpustakaan', NULL, '2026-08-21 21:29:34', '2026-08-21 22:02:20', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('28', 'AST-2026-024', 'Set Raket Badminton Yonex Nanoray + Net', '5', '15', '8', 'Baik', '2026', '450000.00', 'BOS Reguler', 'aset_1787320952_272.png', 'Raket dan net bulutangkis untuk ekstrakurikuler olahraga', NULL, '2026-08-21 21:29:34', '2026-08-21 22:02:32', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('29', 'AST-2024-025', 'Matras Senam Lantai 2x1 Meter', '5', '15', '4', 'Rusak Ringan', '2024', '1200000.00', 'BOS Reguler', 'aset_1787321000_542.png', 'Busa matras senam ketebalan 10cm, jahitan tepi luar terkelupas sedikit', NULL, '2026-08-21 21:29:34', '2026-08-21 22:03:20', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('30', 'AST-2025-026', 'Mesin Fotokopi Multifungsi Kyocera M2040dn', '7', '3', '1', 'Baik', '2025', '8900000.00', 'APBN', 'aset_1787320040_179.png', 'Mesin cetak & scan dokumen operasional administrasi madrasah', 'qr_AST-2025-026.png', '2026-08-21 21:29:34', '2026-08-21 21:47:20', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('31', 'AST-2023-027', 'Sepeda Motor Honda Vario 125 Operasional', '6', '3', '1', 'Baik', '2023', '22500000.00', 'APBN', 'aset_1787321190_400.png', 'Kendaraan dinas roda dua untuk dinas luar tata usaha (DA 4567 XY)', NULL, '2026-08-21 21:29:34', '2026-08-21 22:06:30', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('32', 'AST-2025-028', 'Router Switch Mikrotik Cloud Router CRS328', '2', '11', '2', 'Baik', '2025', '5600000.00', 'BOS Reguler', 'aset_1787321259_152.png', 'Switch jaringan utama 24 Port Gigabit PoE untuk internet sekolah', NULL, '2026-08-21 21:29:34', '2026-08-21 22:07:39', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('33', 'AST-2024-029', 'AC Split Daikin 1.5 PK Inverter', '2', '2', '2', 'Rusak Ringan', '2024', '5200000.00', 'Komite Madrasah', 'aset_1787321285_127.png', 'Pendingin udara ruang guru, pendinginan kurang maksimal perlu servis rutin', NULL, '2026-08-21 21:29:34', '2026-08-21 22:08:05', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('34', 'AST-2023-030', 'Mimbar Podium Kayu Jati Ukir Jepara', '1', '13', '1', 'Baik', '2023', '3200000.00', 'Hibah Kemenag', NULL, 'Podium khutbah jumat dan ceramah di Mushalla madrasah', NULL, '2026-08-21 21:29:34', '2026-08-21 21:29:34', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('35', 'AST-2022-031', 'Papan Tulis Whiteboard Magnetik 120x240cm', '1', '6', '6', 'Baik', '2022', '850000.00', 'BOS Reguler', NULL, 'Whiteboard gantung kelas XI-A dan kelas sekitarnya', NULL, '2026-08-21 21:29:34', '2026-08-21 21:29:34', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
-('36', 'AST-2024-032', 'Genset Silent Perkins 15 KVA', '2', '15', '1', 'Rusak Berat', '2024', '38000000.00', 'APBN', NULL, 'Generator cadangan listrik darurat, modul dinamo starter terbakar', NULL, '2026-08-21 21:29:34', '2026-08-21 21:29:34', NULL, NULL, 'none', 'none', NULL, NULL, NULL);
+INSERT INTO `aset` (`id`, `kode_aset`, `nama_aset`, `id_kategori`, `jenis_barang`, `id_lokasi`, `jumlah`, `kondisi`, `tahun_perolehan`, `nilai_perolehan`, `sumber_dana`, `gambar`, `keterangan`, `qr_code_path`, `created_at`, `updated_at`, `deleted_at`, `bukti_hapus`, `status_penghapusan`, `status_mutasi`, `tgl_pengajuan_hapus`, `file_ba_scan`, `alasan_hapus`) VALUES
+('3', 'AST-2024-003', 'Komputer Desktop', '2', 'Aset Tetap', '11', '10', 'Baik', '2024', '8950000.00', 'Dana BOS', 'aset_1780621971.png', 'PC Desktop Core i5', 'qr_AST-2024-003.png', '2026-03-12 20:51:46', '2026-06-05 09:21:03', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('8', 'AST-2021-008', 'Mikroskop Monokuler 40X-2000X', '3', 'Aset Tetap', '12', '2', 'Rusak Berat', '2021', '1185000.00', 'Dana BOS', 'aset_1788312927_395.png', 'Mikroskop binokuler', 'qr_AST-2021-008.png', '2026-03-12 20:51:46', '2026-09-02 09:43:39', '2026-09-02 09:43:39', 'bukti_AST-2021-008_1788312953.png', 'approved', 'none', '2026-09-02 09:35:53', 'BA_HAPUS_SIGNED_AST-2021-008_1788313419.pdf', 'barang sudah tidak bisa di perbaiki'),
+('9', 'AST-2024-009', 'Bola Basket', '5', 'Inventaris Barang', '15', '1', 'Baik', '2024', '250000.00', 'Dana BOS', NULL, 'Bola basket Molten', 'qr_AST-2024-009.png', '2026-03-12 20:51:46', '2026-09-02 11:40:11', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('11', 'AST-2026-011', 'Bola Futsal', '5', 'Inventaris Barang', '15', '1', 'Baik', '2026', '300000.00', 'APBD', 'aset_1773414927.png', 'alat olahraga', 'qr_AST-2026-011.png', '2026-03-13 23:15:27', '2026-09-02 11:40:11', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('12', 'AST-2026-012', 'Bola Voli', '5', 'Inventaris Barang', '15', '1', 'Baik', '2026', '200000.00', 'APBD', 'aset_1773415043.png', '', 'qr_AST-2026-012.png', '2026-03-13 23:17:23', '2026-09-02 11:40:11', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('14', 'AST-2026-014', 'PROYEKTOR', '2', 'Aset Tetap', '3', '2', 'Baik', '2025', '7650000.00', 'Dana BOS', 'aset_1783338529.png', 'EPSON EB-E500', 'qr_AST-2026-014.png', '2026-07-06 19:48:49', '2026-09-02 09:25:45', '2026-08-20 15:20:00', 'bukti_AST-2026-014_1787210400.png', 'approved', 'none', NULL, NULL, 'barang rusak'),
+('19', 'AST-2026-015', 'Laptop ASUS ExpertBook B1400', '2', 'Aset Tetap', '11', '15', 'Baik', '2026', '8500000.00', 'BOS Reguler', 'aset_1787320090_770.png', 'Laptop pembelajaran dan ujian berbasis komputer di Lab Komputer', NULL, '2026-08-21 21:29:34', '2026-08-21 21:48:10', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('20', 'AST-2026-016', 'Smart TV Samsung 55 Inch Crystal UHD', '2', 'Aset Tetap', '14', '1', 'Baik', '2026', '7200000.00', 'Komite Madrasah', 'aset_1787320128_555.png', 'Smart TV presentasi, video conference, dan acara di Aula', NULL, '2026-08-21 21:29:34', '2026-08-21 21:48:48', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('21', 'AST-2025-017', 'Sound System Portable Baretone 15 Inch', '2', 'Aset Tetap', '2', '2', 'Baik', '2025', '3500000.00', 'BOS Reguler', 'aset_1787320687_880.png', 'Speaker portable + 2 wireless mic untuk upacara dan rapat', NULL, '2026-08-21 21:29:34', '2026-08-21 21:58:07', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('22', 'AST-2025-018', 'Meja Rapat Kayu Jati Oval', '1', 'Aset Tetap', '1', '1', 'Baik', '2025', '4800000.00', 'APBN', NULL, 'Meja rapat pimpinan kayu jati ukuran 300x120 cm', NULL, '2026-08-21 21:29:34', '2026-08-21 21:29:34', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('23', 'AST-2024-019', 'Set Kursi & Meja Siswa Ergonomis', '1', 'Aset Tetap', '4', '36', 'Baik', '2024', '350000.00', 'BOS Reguler', 'aset_1787320703_834.png', 'Satu set meja kursi belajar siswa bahan kayu lapis dan besi', 'qr_AST-2024-019.png', '2026-08-21 21:29:34', '2026-08-21 21:58:23', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('24', 'AST-2024-020', 'Lemari Arsip Besi 4 Pintu Lion', '1', 'Aset Tetap', '3', '2', 'Baik', '2024', '2750000.00', 'APBN', 'aset_1787320769_854.png', 'Lemari filing cabinet tahan api untuk arsip ijazah dan kepegawaian', NULL, '2026-08-21 21:29:34', '2026-08-21 21:59:29', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('25', 'AST-2025-021', 'Mikroskop Binokuler Olympus CX23', '3', 'Aset Tetap', '12', '5', 'Baik', '2025', '12500000.00', 'Hibah Kemenag', 'aset_1787320821_916.png', 'Mikroskop praktikum biologi siswa resolusi tinggi', NULL, '2026-08-21 21:29:34', '2026-08-21 22:00:21', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('26', 'AST-2024-022', 'Torso Model Anatomi Tubuh Manusia', '3', 'Aset Tetap', '12', '2', 'Baik', '2024', '1850000.00', 'BOS Reguler', 'aset_1787320860_537.png', 'Model organ tubuh manusia lengkap ukuran dewasa untuk peraga IPA', NULL, '2026-08-21 21:29:34', '2026-08-21 22:01:00', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('27', 'AST-2025-023', 'Paket Ensiklopedia Islam Tematik (10 Jilid)', '4', 'Aset Tetap', '10', '3', 'Baik', '2025', '4500000.00', 'Komite Madrasah', 'aset_1787320940_819.png', 'Referensi sejarah peradaban Islam dan sains Islam perpustakaan', NULL, '2026-08-21 21:29:34', '2026-08-21 22:02:20', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('28', 'AST-2026-024', 'Set Raket Badminton Yonex Nanoray + Net', '5', 'Inventaris Barang', '15', '8', 'Baik', '2026', '450000.00', 'BOS Reguler', 'aset_1787320952_272.png', 'Raket dan net bulutangkis untuk ekstrakurikuler olahraga', NULL, '2026-08-21 21:29:34', '2026-09-02 11:40:11', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('29', 'AST-2024-025', 'Matras Senam Lantai 2x1 Meter', '5', 'Inventaris Barang', '15', '4', 'Rusak Ringan', '2024', '1200000.00', 'BOS Reguler', 'aset_1787321000_542.png', 'Busa matras senam ketebalan 10cm, jahitan tepi luar terkelupas sedikit', NULL, '2026-08-21 21:29:34', '2026-09-02 11:40:11', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('30', 'AST-2025-026', 'Mesin Fotokopi Multifungsi Kyocera M2040dn', '7', 'Aset Tetap', '3', '1', 'Baik', '2025', '8900000.00', 'APBN', 'aset_1787320040_179.png', 'Mesin cetak & scan dokumen operasional administrasi madrasah', 'qr_AST-2025-026.png', '2026-08-21 21:29:34', '2026-08-21 21:47:20', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('31', 'AST-2023-027', 'Sepeda Motor Honda Vario 125 Operasional', '6', 'Aset Tetap', '3', '1', 'Baik', '2023', '22500000.00', 'APBN', 'aset_1787321190_400.png', 'Kendaraan dinas roda dua untuk dinas luar tata usaha (DA 4567 XY)', NULL, '2026-08-21 21:29:34', '2026-08-21 22:06:30', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('32', 'AST-2025-028', 'Router Switch Mikrotik Cloud Router CRS328', '2', 'Aset Tetap', '11', '2', 'Baik', '2025', '5600000.00', 'BOS Reguler', 'aset_1787321259_152.png', 'Switch jaringan utama 24 Port Gigabit PoE untuk internet sekolah', NULL, '2026-08-21 21:29:34', '2026-08-21 22:07:39', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('33', 'AST-2024-029', 'AC Split Daikin 1.5 PK Inverter', '2', 'Aset Tetap', '4', '2', 'Rusak Ringan', '2024', '5200000.00', 'Komite Madrasah', 'aset_1787321285_127.png', 'Pendingin udara ruang guru, pendinginan kurang maksimal perlu servis rutin', NULL, '2026-08-21 21:29:34', '2026-09-02 10:56:26', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('34', 'AST-2023-030', 'Mimbar Podium Kayu Jati Ukir Jepara', '1', 'Aset Tetap', '13', '1', 'Baik', '2023', '3200000.00', 'Hibah Kemenag', NULL, 'Podium khutbah jumat dan ceramah di Mushalla madrasah', NULL, '2026-08-21 21:29:34', '2026-08-21 21:29:34', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('35', 'AST-2022-031', 'Papan Tulis Whiteboard Magnetik 120x240cm', '1', 'Inventaris Barang', '6', '6', 'Baik', '2022', '850000.00', 'BOS Reguler', NULL, 'Whiteboard gantung kelas XI-A dan kelas sekitarnya', NULL, '2026-08-21 21:29:34', '2026-09-02 11:40:11', NULL, NULL, 'none', 'none', NULL, NULL, NULL),
+('36', 'AST-2024-032', 'Genset Silent Perkins 15 KVA', '2', 'Aset Tetap', '14', '1', 'Rusak Berat', '2024', '38000000.00', 'APBN', NULL, 'Generator cadangan listrik darurat, modul dinamo starter terbakar', NULL, '2026-08-21 21:29:34', '2026-09-02 10:45:55', NULL, NULL, 'none', 'none', NULL, NULL, NULL);
 
 DROP TABLE IF EXISTS `email_notifications`;
 CREATE TABLE `email_notifications` (
@@ -74,7 +75,7 @@ CREATE TABLE `email_notifications` (
   PRIMARY KEY (`id`),
   KEY `id_peminjaman` (`id_peminjaman`),
   CONSTRAINT `email_notifications_ibfk_1` FOREIGN KEY (`id_peminjaman`) REFERENCES `peminjaman` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `email_notifications` (`id`, `id_peminjaman`, `tipe`, `media`, `email_tujuan`, `status`, `pesan_error`, `created_at`) VALUES
 ('2', '5', 'reminder', 'email', 'm.oktamaulana6@gmail.com', 'sent', NULL, '2026-05-23 19:09:30'),
@@ -174,7 +175,7 @@ CREATE TABLE `mutasi_aset` (
   CONSTRAINT `mutasi_aset_ibfk_2` FOREIGN KEY (`id_lokasi_asal`) REFERENCES `lokasi` (`id`) ON DELETE SET NULL,
   CONSTRAINT `mutasi_aset_ibfk_3` FOREIGN KEY (`id_lokasi_tujuan`) REFERENCES `lokasi` (`id`) ON DELETE SET NULL,
   CONSTRAINT `mutasi_aset_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `mutasi_aset` (`id`, `id_aset`, `id_lokasi_asal`, `id_lokasi_tujuan`, `tanggal_mutasi`, `keterangan`, `status`, `no_bast`, `tgl_terima`, `file_bast_scan`, `catatan_terima`, `id_user_terima`, `id_user`, `created_at`) VALUES
 ('1', '12', '15', '9', '2026-03-13', 'Perpindahan via edit aset', 'completed', NULL, NULL, NULL, NULL, NULL, '2', '2026-03-13 23:34:38'),
@@ -183,7 +184,9 @@ INSERT INTO `mutasi_aset` (`id`, `id_aset`, `id_lokasi_asal`, `id_lokasi_tujuan`
 ('5', '14', '11', '3', '2026-07-22', NULL, 'completed', NULL, NULL, NULL, NULL, NULL, '1', '2026-07-22 09:17:37'),
 ('7', '21', '15', '2', '2026-08-01', 'Penempatan sound system portabel di Ruang Guru agar mudah diakses saat rapat madrasah', 'completed', NULL, NULL, NULL, NULL, NULL, '1', '2026-08-21 21:30:01'),
 ('8', '24', '1', '3', '2026-07-25', 'Pemindahan lemari arsip ke Ruang Tata Usaha untuk integrasi data kepegawaian', 'completed', NULL, NULL, NULL, NULL, NULL, '1', '2026-08-21 21:30:01'),
-('9', '12', '2', '15', '2026-09-02', 'Mengembalikan', 'completed', NULL, NULL, NULL, NULL, NULL, '1', '2026-09-02 09:13:03');
+('9', '12', '2', '15', '2026-09-02', 'Mengembalikan', 'completed', NULL, NULL, NULL, NULL, NULL, '1', '2026-09-02 09:13:03'),
+('10', '36', '15', '14', '2026-09-02', 'pemeriksaan', 'completed', 'BA.MUTASI/010/MAN.2.HSU/2026', '2026-09-02 10:22:00', 'BAST_MUTASI_AST-2024-032_1788317155.pdf', 'Kondisi masih baik', '2', '2', '2026-09-02 10:01:13'),
+('11', '33', '2', '4', '2026-09-02', 'Untuk keperluan Ruanagan', 'completed', 'BA.MUTASI/011/MAN.2.HSU/2026', '2026-09-02 10:56:00', 'BAST_MUTASI_AST-2024-029_1788317786.png', 'Barang telah diterima lengkap di ruangan baru', '2', '2', '2026-09-02 10:47:11');
 
 DROP TABLE IF EXISTS `peminjaman`;
 CREATE TABLE `peminjaman` (
@@ -224,13 +227,12 @@ INSERT INTO `peminjaman` (`id`, `id_aset`, `nama_peminjam`, `id_peminjam`, `id_l
 ('23', '9', 'Muhamma okta Maulana', '6', '14', '2026-08-20', '2026-08-21', '2026-08-20', 'Baik', NULL, 'Dikembalikan', 'Praktek', '2', '2026-08-20 20:46:24'),
 ('24', '21', 'Ahmad Fauzi, S.Pd', '8', '14', '2026-08-22', '2026-08-23', NULL, NULL, NULL, 'Ditolak', 'Peminjaman sound system untuk kegiatan Latihan Pidato Siswa di Aula', '1', '2026-08-21 21:30:01'),
 ('25', '19', 'Budi Santoso, S.Kom', '10', '11', '2026-08-22', '2026-08-25', NULL, NULL, NULL, 'Ditolak', 'Peminjaman 5 unit laptop untuk bimbingan teknis Olimpiade Informatika', '1', '2026-08-21 21:30:01'),
-('27', '28', 'Muhamma okta Maulana', '6', '14', '2026-08-21', '2026-08-24', NULL, NULL, NULL, 'Dipinjam', 'Peralatan latihan pertandingan bulutangkis antar madrasah', '1', '2026-08-21 21:30:01'),
+('27', '28', 'Muhamma okta Maulana', '6', '14', '2026-08-21', '2026-08-24', '2026-09-02', 'Baik', NULL, 'Dikembalikan', 'Peralatan latihan pertandingan bulutangkis antar madrasah', '1', '2026-08-21 21:30:01'),
 ('28', '25', 'Nurul Hidayah, M.Pd', '9', '12', '2026-08-15', '2026-08-17', '2026-08-17', 'Baik', 'Alat dikembalikan lengkap dengan kotak lensa dalam kondisi bersih dan berfungsi normal.', 'Dikembalikan', 'Praktikum pengamatan sel tumbuhan kelas XI IPA', '1', '2026-08-21 21:30:01'),
 ('29', '3', 'Budi Santoso, S.Kom', '10', '11', '2026-08-10', '2026-08-12', '2026-08-12', 'Baik', 'Komputer dikembalikan utuh dengan kabel power dan monitor.', 'Dikembalikan', 'Instalasi server lokal simulasi ANBK', '1', '2026-08-21 21:30:01'),
 ('30', '26', 'Siti Rahmah, S.Ag', '5', '6', '2026-08-05', '2026-08-06', '2026-08-06', 'Baik', 'Organ torso lengkap tanpa cacat.', 'Dikembalikan', 'Peraga pembelajaran struktur pencernaan biologi manusia', '1', '2026-08-21 21:30:01'),
 ('31', '20', 'Hendra Setiawan, S.Pd', '12', '4', '2026-08-18', '2026-08-19', NULL, NULL, NULL, 'Ditolak', 'Permintaan ditolak karena Smart TV Aula sudah dijadwalkan untuk gladi bersih pelantikan OSIM', '1', '2026-08-21 21:30:01'),
-('32', '28', 'Muhamma okta Maulana', '6', '14', '2026-08-24', '2026-08-25', '2026-08-24', 'Baik', 'Baik', 'Dikembalikan', 'Praktek', '2', '2026-08-24 20:59:32'),
-('33', '11', 'Muhamma okta Maulana', '6', '17', '2026-09-02', '2026-09-05', NULL, NULL, NULL, 'Dipinjam', 'Latihan praktek', '2', '2026-09-02 09:02:33');
+('32', '28', 'Muhamma okta Maulana', '6', '14', '2026-08-24', '2026-08-25', '2026-08-24', 'Baik', 'Baik', 'Dikembalikan', 'Praktek', '2', '2026-08-24 20:59:32');
 
 DROP TABLE IF EXISTS `pengaturan`;
 CREATE TABLE `pengaturan` (
@@ -266,7 +268,7 @@ CREATE TABLE `riwayat_aktivitas` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `riwayat_aktivitas_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=468 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=476 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `riwayat_aktivitas` (`id`, `id_user`, `aktivitas`, `keterangan`, `created_at`) VALUES
 ('1', '1', 'Login', 'Admin melakukan login', '2026-03-12 20:51:46'),
@@ -732,7 +734,15 @@ INSERT INTO `riwayat_aktivitas` (`id`, `id_user`, `aktivitas`, `keterangan`, `cr
 ('464', '6', 'Login', 'Muhamma okta Maulana berhasil login', '2026-09-02 09:40:03'),
 ('465', '1', 'Penghapusan', 'Finalisasi penghapusan aset (Soft Delete): Mikroskop Monokuler 40X-2000X (Kode: AST-2021-008) dengan Berita Acara bertanda tangan.', '2026-09-02 09:43:39'),
 ('466', '1', 'Logout', 'Administrator melakukan logout', '2026-09-02 09:44:51'),
-('467', '2', 'Login', 'Rudiannor, S.Sos berhasil login', '2026-09-02 09:44:58');
+('467', '2', 'Login', 'Rudiannor, S.Sos berhasil login', '2026-09-02 09:44:58'),
+('468', '2', 'Mutasi Aset', 'Pengajuan mutasi aset Genset Silent Perkins 15 KVA (AST-2024-032) dari Gudang ke Aula (Status: In Transit)', '2026-09-02 10:01:13'),
+('469', '2', 'Mutasi Aset', 'Penerimaan mutasi aset Genset Silent Perkins 15 KVA (AST-2024-032). Lokasi aset resmi berpindah dari Gudang ke Aula.', '2026-09-02 10:45:55'),
+('470', '2', 'Mutasi Aset', 'Pengajuan mutasi aset AC Split Daikin 1.5 PK Inverter (AST-2024-029) dari Ruang Guru ke Ruang Kelas X-A (Status: In Transit)', '2026-09-02 10:47:11'),
+('471', '2', 'Mutasi Aset', 'Penerimaan mutasi aset AC Split Daikin 1.5 PK Inverter (AST-2024-029). Lokasi aset resmi berpindah dari Ruang Guru ke Ruang Kelas X-A.', '2026-09-02 10:56:26'),
+('472', '2', 'Kirim Notifikasi', 'Kirim email reminder untuk aset: Bola Futsal ke m.oktamaulana6@gmail.com', '2026-09-02 11:26:27'),
+('473', '2', 'Hapus Peminjaman', 'Menghapus data peminjaman ID: 33', '2026-09-02 11:26:43'),
+('474', '6', 'Login', 'Muhamma okta Maulana berhasil login', '2026-09-02 11:27:02'),
+('475', '2', 'Pengembalian', 'Pengembalian aset: Set Raket Badminton Yonex Nanoray + Net oleh Muhamma okta Maulana (Kondisi: Baik)', '2026-09-02 11:27:35');
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (

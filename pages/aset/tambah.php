@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = trim($_POST['nama_aset']);
     $idKategori = $_POST['id_kategori'] ?: null;
     $idLokasi = $_POST['id_lokasi'] ?: null;
+    $jenisBarang = $_POST['jenis_barang'] ?? 'Aset Tetap';
     $jumlah = intval($_POST['jumlah']);
     $kondisi = $_POST['kondisi'];
     $tahun = $_POST['tahun_perolehan'] ?: null;
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retain variables
     $post_kode = $kode;
     $post_nama = $nama;
+    $post_jenis = $jenisBarang;
     $post_idKategori = $_POST['id_kategori'];
     $post_idLokasi = $_POST['id_lokasi'];
     $post_jumlah = $jumlah;
@@ -70,11 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         if (empty($errors)) {
-            $stmt = $pdo->prepare("INSERT INTO aset (kode_aset, nama_aset, id_kategori, id_lokasi, jumlah, kondisi, tahun_perolehan, nilai_perolehan, sumber_dana, gambar, keterangan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$kode, $nama, $idKategori, $idLokasi, $jumlah, $kondisi, $tahun, $nilai, $sumber, $gambar, $keterangan]);
+            $stmt = $pdo->prepare("INSERT INTO aset (kode_aset, nama_aset, jenis_barang, id_kategori, id_lokasi, jumlah, kondisi, tahun_perolehan, nilai_perolehan, sumber_dana, gambar, keterangan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$kode, $nama, $jenisBarang, $idKategori, $idLokasi, $jumlah, $kondisi, $tahun, $nilai, $sumber, $gambar, $keterangan]);
             
-            logActivity($pdo, $_SESSION['user_id'], 'Tambah Aset', "Menambah aset: $nama ($kode)");
-            setFlash('success', 'Aset berhasil ditambahkan!');
+            logActivity($pdo, $_SESSION['user_id'], 'Tambah Aset', "Menambah $jenisBarang: $nama ($kode)");
+            setFlash('success', 'Data barang berhasil ditambahkan!');
             header('Location: ' . BASE_URL . '/aset');
             exit;
         }
@@ -87,11 +89,11 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
 <div class="page-header">
     <div>
-        <h2><i class="fas fa-plus-circle"></i> Tambah Aset Baru</h2>
+        <h2><i class="fas fa-plus-circle"></i> Tambah Barang Baru</h2>
         <div class="breadcrumb">
             <a href="<?= BASE_URL ?>/dashboard">Dashboard</a>
             <span class="separator">/</span>
-            <a href="<?= BASE_URL ?>/aset">Data Aset</a>
+            <a href="<?= BASE_URL ?>/aset">Data Aset & Inventaris</a>
             <span class="separator">/</span>
             <span>Tambah</span>
         </div>
@@ -100,7 +102,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
 <div class="card animate-fadeInUp">
     <div class="card-header">
-        <h3>Form Tambah Aset</h3>
+        <h3>Form Tambah Barang</h3>
     </div>
     <div class="card-body">
         <?php if (!empty($errors)): ?>
@@ -118,12 +120,19 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <?= generateCsrfToken() ?>
             <div class="grid-2">
                 <div class="form-group">
-                    <label>Kode Aset</label>
+                    <label>Kode Barang</label>
                     <input type="text" class="form-control" name="kode_aset" value="<?= htmlspecialchars($post_kode) ?>" required>
                 </div>
                 <div class="form-group">
-                    <label>Nama Aset *</label>
-                    <input type="text" class="form-control" name="nama_aset" value="<?= htmlspecialchars($post_nama) ?>" placeholder="Masukkan nama aset" required>
+                    <label>Nama Barang *</label>
+                    <input type="text" class="form-control" name="nama_aset" value="<?= htmlspecialchars($post_nama) ?>" placeholder="Masukkan nama barang" required>
+                </div>
+                <div class="form-group">
+                    <label>Klasifikasi Barang *</label>
+                    <select class="form-control" name="jenis_barang" required>
+                        <option value="Aset Tetap" <?= ($post_jenis ?? 'Aset Tetap') === 'Aset Tetap' ? 'selected' : '' ?>>🏷️ Aset Tetap (Kapitalisasi BMN / Barang Bernilai Tinggi)</option>
+                        <option value="Inventaris Barang" <?= ($post_jenis ?? '') === 'Inventaris Barang' ? 'selected' : '' ?>>📦 Inventaris Barang (Peralatan Operasional / Non-Kapitalisasi)</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Kategori</label>

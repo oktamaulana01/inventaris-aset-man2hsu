@@ -18,6 +18,7 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     validateCsrfToken();
     $nama = trim($_POST['nama_aset']);
+    $jenisBarang = $_POST['jenis_barang'] ?? 'Aset Tetap';
     $idKategori = $_POST['id_kategori'] ?: null;
     $idLokasi = $_POST['id_lokasi'] ?: null;
     $jumlah = intval($_POST['jumlah']);
@@ -55,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmtMutasi->execute([$id, $aset['id_lokasi'], $idLokasi, 'Perpindahan via edit aset', $_SESSION['user_id']]);
         }
         
-        $stmt = $pdo->prepare("UPDATE aset SET nama_aset=?, id_kategori=?, id_lokasi=?, jumlah=?, kondisi=?, tahun_perolehan=?, nilai_perolehan=?, sumber_dana=?, gambar=?, keterangan=? WHERE id=?");
-        $stmt->execute([$nama, $idKategori, $idLokasi, $jumlah, $kondisi, $tahun, $nilai, $sumber, $gambar, $keterangan, $id]);
+        $stmt = $pdo->prepare("UPDATE aset SET nama_aset=?, jenis_barang=?, id_kategori=?, id_lokasi=?, jumlah=?, kondisi=?, tahun_perolehan=?, nilai_perolehan=?, sumber_dana=?, gambar=?, keterangan=? WHERE id=?");
+        $stmt->execute([$nama, $jenisBarang, $idKategori, $idLokasi, $jumlah, $kondisi, $tahun, $nilai, $sumber, $gambar, $keterangan, $id]);
         
         logActivity($pdo, $_SESSION['user_id'], 'Edit Aset', "Mengedit aset: $nama ({$aset['kode_aset']})");
-        setFlash('success', 'Aset berhasil diperbarui!');
+        setFlash('success', 'Data barang berhasil diperbarui!');
         header('Location: ' . BASE_URL . '/aset');
         exit;
     }
@@ -109,8 +110,15 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                     <input type="text" class="form-control" value="<?= htmlspecialchars($aset['kode_aset']) ?>" disabled>
                 </div>
                 <div class="form-group">
-                    <label>Nama Aset *</label>
+                    <label>Nama Barang *</label>
                     <input type="text" class="form-control" name="nama_aset" value="<?= htmlspecialchars($aset['nama_aset']) ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Klasifikasi Barang *</label>
+                    <select class="form-control" name="jenis_barang" required>
+                        <option value="Aset Tetap" <?= ($aset['jenis_barang'] ?? 'Aset Tetap') === 'Aset Tetap' ? 'selected' : '' ?>>🏷️ Aset Tetap (Kapitalisasi BMN / Barang Bernilai Tinggi)</option>
+                        <option value="Inventaris Barang" <?= ($aset['jenis_barang'] ?? '') === 'Inventaris Barang' ? 'selected' : '' ?>>📦 Inventaris Barang (Peralatan Operasional / Non-Kapitalisasi)</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Kategori</label>
