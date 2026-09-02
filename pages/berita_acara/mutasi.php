@@ -255,6 +255,17 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
 
         <p>Proses pemindahan fisik barang tersebut telah dilakukan pemeriksaan bersama antara pihak penanggung jawab ruangan asal, penanggung jawab ruangan tujuan baru, serta dicatat oleh Pengurus Barang Sarana dan Prasarana MAN 2 Hulu Sungai Utara.</p>
 
+        <?php if (!empty($data['file_bast_scan'])): ?>
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:10px 14px; margin: 12px 0; font-size:9.5pt;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span><i class="fas fa-certificate" style="color:#16a34a;"></i> <strong>Status:</strong> Telah Ditandatangani Basah & Diterima pada <?= $data['tgl_terima'] ? date('d/m/Y H:i', strtotime($data['tgl_terima'])) : '-' ?></span>
+                    <a href="<?= BASE_URL ?>/assets/uploads/bast_mutasi/<?= htmlspecialchars($data['file_bast_scan']) ?>" target="_blank" style="color:#047857; font-weight:bold; text-decoration:underline;">
+                        Lihat Berkas Scan Asli Bertanda Tangan <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <p>Demikian Berita Acara Mutasi Aset ini dibuat dengan sebenarnya untuk menjadi dasar pemutakhiran data buku inventaris ruangan (KIR) madrasah.</p>
     </div>
 

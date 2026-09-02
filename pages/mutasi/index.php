@@ -195,12 +195,16 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                                             <i class="fas fa-print"></i> Cetak BAST
                                         </a>
                                     <?php elseif ($m['status'] === 'completed'): ?>
-                                        <a href="<?= BASE_URL ?>/berita-acara/mutasi?id=<?= $m['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak BAST Resmi">
-                                            <i class="fas fa-print"></i> BAST
-                                        </a>
                                         <?php if ($m['file_bast_scan']): ?>
-                                            <a href="<?= BASE_URL ?>/assets/uploads/bast_mutasi/<?= htmlspecialchars($m['file_bast_scan']) ?>" target="_blank" class="btn btn-sm btn-info" title="Lihat Scan BAST Bertanda Tangan">
-                                                <i class="fas fa-file-shield"></i> Scan BAST
+                                            <a href="<?= BASE_URL ?>/assets/uploads/bast_mutasi/<?= htmlspecialchars($m['file_bast_scan']) ?>" target="_blank" class="btn btn-sm btn-success" title="Buka BAST Asli Bertanda Tangan">
+                                                <i class="fas fa-file-signature"></i> BAST (Bertanda Tangan)
+                                            </a>
+                                            <a href="<?= BASE_URL ?>/berita-acara/mutasi?id=<?= $m['id'] ?>" target="_blank" class="btn btn-sm btn-secondary" title="Cetak Ulang Dokumen Digital BAST">
+                                                <i class="fas fa-print"></i>
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?= BASE_URL ?>/berita-acara/mutasi?id=<?= $m['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak BAST Resmi">
+                                                <i class="fas fa-print"></i> BAST
                                             </a>
                                         <?php endif; ?>
                                     <?php else: ?>
