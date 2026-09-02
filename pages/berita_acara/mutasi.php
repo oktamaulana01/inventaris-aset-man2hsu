@@ -236,8 +236,8 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
                     <td style="font-family:monospace; font-weight:bold;"><?= htmlspecialchars($data['kode_aset']) ?></td>
                     <td><strong><?= htmlspecialchars($data['nama_aset']) ?></strong></td>
                     <td><?= htmlspecialchars($data['nama_kategori'] ?? '-') ?></td>
-                    <td style="text-align:center; color:#b91c1c; font-weight:bold;"><?= htmlspecialchars($data['lokasi_asal'] ?? '-') ?></td>
-                    <td style="text-align:center; color:#047857; font-weight:bold;"><?= htmlspecialchars($data['lokasi_tujuan'] ?? '-') ?></td>
+                    <td style="text-align:center;"><?= htmlspecialchars($data['lokasi_asal'] ?? '-') ?></td>
+                    <td style="text-align:center; font-weight:bold;"><?= htmlspecialchars($data['lokasi_tujuan'] ?? '-') ?></td>
                     <td style="text-align:center;"><?= htmlspecialchars($data['kondisi_aset'] ?: 'Baik') ?></td>
                 </tr>
             </tbody>
@@ -283,8 +283,8 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
                 Mengetahui,<br>
                 <strong>Kepala MAN 2 Hulu Sungai Utara</strong>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">Drs. H. Khairan Ali, M.M.Pd</div>
-                <div class="ttd-nip">NIP. 196805121994031004</div>
+                <div class="ttd-name">Irwan, S.Pd., M.Si.</div>
+                <div class="ttd-nip">NIP. 197803112002121002</div>
             </td>
         </tr>
     </table>

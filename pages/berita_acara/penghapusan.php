@@ -273,13 +273,13 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
                     <td style="text-align:center;"><?= $data['tahun_perolehan'] ?: '-' ?></td>
                     <td style="text-align:right; font-weight:bold;"><?= formatRupiah($data['nilai_perolehan']) ?></td>
                     <td style="text-align:center;"><?= htmlspecialchars($data['sumber_dana'] ?: '-') ?></td>
-                    <td style="text-align:center; font-weight:bold; color:#b91c1c;"><?= htmlspecialchars($data['kondisi'] ?: 'Rusak Berat') ?></td>
+                    <td style="text-align:center; font-weight:bold;"><?= htmlspecialchars($data['kondisi'] ?: 'Rusak Berat') ?></td>
                 </tr>
             </tbody>
         </table>
 
         <p class="no-indent"><strong>Alasan / Dasar Penghapusan:</strong></p>
-        <p style="text-indent:0; background:#fef2f2; padding:6px 10px; border:1px solid #fecaca; border-radius:4px; font-style:italic; margin-bottom:8px; color:#991b1b;">
+        <p style="text-indent:0; background:#f8fafc; padding:8px 12px; border:1px solid #cbd5e1; border-radius:4px; font-style:italic; margin-bottom:8px;">
             "<?= htmlspecialchars($data['alasan_hapus'] ?: 'Barang mengalami kerusakan berat/usang dan biaya perbaikan melebihi nilai ekonomisnya sehingga tidak dapat digunakan kembali untuk kegiatan operasional madrasah.') ?>"
         </p>
 
@@ -287,7 +287,7 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
         <p class="no-indent"><strong>Bukti Fisik Kerusakan Aset:</strong></p>
         <div class="box-bukti">
             <img src="<?= $buktiSrc ?>" alt="Foto Bukti Kerusakan">
-            <div style="font-size:9pt; line-height:1.3; color:#334155;">
+            <div style="font-size:9pt; line-height:1.3; color:#000;">
                 <strong>Keterangan Foto Bukti:</strong><br>
                 Foto dokumentasi fisik kondisi barang saat pemeriksaan lapangan oleh tim inventarisasi sarpras MAN 2 HSU.
             </div>
@@ -309,8 +309,8 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
             <td>
                 Kepala Urusan Tata Usaha,<br>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">H. Supian, S.Ag</div>
-                <div class="ttd-nip">NIP. 197508142006041012</div>
+                <div class="ttd-name">AGUS FITRI HIDAYAT, S.HI, MM</div>
+                <div class="ttd-nip">NIP. 197908202007011011</div>
             </td>
         </tr>
         <tr>
@@ -319,8 +319,8 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
                 Menyetujui / Mengetahui,<br>
                 <strong>Kepala MAN 2 Hulu Sungai Utara</strong>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">Drs. H. Khairan Ali, M.M.Pd</div>
-                <div class="ttd-nip">NIP. 196805121994031004</div>
+                <div class="ttd-name">Irwan, S.Pd., M.Si.</div>
+                <div class="ttd-nip">NIP. 197803112002121002</div>
             </td>
         </tr>
     </table>

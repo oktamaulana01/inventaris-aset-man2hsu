@@ -162,8 +162,8 @@
                 Mengetahui,<br>
                 <strong>Kepala MAN 2 Hulu Sungai Utara</strong>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">Drs. H. Khairan Ali, M.M.Pd</div>
-                <div class="ttd-nip">NIP. 196805121994031004</div>
+                <div class="ttd-name">Irwan, S.Pd., M.Si.</div>
+                <div class="ttd-nip">NIP. 197803112002121002</div>
             </td>
         </tr>
     </table>

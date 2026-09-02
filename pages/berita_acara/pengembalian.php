@@ -289,7 +289,7 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
                     <td><strong><?= htmlspecialchars($data['nama_aset']) ?></strong></td>
                     <td style="text-align:center; font-size:9pt;"><?= $tglPinjamText ?></td>
                     <td style="text-align:center; font-size:9pt;"><?= $tglKembaliText ?></td>
-                    <td style="text-align:center; font-weight:bold; color:<?= $data['kondisi_saat_dikembalikan'] === 'Baik' ? '#047857' : '#b91c1c' ?>;">
+                    <td style="text-align:center; font-weight:bold;">
                         <?= htmlspecialchars($data['kondisi_saat_dikembalikan'] ?: 'Baik') ?>
                     </td>
                     <td><?= htmlspecialchars($data['catatan_pengembalian'] ?: 'Barang diterima lengkap dan berfungsi normal.') ?></td>
@@ -327,8 +327,8 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
                 Mengetahui,<br>
                 <strong>Kepala MAN 2 Hulu Sungai Utara</strong>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">Drs. H. Khairan Ali, M.M.Pd</div>
-                <div class="ttd-nip">NIP. 196805121994031004</div>
+                <div class="ttd-name">Irwan, S.Pd., M.Si.</div>
+                <div class="ttd-nip">NIP. 197803112002121002</div>
             </td>
         </tr>
     </table>

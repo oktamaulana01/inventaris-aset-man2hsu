@@ -124,8 +124,8 @@
             <td>
                 Kepala Urusan Tata Usaha,<br>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">H. Supian, S.Ag</div>
-                <div class="ttd-nip">NIP. 197508142006041012</div>
+                <div class="ttd-name">AGUS FITRI HIDAYAT, S.HI, MM</div>
+                <div class="ttd-nip">NIP. 197908202007011011</div>
             </td>
         </tr>
         <tr>
@@ -134,8 +134,8 @@
                 Menyetujui / Mengetahui,<br>
                 <strong>Kepala MAN 2 Hulu Sungai Utara</strong>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">Drs. H. Khairan Ali, M.M.Pd</div>
-                <div class="ttd-nip">NIP. 196805121994031004</div>
+                <div class="ttd-name">Irwan, S.Pd., M.Si.</div>
+                <div class="ttd-nip">NIP. 197803112002121002</div>
             </td>
         </tr>
     </table>
