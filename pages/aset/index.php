@@ -138,6 +138,9 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                                 <span class="badge badge-<?= $a['kondisi'] === 'Baik' ? 'success' : ($a['kondisi'] === 'Rusak Ringan' ? 'warning' : 'danger') ?>">
                                     <?= $a['kondisi'] ?>
                                 </span>
+                                <?php if ($a['status_penghapusan'] === 'pending'): ?>
+                                    <span class="badge badge-warning" style="display:block; margin-top:4px; font-size:0.7rem;">Menunggu Hapus</span>
+                                <?php endif; ?>
                             </td>
                             <td>
                                 <?php if ($a['qr_code_path']): ?>
@@ -153,9 +156,14 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             <td>
                                 <div class="btn-group">
                                     <a href="<?= BASE_URL ?>/aset/detail?id=<?= $a['id'] ?>" class="btn btn-sm btn-info" title="Detail"><i class="fas fa-eye"></i></a>
-                                    <a href="<?= BASE_URL ?>/mutasi/tambah?id_aset=<?= $a['id'] ?>" class="btn btn-sm btn-primary" title="Mutasi Lokasi"><i class="fas fa-arrows-split-up-and-left"></i></a>
-                                    <a href="<?= BASE_URL ?>/aset/edit?id=<?= $a['id'] ?>" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
-                                    <a href="<?= BASE_URL ?>/aset/hapus?id=<?= $a['id'] ?>" class="btn btn-sm btn-danger" title="Hapus Aset"><i class="fas fa-trash"></i></a>
+                                    <?php if ($a['status_penghapusan'] === 'pending'): ?>
+                                        <a href="<?= BASE_URL ?>/aset/finalisasi-hapus?id=<?= $a['id'] ?>" class="btn btn-sm btn-danger" title="Finalisasi Penghapusan (Upload BA)"><i class="fas fa-stamp"></i></a>
+                                        <a href="<?= BASE_URL ?>/berita-acara/penghapusan?id=<?= $a['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Draft Berita Acara"><i class="fas fa-file-contract"></i></a>
+                                    <?php else: ?>
+                                        <a href="<?= BASE_URL ?>/mutasi/tambah?id_aset=<?= $a['id'] ?>" class="btn btn-sm btn-primary" title="Mutasi Lokasi"><i class="fas fa-arrows-split-up-and-left"></i></a>
+                                        <a href="<?= BASE_URL ?>/aset/edit?id=<?= $a['id'] ?>" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= BASE_URL ?>/aset/ajukan-hapus?id=<?= $a['id'] ?>" class="btn btn-sm btn-danger" title="Ajukan Penghapusan Aset"><i class="fas fa-trash-alt"></i></a>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>

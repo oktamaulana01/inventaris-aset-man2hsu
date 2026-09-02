@@ -118,13 +118,13 @@
             <td>
                 Pengurus Barang / Petugas Sarpras,<br>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">Petugas Inventaris Sarpras</div>
-                <div class="ttd-nip">NIP. .................................................</div>
+                <div class="ttd-name">Rudiannor, S.Sos</div>
+                <div class="ttd-nip">NIP. 198011062005011004</div>
             </td>
             <td>
                 Kepala Urusan Tata Usaha,<br>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">AGUS FITRI HIDAYAT, S.HI, MM</div>
+                <div class="ttd-name">Agus Fitri Hidayat, S.HI, MM</div>
                 <div class="ttd-nip">NIP. 197908202007011011</div>
             </td>
         </tr>

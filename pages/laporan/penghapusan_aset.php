@@ -38,10 +38,10 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     </form>
 </div></div>
 <div class="card animate-fadeInUp"><div class="card-header"><h3>Aset Dihapus (<?= count($data) ?> item)</h3></div><div class="card-body"><div class="table-wrapper">
-    <table><thead><tr><th>No</th><th>Tgl Hapus</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Kondisi</th><th>Alasan</th><th>Bukti Foto</th><th style="text-align:center;">Aksi</th></tr></thead>
+    <table><thead><tr><th>No</th><th>Tgl Hapus</th><th>Kode</th><th>Nama Aset</th><th>Kategori</th><th>Kondisi</th><th>Alasan</th><th>Bukti Foto</th><th>Scan BA Bertanda Tangan</th><th style="text-align:center;">Aksi</th></tr></thead>
     <tbody>
         <?php if (empty($data)): ?>
-            <tr><td colspan="9" class="text-center text-muted">Belum ada aset yang dihapus</td></tr>
+            <tr><td colspan="10" class="text-center text-muted">Belum ada aset yang dihapus</td></tr>
         <?php else: $total = 0; foreach ($data as $i => $a): $total += $a['nilai_perolehan'] * $a['jumlah']; ?>
         <tr>
             <td><?= $i+1 ?></td>
@@ -52,16 +52,25 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <td style="max-width: 200px; white-space: normal;"><?= nl2br(htmlspecialchars($a['alasan_hapus'] ?? '-')) ?></td>
             <td>
                 <?php if ($a['bukti_hapus']): ?>
-                    <a href="<?= BASE_URL ?>/assets/uploads/bukti_hapus/<?= htmlspecialchars($a['bukti_hapus']) ?>" target="_blank" class="btn btn-sm btn-info" title="Lihat Bukti Foto">
+                    <a href="<?= BASE_URL ?>/assets/uploads/bukti_hapus/<?= htmlspecialchars($a['bukti_hapus']) ?>" target="_blank" class="btn btn-sm btn-info" title="Lihat Foto Bukti Fisik">
                         <i class="fas fa-image"></i>
                     </a>
                 <?php else: ?>
                     <span class="text-muted">-</span>
                 <?php endif; ?>
             </td>
+            <td>
+                <?php if ($a['file_ba_scan']): ?>
+                    <a href="<?= BASE_URL ?>/assets/uploads/ba_penghapusan/<?= htmlspecialchars($a['file_ba_scan']) ?>" target="_blank" class="btn btn-sm btn-success" title="Lihat Berkas Scan BA Bertanda Tangan">
+                        <i class="fas fa-file-shield"></i> Berkas Scan BA
+                    </a>
+                <?php else: ?>
+                    <span class="badge badge-secondary" style="font-size:0.75rem;">Digital Only</span>
+                <?php endif; ?>
+            </td>
             <td style="text-align:center;">
-                <a href="<?= BASE_URL ?>/berita-acara/penghapusan?id=<?= $a['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Berita Acara Penghapusan">
-                    <i class="fas fa-file-contract"></i> BA Hapus
+                <a href="<?= BASE_URL ?>/berita-acara/penghapusan?id=<?= $a['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Berita Acara Resmi">
+                    <i class="fas fa-print"></i> Cetak BA
                 </a>
             </td>
         </tr>

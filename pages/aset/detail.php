@@ -45,8 +45,14 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     </div>
     <div class="btn-group">
         <a href="<?= BASE_URL ?>/aset/generate-qr?id=<?= $aset['id'] ?>" class="btn btn-info"><i class="fas fa-qrcode"></i> QR Code</a>
-        <a href="<?= BASE_URL ?>/mutasi/tambah?id_aset=<?= $aset['id'] ?>" class="btn btn-primary"><i class="fas fa-arrows-split-up-and-left"></i> Mutasi</a>
-        <a href="<?= BASE_URL ?>/aset/edit?id=<?= $aset['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+        <?php if ($aset['status_penghapusan'] === 'pending'): ?>
+            <a href="<?= BASE_URL ?>/aset/finalisasi-hapus?id=<?= $aset['id'] ?>" class="btn btn-danger"><i class="fas fa-stamp"></i> Finalisasi Hapus</a>
+            <a href="<?= BASE_URL ?>/berita-acara/penghapusan?id=<?= $aset['id'] ?>" target="_blank" class="btn btn-primary"><i class="fas fa-file-contract"></i> Draft BA</a>
+        <?php else: ?>
+            <a href="<?= BASE_URL ?>/mutasi/tambah?id_aset=<?= $aset['id'] ?>" class="btn btn-primary"><i class="fas fa-arrows-split-up-and-left"></i> Mutasi</a>
+            <a href="<?= BASE_URL ?>/aset/edit?id=<?= $aset['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+            <a href="<?= BASE_URL ?>/aset/ajukan-hapus?id=<?= $aset['id'] ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Ajukan Hapus</a>
+        <?php endif; ?>
         <a href="<?= BASE_URL ?>/aset" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
     </div>
 </div>

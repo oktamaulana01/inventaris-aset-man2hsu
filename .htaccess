@@ -27,7 +27,9 @@ RewriteRule ^aset/tambah$ pages/aset/tambah.php [L,QSA]
 RewriteRule ^aset/tambah-rusak$ pages/aset/tambah_rusak.php [L,QSA]
 RewriteRule ^aset/detail$ pages/aset/detail.php [L,QSA]
 RewriteRule ^aset/edit$ pages/aset/edit.php [L,QSA]
-RewriteRule ^aset/hapus$ pages/aset/konfirmasi_hapus.php [L,QSA]
+RewriteRule ^aset/hapus$ pages/aset/ajukan_hapus.php [L,QSA]
+RewriteRule ^aset/ajukan-hapus$ pages/aset/ajukan_hapus.php [L,QSA]
+RewriteRule ^aset/finalisasi-hapus$ pages/aset/konfirmasi_hapus_final.php [L,QSA]
 RewriteRule ^aset/generate-qr$ pages/aset/generate_qr.php [L,QSA]
 
 # Kategori

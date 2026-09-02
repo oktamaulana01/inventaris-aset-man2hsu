@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$aset) {
         $errors[] = 'Data aset tidak ditemukan.';
+    } elseif ($aset['status_penghapusan'] === 'pending') {
+        $errors[] = 'Aset ini sedang dalam proses pengajuan penghapusan dan tidak dapat dimutasi.';
     }
 
     if ($idLokasiTujuan <= 0) {

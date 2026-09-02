@@ -303,8 +303,8 @@ if (isset($_GET['download']) && $_GET['download'] === 'pdf') {
             <td>
                 Pengurus Barang / Petugas Sarpras,<br>
                 <div class="ttd-space"></div>
-                <div class="ttd-name">Petugas Inventaris Sarpras</div>
-                <div class="ttd-nip">NIP. .................................................</div>
+                <div class="ttd-name">Rudiannor, S.Sos</div>
+                <div class="ttd-nip">NIP. 198011062005011004</div>
             </td>
             <td>
                 Kepala Urusan Tata Usaha,<br>

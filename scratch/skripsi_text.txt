@@ -1,0 +1,5167 @@
+﻿
+
+
+SKRIPSI
+
+SISTEM INFORMASI INVENTARIS ASET SEKOLAH DILENGKAPI FITUR GENERATE QR CODE MENGGUNAKAN PHP DAN MYSQL DI MADRASAH ALIYAH NEGERI 2 HULU SUNGAI UTARA
+
+
+
+Diajukan 
+Sebagai
+ 
+Persyaratan
+ 
+Untuk
+ 
+Menyelesaikan
+ Program 
+Sarjana
+ (S-1) pada 
+
+Program 
+Studi
+ 
+Sistem
+ 
+Informasi
+
+
+Oleh :
+
+MUHAMMAD OKTA MAULANA
+
+NPM : 2210020039
+
+
+center529590
+
+
+
+
+
+
+
+
+
+PROGRAM STUDI S1 TEKNIK INFORMATIKA
+
+FAKULTAS TEKNOLOGI INFORMASI
+
+UNIVERSITAS ISLAM KALIMANTAN
+
+MUHAMMAD ARSYAD AL BANJARI
+
+BANJARMASIN
+
+2026
+
+
+
+
+
+
+
+
+
+LEMBAR PENGESAHAN PEMBIMBING
+
+SKRIPSI
+
+SISTEM INFORMASI INVENTARIS ASET SEKOLAH DILENGKAPI FITUR GENERATE QR CODE MENGGUNAKAN PHP DAN MYSQL DI MADRASAH ALIYAH NEGERI 2 HULU SUNGAI UTARA
+
+
+
+Oleh :
+
+MUHAMMAD OKTA MAULANA
+
+NPM : 2210020039
+
+
+
+
+
+
+Pembimbing
+ 1
+
+
+
+
+
+
+
+
+
+
+Pembimbing
+ 2
+
+Adani Dharmawati, S.Kom., M.Kom
+
+Ahmadi, 
+
+M.Kom
+
+
+
+NIDN. 1110129201
+
+NIDN: 1105128902
+
+
+
+
+
+
+
+
+
+
+Mengetahui
+,
+
+
+
+
+Dekan
+ 
+Fakultas
+ 
+Teknologi
+ 
+Informasi
+
+
+Universitas Islam Kalimantan
+
+
+
+
+
+
+
+
+
+Prof. Dr. 
+Hj
+. Silvia 
+Ratna
+, 
+
+S.Kom
+
+., 
+M.Kom
+
+
+NIP. 19750913 200501 2001
+
+
+
+
+
+
+LEMBAR PENGESAHAN PENGUJI
+
+SISTEM INFORMASI INVENTARIS ASET SEKOLAH DILENGKAPI FITUR GENERATE QR CODE MENGGUNAKAN PHP DAN MYSQL DI MADRASAH ALIYAH NEGERI 2 HULU SUNGAI UTARA
+
+
+
+Oleh :
+
+MUHAMMAD OKTA MAULANA
+
+NPM : 2210020039
+
+
+
+
+
+Telah dipertahankan di depan Sidang Penguji sebagai salah satu syarat untuk memperoleh gelar Sarjana (S-1) Program Studi 
+Sistem
+ 
+Informasi
+ Fakultas Teknologi Informasi Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin.
+
+Banjarmasin, 	     2026
+
+Tim Penguji
+
+Tanda Tangan
+
+
+M.Dedy
+ 
+Rosyadi
+, 
+
+S.Kom
+
+., 
+M.Kom
+
+
+__________________________
+
+Penguji I
+
+
+
+
+Dwi
+ 
+Retnosari
+, ST., 
+
+M.Kom
+
+_____
+
+__________________________
+
+Penguji II
+
+
+
+
+Agus
+ Alim 
+Muin
+, 
+
+S.Kom
+
+., 
+M.Kom
+
+
+__________________________
+
+Penguji III
+
+
+
+
+
+
+Mengetahui
+,
+
+
+
+
+Dekan
+ 
+Fakultas
+ 
+Teknologi
+ 
+Informasi
+
+
+Universitas Islam Kalimantan
+
+
+
+
+
+
+
+
+
+Prof. Dr. 
+Hj
+. Silvia 
+Ratna
+, 
+
+S.Kom
+
+., 
+M.Kom
+
+
+NIP. 19750913 200501 2001
+
+
+
+
+PERNYATAAN KEASLIAN SKRIPSI
+
+Saya menyatakan dengan sesungguhnya bahwa Skripsi dengan judul :
+
+SISTEM INFORMASI INVENTARIS ASET SEKOLAH DILENGKAPI FITUR GENERATE QR CODE MENGGUNAKAN PHP DAN MYSQL DI MADRASAH ALIYAH NEGERI 2 HULU SUNGAI UTARA
+
+
+
+yang dibuat untuk melengkapi sebagai persyaratan menjadi Sarjana pada program studi Teknik Informatika Fakultas Teknologi Informasi Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin, sejauh yang saya ketahui bukan merupakan tiruan atau duplikasi dari Skripsi yang sudah dipublikasikan dan atau pernah dipakai untuk mendapatkan gelar kesarjanaan di lingkungan Universitas Islam Kalimantan Muhammad Arsyad AL Banjari Banjarmasin maupun di Perguruan Tinggi atau instansi manapun, kecuali bagian yang sumber informasinya dicantumkan sebagaimana mestinya.
+
+
+
+
+
+Banjarbaru,Juli
+
+ 2026
+
+
+Penulis
+,
+
+
+
+
+
+MUHAMMAD OKTA MAULANA
+
+NPM:2210020039
+
+
+
+
+ABSTRAK
+
+Madrasah Aliyah Negeri 2 Hulu Sungai Utara masih melakukan pengelolaan inventaris aset secara konvensional sehingga proses pendataan, pencarian, peminjaman, pengembalian, dan pelaporan aset belum berjalan secara optimal. Penelitian ini bertujuan membangun Sistem Informasi Inventaris Aset Sekolah yang dilengkapi fitur Generate QR Code menggunakan PHP dan MySQL untuk meningkatkan efektivitas pengelolaan aset sekolah. Metode pengembangan sistem yang digunakan adalah Waterfall yang meliputi analisis kebutuhan, perancangan, implementasi, pengujian, dan pemeliharaan. Sistem dikembangkan menggunakan PHP sebagai bahasa pemrograman, MySQL sebagai basis data, serta teknologi QR Code sebagai identitas setiap aset. Pengujian dilakukan menggunakan metode Black Box Testing untuk memastikan seluruh fungsi sistem berjalan sesuai kebutuhan. Hasil penelitian menunjukkan bahwa sistem mampu mengelola data aset, kategori, lokasi, pengguna, peminjaman, pengembalian, mutasi, generate dan scan QR Code, laporan inventaris, serta riwayat aktivitas dengan baik. Berdasarkan hasil pengujian, seluruh fitur berfungsi sesuai dengan kebutuhan pengguna sehingga sistem dapat membantu meningkatkan efisiensi, akurasi, dan kemudahan pengelolaan inventaris aset di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Penelitian selanjutnya disarankan mengembangkan sistem dengan penambahan aplikasi berbasis Android serta integrasi notifikasi secara real-time. 
+
+
+
+Kata kunci: Sistem Informasi, Inventaris Aset, QR Code, PHP, MySQL.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KATA PENGANTAR
+
+
+
+Puji syukur kehadirat Allah SWT atas segala rahmat, karunia, serta hidayah-Nya sehingga penulis dapat menyelesaikan skripsi yang berjudul "Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL di Madrasah Aliyah Negeri 2 Hulu Sungai Utara" sebagai salah satu syarat untuk memperoleh gelar Sarjana Komputer (S.Kom.) pada Program Studi S1 Teknik Informatika, Fakultas Teknologi Informasi, Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin.
+
+Shalawat serta salam semoga senantiasa tercurah kepada junjungan Nabi Muhammad SAW beserta keluarga, sahabat, dan seluruh umat beliau hingga akhir zaman.
+
+Penyusunan skripsi ini tidak terlepas dari bantuan, doa, bimbingan, serta dukungan dari berbagai pihak. Oleh karena itu, pada kesempatan ini penulis menyampaikan ucapan terima kasih kepada:
+
+
+Bapak Prof. Dr. H. Mohammad Zainul, S.E., M.M., selaku Rektor Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin.
+
+
+Ibu Prof. Dr. Hj. Silvia Ratna, S.Kom., M.Kom., selaku Dekan Fakultas Teknologi Informasi Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin.
+
+
+Bapak Al Fath Riza Kholdani, S.Kom., M.Kom., selaku Ketua Program Studi S1 Teknik Informatika Fakultas Teknologi Informasi Universitas Islam Kalimantan Muhammad Arsyad Al Banjari Banjarmasin.
+
+
+Ibu Adani Dharmawati, 
+S.Kom
+., M.Kom., 
+selaku
+ Dosen Pembimbing I yang telah memberikan arahan, bimbingan, serta motivasi selama penyusunan skripsi.
+
+
+Bapak Ahmadi, M.Kom., 
+selaku
+ Dosen Pembimbing II yang telah memberikan saran, kritik, dan masukan sehingga skripsi ini dapat diselesaikan dengan baik.
+
+
+Seluruh dosen dan staf Fakultas Teknologi Informasi Universitas Islam Kalimantan Muhammad Arsyad Al Banjari yang telah memberikan ilmu, bantuan, dan pelayanan akademik selama masa perkuliahan.
+
+
+Kepala Madrasah, guru, serta staf Madrasah Aliyah Negeri 2 Hulu Sungai Utara yang telah memberikan izin penelitian, data, dan informasi yang diperlukan selama proses penelitian.
+
+
+Kedua orang tua, keluarga, dan seluruh kerabat yang senantiasa memberikan doa, kasih sayang, dukungan moral maupun material, serta motivasi kepada penulis.
+
+
+Teman-teman Program Studi Teknik Informatika angkatan 2022 dan semua pihak yang telah membantu baik secara langsung maupun tidak langsung dalam penyusunan skripsi ini.
+
+Penulis menyadari bahwa skripsi ini masih memiliki keterbatasan dan belum sempurna. Oleh karena itu, kritik dan saran yang bersifat membangun sangat diharapkan demi penyempurnaan penelitian di masa yang akan datang.
+
+Akhir kata, penulis berharap semoga skripsi ini dapat memberikan manfaat bagi pembaca serta menjadi referensi dalam pengembangan sistem informasi inventaris aset berbasis web, khususnya di lingkungan pendidikan.
+
+Banjar
+baru
+, Juli 2026
+
+Penulis,
+
+
+
+Muhammad Okta Maulana
+
+
+
+
+DAFTAR ISI
+
+
+
+ TOC \o "1-3" \h \z \u LEMBAR PENGESAHAN PEMBIMBING	 PAGEREF _Toc236038480 \h i
+
+
+LEMBAR PENGESAHAN PENGUJI	 PAGEREF _Toc236038481 \h ii
+
+
+PERNYATAAN KEASLIAN SKRIPSI	 PAGEREF _Toc236038482 \h iii
+
+
+ABSTRAK	 PAGEREF _Toc236038483 \h iv
+
+
+KATA PENGANTAR	 PAGEREF _Toc236038484 \h v
+
+
+DAFTAR ISI	 PAGEREF _Toc236038485 \h viii
+
+
+DAFTAR GAMBAR	 PAGEREF _Toc236038486 \h xv
+
+
+DAFTAR TABEL	 PAGEREF _Toc236038487 \h xix
+
+
+BAB I  PENDAHULUAN	 PAGEREF _Toc236038488 \h 1
+
+
+1.1	Latar Belakang	 PAGEREF _Toc236038489 \h 1
+
+
+1.2	Rumusan Masalah	 PAGEREF _Toc236038490 \h 5
+
+
+1.3	Batasan Masalah	 PAGEREF _Toc236038491 \h 5
+
+
+1.4	Tujuan Penelitian	 PAGEREF _Toc236038492 \h 7
+
+
+1.5	Manfaat Penelitian	 PAGEREF _Toc236038493 \h 7
+
+
+1.6	Metode Penelitian	 PAGEREF _Toc236038494 \h 9
+
+
+1.6.1 Teknik Pengumpulan Data	 PAGEREF _Toc236038495 \h 9
+
+
+1.6.2 Metode Pengembangan Perangkat Lunak	 PAGEREF _Toc236038496 \h 11
+
+
+1.7	Sistematika Penulisan	 PAGEREF _Toc236038497 \h 13
+
+
+BAB II  TINJAUAN PUSTAKA	 PAGEREF _Toc236038498 \h 16
+
+
+2.1 Landasan Teori	 PAGEREF _Toc236038499 \h 16
+
+
+2.1.1 Sistem Informasi	 PAGEREF _Toc236038500 \h 16
+
+
+2.1.2 Inventaris Aset	 PAGEREF _Toc236038501 \h 19
+
+
+2.1.3 Website	 PAGEREF _Toc236038502 \h 21
+
+
+2.1.4 Quick Response Code (QR Code)	 PAGEREF _Toc236038503 \h 22
+
+
+2.1.5 PHP	 PAGEREF _Toc236038504 \h 24
+
+
+2.1.6 MySQL	 PAGEREF _Toc236038505 \h 26
+
+
+2.1.7 Unified Modeling Language (UML)	 PAGEREF _Toc236038506 \h 29
+
+
+2.1.8 Entity Relationship Diagram (ERD)	 PAGEREF _Toc236038507 \h 31
+
+
+2.1.9 Black Box Testing	 PAGEREF _Toc236038508 \h 33
+
+
+2.1.10 Metode Waterfall	 PAGEREF _Toc236038509 \h 34
+
+
+2.2	Penelitian Terdahulu	 PAGEREF _Toc236038510 \h 36
+
+
+2.3	Profil Madrasah Aliyah Negeri 2 Hulu Sungai Utara	 PAGEREF _Toc236038511 \h 41
+
+
+2.3.2 Visi	 PAGEREF _Toc236038512 \h 42
+
+
+2.3.3 Misi	 PAGEREF _Toc236038513 \h 42
+
+
+2.3.4 Tujuan	 PAGEREF _Toc236038514 \h 43
+
+
+BAB III  ANALISIS DAN PERANCANGAN SISTEM	 PAGEREF _Toc236038515 \h 44
+
+
+3.1 Analisis Sistem yang Berjalan	 PAGEREF _Toc236038516 \h 44
+
+
+3.1.1 Analisis Terhadap Sistem Lama	 PAGEREF _Toc236038517 \h 45
+
+
+3.1.2 Usulan Sistem Baru	 PAGEREF _Toc236038518 \h 46
+
+
+3.2 Analisis Kebutuhan Sistem	 PAGEREF _Toc236038519 \h 48
+
+
+3.2.1 Kebutuhan Data	 PAGEREF _Toc236038520 \h 49
+
+
+3.2.2 Kebutuhan Antarmuka	 PAGEREF _Toc236038521 \h 49
+
+
+3.2.3 Kebutuhan Fungsional	 PAGEREF _Toc236038522 \h 50
+
+
+3.2.4 Kebutuhan Nonfungsional	 PAGEREF _Toc236038523 \h 51
+
+
+3.2.5 Hak Akses Pengguna	 PAGEREF _Toc236038524 \h 52
+
+
+3.3 Rancangan Model Sistem	 PAGEREF _Toc236038525 \h 54
+
+
+3.3.1 Use Case Diagram	 PAGEREF _Toc236038526 \h 54
+
+
+3.3.2 Class Diagram	 PAGEREF _Toc236038527 \h 55
+
+
+3.3.3 Activity Diagram	 PAGEREF _Toc236038528 \h 56
+
+
+3.3.4 Sequence Diagram	 PAGEREF _Toc236038529 \h 64
+
+
+3.4 Rancangan Basis Data	 PAGEREF _Toc236038530 \h 71
+
+
+3.4.1 Entity Relationship Diagram (ERD)	 PAGEREF _Toc236038531 \h 71
+
+
+3.4.2 Struktur Tabel Basis Data	 PAGEREF _Toc236038532 \h 73
+
+
+3.5 Rancangan Antarmuka Masukan Sistem	 PAGEREF _Toc236038533 \h 82
+
+
+3.5.1 Rancangan Halaman Login	 PAGEREF _Toc236038534 \h 82
+
+
+3.5.2 Rancangan Form Data Aset	 PAGEREF _Toc236038535 \h 83
+
+
+3.5.3 Rancangan Form Kategori Aset	 PAGEREF _Toc236038536 \h 84
+
+
+3.5.4 Rancangan Form Lokasi	 PAGEREF _Toc236038537 \h 84
+
+
+3.5.5 Rancangan Form Pengguna	 PAGEREF _Toc236038538 \h 85
+
+
+3.5.6 Rancangan Form Peminjaman Aset	 PAGEREF _Toc236038539 \h 85
+
+
+3.5.7 Rancangan Form Pengembalian Aset	 PAGEREF _Toc236038540 \h 86
+
+
+3.5.8 Rancangan Form Mutasi Aset	 PAGEREF _Toc236038541 \h 87
+
+
+3.5.9 Rancangan Generate QR Code	 PAGEREF _Toc236038542 \h 87
+
+
+3.5.10 Rancangan Persetujuan Peminjaman	 PAGEREF _Toc236038543 \h 88
+
+
+3.6 Rancangan Antarmuka Keluaran Sistem	 PAGEREF _Toc236038544 \h 88
+
+
+3.6.1 Rancangan Halaman Dashboard	 PAGEREF _Toc236038545 \h 89
+
+
+3.6.2 Rancangan Halaman Daftar Aset	 PAGEREF _Toc236038546 \h 90
+
+
+3.6.3 Rancangan Halaman Detail Aset	 PAGEREF _Toc236038547 \h 91
+
+
+3.6.4 Rancangan Halaman Hasil Scan QR Code	 PAGEREF _Toc236038548 \h 92
+
+
+3.6.5 Rancangan Halaman Daftar Peminjaman	 PAGEREF _Toc236038549 \h 93
+
+
+3.6.6 Rancangan Halaman Riwayat Mutasi Aset	 PAGEREF _Toc236038550 \h 93
+
+
+3.6.7 Rancangan Halaman Riwayat Aktivitas	 PAGEREF _Toc236038551 \h 94
+
+
+3.6.8 Rancangan Laporan Inventaris (PDF)	 PAGEREF _Toc236038552 \h 95
+
+
+3.6.9 Rancangan Laporan Inventaris (Excel)	 PAGEREF _Toc236038553 \h 96
+
+
+BAB IV  IMPLEMENTASI DAN PENGUJIAN	 PAGEREF _Toc236038554 \h 97
+
+
+4.1 Spesifikasi Sistem	 PAGEREF _Toc236038555 \h 97
+
+
+4.1.1 Spesifikasi Perangkat Keras	 PAGEREF _Toc236038556 \h 97
+
+
+4.1.2 Spesifikasi Perangkat Lunak	 PAGEREF _Toc236038557 \h 98
+
+
+4.2 Langkah-Langkah Pembuatan Sistem	 PAGEREF _Toc236038558 \h 99
+
+
+4.2.1 Pembuatan Basis Data	 PAGEREF _Toc236038559 \h 99
+
+
+4.2.2 Konfigurasi Web Server	 PAGEREF _Toc236038560 \h 100
+
+
+4.2.3 Struktur Folder Aplikasi	 PAGEREF _Toc236038561 \h 101
+
+
+4.2.4 Konfigurasi Koneksi Basis Data	 PAGEREF _Toc236038562 \h 101
+
+
+4.3 Hasil Tampilan Aplikasi	 PAGEREF _Toc236038563 \h 102
+
+
+4.3.1 Halaman Login	 PAGEREF _Toc236038564 \h 102
+
+
+4.3.2 Halaman Dashboard	 PAGEREF _Toc236038565 \h 103
+
+
+4.3.3 Halaman Data Pengguna	 PAGEREF _Toc236038566 \h 104
+
+
+4.3.4 Halaman Data Kategori	 PAGEREF _Toc236038567 \h 104
+
+
+4.3.5 Halaman Data Lokasi	 PAGEREF _Toc236038568 \h 105
+
+
+4.3.6 Halaman Data Aset	 PAGEREF _Toc236038569 \h 105
+
+
+4.3.7 Halaman Generate QR Code	 PAGEREF _Toc236038570 \h 106
+
+
+4.3.8 Halaman Scan QR Code	 PAGEREF _Toc236038571 \h 106
+
+
+4.3.9 Halaman Peminjaman Aset	 PAGEREF _Toc236038572 \h 107
+
+
+4.3.10 Halaman Dashboard Guru/Karyawan	 PAGEREF _Toc236038573 \h 107
+
+
+4.3.11 Halaman Pengajuan Peminjaman	 PAGEREF _Toc236038574 \h 108
+
+
+4.3.12 Halaman Riwayat Peminjaman	 PAGEREF _Toc236038575 \h 109
+
+
+4.3.13 Halaman Pengembalian Aset	 PAGEREF _Toc236038576 \h 109
+
+
+4.3.14 Halaman Mutasi Aset	 PAGEREF _Toc236038577 \h 110
+
+
+4.3.15 Halaman Riwayat Aktivitas	 PAGEREF _Toc236038578 \h 110
+
+
+4.3.16 Halaman Profil Pengguna	 PAGEREF _Toc236038579 \h 111
+
+
+4.3.17 Halaman Laporan	 PAGEREF _Toc236038580 \h 111
+
+
+4.3.18 Halaman Pengaturan Email	 PAGEREF _Toc236038581 \h 116
+
+
+4.3.19 Halaman Log Notifikasi Email	 PAGEREF _Toc236038582 \h 117
+
+
+4.3.20 Tampilan Email Notifikasi Pengembalian Aset	 PAGEREF _Toc236038583 \h 118
+
+
+4.4 Pengujian Sistem	 PAGEREF _Toc236038584 \h 119
+
+
+4.4.1 Pengujian Halaman Login	 PAGEREF _Toc236038585 \h 120
+
+
+4.4.2 Pengujian Data Pengguna	 PAGEREF _Toc236038586 \h 120
+
+
+4.4.3 Pengujian Data Kategori	 PAGEREF _Toc236038587 \h 121
+
+
+4.4.4 Pengujian Data Lokasi	 PAGEREF _Toc236038588 \h 121
+
+
+4.4.5 Pengujian Data Aset	 PAGEREF _Toc236038589 \h 121
+
+
+4.4.6 Pengujian Generate dan Scan QR Code	 PAGEREF _Toc236038590 \h 122
+
+
+4.4.7 Pengujian Peminjaman Aset	 PAGEREF _Toc236038591 \h 122
+
+
+4.4.8 Pengujian Pengembalian Aset	 PAGEREF _Toc236038592 \h 123
+
+
+4.4.9 Pengujian Mutasi Aset	 PAGEREF _Toc236038593 \h 123
+
+
+4.4.10 Pengujian Laporan	 PAGEREF _Toc236038594 \h 123
+
+
+4.4.11 Pengujian Pengaturan Email	 PAGEREF _Toc236038595 \h 124
+
+
+4.4.12 Pengujian Notifikasi Email	 PAGEREF _Toc236038596 \h 125
+
+
+4.4.13 Hasil Pengujian Sistem	 PAGEREF _Toc236038597 \h 125
+
+
+BAB V PENUTUP	 PAGEREF _Toc236038598 \h 126
+
+
+5.1 Kesimpulan	 PAGEREF _Toc236038599 \h 126
+
+
+5.2 Saran	 PAGEREF _Toc236038600 \h 127
+
+
+DAFTAR PUSTAKA	 PAGEREF _Toc236038601 \h 128
+
+
+LAMPIRAN-LAMPIRAN	 PAGEREF _Toc236038602 \h 130
+
+
+
+
+
+
+
+
+
+
+
+DAFTAR GAMBAR
+
+
+ TOC \h \z \c "Gambar 3." Gambar 3.1 Sistem yang Berjalan	 PAGEREF _Toc236037741 \h 46
+
+
+Gambar 3.2 Usulan Sistem Baru	 PAGEREF _Toc236037742 \h 48
+
+
+Gambar 3.3 Use Case Diagram	 PAGEREF _Toc236037743 \h 55
+
+
+Gambar 3.4 Class Diagram	 PAGEREF _Toc236037744 \h 56
+
+
+Gambar 3.5 Activity Diagram Login	 PAGEREF _Toc236037745 \h 57
+
+
+Gambar 3.6 Activity Diagram Kelola Data Aset	 PAGEREF _Toc236037746 \h 58
+
+
+Gambar 3.7 Activity Diagram Pembuatan Label QR	 PAGEREF _Toc236037747 \h 59
+
+
+Gambar 3.8 Activity Diagram Scan QR Code	 PAGEREF _Toc236037748 \h 60
+
+
+Gambar 3.9 Activity Diagram Transaksi Peminjaman Aset	 PAGEREF _Toc236037749 \h 61
+
+
+Gambar 3.10 Activity Diagram Mutasi Aset	 PAGEREF _Toc236037750 \h 62
+
+
+Gambar 3.11 Activity Diagram Laporan	 PAGEREF _Toc236037751 \h 63
+
+
+Gambar 3.12 Sequence Diagram Login	 PAGEREF _Toc236037752 \h 64
+
+
+Gambar 3.13 Sequence Diagram Kelola Data Aset	 PAGEREF _Toc236037753 \h 65
+
+
+Gambar 3.14  Sequence Diagram Pembuatan Label	 PAGEREF _Toc236037754 \h 66
+
+
+Gambar 3.15 Sequence Diagram Scan QR Code	 PAGEREF _Toc236037755 \h 67
+
+
+Gambar 3.16 Sequence Diagram Transaksi Peminjaman Aset	 PAGEREF _Toc236037756 \h 68
+
+
+Gambar 3.17 Sequence Diagram Mutasi Aset	 PAGEREF _Toc236037757 \h 69
+
+
+Gambar 3.18 Sequence Diagram Laporan	 PAGEREF _Toc236037758 \h 70
+
+
+Gambar 3.19 Entity Relationship Diagram	 PAGEREF _Toc236037759 \h 72
+
+
+Gambar 3.20 Rancangan Halaman Login	 PAGEREF _Toc236037760 \h 82
+
+
+Gambar 3.21 Rancangan Form Data Aset	 PAGEREF _Toc236037761 \h 83
+
+
+Gambar 3.22 Rancangan Form Kategori Aset	 PAGEREF _Toc236037762 \h 84
+
+
+Gambar 3.23 Rancangan Form Lokasi	 PAGEREF _Toc236037763 \h 84
+
+
+Gambar 3.24 Rancangan Form Pengguna	 PAGEREF _Toc236037764 \h 85
+
+
+Gambar 3.25 Rancangan Form Peminjaman Aset	 PAGEREF _Toc236037765 \h 85
+
+
+Gambar 3.26 Form Pengembalian Aset	 PAGEREF _Toc236037766 \h 86
+
+
+Gambar 3.27 Rancangan Form Mutasi Aset	 PAGEREF _Toc236037767 \h 87
+
+
+Gambar 3.28 Rancangan Generate QR Code	 PAGEREF _Toc236037768 \h 87
+
+
+Gambar 3.29 Rancangan Persetujuan Peminjaman	 PAGEREF _Toc236037769 \h 88
+
+
+Gambar 3.30 Rancangan Halaman Dashboard	 PAGEREF _Toc236037770 \h 89
+
+
+Gambar 3.31 Rancangan Halaman Daftar Aset	 PAGEREF _Toc236037771 \h 90
+
+
+Gambar 3.32 Rancangan Halaman Detail Aset	 PAGEREF _Toc236037772 \h 91
+
+
+Gambar 3.33 Rancangan Halaman Hasil Scan QR Code	 PAGEREF _Toc236037773 \h 92
+
+
+Gambar 3.34 Rancangan Halaman Daftar Peminjaman	 PAGEREF _Toc236037774 \h 93
+
+
+Gambar 3.35 Rancangan Halaman Riwayat Mutasi Aset	 PAGEREF _Toc236037775 \h 93
+
+
+Gambar 3.36 Rancangan Halaman Riwayat Aktivitas	 PAGEREF _Toc236037776 \h 94
+
+
+Gambar 3.37 Rancangan Laporan Inventaris (PDF)	 PAGEREF _Toc236037777 \h 95
+
+
+Gambar 3.38 Rancangan Laporan Inventaris (Excel)	 PAGEREF _Toc236037778 \h 96 TOC \h \z \c "Gambar 4." 
+
+
+Gambar 4.1 Basis Data Sistem	 PAGEREF _Toc236037779 \h 100
+
+
+Gambar 4.2 Konfigurasi Web Server Menggunakan Laragon	 PAGEREF _Toc236037780 \h 100
+
+
+Gambar 4.3 Struktur Folder Aplikasi	 PAGEREF _Toc236037781 \h 101
+
+
+Gambar 4.4 Konfigurasi Koneksi Basis Data	 PAGEREF _Toc236037782 \h 102
+
+
+Gambar 4.5 Halaman Login	 PAGEREF _Toc236037783 \h 103
+
+
+Gambar 4.6 Halaman Dashboard	 PAGEREF _Toc236037784 \h 103
+
+
+Gambar 4.7 Halaman Data Pengguna	 PAGEREF _Toc236037785 \h 104
+
+
+Gambar 4.8 Halaman Data Kategori	 PAGEREF _Toc236037786 \h 104
+
+
+Gambar 4.9 Halaman Data Lokasi	 PAGEREF _Toc236037787 \h 105
+
+
+Gambar 4.10 Halaman Data Aset	 PAGEREF _Toc236037788 \h 105
+
+
+Gambar 4.11 Halaman Generate QR Code	 PAGEREF _Toc236037789 \h 106
+
+
+Gambar 4.12 Halaman Scan QR Code	 PAGEREF _Toc236037790 \h 106
+
+
+Gambar 4.13 Halaman Peminjaman Aset	 PAGEREF _Toc236037791 \h 107
+
+
+Gambar 4.14 Halaman Dashboard Guru/Karyawan	 PAGEREF _Toc236037792 \h 108
+
+
+Gambar 4.15 Halaman Pengajuan Peminjaman	 PAGEREF _Toc236037793 \h 108
+
+
+Gambar 4.16 Halaman Riwayat Peminjaman	 PAGEREF _Toc236037794 \h 109
+
+
+Gambar 4.17 Halaman Pengembalian Aset	 PAGEREF _Toc236037795 \h 109
+
+
+Gambar 4.18 Halaman Mutasi Aset	 PAGEREF _Toc236037796 \h 110
+
+
+Gambar 4.19 Halaman Riwayat Aktivitas	 PAGEREF _Toc236037797 \h 110
+
+
+Gambar 4.20 Halaman Profil Pengguna	 PAGEREF _Toc236037798 \h 111
+
+
+Gambar 4.21 Laporan Inventaris Keseluruhan	 PAGEREF _Toc236037799 \h 112
+
+
+Gambar 4.22 Laporan Aset per Kategori	 PAGEREF _Toc236037800 \h 112
+
+
+Gambar 4.23 Laporan Aset per Lokasi	 PAGEREF _Toc236037801 \h 113
+
+
+Gambar 4.24 Laporan Kondisi Aset	 PAGEREF _Toc236037802 \h 113
+
+
+Gambar 4.25 Laporan Peminjaman	 PAGEREF _Toc236037803 \h 114
+
+
+Gambar 4.26 Laporan Riwayat per Aset	 PAGEREF _Toc236037804 \h 114
+
+
+Gambar 4.27 Laporan Aset Masuk	 PAGEREF _Toc236037805 \h 115
+
+
+Gambar 4.28 Laporan Mutasi Aset	 PAGEREF _Toc236037806 \h 115
+
+
+Gambar 4.29 Laporan Penghapusan Aset	 PAGEREF _Toc236037807 \h 116
+
+
+Gambar 4.30 Halaman Pengaturan Email	 PAGEREF _Toc236037808 \h 117
+
+
+Gambar 4.31 Halaman Log Notifikasi Email	 PAGEREF _Toc236037809 \h 118
+
+
+Gambar 4.32 Tampilan Email Notifikasi Pengembalian Aset	 PAGEREF _Toc236037810 \h 119
+
+
+
+
+
+
+DAFTAR TABEL
+
+
+ TOC \h \z \c "Tabel 2." Tabel 2.1 Penelitian terkait	 PAGEREF _Toc236037898 \h 37 TOC \h \z \c "Tabel 3." 
+
+
+Tabel 3.1 Hak Akses Pengguna	 PAGEREF _Toc236037900 \h 53
+
+
+Tabel 3.2 Tabel Aset	 PAGEREF _Toc236037901 \h 75
+
+
+Tabel 3.3 Tabel Kategori	 PAGEREF _Toc236037902 \h 76
+
+
+Tabel 3.4 Tabel Lokasi	 PAGEREF _Toc236037903 \h 77
+
+
+Tabel 3.5 Tabel Peminjaman	 PAGEREF _Toc236037904 \h 77
+
+
+Tabel 3.6 Tabel Mutasi Aset	 PAGEREF _Toc236037905 \h 79
+
+
+Tabel 3.7 Tabel Riwayat Aktivitas	 PAGEREF _Toc236037906 \h 80
+
+
+Tabel 3.8 Tabel Email Notifications	 PAGEREF _Toc236037907 \h 80
+
+
+Tabel 3.9 Tabel Pengaturan	 PAGEREF _Toc236037908 \h 81 TOC \h \z \c "Tabel 4." 
+
+
+Tabel 4.1 Spesifikasi Perangkat Keras	 PAGEREF _Toc236037909 \h 97
+
+
+Tabel 4.2 Spesifikasi Perangkat Lunak	 PAGEREF _Toc236037910 \h 98
+
+
+Tabel 4.3 Pengujian Halaman Login	 PAGEREF _Toc236037911 \h 120
+
+
+Tabel 4.4 Pengujian Data Pengguna	 PAGEREF _Toc236037912 \h 120
+
+
+Tabel 4.5 Pengujian Data Kategori	 PAGEREF _Toc236037913 \h 121
+
+
+Tabel 4.6 Pengujian Data Lokasi	 PAGEREF _Toc236037914 \h 121
+
+
+Tabel 4.7 Pengujian Data Aset	 PAGEREF _Toc236037915 \h 121
+
+
+Tabel 4.8 Pengujian Generate dan Scan QR Code	 PAGEREF _Toc236037916 \h 122
+
+
+Tabel 4.9 Pengujian Peminjaman Aset	 PAGEREF _Toc236037917 \h 122
+
+
+Tabel 4.10 Pengujian Pengembalian Aset	 PAGEREF _Toc236037918 \h 123
+
+
+Tabel 4.11 Pengujian Mutasi Aset	 PAGEREF _Toc236037919 \h 123
+
+
+Tabel 4.12 Pengujian Laporan	 PAGEREF _Toc236037920 \h 123
+
+
+Tabel 4.13 Pengujian Pengaturan Email	 PAGEREF _Toc236037921 \h 124
+
+
+Tabel 4.14 Pengujian Notifikasi Email	 PAGEREF _Toc236037922 \h 125
+
+
+
+
+
+
+
+
+
+
+
+
+BAB I PENDAHULUAN
+
+
+
+
+
+Latar
+ 
+Belakang
+
+
+Perkembangan teknologi informasi telah mendorong transformasi digital pada berbagai sektor, termasuk sektor pendidikan. Pemanfaatan teknologi informasi tidak lagi terbatas sebagai media pembelajaran, tetapi juga dimanfaatkan untuk mendukung pengelolaan administrasi sekolah agar lebih efektif, efisien, dan akurat. Penerapan sistem informasi berbasis web memungkinkan proses pengelolaan data dilakukan secara terintegrasi sehingga mempercepat penyampaian informasi, meminimalkan kesalahan pencatatan, serta meningkatkan efisiensi pengelolaan inventaris aset (Laudon & Laudon, 2022; Ciptadi et al., 2023). 
+
+Madrasah Aliyah Negeri (MAN) 2 Hulu Sungai Utara merupakan salah satu lembaga pendidikan di bawah naungan Kementerian Agama Republik Indonesia yang memiliki berbagai sarana dan prasarana sebagai penunjang kegiatan belajar mengajar. Aset yang dimiliki meliputi komputer, laptop, meja, kursi, LCD proyektor, printer, perangkat jaringan, peralatan laboratorium, serta fasilitas pendukung lainnya yang tersebar pada berbagai ruangan di lingkungan sekolah. Seluruh aset tersebut memiliki nilai guna yang tinggi sehingga memerlukan pengelolaan inventaris yang baik agar informasi mengenai jumlah, kondisi, lokasi, dan status aset dapat diketahui secara akurat.
+
+Inventaris aset merupakan salah satu kegiatan administrasi yang bertujuan untuk melakukan pencatatan, pengelompokan, pengawasan, pemeliharaan, dan pelaporan seluruh aset yang dimiliki oleh suatu instansi. Pengelolaan inventaris yang dilakukan secara terkomputerisasi dapat meningkatkan efisiensi pengelolaan data, mempermudah proses pencarian informasi, serta menghasilkan laporan yang lebih cepat dan akurat dibandingkan dengan pencatatan secara manual (Ciptadi, Ilyas, & Syahrir, 2023).
+
+Pengelolaan inventaris berbasis sistem informasi memungkinkan setiap data aset tersimpan secara terpusat sehingga proses pencarian, pembaruan, pemantauan kondisi, dan penyusunan laporan dapat dilakukan secara lebih cepat dibandingkan pencatatan manual. Selain meningkatkan efisiensi operasional, sistem informasi inventaris juga mampu menjaga konsistensi data dan mendukung pengambilan keputusan berdasarkan informasi yang akurat (Laudon & Laudon, 2022; Stair & Reynolds, 2021).
+
+Berdasarkan hasil observasi yang dilakukan pada bagian Sarana dan Prasarana Madrasah Aliyah Negeri 2 Hulu Sungai Utara, diketahui bahwa proses pengelolaan inventaris aset masih dilakukan melalui pencatatan pada buku inventaris dan sebagian menggunakan Microsoft Excel. Cara tersebut telah membantu proses administrasi, namun masih terdapat beberapa kendala. Petugas memerlukan waktu yang cukup lama untuk mencari data aset karena harus memeriksa dokumen secara manual. Selain itu, perubahan data akibat perpindahan lokasi, perubahan kondisi, maupun penghapusan aset belum terdokumentasi secara terintegrasi sehingga berpotensi menyebabkan ketidaksesuaian antara data inventaris dengan kondisi aset yang sebenarnya. 
+
+Permasalahan lain yang ditemukan adalah proses identifikasi aset masih menggunakan label inventaris konvensional yang berisi nomor aset. Pada saat kegiatan inventarisasi atau stock opname, petugas harus mencocokkan nomor inventaris dengan data yang tersimpan pada buku inventaris atau dokumen elektronik. Apabila label mengalami kerusakan, hilang, atau tidak terbaca, proses identifikasi aset menjadi lebih sulit dan membutuhkan waktu yang lebih lama. Kondisi tersebut mengakibatkan proses pengawasan aset menjadi kurang efektif serta meningkatkan risiko terjadinya kesalahan identifikasi.
+
+Seiring bertambahnya jumlah aset setiap tahun, proses pengelolaan inventaris menjadi semakin kompleks. Apabila pengelolaan inventaris masih dilakukan secara manual, maka risiko terjadinya kesalahan pencatatan, duplikasi data, kehilangan informasi aset, serta keterlambatan penyusunan laporan akan semakin besar. Dampak lainnya adalah proses monitoring aset menjadi kurang optimal sehingga dapat memengaruhi pengambilan keputusan terkait pemeliharaan, pengadaan, maupun penghapusan aset sekolah.
+
+Berbagai penelitian menunjukkan bahwa implementasi sistem informasi inventaris berbasis web mampu meningkatkan efektivitas pengelolaan aset melalui proses pencatatan yang terintegrasi, pencarian data yang lebih cepat, serta penyusunan laporan secara otomatis. Selain itu, penerapan teknologi QR Code pada sistem inventaris terbukti mempercepat proses identifikasi aset, mempermudah pelaksanaan inventarisasi, serta meningkatkan akurasi pelacakan aset pada instansi pendidikan maupun pemerintahan (Ciptadi et al., 2023; Ermawati et al., 2022; Lestari et al., 2025). 
+
+Namun demikian, berdasarkan telaah terhadap beberapa penelitian terdahulu, sebagian besar penelitian masih berfokus pada digitalisasi inventaris atau penerapan QR Code sebagai media pelabelan aset. Belum banyak penelitian yang mengintegrasikan pengelolaan data aset, peminjaman dan pengembalian aset, mutasi aset, riwayat aktivitas pengguna, serta pelaporan inventaris dalam satu sistem berbasis web yang dilengkapi fitur Generate QR Code. Penelitian terbaru pada inventaris sekolah juga menunjukkan bahwa integrasi QR Code dengan sistem inventaris berbasis web masih terus dikembangkan untuk meningkatkan efisiensi pengelolaan aset di lingkungan pendidikan.
+
+Berdasarkan permasalahan tersebut, diperlukan suatu sistem informasi yang mampu mengelola inventaris aset secara terintegrasi. Oleh karena itu, penelitian ini mengembangkan Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Sistem yang dibangun dirancang untuk mengelola data aset, kategori aset, lokasi aset, data pengguna, transaksi peminjaman dan pengembalian aset, mutasi aset, serta laporan inventaris. Selain itu, setiap aset akan memiliki identitas digital berupa QR Code yang dihasilkan secara otomatis sehingga proses identifikasi aset dapat dilakukan secara cepat, akurat, dan efisien melalui proses pemindaian. Penerapan sistem ini diharapkan mampu meningkatkan kualitas pengelolaan inventaris aset serta mendukung pengambilan keputusan yang lebih tepat berdasarkan data yang tersedia.
+
+Berdasarkan uraian tersebut, penulis mengangkat penelitian dengan judul "Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL di Madrasah Aliyah Negeri 2 Hulu Sungai Utara." 
+
+
+
+Rumusan
+ 
+Masalah
+
+
+Rumusan masalah merupakan uraian singkat mengenai permasalahan yang akan diselesaikan melalui penelitian. Berdasarkan latar belakang yang telah diuraikan, maka rumusan masalah dalam penelitian ini adalah sebagai berikut. 
+
+
+Bagaimana merancang dan membangun Sistem Informasi Inventaris Aset Sekolah berbasis web menggunakan PHP dan MySQL pada Madrasah Aliyah Negeri 2 Hulu Sungai Utara?
+
+
+Bagaimana mengimplementasikan fitur Generate QR Code sebagai identitas digital setiap aset untuk mempermudah proses identifikasi dan inventarisasi aset sekolah?
+
+
+Bagaimana membangun sistem yang mampu mengelola data inventaris aset, meliputi pengelolaan data aset, kategori aset, lokasi aset, peminjaman, pengembalian, mutasi aset, serta penyusunan laporan inventaris secara efektif dan efisien?
+
+
+Batasan 
+Masalah
+
+
+Agar penelitian yang dilakukan lebih terarah dan sesuai dengan tujuan yang ingin dicapai, maka penelitian ini dibatasi pada ruang lingkup sebagai berikut:
+
+
+Penelitian dilakukan di Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+Sistem dikembangkan dalam bentuk aplikasi berbasis web menggunakan bahasa pemrograman PHP dengan MySQL sebagai basis data.
+
+
+Sistem memiliki tiga hak akses pengguna, yaitu:
+
+
+Admin
+
+
+Petugas Sarana dan Prasarana
+
+
+Guru
+
+
+Sistem hanya mencakup pengelolaan inventaris aset sekolah yang meliputi:
+
+
+Login pengguna.
+
+
+Pengelolaan data aset.
+
+
+Pengelolaan kategori aset.
+
+
+Pengelolaan lokasi aset.
+
+
+Pengelolaan data pengguna.
+
+
+Generate QR Code pada setiap aset.
+
+
+Scan QR Code untuk identifikasi aset.
+
+
+Peminjaman aset.
+
+
+Pengembalian aset.
+
+
+Mutasi aset.
+
+
+Riwayat aktivitas pengguna.
+
+
+Laporan inventaris aset.
+
+
+Sistem tidak membahas pengelolaan penyusutan nilai aset, penilaian aset, maupun akuntansi aset.
+
+
+Pengujian sistem dilakukan menggunakan metode Black Box Testing.
+
+
+
+Tujuan
+ 
+Penelitian
+
+
+Berdasarkan rumusan masalah yang telah ditetapkan, maka tujuan penelitian ini adalah sebagai berikut:
+
+
+Merancang dan membangun Sistem Informasi Inventaris Aset Sekolah berbasis web menggunakan PHP dan MySQL pada Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+Mengimplementasikan fitur Generate QR Code sebagai identitas digital setiap aset sehingga proses identifikasi aset dapat dilakukan dengan lebih cepat, mudah, dan akurat.
+
+
+Menghasilkan sistem informasi yang mampu membantu pengelolaan inventaris aset sekolah, mulai dari pendataan aset, peminjaman, pengembalian, mutasi aset, hingga penyusunan laporan inventaris secara efektif, efisien, dan terintegrasi.
+
+
+
+Manfaat
+ 
+Penelitian
+
+
+Penelitian ini diharapkan dapat memberikan manfaat bagi berbagai pihak, baik secara praktis maupun akademis.
+
+
+Bagi Madrasah Aliyah Negeri 2 Hulu Sungai Utara
+
+
+Penelitian ini diharapkan dapat membantu pihak sekolah dalam meningkatkan efektivitas pengelolaan inventaris aset melalui sistem yang terkomputerisasi. Selain itu, sistem yang dibangun dapat mempercepat proses pencatatan, pencarian, identifikasi, serta penyusunan laporan inventaris sehingga pengelolaan aset menjadi lebih tertib, akurat, dan terdokumentasi dengan baik.
+
+
+Bagi Petugas Sarana dan Prasarana
+
+
+Sistem informasi yang dikembangkan diharapkan dapat mempermudah petugas dalam melakukan pendataan aset, pengelolaan peminjaman dan pengembalian aset, pencatatan mutasi aset, serta proses inventarisasi menggunakan fitur Generate QR Code dan Scan QR Code, sehingga pekerjaan dapat dilakukan dengan lebih cepat dan efisien.
+
+
+Bagi Guru
+
+
+Sistem ini diharapkan dapat memberikan kemudahan bagi guru dalam memperoleh informasi mengenai aset yang tersedia serta mendukung proses peminjaman aset sekolah secara lebih teratur dan terdokumentasi.
+
+
+Bagi Peneliti
+
+
+Penelitian ini menjadi sarana untuk menerapkan ilmu yang telah diperoleh selama perkuliahan, khususnya dalam bidang pengembangan sistem informasi berbasis web menggunakan PHP dan MySQL. Selain itu, penelitian ini juga memberikan pengalaman dalam menganalisis kebutuhan pengguna, merancang sistem, mengimplementasikan aplikasi, serta melakukan pengujian perangkat lunak.
+
+
+Bagi Universitas
+
+
+Hasil penelitian ini diharapkan dapat menjadi referensi bagi mahasiswa maupun peneliti selanjutnya yang akan mengembangkan penelitian di bidang sistem informasi inventaris aset sekolah maupun pengembangan sistem informasi berbasis web dengan memanfaatkan teknologi QR Code.
+
+
+
+Metode
+ 
+Penelitian
+
+
+
+Metode penelitian merupakan serangkaian tahapan yang digunakan untuk memperoleh data, menganalisis permasalahan, serta mengembangkan sistem sesuai dengan tujuan penelitian. Pada penelitian ini digunakan metode pengumpulan data dan metode pengembangan perangkat lunak agar proses penelitian berlangsung secara sistematis. 
+
+
+1.6.1 Teknik Pengumpulan Data
+
+Teknik pengumpulan data yang digunakan dalam penelitian ini meliputi: 
+
+
+Observasi
+
+
+Observasi dilakukan dengan mengamati secara langsung proses pengelolaan inventaris aset di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Melalui kegiatan observasi diperoleh informasi mengenai proses pendataan aset, pencatatan inventaris, pengelolaan peminjaman dan pengembalian aset, penyimpanan data, serta penyusunan laporan inventaris yang sedang berjalan. Hasil observasi digunakan sebagai dasar dalam mengidentifikasi permasalahan dan menentukan kebutuhan sistem yang akan dikembangkan.
+
+
+Wawancara 
+
+
+Wawancara dilakukan secara langsung dengan petugas yang bertanggung jawab terhadap pengelolaan sarana dan prasarana di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Wawancara bertujuan untuk memperoleh informasi mengenai prosedur pengelolaan inventaris aset, kendala yang dihadapi selama proses inventarisasi, kebutuhan pengguna terhadap sistem, serta harapan terhadap sistem informasi yang akan dikembangkan.
+
+
+Dokumentasi
+
+
+Metode dokumentasi dilakukan dengan mengumpulkan dan mempelajari dokumen yang berkaitan dengan penelitian, seperti buku inventaris aset, daftar aset sekolah, data kategori aset, data lokasi aset, formulir peminjaman, serta dokumen pendukung lainnya. Dokumen tersebut digunakan sebagai bahan analisis dalam proses perancangan sistem.
+
+
+Studi Pustaka
+
+
+Studi pustaka dilakukan dengan mempelajari berbagai literatur yang relevan, seperti buku, jurnal ilmiah, prosiding, dan referensi akademik lainnya yang berkaitan dengan sistem informasi, inventaris aset, QR Code, PHP, MySQL, Unified Modeling Language (UML), basis data, dan metode pengembangan perangkat lunak. Studi pustaka bertujuan untuk memperoleh landasan teori yang mendukung penelitian.
+
+
+1.6.2 Metode Pengembangan Perangkat Lunak
+
+Metode pengembangan perangkat lunak yang digunakan dalam penelitian ini adalah System Development Life Cycle (SDLC) dengan model Waterfall. Model Waterfall dipilih karena memiliki tahapan pengembangan yang terstruktur dan dilakukan secara berurutan, sehingga sesuai untuk pembangunan sistem informasi yang kebutuhan fungsionalnya telah diidentifikasi sejak awal penelitian. Setiap tahapan harus diselesaikan terlebih dahulu sebelum melanjutkan ke tahapan berikutnya. Tahapan dalam metode Waterfall adalah sebagai berikut:
+
+
+Analisis Kebutuhan (Requirement Analysis)
+
+
+Tahap analisis kebutuhan dilakukan untuk mengidentifikasi kebutuhan sistem berdasarkan hasil observasi, wawancara, dokumentasi, dan studi pustaka. Pada tahap ini dilakukan identifikasi kebutuhan fungsional dan nonfungsional sistem, analisis pengguna (user requirement), serta identifikasi permasalahan yang terjadi pada sistem inventaris aset yang sedang berjalan.
+
+
+Perancangan Sistem (System Design)
+
+
+Tahap perancangan sistem bertujuan untuk menghasilkan rancangan sistem yang akan dijadikan pedoman dalam proses pengembangan aplikasi. Perancangan meliputi penyusunan Use Case Diagram, Activity Diagram, Sequence Diagram, Class Diagram, Entity Relationship Diagram (ERD), struktur basis data, serta rancangan antarmuka (user interface) yang disesuaikan dengan kebutuhan pengguna.
+
+
+Implementasi (Coding)
+
+
+Tahap implementasi merupakan proses penerjemahan hasil perancangan ke dalam bentuk aplikasi menggunakan bahasa pemrograman PHP dengan MySQL sebagai sistem manajemen basis data. Pada tahap ini dilakukan pembangunan seluruh fitur sistem, seperti pengelolaan data aset, kategori aset, lokasi aset, pengguna, peminjaman aset, pengembalian aset, mutasi aset, Generate QR Code, Scan QR Code, serta pembuatan laporan inventaris.
+
+
+Pengujian Sistem (Testing)
+
+
+Setelah proses implementasi selesai, dilakukan pengujian sistem menggunakan metode Black Box Testing. Pengujian dilakukan untuk memastikan bahwa setiap fungsi yang terdapat pada sistem berjalan sesuai dengan kebutuhan yang telah ditentukan. Pengujian meliputi proses autentikasi pengguna, pengelolaan data inventaris, proses generate dan pemindaian QR Code, transaksi peminjaman dan pengembalian aset, mutasi aset, serta pembuatan laporan.
+
+
+Pemeliharaan (Maintenance)
+
+
+Tahap pemeliharaan dilakukan setelah sistem diimplementasikan. Pemeliharaan bertujuan untuk memperbaiki kesalahan yang ditemukan selama penggunaan sistem, melakukan penyesuaian apabila terdapat perubahan kebutuhan pengguna, serta meningkatkan kinerja sistem agar tetap dapat digunakan secara optimal.
+
+Berdasarkan tahapan tersebut, model Waterfall dinilai sesuai untuk penelitian ini karena memberikan alur pengembangan yang sistematis, terdokumentasi dengan baik, dan memudahkan proses evaluasi pada setiap tahapan pengembangan sistem.
+
+
+
+Sistematika
+ 
+Penulisan
+
+
+Sistematika penulisan skripsi ini disusun untuk memberikan gambaran mengenai isi setiap bab sehingga pembahasan penelitian tersusun secara sistematis dan mudah dipahami. Adapun sistematika penulisan skripsi ini adalah sebagai berikut:
+
+BAB I	: PENDAHULUAN
+
+Bab ini menguraikan latar belakang penelitian, rumusan masalah, batasan masalah, tujuan penelitian, manfaat penelitian, metode penelitian, serta sistematika penulisan skripsi.
+
+BAB II	: TINJAUAN PUSTAKA
+
+Bab ini berisi landasan teori yang mendukung penelitian, penelitian terdahulu yang relevan, serta konsep-konsep yang berkaitan dengan sistem informasi, inventaris aset, website, QR Code, PHP, MySQL, Unified Modeling Language (UML), Entity Relationship Diagram (ERD), basis data, Black Box Testing, dan profil Madrasah Aliyah Negeri 2 Hulu Sungai Utara sebagai objek penelitian.
+
+BAB III	: ANALISIS DAN PERANCANGAN SISTEM
+
+Bab ini membahas analisis sistem yang sedang berjalan, identifikasi kebutuhan sistem, analisis kebutuhan pengguna, perancangan model sistem menggunakan UML, perancangan basis data, struktur tabel, relasi antarentitas, serta perancangan antarmuka pengguna yang akan diimplementasikan.
+
+BAB IV	: IMPLEMENTASI DAN PENGUJIAN
+
+Bab ini menjelaskan implementasi sistem berdasarkan hasil perancangan, spesifikasi perangkat keras dan perangkat lunak yang digunakan, implementasi setiap fitur aplikasi, hasil pengujian menggunakan metode Black Box Testing, serta pembahasan hasil pengujian sistem.
+
+BAB V	: PENUTUP
+
+Bab ini berisi kesimpulan yang diperoleh berdasarkan hasil penelitian dan implementasi sistem, serta saran yang dapat digunakan sebagai bahan pengembangan sistem pada penelitian selanjutnya.
+
+
+
+
+Dengan sistematika penulisan tersebut, diharapkan pembahasan penelitian dapat tersusun secara runtut mulai dari identifikasi permasalahan, proses analisis, perancangan, implementasi, hingga evaluasi sistem yang dikembangkan sehingga tujuan penelitian dapat tercapai secara opti
+
+
+BAB II TINJAUAN PUSTAKA
+
+
+
+
+2.1 
+Landasan
+ 
+Teori
+
+
+Landasan teori merupakan kumpulan konsep, teori, dan hasil penelitian yang menjadi dasar ilmiah dalam penyusunan suatu penelitian. Landasan teori berfungsi sebagai acuan dalam memahami permasalahan, menyusun kerangka berpikir, merancang solusi, serta menganalisis hasil penelitian. Oleh karena itu, teori yang digunakan harus relevan dengan topik penelitian dan berasal dari sumber ilmiah yang dapat dipertanggungjawabkan (Creswell & Creswell, 2018).
+
+Pada penelitian ini, landasan teori disusun berdasarkan berbagai referensi yang berasal dari buku ilmiah, artikel jurnal nasional maupun internasional, serta prosiding yang berkaitan dengan sistem informasi, inventaris aset, website, Quick Response Code (QR Code), PHP, MySQL, Unified Modeling Language (UML), Entity Relationship Diagram (ERD), Black Box Testing, dan metode pengembangan perangkat lunak System Development Life Cycle (SDLC) model Waterfall. Seluruh teori tersebut digunakan sebagai dasar dalam merancang Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL di Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+2.1.1 Sistem Informasi
+
+Sistem informasi merupakan suatu sistem yang mengintegrasikan manusia, perangkat keras (hardware), perangkat lunak (software), basis data (database), prosedur, dan jaringan komunikasi untuk mengumpulkan, mengolah, menyimpan, serta menyajikan informasi yang dibutuhkan oleh organisasi. Informasi yang dihasilkan harus memiliki karakteristik akurat, relevan, dan tepat waktu sehingga dapat mendukung kegiatan operasional maupun proses pengambilan keputusan. Menurut Laudon dan Laudon (2022), sistem informasi tidak hanya berfungsi sebagai alat pengolah data, tetapi juga menjadi bagian penting dalam meningkatkan efisiensi proses bisnis dan mendukung keunggulan organisasi.
+
+Perkembangan teknologi informasi telah mendorong penerapan sistem informasi pada berbagai sektor, termasuk pendidikan. Sistem informasi berbasis web memungkinkan proses administrasi dilakukan secara lebih efektif melalui integrasi data, otomatisasi proses bisnis, dan penyediaan informasi secara real time sehingga mampu meningkatkan efisiensi organisasi (Laudon & Laudon, 2022; Stair & Reynolds, 2021). 
+
+Suatu sistem informasi terdiri atas beberapa komponen yang saling berhubungan, yaitu perangkat keras (hardware), perangkat lunak (software), basis data (database), prosedur (procedure), pengguna (brainware), dan jaringan komputer (network). Seluruh komponen tersebut bekerja secara terpadu sehingga mampu menghasilkan informasi yang berkualitas. Apabila salah satu komponen tidak berfungsi dengan baik, maka kinerja sistem informasi secara keseluruhan dapat terganggu (Laudon & Laudon, 2022).
+
+Menurut Stair dan Reynolds (2021), keberhasilan implementasi sistem informasi tidak hanya dipengaruhi oleh teknologi yang digunakan, tetapi juga oleh kualitas data, kompetensi pengguna, prosedur kerja, dan dukungan organisasi. Oleh karena itu, seluruh komponen sistem informasi harus saling terintegrasi agar informasi yang dihasilkan mampu mendukung kegiatan operasional maupun proses pengambilan keputusan secara efektif.
+
+Penerapan sistem informasi memberikan berbagai manfaat bagi organisasi, antara lain meningkatkan efektivitas pengelolaan data, mempercepat proses pencarian informasi, meningkatkan keamanan penyimpanan data, mengurangi risiko kesalahan pencatatan, serta mendukung proses pengambilan keputusan berdasarkan informasi yang akurat. Dalam bidang pendidikan, sistem informasi berperan dalam meningkatkan efektivitas administrasi, pengelolaan data, dan pengambilan keputusan berbasis informasi sehingga proses kerja menjadi lebih efisien (Laudon & Laudon, 2022). 
+
+Dalam penelitian ini, sistem informasi diterapkan untuk membangun aplikasi inventaris aset sekolah berbasis web yang dilengkapi fitur Generate QR Code menggunakan PHP dan MySQL. Sistem tersebut dirancang untuk membantu proses pendataan aset, pengelolaan kategori aset, lokasi aset, transaksi peminjaman dan pengembalian aset, mutasi aset, serta penyusunan laporan inventaris secara terintegrasi. Dengan adanya sistem tersebut, proses identifikasi aset dapat dilakukan melalui pemindaian QR Code sehingga pengelolaan inventaris menjadi lebih efektif, efisien, dan akurat.
+
+
+2.1.2 Inventaris Aset
+
+Inventaris aset merupakan kegiatan yang dilakukan untuk mencatat, mengelompokkan, mengelola, memelihara, serta mengawasi seluruh aset yang dimiliki oleh suatu organisasi agar dapat dimanfaatkan secara optimal. Inventarisasi tidak hanya berfungsi sebagai proses pendataan barang, tetapi juga sebagai upaya untuk menyediakan informasi mengenai jumlah, kondisi, lokasi, nilai guna, dan status kepemilikan aset sehingga dapat mendukung pengambilan keputusan dalam pengelolaan aset organisasi. Inventarisasi yang dilakukan secara sistematis akan menghasilkan data yang akurat dan memudahkan proses pengawasan maupun pelaporan aset.
+
+Dalam lingkungan pendidikan, inventaris aset memiliki peranan penting karena sekolah memiliki berbagai sarana dan prasarana yang digunakan untuk mendukung kegiatan belajar mengajar. Aset tersebut meliputi gedung, ruang kelas, meja, kursi, komputer, perangkat laboratorium, LCD proyektor, printer, serta berbagai fasilitas penunjang lainnya. Seluruh aset tersebut harus dikelola dengan baik agar keberadaannya dapat diketahui, kondisinya dapat dipantau, dan penggunaannya dapat dipertanggungjawabkan. Pengelolaan inventaris yang baik juga membantu sekolah dalam merencanakan pemeliharaan, pengadaan, maupun penghapusan aset secara lebih efektif.
+
+Inventaris aset yang dikelola secara digital memungkinkan sekolah melakukan pengawasan terhadap siklus hidup aset mulai dari proses pengadaan, penggunaan, pemeliharaan, mutasi hingga penghapusan. Pendekatan tersebut membantu sekolah dalam menjaga akurasi data aset sekaligus meningkatkan akuntabilitas pengelolaan sarana dan prasarana (Ciptadi et al., 2023).
+
+Pengelolaan inventaris berbasis sistem informasi memungkinkan organisasi melakukan pencatatan, pemantauan kondisi aset, pencarian data, serta penyusunan laporan secara lebih cepat dan akurat dibandingkan metode manual. Implementasi teknologi informasi juga mampu mengurangi kesalahan pencatatan dan meningkatkan efektivitas pengawasan aset (Ciptadi et al., 2023; Ermawati et al., 2022).
+
+Selain proses pencatatan, identifikasi aset juga merupakan bagian penting dalam pengelolaan inventaris. Setiap aset sebaiknya memiliki identitas yang unik agar mudah dikenali ketika dilakukan inventarisasi, peminjaman, pemeliharaan, maupun audit. Salah satu teknologi yang banyak diterapkan untuk mendukung identifikasi aset adalah Quick Response Code (QR Code). Dengan adanya identitas digital pada setiap aset, proses pelacakan dan verifikasi dapat dilakukan lebih cepat dibandingkan penggunaan label inventaris konvensional.
+
+Pada penelitian ini, inventaris aset dikelola melalui sistem informasi berbasis web yang dilengkapi dengan fitur Generate QR Code. Sistem yang dikembangkan tidak hanya mendukung proses pendataan aset, tetapi juga pengelolaan kategori aset, lokasi aset, transaksi peminjaman dan pengembalian, mutasi aset, serta penyusunan laporan inventaris. Dengan demikian, proses pengelolaan inventaris di Madrasah Aliyah Negeri 2 Hulu Sungai Utara diharapkan menjadi lebih efektif, efisien, dan terdokumentasi secara terintegrasi.
+
+
+2.1.3 Website
+
+Website merupakan kumpulan halaman web yang saling terhubung dan dapat diakses melalui jaringan internet maupun intranet menggunakan peramban (web browser). Setiap halaman web dapat memuat berbagai jenis informasi, seperti teks, gambar, audio, video, maupun dokumen digital yang disusun menggunakan teknologi web. Website menjadi salah satu media yang banyak digunakan untuk menyampaikan informasi dan menyediakan layanan secara daring karena dapat diakses dengan mudah oleh pengguna dari berbagai lokasi melalui perangkat yang terhubung ke jaringan internet (Dennis et al., 2021).
+
+Berdasarkan sifatnya, website dibedakan menjadi dua jenis, yaitu website statis dan website dinamis. Website statis menampilkan informasi yang relatif tetap sehingga perubahan isi halaman harus dilakukan secara langsung pada kode program. Sebaliknya, website dinamis memungkinkan informasi diperbarui secara otomatis melalui basis data sehingga pengelolaan konten menjadi lebih mudah dan efisien. Website dinamis banyak diterapkan pada sistem informasi karena mampu menangani proses autentikasi pengguna, pengelolaan data, transaksi, serta penyajian laporan secara real-time (Pressman & Maxim, 2020).
+
+Website dinamis menjadi platform yang banyak digunakan dalam pengembangan sistem informasi karena mampu menghubungkan antarmuka pengguna dengan basis data secara langsung sehingga seluruh proses pengelolaan data dapat dilakukan secara real time. Karakteristik tersebut menjadikan website dinamis sesuai untuk pengembangan sistem administrasi maupun inventaris aset (Dennis et al., 2021; Pressman & Maxim, 2020).
+
+Dalam pengembangan sistem informasi, website memberikan berbagai keuntungan, antara lain kemudahan akses tanpa memerlukan instalasi aplikasi pada setiap perangkat pengguna, kemudahan pemeliharaan karena pembaruan dilakukan pada server, serta kemampuan untuk mengintegrasikan berbagai fungsi dalam satu aplikasi. Selain itu, website juga mendukung penggunaan oleh banyak pengguna (multiuser) sesuai dengan hak akses yang telah ditentukan sehingga sangat sesuai diterapkan pada sistem administrasi sekolah maupun pengelolaan inventaris aset (Dennis et al., 2021).
+
+Pada penelitian ini, sistem informasi inventaris aset dikembangkan dalam bentuk website dinamis menggunakan bahasa pemrograman PHP dan basis data MySQL. Pemilihan website sebagai platform pengembangan bertujuan agar sistem dapat diakses oleh administrator, petugas sarana dan prasarana, maupun guru melalui jaringan lokal ataupun internet sesuai dengan kebutuhan sekolah. Dengan pendekatan tersebut, proses pengelolaan inventaris aset dapat dilakukan secara terpusat, terdokumentasi, dan lebih efisien dibandingkan dengan metode manual.
+
+
+2.1.4 Quick Response Code (QR Code)
+
+Quick Response Code (QR Code) merupakan barcode dua dimensi yang mampu menyimpan data dalam kapasitas lebih besar dibandingkan barcode satu dimensi serta memiliki kemampuan koreksi kesalahan (error correction) sehingga tetap dapat dibaca meskipun sebagian kode mengalami kerusakan (Ermawati et al., 2022).
+
+Seiring perkembangan teknologi informasi, QR Code telah diterapkan pada berbagai bidang, seperti pendidikan, kesehatan, perdagangan, logistik, hingga pengelolaan inventaris aset. Penerapan QR Code memudahkan proses identifikasi objek karena setiap kode dapat dihubungkan dengan informasi yang tersimpan di dalam basis data. Pengguna hanya perlu melakukan pemindaian menggunakan perangkat yang memiliki kamera untuk memperoleh informasi secara cepat tanpa harus melakukan pencarian data secara manual.
+
+Dalam pengelolaan inventaris aset, QR Code berfungsi sebagai identitas digital yang melekat pada setiap aset. Setiap kode dapat menyimpan informasi unik, seperti kode aset, nama barang, kategori, lokasi, maupun informasi lain yang terhubung dengan sistem. Penggunaan QR Code mampu mempercepat proses identifikasi aset, mempermudah inventarisasi, dan meningkatkan akurasi data inventaris (Ciptadi et al., 2023).
+
+Selain meningkatkan kecepatan identifikasi, QR Code juga memberikan kemudahan dalam proses pemeliharaan dan pengawasan aset. Petugas dapat mengetahui informasi aset secara langsung melalui proses pemindaian tanpa harus membuka dokumen inventaris secara manual. Dengan demikian, penggunaan QR Code mampu meningkatkan efisiensi kerja, mengurangi risiko kehilangan data, dan mendukung proses pengambilan keputusan berdasarkan informasi aset yang tersimpan pada sistem.
+
+QR Code juga mendukung proses digitalisasi inventaris karena setiap kode dapat dihubungkan langsung dengan data yang tersimpan pada basis data. Dengan demikian, pengguna dapat memperoleh informasi mengenai identitas aset, lokasi, kondisi, maupun riwayat penggunaan hanya melalui proses pemindaian menggunakan perangkat bergerak sehingga proses inventarisasi menjadi lebih efektif dan efisien (Ermawati et al., 2022; Ciptadi et al., 2023).
+
+Pada penelitian ini, teknologi QR Code diterapkan melalui fitur Generate QR Code yang secara otomatis menghasilkan identitas digital untuk setiap aset yang didaftarkan ke dalam sistem. QR Code tersebut digunakan sebagai media identifikasi aset sehingga petugas dapat memperoleh informasi mengenai aset secara cepat melalui proses pemindaian. Penerapan teknologi ini diharapkan mampu meningkatkan efektivitas pengelolaan inventaris aset di Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+2.1.5 PHP
+
+PHP (PHP: Hypertext Preprocessor) merupakan bahasa pemrograman server-side scripting yang dirancang khusus untuk mengembangkan aplikasi berbasis web. PHP bekerja pada sisi server untuk memproses permintaan dari pengguna, kemudian menghasilkan halaman web dinamis yang dikirimkan ke web browser. Salah satu keunggulan PHP adalah kemampuannya untuk disisipkan ke dalam dokumen HTML sehingga memudahkan pengembang dalam membangun aplikasi web yang interaktif dan dinamis. Selain itu, PHP bersifat open source sehingga dapat digunakan dan dikembangkan secara bebas oleh masyarakat maupun organisasi di seluruh dunia.
+
+PHP mendukung berbagai sistem operasi, seperti Windows, Linux, dan macOS, serta dapat dijalankan pada berbagai web server, termasuk Apache dan Nginx. PHP juga menyediakan dukungan terhadap berbagai sistem manajemen basis data (Database Management System), seperti MySQL, PostgreSQL, SQLite, dan MariaDB. Kemampuan tersebut menjadikan PHP sebagai salah satu bahasa pemrograman yang banyak digunakan dalam pengembangan sistem informasi berbasis web karena fleksibel, mudah dipelajari, dan memiliki dokumentasi yang lengkap.
+
+Dalam pengembangan aplikasi berbasis web, PHP menyediakan berbagai fitur yang mendukung proses pengolahan data, seperti pengelolaan formulir (form handling), autentikasi pengguna, pengelolaan sesi (session), manipulasi berkas, hingga komunikasi dengan basis data. Untuk berinteraksi dengan MySQL, PHP menyediakan beberapa antarmuka (API), di antaranya MySQLi dan PDO MySQL, yang memungkinkan aplikasi melakukan proses penyimpanan, pembaruan, penghapusan, dan pengambilan data secara efisien.
+
+Keunggulan lain dari PHP adalah kemudahan integrasinya dengan teknologi web lainnya, seperti HTML, CSS, JavaScript, serta berbagai framework modern. Dukungan komunitas yang luas dan pembaruan yang berkelanjutan juga menjadikan PHP tetap relevan dalam pengembangan aplikasi web. Oleh karena itu, PHP masih banyak digunakan untuk membangun sistem informasi pada berbagai bidang, termasuk pendidikan, pemerintahan, dan dunia usaha.
+
+PHP menyediakan berbagai pustaka (library) dan framework yang mendukung pengembangan aplikasi berbasis web, sehingga proses implementasi fitur autentikasi pengguna, pengelolaan basis data, pembentukan QR Code, serta penyusunan laporan dapat dilakukan secara lebih efisien. Dukungan komunitas yang luas juga menjadikan PHP tetap menjadi salah satu bahasa pemrograman yang banyak digunakan dalam pengembangan sistem informasi (PHP Documentation Group, 2025).
+
+Dalam penelitian ini, PHP digunakan sebagai bahasa pemrograman utama untuk mengembangkan Sistem Informasi Inventaris Aset Sekolah. Pemilihan PHP didasarkan pada kemampuannya dalam membangun aplikasi web dinamis, kemudahan integrasi dengan MySQL, serta dukungan dokumentasi resmi yang lengkap. Dengan menggunakan PHP, sistem yang dikembangkan mampu mengelola data inventaris aset, menghasilkan QR Code, mengelola transaksi peminjaman dan pengembalian aset, serta menyajikan laporan inventaris secara terintegrasi.
+
+
+
+
+2.1.6 MySQL
+
+MySQL merupakan Relational Database Management System (RDBMS) yang digunakan untuk mengelola dan menyimpan data secara terstruktur menggunakan bahasa Structured Query Language (SQL). MySQL dikembangkan untuk mendukung pengelolaan basis data yang cepat, andal, dan efisien sehingga banyak digunakan dalam pengembangan aplikasi berbasis web maupun sistem informasi. Sebagai sistem manajemen basis data relasional, MySQL memungkinkan data disimpan dalam bentuk tabel yang saling berhubungan sehingga memudahkan proses penyimpanan, pencarian, pembaruan, dan penghapusan data (Oracle Corporation, 2025).
+
+MySQL menerapkan konsep relasi antar tabel melalui penggunaan primary key dan foreign key sehingga mampu menjaga integritas data dalam suatu basis data. Selain itu, MySQL mendukung berbagai operasi SQL, seperti Data Definition Language (DDL), Data Manipulation Language (DML), dan Data Control Language (DCL), yang memungkinkan pengguna melakukan pembuatan struktur tabel, pengolahan data, hingga pengaturan hak akses pengguna. Kemampuan tersebut menjadikan MySQL sebagai salah satu sistem manajemen basis data yang banyak digunakan pada aplikasi berskala kecil maupun besar (Oracle Corporation, 2025).
+
+Salah satu keunggulan MySQL adalah bersifat open source, memiliki performa yang baik, mudah diintegrasikan dengan berbagai bahasa pemrograman, serta didukung oleh komunitas pengembang yang luas. MySQL juga mendukung transaksi (transaction processing), pengindeksan (indexing), backup dan restore, serta mekanisme keamanan melalui pengaturan hak akses pengguna (user privilege). Fitur-fitur tersebut memungkinkan pengelolaan data dilakukan secara lebih aman, cepat, dan efisien sesuai dengan kebutuhan sistem informasi (Oracle Corporation, 2025).
+
+Dalam pengembangan aplikasi berbasis web, MySQL sering dipadukan dengan PHP karena keduanya memiliki kompatibilitas yang sangat baik. PHP menyediakan antarmuka seperti MySQLi dan PHP Data Objects (PDO) yang memungkinkan aplikasi berkomunikasi dengan basis data MySQL untuk melakukan proses penyimpanan, pembaruan, pencarian, dan penghapusan data secara efisien. Kombinasi PHP dan MySQL telah banyak digunakan dalam pembangunan berbagai sistem informasi karena mampu menghasilkan aplikasi yang stabil, mudah dikembangkan, serta memiliki kinerja yang baik (PHP Documentation, 2025; Oracle Corporation, 2025).
+
+Selain mendukung integritas data melalui mekanisme relasi antartabel, MySQL juga menyediakan fasilitas transaksi (transaction), indeks (index), dan pengaturan hak akses pengguna yang berperan penting dalam menjaga keamanan serta konsistensi data pada sistem informasi berskala kecil maupun besar (Oracle Corporation, 2025).
+
+Pada penelitian ini, MySQL digunakan sebagai basis data untuk menyimpan seluruh informasi yang berkaitan dengan inventaris aset sekolah, meliputi data pengguna, data aset, kategori aset, lokasi aset, transaksi peminjaman, pengembalian aset, mutasi aset, serta data QR Code. Penggunaan MySQL diharapkan mampu mendukung proses pengelolaan data secara terintegrasi sehingga informasi yang dihasilkan menjadi lebih akurat, konsisten, dan mudah diakses oleh pengguna sesuai dengan hak akses yang dimiliki.
+
+
+2.1.7 Unified Modeling Language (UML)
+
+Unified Modeling Language (UML) merupakan bahasa pemodelan visual yang digunakan untuk menganalisis, merancang, dan mendokumentasikan sistem perangkat lunak. UML menyediakan standar pemodelan yang dapat digunakan untuk menggambarkan struktur maupun perilaku sistem sehingga memudahkan komunikasi antara pengembang, analis sistem, dan pengguna. UML tidak bergantung pada bahasa pemrograman tertentu sehingga dapat diterapkan pada berbagai metode pengembangan perangkat lunak maupun jenis aplikasi (Object Management Group [OMG], 2023).
+
+Dalam proses pengembangan perangkat lunak, UML digunakan untuk memvisualisasikan kebutuhan sistem sebelum proses implementasi dilakukan. Pemodelan menggunakan UML membantu pengembang memahami hubungan antaraktor, alur proses bisnis, interaksi antarobjek, serta struktur kelas yang akan dibangun. Dengan adanya model yang jelas, proses pengembangan sistem menjadi lebih terarah, mengurangi kesalahan implementasi, serta mempermudah proses dokumentasi dan pemeliharaan sistem (Booch, Rumbaugh, & Jacobson, 2005).
+
+Pada penelitian ini, UML digunakan sebagai alat bantu dalam proses analisis dan perancangan Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL. Diagram yang digunakan meliputi Use Case Diagram, Activity Diagram, Sequence Diagram, dan Class Diagram. Keempat diagram tersebut dipilih karena mampu menggambarkan kebutuhan fungsional sistem, alur aktivitas pengguna, interaksi antarobjek, serta struktur kelas yang menjadi dasar implementasi sistem.
+
+Beberapa diagram UML yang digunakan dalam penelitian ini dijelaskan sebagai berikut:
+
+
+Use Case Diagram
+
+
+Use Case Diagram digunakan untuk menggambarkan hubungan antara aktor dengan fungsi-fungsi yang tersedia pada sistem. Diagram ini memberikan gambaran mengenai layanan yang dapat diakses oleh setiap pengguna sesuai dengan hak aksesnya. Dalam penelitian ini, Use Case Diagram digunakan untuk menggambarkan interaksi antara Administrator, Petugas Sarana dan Prasarana, dan Guru dengan sistem inventaris aset.
+
+
+Activity Diagram
+
+
+Activity Diagram digunakan untuk menggambarkan alur aktivitas atau proses bisnis yang terjadi pada sistem. Diagram ini menunjukkan urutan aktivitas mulai dari kondisi awal (initial node), proses yang dilakukan, keputusan (decision), hingga kondisi akhir (final node). Pada penelitian ini, Activity Diagram digunakan untuk memodelkan proses login, pengelolaan data aset, transaksi peminjaman, pengembalian aset, mutasi aset, dan proses pembuatan laporan.
+
+
+Sequence Diagram
+
+
+Sequence Diagram digunakan untuk menggambarkan interaksi antarobjek dalam sistem berdasarkan urutan waktu (sequence). Diagram ini menunjukkan bagaimana objek saling bertukar pesan (message) untuk menyelesaikan suatu proses. Dalam penelitian ini, Sequence Diagram digunakan untuk menggambarkan proses login, penyimpanan data aset, pembuatan QR Code, transaksi peminjaman, dan proses lainnya yang melibatkan interaksi antara pengguna dengan sistem.
+
+
+Class Diagram
+
+
+Class Diagram merupakan diagram yang digunakan untuk menggambarkan struktur statis sistem, meliputi kelas, atribut, metode (method), serta hubungan antar kelas. Class Diagram menjadi dasar dalam proses perancangan basis data dan implementasi program karena menunjukkan hubungan antarobjek yang akan dibangun. Pada penelitian ini, Class Diagram digunakan untuk menggambarkan struktur data yang berkaitan dengan pengguna, aset, kategori aset, lokasi aset, transaksi peminjaman, mutasi aset, dan laporan inventaris.
+
+
+Penerapan UML dalam penelitian ini diharapkan dapat menghasilkan rancangan sistem yang terstruktur, mudah dipahami, serta mempermudah proses implementasi aplikasi sesuai dengan kebutuhan pengguna di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. 
+
+
+2.1.8 Entity Relationship Diagram (ERD)
+
+Entity Relationship Diagram (ERD) merupakan model konseptual yang digunakan untuk menggambarkan struktur basis data serta hubungan antarentitas dalam suatu sistem informasi. ERD berfungsi sebagai alat bantu dalam proses analisis dan perancangan basis data dengan memvisualisasikan objek-objek yang akan disimpan, atribut yang dimiliki setiap objek, serta hubungan yang terjadi di antara objek tersebut. Melalui ERD, pengembang dapat memahami struktur data secara lebih sistematis sebelum proses implementasi basis data dilakukan (Coronel & Morris, 2019).
+
+Komponen utama dalam ERD terdiri atas entitas (entity), atribut (attribute), dan relasi (relationship). Entitas merupakan objek yang menyimpan data, seperti pengguna, aset, kategori aset, dan lokasi aset. Atribut adalah karakteristik atau informasi yang dimiliki oleh setiap entitas, misalnya kode aset, nama aset, kondisi aset, dan tanggal pengadaan. Sementara itu, relasi menunjukkan hubungan antara satu entitas dengan entitas lainnya, misalnya hubungan antara entitas aset dengan kategori aset atau antara aset dengan transaksi peminjaman (Elmasri & Navathe, 2017).
+
+Selain menggambarkan hubungan antarentitas, ERD juga menunjukkan kardinalitas (cardinality), yaitu jumlah hubungan yang dapat terjadi antara satu entitas dengan entitas lainnya. Kardinalitas terdiri atas hubungan satu ke satu (one-to-one), satu ke banyak (one-to-many), dan banyak ke banyak (many-to-many). Penentuan kardinalitas yang tepat sangat penting untuk menjaga integritas data serta menghindari redundansi dalam perancangan basis data (Coronel & Morris, 2019).
+
+Dalam penelitian ini, ERD digunakan sebagai dasar dalam merancang struktur basis data Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL. Entitas yang digunakan meliputi data pengguna, aset, kategori aset, lokasi aset, peminjaman, pengembalian, mutasi aset, serta riwayat aktivitas pengguna. Hubungan antarentitas dirancang agar seluruh proses pengelolaan inventaris dapat berjalan secara terintegrasi dan mendukung proses penyimpanan maupun pengambilan data secara efisien.
+
+Dengan menggunakan ERD, struktur basis data yang dirancang menjadi lebih terorganisasi sehingga memudahkan proses implementasi pada MySQL. Selain itu, ERD juga membantu memastikan bahwa setiap data memiliki hubungan yang jelas, mengurangi terjadinya duplikasi data, serta meningkatkan konsistensi informasi yang dihasilkan oleh sistem.
+
+
+2.1.9 Black Box Testing
+
+Black Box Testing merupakan metode pengujian perangkat lunak yang dilakukan dengan menguji fungsi-fungsi sistem tanpa memperhatikan struktur kode program atau proses internal aplikasi. Pengujian difokuskan pada kesesuaian antara masukan (input) yang diberikan dengan keluaran (output) yang dihasilkan, sehingga dapat diketahui apakah setiap fungsi telah berjalan sesuai dengan kebutuhan pengguna (Pressman & Maxim, 2020).
+
+Tujuan utama Black Box Testing adalah memastikan bahwa seluruh fitur pada sistem berfungsi sesuai dengan spesifikasi yang telah ditentukan. Pengujian dilakukan dengan memberikan berbagai variasi masukan pada setiap fungsi, kemudian mengamati hasil yang ditampilkan oleh sistem. Apabila hasil yang diperoleh sesuai dengan yang diharapkan, maka fungsi tersebut dinyatakan berhasil. Sebaliknya, apabila terdapat perbedaan antara hasil yang diharapkan dengan hasil yang diperoleh, maka fungsi tersebut perlu diperbaiki sebelum sistem diimplementasikan (Sommerville, 2016).
+
+Metode Black Box Testing memiliki beberapa keunggulan, antara lain mudah diterapkan, tidak memerlukan pemahaman terhadap kode program, serta mampu mengidentifikasi kesalahan pada fungsi-fungsi yang berinteraksi langsung dengan pengguna. Oleh karena itu, metode ini banyak digunakan untuk menguji aplikasi berbasis web karena mampu memastikan bahwa setiap fitur telah berjalan sesuai dengan kebutuhan fungsional sistem (Pressman & Maxim, 2020).
+
+Pada penelitian ini, Black Box Testing digunakan untuk menguji seluruh fitur pada Sistem Informasi Inventaris Aset Sekolah, meliputi proses login, pengelolaan data pengguna, data aset, kategori aset, lokasi aset, Generate QR Code, transaksi peminjaman dan pengembalian aset, mutasi aset, serta pembuatan laporan. Hasil pengujian digunakan untuk memastikan bahwa setiap fungsi sistem berjalan dengan baik sebelum sistem diimplementasikan di Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+2.1.10 Metode Waterfall
+
+Metode Waterfall merupakan salah satu model dalam System Development Life Cycle (SDLC) yang menggunakan pendekatan pengembangan perangkat lunak secara sistematis dan berurutan. Pada model ini, setiap tahapan harus diselesaikan terlebih dahulu sebelum melanjutkan ke tahapan berikutnya. Pendekatan tersebut memungkinkan proses pengembangan dilakukan secara terstruktur sehingga memudahkan perencanaan, pelaksanaan, serta pengendalian proyek perangkat lunak (Pressman & Maxim, 2020).
+
+Model Waterfall terdiri atas beberapa tahapan yang saling berkaitan, yaitu analisis kebutuhan (requirements analysis), perancangan sistem (system design), implementasi (implementation), pengujian (testing), dan pemeliharaan (maintenance). Setiap tahapan menghasilkan keluaran (output) yang menjadi masukan (input) bagi tahapan berikutnya. Oleh karena itu, dokumentasi yang baik pada setiap tahapan sangat diperlukan agar proses pengembangan dapat berjalan sesuai dengan kebutuhan pengguna (Sommerville, 2016).
+
+Tahap analisis kebutuhan dilakukan untuk mengidentifikasi kebutuhan pengguna serta permasalahan yang terjadi pada sistem yang sedang berjalan. Informasi yang diperoleh pada tahap ini menjadi dasar dalam menentukan kebutuhan fungsional maupun nonfungsional sistem. Tahap berikutnya adalah perancangan sistem, yaitu proses menyusun rancangan sistem menggunakan UML, ERD, struktur basis data, serta rancangan antarmuka pengguna (user interface) sebagai pedoman dalam proses implementasi.
+
+Tahap implementasi merupakan proses penerjemahan hasil perancangan ke dalam bentuk program menggunakan bahasa pemrograman yang telah ditentukan. Setelah implementasi selesai, dilakukan pengujian untuk memastikan bahwa seluruh fungsi sistem telah berjalan sesuai dengan kebutuhan pengguna. Tahap terakhir adalah pemeliharaan, yaitu kegiatan memperbaiki kesalahan yang ditemukan setelah sistem digunakan serta melakukan penyesuaian apabila terdapat perubahan kebutuhan pengguna maupun perkembangan teknologi (Pressman & Maxim, 2020).
+
+Dalam penelitian ini, metode Waterfall dipilih karena memiliki tahapan yang jelas, terstruktur, dan sesuai dengan karakteristik pengembangan Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Kebutuhan sistem telah diidentifikasi melalui observasi, wawancara, dokumentasi, dan studi pustaka sehingga setiap tahapan pengembangan dapat dilakukan secara berurutan mulai dari analisis hingga implementasi dan pengujian sistem.
+
+
+
+Penelitian
+ 
+Terdahulu
+
+
+Penelitian terkait merupakan kajian terhadap penelitian-penelitian sebelumnya yang memiliki keterkaitan dengan topik penelitian yang dilakukan. Kajian ini bertujuan untuk memperoleh gambaran mengenai perkembangan penelitian, metode yang digunakan, hasil yang dicapai, serta mengetahui kelebihan dan keterbatasan dari penelitian terdahulu. Selain itu, penelitian terkait juga menjadi dasar dalam mengidentifikasi research gap sehingga penelitian yang dilakukan memiliki kebaruan (novelty) dan kontribusi yang jelas terhadap pengembangan ilmu pengetahuan.
+
+Pada penelitian ini, kajian penelitian terkait difokuskan pada sistem informasi inventaris aset berbasis web, pemanfaatan teknologi Quick Response Code (QR Code) dalam proses identifikasi aset, penggunaan bahasa pemrograman PHP dan MySQL sebagai media pengembangan sistem, serta metode pengembangan perangkat lunak yang digunakan. Penelitian-penelitian tersebut dipilih karena memiliki kesamaan konsep maupun teknologi dengan sistem yang akan dikembangkan, sehingga dapat dijadikan sebagai referensi dalam proses analisis, perancangan, implementasi, dan evaluasi sistem. Ringkasan penelitian terkait disajikan pada Tabel 2.1.
+
+Tabel 2. SEQ Tabel_2. \* ARABIC 1 Penelitian terkait
+
+No
+
+
+Judul
+
+
+Nama Peneliti dan Tahun
+
+Masalah
+
+Aplikasi
+
+Ketidaksesuaian
+
+1
+
+Perancangan Aplikasi Sistem Informasi Inventarisasi Aset Menggunakan QR Code (Studi Kasus Dinas Pendidikan dan Kebudayaan Kota Parepare)
+
+Chandra Ciptadi, Muh. Ilyas, dan Syahrir (2023)
+
+Pengelolaan inventaris aset masih dilakukan secara manual sehingga pencatatan, pencarian data, dan penyusunan laporan kurang efektif.
+
+Aplikasi berbasis PHP, MySQL, menggunakan QR Code, metode Waterfall.
+
+Penelitian dilakukan pada instansi pemerintah dan belum menyediakan fitur manajemen peminjaman aset, notifikasi email, serta pengelolaan inventaris sesuai kebutuhan sekolah.
+
+Link: https://jurnal.poliupg.ac.id/index.php/JTE/article/view/4631 
+
+2
+
+Rancang Bangun Sistem Informasi Inventaris Sekolah Menggunakan QR Code pada SMKN 2 Pulau Punjung Berbasis Website
+
+Ningsih Lestari, Evi Yulia Susanti, & Elinda Revita (2025)
+
+Pengelolaan inventaris sekolah masih dilakukan secara manual sehingga pencatatan dan pencarian data belum efektif.
+
+Website berbasis PHP, MySQL, QR Code
+
+Belum menyediakan fitur peminjaman dan pengembalian aset, mutasi aset, riwayat aktivitas pengguna, serta notifikasi email.
+
+Link: https://jurnal.pustakagalerimandiri.co.id/index.php/pustakadata/article/view/1017 
+
+3
+
+Perancangan Sistem Informasi Pengelolaan Aset Inventaris Divisi Parkir Menggunakan QR Code Berbasis Web
+
+Mohamad Adriansyah dan Entis Sutrisna (2022)
+
+Pengelolaan aset inventaris masih menggunakan pencatatan konvensional sehingga proses identifikasi aset membutuhkan waktu lama dan data kurang akurat.
+
+Website berbasis PHP, MySQL, menggunakan QR Code.
+
+Penelitian diterapkan pada lingkungan perusahaan, sedangkan penelitian ini difokuskan pada inventaris aset sekolah serta menambahkan fitur manajemen peminjaman aset dan notifikasi email.
+
+Link: https://journal.mediapublikasi.id/index.php/oktal/article/view/719 
+
+4
+
+Rancang Bangun Sistem Informasi Inventaris Aset Berbasis Web
+
+Hadi Syahputra, Silky Safira, dan Irsyad Romadoni Rais (2025)
+
+Pengelolaan inventaris aset belum terintegrasi sehingga pencarian data dan penyusunan laporan masih membutuhkan waktu yang lama.
+
+Website berbasis PHP dan MySQL.
+
+Penelitian belum menerapkan Generate QR Code, manajemen peminjaman aset, serta notifikasi email yang menjadi fitur utama penelitian ini.
+
+Link: https://rcf-indonesia.org/jurnal/index.php/jsit/article/view/849 
+
+5
+
+Rancang Bangun Sistem Informasi Absensi QR Code Berbasis Web pada SMPN 2 Cikajang
+
+Fikri Aditiya Martin (2025)
+
+Sistem absensi masih dilakukan secara manual sehingga kurang efektif dan berpotensi menimbulkan kesalahan pencatatan kehadiran.
+
+Website berbasis PHP, menggunakan QR Code.
+
+Penelitian membahas sistem absensi, sedangkan penelitian ini berfokus pada inventaris aset sekolah. Meskipun demikian, implementasi QR Code menjadi referensi dalam pengembangan fitur Generate QR Code
+
+Link: https://jurnal.unipi.ac.id/index.php/ALGORITHMUS/article/view/132 
+
+
+Berdasarkan Tabel 2.1 dapat diketahui bahwa penelitian mengenai sistem informasi inventaris aset berbasis web telah banyak dilakukan pada berbagai instansi, baik di lingkungan sekolah, perusahaan, maupun instansi pemerintah. Sebagian besar penelitian bertujuan untuk mengatasi permasalahan pengelolaan inventaris yang masih dilakukan secara manual sehingga proses pencatatan, pencarian data, dan penyusunan laporan menjadi kurang efektif. Hasil penelitian menunjukkan bahwa penerapan sistem informasi berbasis web mampu meningkatkan efisiensi pengelolaan data inventaris, mempercepat proses pencarian informasi, serta menghasilkan laporan yang lebih akurat dan terstruktur.
+
+Selain itu, beberapa penelitian telah menerapkan teknologi Quick Response Code (QR Code) sebagai media identifikasi aset. Penggunaan QR Code terbukti mampu mempercepat proses inventarisasi, mempermudah pelacakan aset, serta mengurangi kesalahan identifikasi dibandingkan dengan penggunaan label inventaris konvensional. Namun demikian, sebagian besar penelitian masih berfokus pada proses pendataan inventaris dan identifikasi aset, sedangkan pengelolaan transaksi peminjaman aset, notifikasi kepada pengguna, serta pengelolaan aktivitas pengguna belum diimplementasikan secara menyeluruh dalam satu sistem.
+
+Berdasarkan hasil kajian tersebut, penelitian ini memiliki beberapa perbedaan dibandingkan penelitian terdahulu. Sistem yang dikembangkan tidak hanya menyediakan fitur Generate QR Code sebagai identitas digital setiap aset, tetapi juga dilengkapi dengan manajemen peminjaman aset, pengembalian aset, notifikasi email, serta pengelolaan hak akses pengguna sesuai dengan kebutuhan pengelolaan inventaris di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Integrasi fitur-fitur tersebut diharapkan mampu meningkatkan efektivitas pengelolaan inventaris aset, mempermudah proses monitoring aset, serta menghasilkan informasi yang lebih cepat, akurat, dan terdokumentasi dengan baik.
+
+Dengan demikian, penelitian ini diharapkan dapat memberikan kontribusi terhadap pengembangan sistem informasi inventaris aset berbasis web yang lebih lengkap dan sesuai dengan kebutuhan pengelolaan aset pada lingkungan sekolah, khususnya di Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+
+Profil
+ Madrasah Aliyah Negeri 2 Hulu Sungai Utara
+
+
+Madrasah Aliyah Negeri 2 Hulu Sungai Utara (MAN 2 Hulu Sungai Utara) merupakan salah satu lembaga pendidikan menengah atas yang berada di bawah naungan Kementerian Agama Republik Indonesia. Madrasah ini berawal dari Pendidikan Guru Agama (PGA) 6 Tahun Rasyidiyah Khalidiyah (RAKHA) Amuntai yang didirikan pada tahun 1954 oleh Dr. KH. Idham Chalid. Seiring dengan perkembangan kebijakan pendidikan nasional, lembaga tersebut mengalami beberapa kali perubahan status hingga akhirnya berdasarkan Keputusan Menteri Agama Republik Indonesia Nomor 671 Tahun 2016 resmi berubah nama menjadi Madrasah Aliyah Negeri 2 Hulu Sungai Utara (MAN 2 Hulu Sungai Utara, 2025).
+
+
+Dalam upaya meningkatkan mutu pendidikan, MAN 2 Hulu Sungai Utara terus melakukan berbagai pengembangan, antara lain melalui penyempurnaan kurikulum, peningkatan kompetensi pendidik dan tenaga kependidikan, penyediaan sarana dan prasarana, serta pemanfaatan teknologi informasi dalam mendukung penyelenggaraan pendidikan dan administrasi madrasah. Selain itu, madrasah juga mengembangkan berbagai program unggulan untuk meningkatkan kualitas lulusan agar memiliki kompetensi akademik, nonakademik, serta karakter yang mampu bersaing di tingkat regional maupun nasional (MAN 2 Hulu Sungai Utara, 2025).
+
+
+2.3.2 Visi
+
+Visi Madrasah Aliyah Negeri 2 Hulu Sungai Utara merupakan arah dan cita-cita yang menjadi pedoman dalam penyelenggaraan pendidikan serta pengembangan mutu madrasah. Visi tersebut mencerminkan komitmen madrasah untuk menjadi lembaga pendidikan yang unggul dalam bidang akademik, nonakademik, dan pembentukan karakter peserta didik. Visi Madrasah Aliyah Negeri 2 Hulu Sungai Utara adalah sebagai berikut:
+
+"Terwujudnya Madrasah Model Sebagai Pusat Keunggulan dan Rujukan Dalam Kualitas Akademik dan Non Akademik Serta Akhlaq Karimah." (MAN 2 Hulu Sungai Utara, 2025).
+
+
+2.3.3 Misi
+
+Untuk mewujudkan visi tersebut, Madrasah Aliyah Negeri 2 Hulu Sungai Utara menetapkan beberapa misi sebagai pedoman dalam pelaksanaan kegiatan pendidikan, pengembangan sumber daya manusia, serta peningkatan kualitas layanan kepada seluruh warga madrasah. Adapun misi Madrasah Aliyah Negeri 2 Hulu Sungai Utara adalah sebagai berikut:
+
+
+Membangun budaya madrasah yang membelajarkan dan mendorong semangat keunggulan.
+
+
+Mengembangkan sumber daya manusia madrasah yang kompeten.
+
+
+Menyelenggarakan pendidikan yang menghasilkan lulusan berkualitas akademik dan nonakademik serta berakhlak karimah.
+
+
+Mengembangkan sistem dan manajemen madrasah yang berbasis teknologi informasi dan penjaminan mutu.
+
+
+Mengembangkan dan memelihara lingkungan yang sehat, kondusif, dan harmonis.
+
+
+Meningkatkan peran serta stakeholder dalam pengembangan madrasah.
+
+
+Mewujudkan madrasah yang memenuhi Standar Nasional Pendidikan.
+
+
+Mewujudkan madrasah yang berorientasi pada standar internasional. (MAN 2 Hulu Sungai Utara, 2025).
+
+
+2.3.4 Tujuan
+
+Sebagai penjabaran dari visi dan misi, Madrasah Aliyah Negeri 2 Hulu Sungai Utara menetapkan tujuan yang menjadi sasaran dalam penyelenggaraan pendidikan. Tujuan tersebut berorientasi pada peningkatan kualitas lulusan, pengembangan karakter, serta peningkatan daya saing peserta didik di tingkat nasional maupun internasional. Adapun tujuan madrasah meliputi:
+
+
+Menghasilkan lulusan yang kompeten dan berakhlak mulia.
+
+
+Meningkatkan prestasi akademik dan nonakademik secara berkelanjutan.
+
+
+Mewujudkan sumber daya manusia yang beriman, bertakwa, dan berkarakter.
+
+
+
+
+Menyiapkan peserta didik menjadi warga negara yang kompetitif secara global. (MAN 2 Hulu Sungai Utara, 20
+
+
+BAB III ANALISIS DAN PERANCANGAN SISTEM
+
+
+3.1 
+Analisis
+ 
+Sistem
+ yang 
+Berjalan
+
+
+Analisis sistem yang berjalan merupakan tahapan untuk mengetahui proses pengelolaan inventaris aset yang sedang diterapkan di Madrasah Aliyah Negeri 2 Hulu Sungai Utara sebelum dibangunnya Sistem Informasi Inventaris Aset Sekolah. Berdasarkan hasil observasi dan wawancara dengan petugas Sarana dan Prasarana, proses inventarisasi aset masih dilakukan secara manual menggunakan buku inventaris dan Microsoft Excel. Adapun proses inventaris aset yang sedang berjalan adalah sebagai berikut:
+
+
+Petugas mencatat data aset ke dalam buku inventaris atau Microsoft Excel.
+
+
+Setiap aset diberikan nomor inventaris secara manual.
+
+
+Guru menghubungi petugas apabila ingin meminjam aset.
+
+
+Petugas mencatat transaksi peminjaman pada buku administrasi.
+
+
+Setelah aset dikembalikan, petugas kembali melakukan pencatatan secara manual.
+
+
+Apabila terjadi perpindahan lokasi aset, petugas memperbarui data inventaris secara manual.
+
+
+Petugas melakukan pengecekan kondisi aset secara berkala.
+
+
+Laporan inventaris dibuat dengan merekap seluruh data dari buku inventaris maupun file Microsoft Excel.
+
+Analisis sistem ini bertujuan untuk membangun sistem informasi inventaris aset berbasis web sehingga seluruh proses pengelolaan aset dapat dilakukan secara terkomputerisasi. Dengan adanya sistem ini diharapkan proses pendataan aset, peminjaman, pengembalian, mutasi aset, serta penyusunan laporan dapat dilakukan lebih cepat, mudah, dan akurat.
+
+
+3.1.1 Analisis Terhadap Sistem Lama
+
+Berdasarkan hasil analisis, terdapat beberapa kelemahan pada sistem inventaris aset yang digunakan saat ini, yaitu:
+
+
+Pendataan aset masih dilakukan secara manual sehingga proses pencarian data memerlukan waktu yang cukup lama.
+
+
+Identifikasi aset masih menggunakan label inventaris biasa sehingga petugas harus mencocokkan nomor inventaris dengan data pada buku inventaris.
+
+
+Riwayat perpindahan lokasi aset belum terdokumentasi secara sistematis.
+
+
+Proses peminjaman dan pengembalian aset masih dicatat secara manual sehingga berpotensi terjadi kesalahan pencatatan.
+
+
+Penyusunan laporan inventaris membutuhkan waktu yang relatif lama karena dilakukan melalui proses rekapitulasi data.
+
+
+Tidak terdapat media untuk mengetahui riwayat aktivitas pengguna terhadap data inventaris.
+
+
+Informasi kondisi aset belum dapat diketahui secara cepat karena seluruh proses masih dilakukan secara manual.
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 1 
+Sistem
+ yang 
+Berjalan
+
+
+
+3.1.2 Usulan Sistem Baru
+
+Berdasarkan hasil analisis terhadap sistem yang sedang berjalan, maka diusulkan pembangunan Sistem Informasi Inventaris Aset Sekolah Berbasis Web Menggunakan PHP dan MySQL yang dilengkapi fitur Generate QR Code.
+
+Sistem baru dirancang agar seluruh proses pengelolaan inventaris dilakukan melalui aplikasi sehingga seluruh data tersimpan dalam database secara terintegrasi. Adapun proses pada sistem yang diusulkan adalah sebagai berikut:
+
+
+Admin melakukan login ke dalam sistem.
+
+
+Admin mengelola data aset.
+
+
+Sistem secara otomatis menghasilkan QR Code pada setiap aset.
+
+
+Petugas dapat melakukan scan QR Code untuk melihat informasi aset.
+
+
+Guru dapat mengajukan peminjaman aset melalui sistem.
+
+
+Petugas melakukan persetujuan peminjaman.
+
+
+Setelah aset dikembalikan, petugas melakukan proses pengembalian melalui sistem.
+
+
+Apabila terjadi perpindahan lokasi aset, petugas melakukan mutasi aset sehingga riwayat perpindahan tersimpan di database.
+
+
+Seluruh aktivitas pengguna disimpan pada riwayat aktivitas.
+
+
+Sistem menghasilkan laporan inventaris secara otomatis dalam bentuk PDF maupun CSV.
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 2 Usulan Sistem Baru
+
+
+3.2 
+Analisis
+ 
+Kebutuhan
+ 
+Sistem
+
+
+Analisis kebutuhan sistem merupakan tahapan untuk mengidentifikasi kebutuhan yang harus dipenuhi oleh sistem informasi sehingga mampu mendukung proses pengelolaan inventaris aset di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Kebutuhan sistem diperoleh berdasarkan hasil observasi, wawancara dengan petugas Sarana dan Prasarana, serta analisis terhadap proses bisnis yang sedang berjalan.
+
+Pada penelitian ini kebutuhan sistem dibagi menjadi empat bagian, yaitu kebutuhan data, kebutuhan antarmuka, kebutuhan fungsional, dan kebutuhan nonfungsional.
+
+
+3.2.1 Kebutuhan Data
+
+Data yang akan dikelola oleh Sistem Informasi Inventaris Aset Sekolah adalah sebagai berikut:
+
+
+Data pengguna (Admin, Petugas, dan Guru).
+
+
+Data kategori aset.
+
+
+Data lokasi aset.
+
+
+Data aset.
+
+
+Data QR Code aset.
+
+
+Data peminjaman aset.
+
+
+Data pengembalian aset.
+
+
+Data mutasi aset.
+
+
+Data riwayat aktivitas pengguna.
+
+
+Data laporan inventaris aset.
+
+Seluruh data tersebut disimpan dalam database MySQL sehingga memudahkan proses pencarian, perubahan, penghapusan, dan penyusunan laporan inventaris.
+
+
+3.2.2 Kebutuhan Antarmuka
+
+Kebutuhan antarmuka yang diperlukan pada sistem adalah sebagai berikut:
+
+
+Sistem menyediakan halaman login yang mudah digunakan oleh pengguna.
+
+
+Sistem menyediakan dashboard yang menampilkan informasi jumlah aset, kategori aset, lokasi aset, peminjaman, dan aktivitas terbaru.
+
+
+Sistem menyediakan form pengelolaan data aset yang mudah dipahami sehingga proses input data dapat dilakukan dengan cepat.
+
+
+Sistem menyediakan form pengelolaan kategori aset, lokasi aset, dan data pengguna.
+
+
+Sistem menyediakan tampilan Generate QR Code dan Scan QR Code.
+
+
+Sistem menyediakan halaman transaksi peminjaman dan pengembalian aset.
+
+
+Sistem menyediakan halaman mutasi aset.
+
+
+Sistem menyediakan halaman laporan inventaris yang dapat dicetak.
+
+
+Sistem menyediakan tombol aksi yang jelas seperti Tambah, Simpan, Edit, Hapus, Detail, Cetak, Export PDF, dan Export CSV.
+
+
+3.2.3 Kebutuhan Fungsional
+
+Fungsi-fungsi yang harus dimiliki oleh Sistem Informasi Inventaris Aset Sekolah adalah sebagai berikut.
+
+
+Sistem mampu melakukan proses login sesuai hak akses pengguna.
+
+
+Sistem mampu mengelola data pengguna.
+
+
+Sistem mampu mengelola data kategori aset.
+
+
+Sistem mampu mengelola data lokasi aset.
+
+
+Sistem mampu mengelola data aset.
+
+
+Sistem mampu menghasilkan QR Code secara otomatis untuk setiap aset.
+
+
+Sistem mampu melakukan identifikasi aset melalui proses Scan QR Code.
+
+
+Sistem mampu mengelola transaksi peminjaman aset.
+
+
+Sistem mampu mengelola transaksi pengembalian aset.
+
+
+Sistem mampu mengelola mutasi aset.
+
+
+Sistem mampu mencatat seluruh aktivitas pengguna ke dalam riwayat aktivitas.
+
+
+Sistem mampu menghasilkan laporan inventaris aset.
+
+
+Sistem mampu melakukan pencarian data aset berdasarkan nama, kode aset, kategori, maupun lokasi.
+
+
+Sistem mampu menampilkan detail informasi aset.
+
+
+Sistem mampu melakukan export laporan ke dalam format PDF dan CSV.
+
+
+3.2.4 Kebutuhan Nonfungsional
+
+Kebutuhan nonfungsional pada sistem adalah sebagai berikut:
+
+
+Kemudahan Penggunaan 
+
+
+Sistem dirancang menggunakan antarmuka yang sederhana sehingga mudah digunakan oleh Admin, Petugas, maupun Guru tanpa memerlukan pelatihan khusus.
+
+
+Keamanan 
+
+
+Sistem menggunakan proses autentikasi melalui username dan password. Hak akses pengguna dibedakan berdasarkan peran sehingga setiap pengguna hanya dapat mengakses menu sesuai kewenangannya.
+
+
+Kinerja 
+
+
+Sistem mampu menampilkan informasi aset, melakukan pencarian data, dan menghasilkan laporan dengan cepat karena seluruh data tersimpan pada database MySQL.
+
+
+Keandalan 
+
+
+Seluruh data inventaris disimpan secara terpusat sehingga risiko kehilangan data akibat pencatatan manual dapat diminimalkan.
+
+
+Portabilitas 
+
+
+Sistem dapat diakses menggunakan web browser seperti Google Chrome, Mozilla Firefox, Microsoft Edge, maupun browser lainnya yang mendukung teknologi web.
+
+
+Pemeliharaan 
+
+
+Struktur program disusun secara modular sehingga memudahkan proses pemeliharaan maupun pengembangan fitur baru pada masa mendatang.
+
+
+3.2.5 Hak Akses Pengguna
+
+Sistem Informasi Inventaris Aset Sekolah memiliki tiga jenis pengguna dengan hak akses yang berbeda.
+
+
+
+
+
+
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 1 Hak Akses Pengguna
+
+No
+
+Menu/Fitur
+
+Admin
+
+Petugas
+
+Guru
+
+1
+
+Login
+
+✓
+
+✓
+
+✓
+
+2
+
+Dashboard
+
+✓
+
+✓
+
+✓
+
+3
+
+Data Pengguna
+
+✓
+
+-
+
+-
+
+4
+
+Kategori Aset
+
+✓
+
+✓
+
+-
+
+5
+
+Lokasi Aset
+
+✓
+
+✓
+
+-
+
+6
+
+Data Aset
+
+✓
+
+✓
+
+-
+
+7
+
+Generate QR Code
+
+✓
+
+✓
+
+-
+
+8
+
+Scan QR Code
+
+✓
+
+✓
+
+-
+
+9
+
+Peminjaman Aset
+
+✓
+
+✓
+
+✓
+
+10
+
+Pengembalian Aset
+
+✓
+
+✓
+
+✓
+
+11
+
+Mutasi Aset
+
+✓
+
+✓
+
+-
+
+12
+
+Riwayat Aktivitas
+
+✓
+
+✓
+
+-
+
+13
+
+Laporan Inventaris
+
+✓
+
+✓
+
+-
+
+14
+
+Logout
+
+✓
+
+✓
+
+✓
+
+
+
+3.3 
+Rancangan
+ Model 
+Sistem
+	
+
+Perancangan model sistem merupakan tahapan untuk menggambarkan proses kerja sistem yang akan dibangun berdasarkan hasil analisis kebutuhan sistem. Perancangan ini bertujuan memberikan gambaran mengenai interaksi antara pengguna dengan sistem, alur aktivitas, komunikasi antarobjek, serta struktur sistem yang akan diimplementasikan. Model sistem pada penelitian ini disajikan menggunakan Unified Modeling Language (UML) yang terdiri atas Use Case Diagram, Class Diagram, Activity Diagram, dan Sequence Diagram.  
+
+
+3.3.1 Use Case Diagram
+
+Use Case Diagram digunakan untuk menggambarkan hubungan antara aktor dengan fungsi-fungsi yang tersedia pada Sistem Informasi Inventaris Aset Sekolah. Diagram ini menunjukkan hak akses setiap pengguna terhadap menu dan proses yang terdapat pada sistem. Aktor yang terlibat terdiri atas Admin, Petugas Sarana dan Prasarana, dan Guru, yang masing-masing memiliki kewenangan sesuai tugas dan tanggung jawabnya.
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 3 Use Case Diagram
+
+Berdasarkan Gambar 3.2, Admin memiliki hak akses penuh terhadap seluruh fitur sistem, meliputi pengelolaan data pengguna, data aset, kategori, lokasi, transaksi peminjaman, mutasi aset, serta pembuatan laporan. Petugas Sarana dan Prasarana bertugas mengelola inventaris aset dan transaksi operasional, sedangkan Guru memiliki hak akses untuk melihat informasi aset melalui QR Code serta melakukan pengajuan peminjaman aset.
+
+
+3.3.2 Class Diagram
+
+Class Diagram digunakan untuk menggambarkan struktur statis sistem yang terdiri atas kelas, atribut, metode, serta hubungan antar kelas. Diagram ini menjadi acuan dalam proses implementasi sistem karena menunjukkan hubungan logis antarobjek yang terdapat pada aplikasi.
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 4 Class Diagram
+
+Berdasarkan Gambar 3.3, sistem terdiri atas beberapa kelas utama, yaitu User, Aset, Kategori, Lokasi, Peminjaman, Mutasi Aset, dan Riwayat Aktivitas. Masing-masing kelas saling berhubungan untuk mendukung proses pengelolaan inventaris aset secara terintegrasi.
+
+
+3.3.3 Activity Diagram
+
+Activity Diagram digunakan untuk menggambarkan alur aktivitas yang dilakukan oleh pengguna dan sistem pada setiap proses bisnis. Diagram ini menunjukkan urutan aktivitas mulai dari kondisi awal hingga proses berakhir sehingga memudahkan pemahaman terhadap aliran kerja sistem.
+
+
+
+
+Activity Diagram Proses Autentikasi (Login)
+
+
+Menggambarkan alur saat aktor melakukan login ke sistem. Sistem memverifikasi kecocokan username dan hashed password di database MySQL.
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 5 Activity Diagram Login
+
+Berdasarkan Gambar 3.5, proses dimulai ketika pengguna memasukkan username dan password. Sistem melakukan proses validasi data login. Apabila data yang dimasukkan benar, pengguna akan diarahkan ke halaman dashboard sesuai hak aksesnya. Sebaliknya, apabila data tidak sesuai, sistem akan menampilkan pesan kesalahan dan pengguna diminta melakukan login kembali.
+
+
+Activity Diagram Kelola Data 
+Aset
+
+
+
+
+Menggambarkan
+ 
+alur
+ 
+pengelolaan
+ data 
+aset
+ (
+Tambah
+, Edit, 
+Hapus
+) yang 
+dilakukan
+ oleh Admin 
+atau
+ 
+Petugas
+:
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 6 Activity Diagram Kelola Data 
+Aset
+
+
+Activity Diagram kelola data aset menggambarkan proses pengelolaan data inventaris mulai dari penambahan, perubahan, penghapusan, hingga penyimpanan data aset ke dalam database. Sistem akan memvalidasi data yang dimasukkan sebelum disimpan sehingga informasi aset tetap akurat.
+
+
+Activity Diagram Generate QR Code 
+
+
+
+Menggambarkan
+ proses 
+pembuatan
+ 
+identitas
+ 
+fisik
+ 
+ganda
+ pada 
+aset
+ (QR Code 
+untuk
+ 
+pemindaian
+ web, Barcode 1D 
+untuk
+ scanner 
+fisik
+), 
+dengan
+ 
+pembagian
+ 
+kolom
+ 
+aktor
+, 
+sistem
+, dan database:
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 7 Activity Diagram 
+Pembuatan
+ Label QR
+
+Diagram ini menggambarkan proses pembuatan QR Code pada setiap aset. Setelah data aset berhasil disimpan, sistem secara otomatis menghasilkan QR Code sebagai identitas digital aset, kemudian menyimpan informasi tersebut ke dalam database sehingga dapat digunakan dalam proses identifikasi aset.
+
+
+
+
+Activity Diagram Scan QR Code (
+Identifikasi
+ 
+Aset
+)
+
+
+
+Menggambarkan
+ proses 
+pemindaian
+ label QR oleh 
+pengguna
+/
+pengunjung
+ 
+untuk
+ 
+melacak
+ 
+informasi
+ 
+profil
+ 
+aset
+ 
+secara
+ 
+instan
+:
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 8 Activity Diagram Scan QR Code
+
+Proses dimulai ketika pengguna melakukan pemindaian QR Code menggunakan sistem. Selanjutnya sistem membaca informasi yang terdapat pada QR Code dan menampilkan detail aset sesuai data yang tersimpan dalam database.
+
+
+
+
+Activity Diagram Peminjaman Aset 
+
+
+
+Menggambarkan
+ 
+alur
+ 
+pengajuan
+ 
+peminjaman
+ 
+barang
+ oleh Guru 
+hingga
+ 
+diverifikasi
+ oleh Admin/
+Petugas
+, 
+dengan
+ 
+pembagian
+ 
+kolom
+ 
+aktor
+ 
+peminjam
+, 
+aktor
+ 
+verifikator
+, dan 
+sistem
+:
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 9 Activity Diagram 
+Transaksi
+ 
+Peminjaman
+ 
+Aset
+
+
+Diagram ini menggambarkan proses pengajuan peminjaman aset oleh guru, dilanjutkan dengan proses verifikasi oleh petugas. Setelah disetujui, status aset diperbarui menjadi dipinjam sehingga informasi penggunaan aset tetap tercatat pada sistem.
+
+
+
+
+Activity Diagram Mutasi Aset 
+
+
+
+Menggambarkan
+ 
+alur
+ 
+pencatatan
+ 
+perpindahan
+/
+mutasi
+ 
+lokasi
+ 
+fisik
+ 
+aset
+ 
+dari
+ 
+satu
+ 
+ruangan
+ 
+ke
+ 
+ruangan
+ yang lain:
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 10 Activity Diagram 
+Mutasi
+ 
+Aset
+
+
+Activity Diagram mutasi aset menunjukkan proses perpindahan lokasi aset. Petugas memilih aset yang akan dipindahkan, menentukan lokasi baru, kemudian sistem memperbarui data lokasi aset sekaligus menyimpan riwayat mutasi ke dalam database.
+
+
+
+
+
+
+Activity Diagram 
+Laporan
+ (
+Cetak
+ & 
+Ekspor
+)
+
+
+
+Menggambarkan
+ proses 
+penyaringan
+ (filter) data 
+aset
+ dan 
+peminjaman
+ 
+untuk
+ 
+dicetak
+ 
+menjadi
+ 
+berkas
+ PDF 
+dinamis
+ 
+atau
+ 
+diekspor
+ 
+ke
+ Microsoft Excel:
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 11 Activity Diagram 
+Laporan
+
+
+Diagram ini menggambarkan proses pembuatan laporan inventaris. Pengguna memilih jenis laporan yang diinginkan, kemudian sistem mengambil data dari database dan menghasilkan laporan yang dapat ditampilkan di layar maupun diekspor ke dalam format PDF atau CSV.
+
+
+3.3.4 Sequence Diagram
+
+Sequence Diagram memvisualisasikan interaksi pesan (message path) secara kronologis antara objek di antarmuka (boundary), pengontrol logika (control), dan tabel database (entity).
+
+
+Sequence Diagram Login Pengguna
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 12 Sequence Diagram Login
+
+Gambar 3.11 menunjukkan proses autentikasi pengguna sebelum memperoleh hak akses ke dalam sistem. Proses diawali dengan pengguna memasukkan username dan password melalui halaman login. Selanjutnya sistem melakukan validasi data, mengambil informasi pengguna dari tabel users, kemudian memverifikasi kecocokan password. Apabila proses autentikasi berhasil, sistem membentuk sesi (session) sesuai hak akses pengguna dan mengarahkan pengguna ke halaman dashboard. Sebaliknya, jika data yang dimasukkan tidak sesuai, sistem akan menampilkan pesan kesalahan sehingga pengguna dapat melakukan login kembali.
+
+
+Sequence Diagram Kelola Data 
+Aset
+ (CRUD)
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 13 Sequence Diagram Kelola Data 
+Aset
+
+
+Diagram ini menggambarkan alur pengelolaan data aset yang dilakukan oleh Admin atau Petugas. Pengguna terlebih dahulu mengisi formulir data aset, kemudian sistem melakukan validasi terhadap seluruh data yang dimasukkan. Setelah data dinyatakan valid, informasi aset disimpan ke dalam tabel aset dan sistem menampilkan notifikasi bahwa proses penyimpanan berhasil. Namun, apabila ditemukan data yang tidak memenuhi ketentuan, sistem akan mengembalikan formulir beserta informasi kesalahan agar dapat diperbaiki sebelum data disimpan.
+
+
+
+
+
+
+
+
+Sequence Diagram 
+Pembuatan
+ Label (Generate QR & Barcode)
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 14  Sequence Diagram 
+Pembuatan
+ Label
+
+Sequence Diagram ini menjelaskan proses pembuatan label identitas aset berupa QR Code dan barcode. Ketika Admin atau Petugas memilih menu pembuatan label, sistem mengambil data aset dari basis data berdasarkan identitas aset yang dipilih. Selanjutnya sistem menghasilkan QR Code menggunakan pustaka php-qrcode, kemudian menyimpan hasilnya dalam bentuk berkas gambar beserta lokasi penyimpanannya pada database. Selain itu, sistem juga membentuk barcode satu dimensi menggunakan JsBarcode sehingga label aset dapat dicetak sesuai kebutuhan.
+
+
+
+
+Sequence Diagram Scan QR Code (
+Identifikasi
+ 
+Aset
+)
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 15 Sequence Diagram Scan QR Code
+
+Pada Gambar 3.xx diperlihatkan proses identifikasi aset melalui pemindaian QR Code. Pengguna mengarahkan kamera perangkat menuju QR Code yang terdapat pada aset, kemudian browser mengirimkan permintaan ke sistem berdasarkan kode aset yang terbaca. Setelah menerima permintaan tersebut, sistem mengambil informasi aset dari basis data dan menampilkan halaman detail aset yang memuat identitas, kategori, lokasi, serta kondisi aset sehingga informasi dapat diakses secara cepat dan akurat.
+
+
+
+
+
+
+
+
+
+
+Sequence Diagram 
+Transaksi
+ 
+Peminjaman
+ 
+Aset
+
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 16 Sequence Diagram 
+Transaksi
+ 
+Peminjaman
+ 
+Aset
+
+
+Alur pada Sequence Diagram ini dimulai ketika Guru mengajukan peminjaman aset melalui formulir yang tersedia pada sistem. Data pengajuan kemudian disimpan ke dalam tabel peminjaman dengan status menunggu. Tahap berikutnya dilakukan oleh Admin atau Petugas yang melakukan proses persetujuan terhadap pengajuan tersebut. Setelah pengajuan disetujui, sistem memperbarui status peminjaman menjadi Dipinjam, menyesuaikan jumlah aset yang tersedia, serta mengirimkan informasi peminjaman melalui email kepada peminjam. Selanjutnya sistem menampilkan daftar peminjaman yang telah diperbarui.
+
+
+Sequence Diagram 
+Mutasi
+ 
+Aset
+ (
+Perpindahan
+ Lokasi)
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 17 Sequence Diagram 
+Mutasi
+ 
+Aset
+
+
+Interaksi antara Admin atau Petugas dengan sistem pada Gambar 3.16 menunjukkan proses mutasi aset dari satu lokasi ke lokasi lainnya. Proses diawali dengan pemilihan aset dan lokasi tujuan, kemudian pengguna memasukkan jumlah aset yang akan dipindahkan. Sebelum perubahan dilakukan, sistem memeriksa ketersediaan stok aset pada basis data. Apabila stok mencukupi, sistem memperbarui lokasi aset sekaligus menyimpan riwayat mutasi ke dalam tabel mutasi_aset. Sebaliknya, jika stok tidak mencukupi, sistem menampilkan pesan kesalahan dan proses mutasi dibatalkan.
+
+
+
+
+
+
+Sequence Diagram 
+Laporan
+ (
+Cetak
+ & 
+Ekspor
+)
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 18 Sequence Diagram 
+Laporan
+
+
+Urutan interaksi pada Sequence Diagram ini menggambarkan proses pembuatan laporan inventaris aset. Admin atau Petugas terlebih dahulu menentukan jenis laporan beserta format keluaran yang diinginkan, yaitu PDF atau Excel. Berdasarkan parameter tersebut, sistem mengambil data dari basis data dan mengolahnya menjadi dokumen laporan. Untuk keluaran PDF, sistem memanfaatkan pustaka Dompdf, sedangkan untuk format Excel data disusun dalam bentuk spreadsheet. Setelah proses selesai, laporan ditampilkan atau diunduh sesuai dengan format yang dipilih oleh pengguna.
+
+
+
+
+3.4 
+Rancangan
+ Basis Data
+
+Rancangan basis data merupakan tahap perancangan struktur penyimpanan data yang digunakan oleh sistem agar proses pengelolaan data inventaris aset dapat dilakukan secara terstruktur, konsisten, dan terintegrasi. Basis data dirancang menggunakan MySQL sebagai Database Management System (DBMS) dengan mempertimbangkan hubungan antarentitas, integritas data, serta kemudahan dalam proses penyimpanan, pencarian, pembaruan, dan penghapusan data.
+
+Struktur basis data pada Sistem Informasi Inventaris Aset MAN 2 Hulu Sungai Utara terdiri atas beberapa tabel yang saling berhubungan, yaitu tabel users, aset, kategori, lokasi, peminjaman, mutasi_aset, riwayat_aktivitas, email_notifications, dan pengaturan. Masing-masing tabel memiliki fungsi yang berbeda sesuai kebutuhan sistem, sehingga mampu mendukung seluruh proses bisnis mulai dari pengelolaan data aset, peminjaman, mutasi aset, pencatatan aktivitas pengguna, hingga pengiriman notifikasi melalui email. Adapun rancangan basis data yang digunakan pada penelitian ini dijelaskan sebagai berikut.
+
+
+3.4.1 Entity Relationship Diagram (ERD)
+
+Entity Relationship Diagram (ERD) digunakan untuk menggambarkan hubungan antarentitas dalam basis data yang dibangun. Melalui ERD, setiap entitas beserta relasi antar tabel dapat divisualisasikan sehingga memudahkan proses implementasi database pada sistem.
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 19 Entity Relationship Diagram
+
+ERD pada sistem menunjukkan bahwa tabel aset menjadi entitas utama yang berelasi dengan tabel kategori dan lokasi melalui foreign key. Selain itu, tabel peminjaman dan mutasi_aset juga memiliki keterkaitan dengan tabel aset karena setiap transaksi peminjaman maupun mutasi selalu mengacu pada data aset tertentu. Aktivitas pengguna dicatat pada tabel riwayat_aktivitas, sedangkan informasi pengguna sistem disimpan pada tabel users. Sistem juga menyediakan tabel email_notifications untuk menyimpan riwayat pengiriman email serta tabel pengaturan untuk menyimpan konfigurasi aplikasi.
+
+
+3.4.2 Struktur Tabel Basis Data
+
+Struktur basis data yang digunakan pada sistem terdiri dari sembilan tabel utama. Tabel-tabel tersebut saling terintegrasi melalui *primary key* dan *foreign key* guna menjaga konsistensi data (referential integrity) pada database. Detail rancangan masing-masing struktur tabel dijelaskan sebagai berikut.
+
+
+3.4.2.1 Tabel Users
+
+Tabel `users` digunakan untuk menyimpan data profil dan informasi akun pengguna sistem, termasuk admin, petugas, serta guru. 
+
+
+Tabel 3.2 Tabel Users
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+-
+
+Primary Key
+
+2
+
+nama
+
+VARCHAR
+
+100
+
+Nama lengkap pengguna
+
+3
+
+username
+
+VARCHAR
+
+50
+
+Username untuk login (unik)
+
+4
+
+email
+
+VARCHAR
+
+255
+
+Alamat email pengguna
+
+5
+
+password
+
+VARCHAR
+
+255
+
+Password yang dienkripsi (hash)
+
+6
+
+role
+
+ENUM(admin,petugas,guru)
+
+-
+
+Hak akses pengguna di dalam sistem
+
+7
+
+nip
+
+VARCHAR
+
+30
+
+Nomor Induk Pegawai (khusus guru/pegawai)
+
+8
+
+jabatan
+
+VARCHAR
+
+100
+
+Jabatan struktural atau fungsional
+
+9
+
+no_telepon
+
+VARCHAR
+
+20
+
+Nomor telepon/WhatsApp aktif
+
+10
+
+foto
+
+VARCHAR
+
+255
+
+Nama file gambar profil pengguna
+
+11
+
+Ingat_Token
+
+VARCHAR
+
+255
+
+Token session keamanan login
+
+12
+
+remember_token
+
+VARCHAR
+
+255
+
+Token untuk fitur remember me
+
+13
+
+reset_token
+
+VARCHAR
+
+255
+
+Token untuk proses reset password
+
+14
+
+reset_token_expires_at
+
+DATETIME
+
+-
+
+Waktu kedaluwarsa token reset password
+
+15
+
+created_at
+
+TIMESTAMP
+
+-
+
+Tanggal & waktu pembuatan akun
+
+
+
+3.4.2.2 Tabel Aset
+
+Tabel `aset` merupakan tabel utama yang menyimpan data inventaris barang/aset yang dimiliki oleh MAN 2 Hulu Sungai Utara.
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 2 Tabel Aset
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+-
+
+Primary 
+
+2
+
+kode_aset
+
+VARCHAR
+
+50
+
+Key
+
+3
+
+nama_aset
+
+VARCHAR
+
+150
+
+Kode unik aset
+
+4
+
+id_kategori
+
+INT
+
+-
+
+Nama barang/aset 
+
+5
+
+id_lokasi
+
+INT
+
+-
+
+Mengacu pada kategori.id 
+
+6
+
+jumlah
+
+INT
+
+-
+
+Mengacu pada lokasi.id 
+
+7
+
+kondisi
+
+
+ENUM(
+'Baik','Rusak Ringan','Rusak Berat')
+
+-
+
+Kuantitas/jumlah unit aset 
+
+8
+
+tahun_perolehan
+
+YEAR
+
+-
+
+Status kondisi fisik barang
+
+9
+
+nilai_perolehan
+
+
+DECIMAL(
+15,2)
+
+-
+
+Tahun barang tersebut diperoleh 
+
+10
+
+sumber_dana
+
+VARCHAR
+
+100
+
+Harga/nilai nominal beli aset 
+
+11
+
+gambar
+
+VARCHAR
+
+255
+
+Sumber dana pembelian
+
+12
+
+keterangan
+
+TEXT
+
+-
+
+Nama file gambar dokumentasi fisik aset 
+
+13
+
+qr_code_path
+
+VARCHAR
+
+255
+
+Nama file gambar QR Code yang di-generate 
+
+14
+
+created_at
+
+TIMESTAMP
+
+-
+
+Tanggal data dimasukkan ke sistem 
+
+15
+
+updated_at
+
+TIMESTAMP
+
+-
+
+Tanggal perubahan data terakhir
+
+16
+
+deleted_at
+
+TIMESTAMP
+
+-
+
+Timestamp soft delete
+
+
+
+3.4.2.3 Tabel Kategori
+
+Tabel `kategori` digunakan untuk mengelompokkan aset berdasarkan klasifikasi jenisnya (misal: Elektronik, Mebeler, dll).
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 3 Tabel Kategori
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+11
+
+Primary Key
+
+2
+
+nama_kategori
+
+VARCHAR
+
+100
+
+Nama pengelompokan kategori 
+
+3
+
+keterangan
+
+TEXT
+
+-
+
+Deskripsi cakupan kategori 
+
+4
+
+created_at
+
+TIMESTAMP
+
+-
+
+Waktu penambahan kategori 
+
+
+
+3.4.2.4 Tabel Lokasi
+
+Tabel `lokasi` menyimpan informasi nama ruangan atau area penempatan aset di lingkungan madrasah.
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 4 Tabel Lokasi
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+11
+
+Primary Key
+
+2
+
+nama_lokasi
+
+VARCHAR
+
+100
+
+Nama ruang atau tempat penempatan aset 
+
+3
+
+keterangan
+
+TEXT
+
+-
+
+Deskripsi mengenai lokasi terkait 
+
+4.
+
+created_at
+
+TIMESTAMP
+
+-
+
+Waktu penambahan lokasi
+
+
+
+3.4.2.5 Tabel Peminjaman
+
+Tabel `peminjaman` digunakan untuk mencatat setiap transaksi peminjaman barang oleh guru/pegawai.
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 5 Tabel Peminjaman
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+-
+
+Primary Key
+
+2
+
+id_aset
+
+INT
+
+-
+
+Mengacu pada aset.id
+
+3
+
+nama_peminjam
+
+VARCHAR
+
+100
+
+Nama 
+peminjam
+ (
+cadangan
+/
+informasi
+ 
+langsung
+)
+
+4
+
+id_peminjam
+
+INT
+
+-
+
+
+Mengacu
+ pada users.id (
+akun
+ 
+peminjam
+)
+
+5
+
+id_lokasi
+
+INT
+
+-
+
+
+Mengacu
+ pada lokasi.id (
+lokasi
+ 
+penggunaan
+ 
+aset
+)
+
+6
+
+tanggal_pinjam
+
+DATE
+
+-
+
+Tanggal aset mulai dipinjam
+
+7
+
+tanggal_kembali_rencana
+
+DATE
+
+-
+
+Rencana tanggal pengembalian aset
+
+8
+
+tanggal_kembali_aktual
+
+DATE
+
+-
+
+Tanggal realisasi aset dikembalikan
+
+9
+
+tanggal_kembali_aktual
+
+ENUM('Dipinjam','Dikembalikan')
+
+-
+
+Status transaksi peminjaman
+
+10
+
+keterangan
+
+TEXT
+
+-
+
+Alasan peminjaman atau catatan barang
+
+11
+
+id_user
+
+INT
+
+-
+
+Mengacu pada users.id (petugas/admin yang memproses)
+
+12
+
+created_at
+
+TIMESTAMP
+
+-
+
+Waktu transaksi dibuat
+
+
+
+3.4.2.6 Tabel Mutasi Aset
+
+Tabel `mutasi_aset` mencatat riwayat perpindahan lokasi penempatan barang dari satu ruangan ke ruangan lainnya.
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 6 Tabel Mutasi Aset
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+-
+
+Primary Key
+
+2
+
+id_aset
+
+INT
+
+-
+
+Mengacu pada aset.id
+
+3
+
+id_lokasi_asal
+
+INT
+
+-
+
+Mengacu pada lokasi.id (ruang asal aset)
+
+4
+
+id_lokasi_tujuan
+
+INT
+
+-
+
+Mengacu pada lokasi.id (ruang tujuan aset)
+
+5
+
+tanggal_mutasi
+
+DATE
+
+-
+
+Tanggal perpindahan aset dilakukan
+
+6
+
+keterangan
+
+TEXT
+
+-
+
+Alasan dilakukannya mutasi aset
+
+7
+
+id_user
+
+INT
+
+-
+
+Mengacu pada users.id (petugas pemroses)
+
+8
+
+created_at
+
+TIMESTAMP
+
+-
+
+Waktu pencatatan mutasi di sistem
+
+
+
+3.4.2.7 Tabel Riwayat Aktivitas
+
+Tabel `riwayat_aktivitas` menyimpan log pencatatan log audit sistem untuk setiap aksi yang dilakukan oleh pengguna terautentikasi.
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 7 Tabel Riwayat Aktivitas
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+-
+
+Primary Key
+
+2
+
+id_user
+
+INT
+
+-
+
+Mengacu pada users.id (pelaku aktivitas)
+
+3
+
+aktivitas
+
+VARCHAR
+
+100
+
+Jenis aktivitas (misal: Login, Edit Aset, Hapus Aset)
+
+4
+
+keterangan
+
+TEXT
+
+-
+
+Rincian detail log aktivitas
+
+5
+
+created_at
+
+TIMESTAMP
+
+-
+
+Waktu terjadinya aktivitas tersebut
+
+
+
+3.4.2.8 Tabel Email Notifications
+
+Tabel `email_notifications` menyimpan log pengiriman email notifikasi pengingat jatuh tempo peminjaman aset.
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 8 Tabel Email Notifications
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+-
+
+Primary Key
+
+2
+
+id_peminjaman
+
+INT
+
+-
+
+Mengacu pada peminjaman.id
+
+3
+
+tipe
+
+ENUM('reminder','due','overdue')
+
+-
+
+Tipe pesan pengingat yang dikirim
+
+4
+
+email_tujuan
+
+VARCHAR
+
+255
+
+Alamat email tujuan penerima notifikasi
+
+5
+
+status
+
+ENUM('
+sent','failed
+')
+
+-
+
+Status pengiriman email notifikasi
+
+6
+
+pesan_error
+
+TEXT
+
+-
+
+Detail pesan kesalahan jika pengiriman gagal
+
+7
+
+created_at
+
+TIMESTAMP
+
+-
+
+Waktu pencatatan status notifikasi email
+
+
+
+3.4.2.9 Tabel Pengaturan
+
+Tabel `pengaturan` digunakan untuk menyimpan konfigurasi sistem yang bersifat dinamis seperti pengaturan SMTP email dan rentang pengiriman reminder.
+
+
+Tabel 3. SEQ Tabel_3. \* ARABIC 9 Tabel Pengaturan
+
+No
+
+Field Name
+
+Type
+
+Width
+
+Keterangan
+
+1
+
+id
+
+INT
+
+-
+
+Primary Key
+
+2
+
+kunci
+
+VARCHAR
+
+100
+
+Kunci konfigurasi sistem (unik, misal: smtp_host)
+
+3
+
+nilai
+
+TEXT
+
+-
+
+Nilai konfigurasi sistem
+
+4
+
+keterangan
+
+VARCHAR
+
+255
+
+Deskripsi kegunaan konfigurasi terkait
+
+
+3.5 
+Rancangan
+ 
+Antarmuka
+ 
+Masukan
+ 
+Sistem
+
+
+Rancangan antarmuka masukan sistem merupakan tahapan perancangan tampilan yang digunakan pengguna untuk memasukkan, mengubah, maupun memproses data pada Sistem Informasi Inventaris Aset Sekolah. Antarmuka dirancang dengan memperhatikan kemudahan penggunaan (usability) sehingga setiap pengguna dapat melakukan pengelolaan data secara efektif sesuai dengan hak akses yang dimiliki. Perancangan antarmuka masukan pada sistem ini meliputi halaman login, pengelolaan data aset, kategori, lokasi, pengguna, transaksi peminjaman, pengembalian, mutasi aset, serta proses pembuatan QR Code.
+
+
+3.5.1 Rancangan Halaman Login
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 20 Rancangan Halaman Login
+
+Halaman login merupakan antarmuka awal yang digunakan pengguna untuk masuk ke dalam sistem. Pengguna diminta memasukkan username dan password yang telah terdaftar. Setelah data berhasil diverifikasi, sistem akan mengarahkan pengguna ke dashboard sesuai dengan hak akses yang dimiliki
+
+
+3.5.2 Rancangan Form Data Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 21 Rancangan Form Data Aset
+
+Form data aset digunakan oleh Admin atau Petugas untuk menambahkan maupun memperbarui informasi aset. Form ini memuat beberapa komponen masukan, seperti kode aset, nama aset, kategori, lokasi, jumlah, kondisi, spesifikasi, gambar aset, serta informasi pendukung lainnya. Setelah seluruh data diisi dengan benar, pengguna dapat menyimpan data ke dalam basis data melalui tombol Simpan.
+
+
+3.5.3 Rancangan Form Kategori Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 22 Rancangan Form Kategori Aset
+
+Form kategori aset digunakan untuk mengelola data kategori yang menjadi dasar pengelompokan inventaris aset. Melalui form ini pengguna dapat menambahkan kategori baru, mengubah data kategori, maupun menghapus kategori yang sudah tidak digunakan.
+
+
+3.5.4 Rancangan Form Lokasi
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 23 
+Rancangan
+ Form Lokasi
+
+Form lokasi digunakan untuk mengelola informasi lokasi penyimpanan aset di lingkungan sekolah. Data lokasi yang dimasukkan akan menjadi referensi pada saat proses pendataan maupun mutasi aset sehingga posisi setiap aset dapat diketahui dengan jelas.
+
+
+3.5.5 Rancangan Form Pengguna
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 24 
+Rancangan
+ Form 
+Pengguna
+
+
+Form pengguna digunakan oleh Admin untuk mengelola data pengguna sistem. Informasi yang dapat diinput meliputi nama pengguna, username, password, alamat email, serta hak akses pengguna. Data tersebut digunakan sebagai dasar proses autentikasi dan pembatasan akses terhadap fitur-fitur sistem.
+
+
+3.5.6 Rancangan Form Peminjaman Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 25 Rancangan Form Peminjaman Aset
+
+Form peminjaman aset digunakan oleh Guru untuk mengajukan peminjaman aset yang tersedia pada sistem. Pengguna mengisi informasi yang diperlukan, seperti aset yang dipinjam, jumlah, tanggal peminjaman, serta keterangan tambahan. Data pengajuan selanjutnya diproses oleh Admin atau Petugas untuk mendapatkan persetujuan.
+
+
+3.5.7 Rancangan Form Pengembalian Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 26 Form Pengembalian Aset
+
+Form pengembalian aset digunakan oleh Admin atau Petugas untuk mencatat pengembalian aset yang sebelumnya dipinjam. Setelah proses pengembalian dilakukan, sistem akan memperbarui status peminjaman dan jumlah aset yang tersedia sehingga data inventaris tetap sesuai dengan kondisi sebenarnya.
+
+
+3.5.8 Rancangan Form Mutasi Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 27 Rancangan Form Mutasi Aset
+
+Form mutasi aset digunakan untuk memindahkan aset dari satu lokasi ke lokasi lainnya. Pada form ini pengguna memilih aset yang akan dipindahkan, menentukan lokasi tujuan, serta memasukkan jumlah aset yang dimutasikan. Setelah proses berhasil, sistem akan memperbarui lokasi aset sekaligus menyimpan riwayat mutasi.
+
+
+3.5.9 Rancangan Generate QR Code
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 28 Rancangan Generate QR Code
+
+Halaman generate QR Code digunakan untuk membuat identitas digital bagi setiap aset yang telah terdaftar pada sistem. QR Code dihasilkan secara otomatis berdasarkan kode aset dan dapat dicetak untuk ditempelkan pada aset sehingga memudahkan proses identifikasi melalui pemindaian.
+
+
+3.5.10 Rancangan Persetujuan Peminjaman
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 29 Rancangan Persetujuan Peminjaman
+
+Halaman persetujuan peminjaman digunakan oleh Admin atau Petugas untuk memverifikasi setiap permohonan peminjaman aset yang diajukan oleh Guru. Pada halaman ini pengguna dapat menyetujui atau menolak permohonan berdasarkan ketersediaan aset. Keputusan yang diberikan akan memperbarui status peminjaman pada sistem secara otomatis.
+
+
+3.6 
+Rancangan
+ 
+Antarmuka
+ 
+Keluaran
+ 
+Sistem
+
+
+Rancangan antarmuka keluaran sistem merupakan perancangan tampilan yang digunakan untuk menyajikan informasi hasil pengolahan data kepada pengguna. Antarmuka keluaran dirancang agar informasi yang ditampilkan mudah dipahami, informatif, dan mendukung proses pengambilan keputusan dalam pengelolaan inventaris aset. Keluaran sistem pada penelitian ini meliputi halaman dashboard, daftar data, informasi detail aset, hasil pemindaian QR Code, serta laporan inventaris yang dapat ditampilkan maupun dicetak.
+
+
+3.6.1 Rancangan Halaman Dashboard
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 30 Rancangan Halaman Dashboard
+
+Halaman dashboard merupakan tampilan utama yang muncul setelah pengguna berhasil melakukan proses login. Halaman ini menampilkan ringkasan informasi mengenai jumlah aset, kategori aset, lokasi penyimpanan, transaksi peminjaman, serta informasi lain yang berkaitan dengan kondisi inventaris. Dashboard dirancang untuk memberikan gambaran umum mengenai data inventaris sehingga pengguna dapat memperoleh informasi secara cepat.
+
+
+3.6.2 Rancangan Halaman Daftar Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 31 Rancangan Halaman Daftar Aset
+
+Halaman daftar aset digunakan untuk menampilkan seluruh data inventaris yang tersimpan pada sistem dalam bentuk tabel. Informasi yang ditampilkan meliputi kode aset, nama aset, kategori, lokasi, jumlah, kondisi, serta tombol aksi yang dapat digunakan sesuai hak akses pengguna. Halaman ini juga menyediakan fitur pencarian untuk memudahkan pengguna menemukan data aset tertentu.
+
+
+3.6.3 Rancangan Halaman Detail Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 32 Rancangan Halaman Detail Aset
+
+Halaman detail aset digunakan untuk menampilkan informasi lengkap mengenai suatu aset yang dipilih. Informasi tersebut meliputi identitas aset, kategori, lokasi penyimpanan, kondisi, spesifikasi, jumlah aset, serta QR Code yang berkaitan dengan aset tersebut sehingga pengguna dapat memperoleh informasi secara lebih rinci.
+
+
+3.6.4 Rancangan Halaman Hasil Scan QR Code
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 33 Rancangan Halaman Hasil Scan QR Code
+
+Halaman hasil scan QR Code digunakan untuk menampilkan informasi aset setelah pengguna melakukan pemindaian QR Code menggunakan perangkat yang tersedia. Sistem akan menampilkan detail aset sesuai dengan kode yang terbaca sehingga proses identifikasi aset dapat dilakukan dengan cepat dan akurat.
+
+
+3.6.5 Rancangan Halaman Daftar Peminjaman
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 34 Rancangan Halaman Daftar Peminjaman
+
+Halaman daftar peminjaman menampilkan seluruh data transaksi peminjaman aset yang telah dilakukan. Informasi yang disajikan meliputi nama peminjam, aset yang dipinjam, jumlah aset, tanggal peminjaman, status peminjaman, serta informasi pengembalian apabila aset telah dikembalikan.
+
+
+3.6.6 Rancangan Halaman Riwayat Mutasi Aset
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 35 Rancangan Halaman Riwayat Mutasi Aset
+
+Halaman riwayat mutasi aset menampilkan informasi mengenai perpindahan aset dari satu lokasi ke lokasi lainnya. Informasi yang disajikan meliputi nama aset, lokasi asal, lokasi tujuan, jumlah aset yang dimutasikan, tanggal mutasi, serta pengguna yang melakukan proses mutasi.
+
+
+3.6.7 Rancangan Halaman Riwayat Aktivitas
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 36 Rancangan Halaman Riwayat Aktivitas
+
+Halaman riwayat aktivitas digunakan untuk menampilkan seluruh aktivitas yang dilakukan oleh pengguna selama menggunakan sistem. Informasi yang ditampilkan meliputi jenis aktivitas, pengguna yang melakukan aktivitas, waktu pelaksanaan, serta keterangan aktivitas. Halaman ini berfungsi sebagai media monitoring dan audit terhadap penggunaan sistem.
+
+
+3.6.8 Rancangan Laporan Inventaris (PDF)
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 37 Rancangan Laporan Inventaris (PDF)
+
+Halaman laporan inventaris format PDF digunakan untuk menampilkan hasil pengolahan data inventaris dalam bentuk dokumen yang siap dicetak. Laporan ini memuat informasi aset berdasarkan kriteria yang dipilih oleh pengguna sehingga memudahkan proses dokumentasi dan pelaporan.
+
+
+3.6.9 Rancangan Laporan Inventaris (Excel)
+
+
+
+
+
+Gambar 3. SEQ Gambar_3. \* ARABIC 38 Rancangan Laporan Inventaris (Excel)
+
+
+
+Halaman laporan inventaris format Excel digunakan untuk menghasilkan data inventaris dalam bentuk spreadsheet sehingga dapat diolah lebih lanjut menggunakan aplikasi pengolah data. Fitur ini memudahkan pengguna dalam melakukan rekapitulasi, analisis, maupun penyimpanan data inventaris.
+
+
+BAB IV IMPLEMENTASI DAN PENGUJIAN
+
+
+4.1 
+Spesifikasi
+ 
+Sistem
+
+
+Tahap implementasi merupakan proses penerapan hasil analisis dan perancangan sistem yang telah dijelaskan pada Bab III ke dalam bentuk aplikasi yang dapat digunakan oleh pengguna. Sistem Informasi Inventaris Aset Sekolah dikembangkan menggunakan bahasa pemrograman PHP dengan basis data MySQL. Implementasi dilakukan pada perangkat keras dan perangkat lunak yang memenuhi kebutuhan pengembangan serta pengujian aplikasi.
+
+
+4.1.1 Spesifikasi Perangkat Keras 
+
+Perangkat keras yang digunakan dalam proses pembangunan dan pengujian Sistem Informasi Inventaris Aset Sekolah dapat dilihat pada Tabel 4.1.
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 1 Spesifikasi Perangkat Keras
+
+No
+
+Komponen
+
+Spesifikasi
+
+1
+
+Laptop
+
+Advan Workplus
+
+2
+
+Processor
+
+AMD Ryzen 7 7735HS (8 Core, 16 Thread)
+
+3
+
+RAM
+
+16 GB DDR5
+
+4
+
+Penyimpanan
+
+SSD NVMe 512 GB
+
+5
+
+Graphics
+
+AMD Radeon 680M Graphics
+
+6
+
+Layar
+
+14 Inch IPS Full HD (1920 × 1200)
+
+7
+
+Keyboard
+
+Built-in Keyboard
+
+8
+
+Mouse
+
+Mouse USB
+
+
+Perangkat keras tersebut digunakan selama proses analisis, perancangan, implementasi, hingga pengujian sistem. Penggunaan media penyimpanan SSD memberikan kecepatan yang lebih baik dalam proses menjalankan web server, database, maupun aplikasi selama tahap pengembangan.
+
+
+4.1.2 Spesifikasi Perangkat Lunak
+
+Perangkat lunak yang digunakan selama proses pembangunan Sistem Informasi Inventaris Aset Sekolah dapat dilihat pada Tabel 4.2.
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 2 Spesifikasi Perangkat Lunak
+
+No
+
+Perangkat Lunak
+
+Keterangan
+
+1
+
+Windows 11 Pro 64-bit
+
+Sistem Operasi
+
+2
+
+Laragon
+
+Web Server
+
+3
+
+PHP 8.1.10
+
+Bahasa Pemrograman
+
+4
+
+MySQL
+
+Database Management System
+
+5
+
+Visual Studio Code
+
+Code Editor
+
+6
+
+Google Chrome
+
+Web Browser
+
+7
+
+Composer
+
+Dependency Manager
+
+8
+
+phpMyAdmin
+
+Manajemen Database
+
+
+Perangkat lunak tersebut digunakan untuk mendukung proses pembangunan aplikasi mulai dari penulisan kode program, pengelolaan basis data, hingga proses pengujian sistem yang dilakukan melalui web browser.
+
+
+4.2 Langkah-Langkah 
+Pembuatan
+ 
+Sistem
+
+
+Tahap implementasi dilakukan setelah seluruh proses analisis dan perancangan sistem selesai. Implementasi bertujuan untuk menerjemahkan rancangan sistem menjadi aplikasi berbasis web yang dapat digunakan oleh pengguna sesuai dengan kebutuhan pengelolaan inventaris aset di Madrasah Aliyah Negeri 2 Hulu Sungai Utara. Langkah-langkah implementasi sistem dijelaskan sebagai berikut.
+
+
+4.2.1 Pembuatan Basis Data
+
+Implementasi basis data dilakukan menggunakan MySQL melalui phpMyAdmin pada Laragon. Basis data dibangun berdasarkan hasil perancangan pada Bab III yang terdiri atas tabel-tabel untuk mendukung pengelolaan data pengguna, aset, kategori, lokasi, peminjaman, pengembalian, mutasi aset, serta riwayat aktivitas sehingga seluruh data dapat disimpan dan dikelola secara terintegrasi. 
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 1 Basis Data Sistem
+
+
+4.2.2 Konfigurasi Web Server
+
+Konfigurasi web server dilakukan menggunakan Laragon sebagai lingkungan pengembangan aplikasi. Web server Apache dan MySQL diaktifkan agar aplikasi berbasis PHP dapat dijalankan melalui peramban dan terhubung dengan basis data selama proses implementasi. 
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 2 Konfigurasi Web Server Menggunakan Laragon
+
+
+4.2.3 Struktur Folder Aplikasi
+
+Struktur folder aplikasi disusun secara terorganisir untuk memudahkan pengelolaan kode program dan proses pengembangan. Setiap folder memiliki fungsi tertentu, seperti penyimpanan file konfigurasi, modul aplikasi, aset pendukung, library, serta berkas lainnya sehingga aplikasi lebih mudah dipelihara dan dikembangkan.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 3 Struktur Folder Aplikasi
+
+
+4.2.4 Konfigurasi Koneksi Basis Data 
+
+Konfigurasi koneksi basis data dilakukan menggunakan ekstensi MySQLi pada PHP. Proses ini bertujuan menghubungkan aplikasi dengan basis data MySQL sehingga setiap proses pengolahan data, seperti penyimpanan, perubahan, penghapusan, dan pengambilan data, dapat dilakukan dengan baik.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 4 Konfigurasi Koneksi Basis Data
+
+
+4.3 Hasil 
+Tampilan
+ 
+Aplikasi
+
+
+Hasil tampilan aplikasi merupakan implementasi dari rancangan antarmuka sistem yang telah dibuat pada Bab III. Antarmuka dirancang agar pengguna dapat mengakses setiap fitur dengan mudah sesuai hak akses yang dimiliki. Sistem Informasi Inventaris Aset Sekolah ini terdiri atas beberapa halaman utama yang mendukung proses pengelolaan inventaris, mulai dari autentikasi pengguna, pengelolaan data master, transaksi inventaris, hingga penyajian laporan. Adapun hasil implementasi tampilan aplikasi dijelaskan sebagai berikut.
+
+
+4.3.1 Halaman Login 
+
+Halaman login merupakan halaman awal yang digunakan pengguna untuk mengakses sistem. Pada halaman ini pengguna diminta memasukkan username dan password yang telah terdaftar. Sistem akan melakukan validasi data sebelum memberikan hak akses sesuai dengan peran pengguna.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 5 Halaman Login
+
+
+4.3.2 Halaman Dashboard
+
+Halaman dashboard menampilkan informasi umum mengenai kondisi inventaris aset. Informasi yang disajikan meliputi jumlah aset, kategori, lokasi, peminjaman, serta ringkasan aktivitas sehingga pengguna dapat memperoleh gambaran kondisi inventaris secara cepat.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 6 Halaman Dashboard
+
+
+4.3.3 Halaman Data Pengguna
+
+Halaman data pengguna digunakan untuk mengelola akun yang memiliki akses ke dalam sistem. Melalui halaman ini administrator dapat menambah, mengubah, menghapus, dan melihat data pengguna beserta hak aksesnya.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 7 Halaman Data Pengguna
+
+
+4.3.4 Halaman Data Kategori
+
+Halaman data kategori digunakan untuk mengelompokkan aset berdasarkan jenisnya. Pengelompokan kategori memudahkan proses pengelolaan, pencarian, dan penyusunan laporan inventaris.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 8 Halaman Data Kategori
+
+
+4.3.5 Halaman Data Lokasi
+
+Halaman data lokasi digunakan untuk mengelola informasi lokasi penyimpanan aset. Data lokasi membantu pengguna mengetahui posisi setiap aset yang terdapat di lingkungan sekolah.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 9 Halaman Data Lokasi
+
+
+4.3.6 Halaman Data Aset
+
+Halaman data aset digunakan untuk mengelola seluruh informasi aset sekolah. Pengguna dapat melakukan penambahan, perubahan, penghapusan, pencarian, serta melihat detail aset yang tersimpan pada sistem.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 10 Halaman Data Aset
+
+
+4.3.7 Halaman Generate QR Code
+
+Halaman Generate QR Code digunakan untuk membuat identitas digital pada setiap aset. QR Code yang dihasilkan dapat dicetak dan ditempelkan pada aset sebagai media identifikasi.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 11 Halaman Generate QR Code
+
+
+4.3.8 Halaman Scan QR Code
+
+Halaman Scan QR Code digunakan untuk menampilkan informasi aset melalui proses pemindaian QR Code. Setelah kode dipindai, sistem akan menampilkan detail aset sesuai data yang tersimpan pada basis data.
+
+
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 12 Halaman Scan QR Code
+
+
+4.3.9 Halaman Peminjaman Aset
+
+Halaman peminjaman aset digunakan untuk mengelola proses peminjaman aset oleh pengguna. Sistem mencatat data peminjam, aset yang dipinjam, tanggal peminjaman, serta status peminjaman.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 13 Halaman Peminjaman Aset
+
+
+4.3.10 Halaman Dashboard Guru/Karyawan
+
+Halaman dashboard Guru/Karyawan merupakan halaman utama yang ditampilkan setelah pengguna dengan hak akses Guru/Karyawan berhasil masuk ke dalam sistem. Halaman ini menampilkan informasi mengenai jumlah aset yang tersedia, aset yang sedang dipinjam, aset yang telah dikembalikan, total peminjaman, serta informasi peminjaman yang sedang aktif.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 14 Halaman Dashboard Guru/Karyawan
+
+
+4.3.11 Halaman Pengajuan Peminjaman
+
+Halaman pengajuan peminjaman digunakan oleh Guru/Karyawan untuk mengajukan peminjaman aset yang tersedia. Pengguna dapat memilih aset yang akan dipinjam dan melengkapi informasi peminjaman yang diperlukan. Data pengajuan kemudian disimpan dan diproses sesuai mekanisme peminjaman yang diterapkan pada sistem.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 15 Halaman Pengajuan Peminjaman
+
+
+4.3.12 Halaman Riwayat Peminjaman
+
+Halaman riwayat peminjaman digunakan untuk menampilkan informasi peminjaman yang pernah dilakukan oleh Guru/Karyawan. Melalui halaman ini, pengguna dapat mengetahui aset yang dipinjam, tanggal peminjaman, batas pengembalian, dan status peminjaman.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 16 Halaman Riwayat Peminjaman
+
+
+4.3.13 Halaman Pengembalian Aset
+
+Halaman pengembalian aset digunakan untuk mencatat proses pengembalian aset yang telah dipinjam sehingga status aset dapat diperbarui dan digunakan kembali.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 17 Halaman Pengembalian Aset
+
+
+4.3.14 Halaman Mutasi Aset
+
+Halaman mutasi aset digunakan untuk mencatat perpindahan lokasi aset. Setiap perubahan lokasi disimpan sebagai riwayat sehingga memudahkan proses pelacakan aset.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 18 Halaman Mutasi Aset
+
+
+4.3.15 Halaman Riwayat Aktivitas
+
+Halaman riwayat aktivitas menampilkan seluruh aktivitas pengguna selama menggunakan sistem, seperti penambahan, perubahan, maupun penghapusan data inventaris.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 19 Halaman Riwayat Aktivitas
+
+
+4.3.16 Halaman Profil Pengguna
+
+Halaman profil pengguna digunakan untuk menampilkan informasi identitas pengguna yang sedang login. Pada halaman ini pengguna dapat melihat data pribadi, seperti nama, username, nomor identitas, jabatan, serta informasi akun lainnya. Selain itu, pengguna juga dapat memperbarui data profil dan mengganti kata sandi agar keamanan akun tetap terjaga.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 20 Halaman Profil Pengguna
+
+
+4.3.17 Halaman Laporan
+
+Halaman laporan digunakan untuk menyajikan informasi inventaris berdasarkan kebutuhan pengelolaan aset. Sistem menyediakan beberapa jenis laporan yang dapat digunakan untuk mempermudah proses monitoring, evaluasi, dan dokumentasi data inventaris. Laporan dapat ditampilkan berdasarkan kriteria tertentu serta tersedia fasilitas untuk mencetak atau mengekspor data.
+
+
+4.3.17.1 Laporan Inventaris Keseluruhan
+
+Laporan Inventaris Keseluruhan menampilkan seluruh data aset yang tercatat dalam sistem. Pengguna dapat melakukan penyaringan berdasarkan kondisi dan kategori aset. Sistem juga menyediakan fasilitas Cetak PDF, Lihat PDF, dan Export Excel untuk mempermudah pengelolaan dokumen laporan.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 21 Laporan Inventaris Keseluruhan
+
+
+4.3.17.2 Laporan Aset per Kategori
+
+Laporan Aset per Kategori menampilkan data aset berdasarkan kategori tertentu sehingga memudahkan pengguna mengetahui jumlah dan informasi aset pada setiap kelompok kategori.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 22 Laporan Aset per Kategori
+
+
+4.3.17.3 Laporan Aset per Lokasi
+
+Laporan Aset per Lokasi menampilkan data aset berdasarkan lokasi atau ruangan tempat aset berada. Laporan ini membantu dalam mengetahui persebaran aset pada setiap lokasi.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 23 Laporan Aset per Lokasi
+
+
+4.3.17.4 Laporan Kondisi Aset
+
+Laporan Kondisi Aset menyajikan data aset berdasarkan kondisi, seperti baik, rusak ringan, dan rusak berat. Laporan ini dapat digunakan sebagai informasi pendukung dalam pemantauan kondisi inventaris.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 24 Laporan Kondisi Aset
+
+
+4.3.17.5 Laporan Peminjaman
+
+Laporan Peminjaman menyajikan informasi mengenai transaksi peminjaman aset yang tercatat dalam sistem. Informasi tersebut digunakan untuk memantau riwayat dan status peminjaman aset.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 25 Laporan Peminjaman
+
+
+4.3.17.6 Laporan Riwayat per Aset
+
+Laporan Riwayat per Aset digunakan untuk menampilkan riwayat aktivitas atau perubahan yang berkaitan dengan suatu aset sehingga informasi perjalanan aset dapat ditelusuri.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 26 Laporan Riwayat per Aset
+
+
+4.3.17.7 Laporan Aset Masuk
+
+Laporan Aset Masuk menyajikan informasi mengenai aset yang tercatat masuk ke dalam inventaris sekolah. Laporan ini membantu dalam dokumentasi penambahan aset berdasarkan data yang tersimpan pada sistem.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 27 Laporan Aset Masuk
+
+
+4.3.17.8 Laporan Mutasi Aset
+
+Laporan Mutasi Aset menampilkan riwayat perpindahan aset dari satu lokasi ke lokasi lainnya. Laporan ini digunakan untuk mempermudah penelusuran perubahan lokasi aset.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 28 Laporan Mutasi Aset
+
+
+4.3.17.9 Laporan Penghapusan Aset
+
+Laporan Penghapusan Aset menyajikan data aset yang telah dihapus atau dikeluarkan dari daftar inventaris beserta informasi yang berkaitan dengan proses penghapusan tersebut.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 29 Laporan Penghapusan Aset
+
+
+4.3.18 Halaman Pengaturan Email
+
+Halaman Pengaturan Email digunakan untuk mengonfigurasi layanan pengiriman email yang digunakan oleh sistem. Pada halaman ini administrator dapat mengatur parameter SMTP, seperti SMTP Host, SMTP Port, username, password aplikasi (App Password), nama pengirim, dan alamat email pengirim. Konfigurasi tersebut memungkinkan sistem mengirimkan notifikasi secara otomatis kepada pengguna, khususnya sebagai pengingat pengembalian aset yang telah dipinjam.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 30 Halaman Pengaturan Email
+
+
+4.3.19 Halaman Log Notifikasi Email
+
+Halaman Log Notifikasi Email digunakan untuk menampilkan riwayat pengiriman email yang dilakukan oleh sistem. Informasi yang ditampilkan meliputi penerima email, subjek, waktu pengiriman, status pengiriman, serta keterangan berhasil atau gagal. Halaman ini membantu administrator dalam memantau proses pengiriman notifikasi dan memudahkan identifikasi apabila terjadi kendala pada layanan email.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 31 Halaman Log Notifikasi Email
+
+
+4.3.20 Tampilan Email Notifikasi Pengembalian Aset
+
+Sistem menyediakan fitur notifikasi email yang dikirim secara otomatis kepada pengguna sebagai pengingat batas waktu pengembalian aset yang sedang dipinjam. Email berisi informasi mengenai kode aset, nama aset, tanggal peminjaman, dan batas waktu pengembalian sehingga pengguna dapat mengetahui jadwal pengembalian dengan lebih mudah. Implementasi fitur ini bertujuan untuk mengurangi keterlambatan pengembalian aset serta meningkatkan efektivitas pengelolaan inventaris.
+
+
+
+
+Gambar 4. SEQ Gambar_4. \* ARABIC 32 Tampilan Email Notifikasi Pengembalian Aset
+
+
+4.4 
+Pengujian
+ 
+Sistem
+
+
+Pengujian sistem dilakukan untuk mengetahui apakah seluruh fungsi pada Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code telah berjalan sesuai dengan kebutuhan pengguna. Metode yang digunakan dalam penelitian ini adalah Black Box Testing, yaitu metode pengujian yang berfokus pada pengujian fungsi sistem berdasarkan masukan (input) dan keluaran (output) tanpa memperhatikan struktur kode program. Pengujian dilakukan terhadap seluruh fitur utama sistem, meliputi autentikasi pengguna, pengelolaan data master, transaksi inventaris, generate dan scan QR Code, laporan, serta fitur notifikasi email. Hasil pengujian dinyatakan berhasil apabila keluaran yang dihasilkan sesuai dengan hasil yang diharapkan.
+
+
+4.4.1 Pengujian Halaman Login
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 3 Pengujian Halaman Login
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Username dan password benar
+
+Sistem menampilkan dashboard sesuai hak akses
+
+Sesuai
+
+Berhasil
+
+2
+
+Username salah
+
+Sistem menampilkan pesan kesalahan
+
+Sesuai
+
+Berhasil
+
+3
+
+Password salah
+
+Sistem menampilkan pesan kesalahan
+
+Sesuai
+
+Berhasil
+
+4
+
+Username dan password kosong
+
+Sistem meminta pengguna melengkapi data
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.2 Pengujian Data Pengguna
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 4 Pengujian Data Pengguna
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Tambah data pengguna
+
+Data berhasil disimpan
+
+Sesuai
+
+Berhasil
+
+2
+
+Edit data pengguna
+
+Data berhasil diperbarui
+
+Sesuai
+
+Berhasil
+
+3
+
+Hapus data pengguna
+
+Data berhasil dihapus
+
+Sesuai
+
+Berhasil
+
+4
+
+Pencarian data
+
+Data sesuai kata kunci
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.3 Pengujian Data Kategori
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 5 Pengujian Data Kategori
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Tambah kategori
+
+Data berhasil disimpan
+
+Sesuai
+
+Berhasil
+
+2
+
+Edit kategori
+
+Data berhasil diperbarui
+
+Sesuai
+
+Berhasil
+
+3
+
+Hapus kategori
+
+Data berhasil dihapus
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.4 Pengujian Data Lokasi
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 6 Pengujian Data Lokasi
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Tambah kategori
+
+Data berhasil disimpan
+
+Sesuai
+
+Berhasil
+
+2
+
+Edit kategori
+
+Data berhasil diperbarui
+
+Sesuai
+
+Berhasil
+
+3
+
+Hapus kategori
+
+Data berhasil dihapus
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.5 Pengujian Data Aset
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 7 Pengujian Data Aset
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Tambah aset
+
+Data berhasil disimpan
+
+Sesuai
+
+Berhasil
+
+2
+
+Edit aset
+
+Data berhasil diperbarui
+
+Sesuai
+
+Berhasil
+
+3
+
+Hapus aset
+
+Data berhasil dihapus
+
+Sesuai
+
+Berhasil
+
+4
+
+Lihat detail aset
+
+Informasi aset tampil
+
+Sesuai
+
+Berhasil
+
+5
+
+Pencarian aset
+
+Data ditemukan
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.6 Pengujian Generate dan Scan QR Code
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 8 Pengujian Generate dan Scan QR Code
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Generate QR Code
+
+QR Code berhasil dibuat
+
+Sesuai
+
+Berhasil
+
+2
+
+Cetak QR Code
+
+Label berhasil dicetak
+
+Sesuai
+
+Berhasil
+
+3
+
+Scan QR Code
+
+Informasi aset tampil
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.7 Pengujian Peminjaman Aset
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 9 Pengujian Peminjaman Aset
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Ajukan peminjaman
+
+Pengajuan berhasil disimpan
+
+Sesuai
+
+Berhasil
+
+2
+
+Setujui peminjaman
+
+Status berubah menjadi dipinjam
+
+Sesuai
+
+Berhasil
+
+3
+
+Tolak peminjaman
+
+Status berubah menjadi ditolak
+
+Sesuai
+
+Berhasil
+
+4
+
+Cari data peminjaman
+
+Data berhasil ditampilkan
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.8 Pengujian Pengembalian Aset
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 10 Pengujian Pengembalian Aset
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Proses pengembalian
+
+Status berubah menjadi dikembalikan
+
+Sesuai
+
+Berhasil
+
+2
+
+Riwayat pengembalian
+
+Data berhasil ditampilkan
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.9 Pengujian Mutasi Aset
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 11 Pengujian Mutasi Aset
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Tambah mutasi
+
+Data berhasil disimpan
+
+Sesuai
+
+Berhasil
+
+2
+
+Riwayat mutasi
+
+Data berhasil ditampilkan
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.10 Pengujian Laporan
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 12 Pengujian Laporan
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Laporan Inventaris Keseluruhan
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+2
+
+Laporan per Kategori
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+3
+
+Laporan per Lokasi
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+4
+
+Laporan Kondisi Aset
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+5
+
+Laporan Peminjaman
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+6
+
+Riwayat per Aset
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+7
+
+Laporan Aset Masuk
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+8
+
+Laporan Mutasi
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+9
+
+Laporan Penghapusan
+
+Laporan tampil
+
+Sesuai
+
+Berhasil
+
+10
+
+Cetak PDF
+
+PDF berhasil dibuat
+
+Sesuai
+
+Berhasil
+
+11
+
+Export Excel
+
+File Excel berhasil dibuat
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.11 Pengujian Pengaturan Email
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 13 Pengujian Pengaturan Email
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Simpan konfigurasi SMTP
+
+Konfigurasi berhasil disimpan
+
+Sesuai
+
+Berhasil
+
+2
+
+Uji koneksi SMTP
+
+Koneksi berhasil
+
+Sesuai
+
+Berhasil
+
+	
+
+
+
+
+
+
+4.4.12 Pengujian Notifikasi Email
+
+
+Tabel 4. SEQ Tabel_4. \* ARABIC 14 Pengujian Notifikasi Email
+
+No
+
+Skenario Pengujian
+
+Hasil yang Diharapkan
+
+Hasil
+
+Status
+
+1
+
+Kirim email pengingat
+
+Email berhasil dikirim
+
+Sesuai
+
+Berhasil
+
+2
+
+Log notifikasi
+
+Riwayat pengiriman tersimpan
+
+Sesuai
+
+Berhasil
+
+3
+
+Isi email
+
+Informasi aset tampil lengkap
+
+Sesuai
+
+Berhasil
+
+
+
+
+4.4.13 Hasil Pengujian Sistem
+
+
+
+Berdasarkan hasil pengujian menggunakan metode Black Box Testing, seluruh fitur pada Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code telah berjalan sesuai dengan kebutuhan fungsional. Fitur autentikasi pengguna, pengelolaan data master, transaksi peminjaman dan pengembalian aset, mutasi aset, generate dan scan QR Code, penyusunan laporan, konfigurasi email, serta pengiriman notifikasi email berhasil dijalankan sesuai dengan hasil yang diharapkan. Dengan demikian, sistem dinyatakan berfungsi dengan baik dan layak digunakan sebagai media pengelolaan inventaris aset di Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+BAB VPENUTUP
+
+
+
+
+5.1 Kesimpulan
+
+Berdasarkan hasil analisis, perancangan, implementasi, dan pengujian Sistem Informasi Inventaris Aset Sekolah Dilengkapi Fitur Generate QR Code Menggunakan PHP dan MySQL di Madrasah Aliyah Negeri 2 Hulu Sungai Utara, maka dapat diambil beberapa kesimpulan sebagai berikut.
+
+
+Sistem Informasi Inventaris Aset Sekolah berhasil dirancang dan dibangun menggunakan bahasa pemrograman PHP dengan basis data MySQL. Sistem ini mampu membantu pengelolaan inventaris aset secara terkomputerisasi sehingga proses pendataan, pencarian, dan pengelolaan aset menjadi lebih efektif, efisien, dan terintegrasi.
+
+
+Fitur Generate QR Code dan Scan QR Code berhasil diimplementasikan sebagai identitas digital pada setiap aset. Penerapan fitur ini memudahkan proses identifikasi aset, mempercepat kegiatan inventarisasi, serta mengurangi risiko kesalahan dalam pencatatan dan pencarian data aset.
+
+
+Sistem berhasil mengimplementasikan fitur pengelolaan data pengguna, kategori, lokasi, aset, peminjaman, pengembalian, mutasi aset, riwayat aktivitas, laporan inventaris, serta notifikasi email pengingat pengembalian aset. Berdasarkan hasil pengujian menggunakan metode Black Box Testing, seluruh fungsi sistem dapat berjalan sesuai dengan kebutuhan pengguna sehingga sistem layak digunakan sebagai media pengelolaan inventaris aset di Madrasah Aliyah Negeri 2 Hulu Sungai Utara.
+
+
+5.2 Saran
+
+Berdasarkan hasil penelitian yang telah dilakukan, terdapat beberapa saran yang dapat digunakan sebagai bahan pengembangan sistem pada penelitian selanjutnya, yaitu sebagai berikut.
+
+
+Sistem dapat dikembangkan dalam bentuk aplikasi berbasis Android atau mobile sehingga proses inventarisasi dan pemindaian QR Code dapat dilakukan dengan lebih mudah menggunakan perangkat bergerak.
+
+
+Sistem dapat dikembangkan dengan menambahkan fitur penyusutan aset, jadwal pemeliharaan, pengadaan aset, serta dashboard analitik untuk mendukung pengambilan keputusan dalam pengelolaan inventaris.
+
+
+
+
+Pengembangan selanjutnya dapat menambahkan media notifikasi lain, seperti WhatsApp atau Telegram, sebagai pelengkap notifikasi email sehingga informasi pengingat pengembalian aset dapat diterima pengguna dengan lebih cepat.
+
+
+DAFTAR PUSTAKA
+
+
+
+
+ BIBLIOGRAPHY  \l 1033 Booch, G., Rumbaugh, J., & Jacobson, I. (2005). The Unified Modeling Language User Guide. Boston: Addison-Wesley Professional.
+
+
+Ciptadi, C., Ilyas, M., & Syahrir. (2023). Perancangan Aplikasi Sistem Informasi Inventarisasi Aset Menggunakan QR Code (Studi Kasus Dinas Pendidikan dan Kebudayaan Kota Parepare). Jurnal Teknologi Elekterika, 20(2), 104–112. doi:https://doi.org/10.31963/elekterika.v20i2.4631
+
+
+Coronel, C., & Morris, S. (2019). Database Systems: Design, Implementation, & Management. Boston: Cengage Learning.
+
+
+Creswell, J., & Creswell, J. (2018). Research Design: Qualitative, Quantitative, and Mixed Methods Approaches. Los Angeles: SAGE Publications.
+
+
+Dennis, A., Wixom, B., & Tegarden, D. (2021). Systems Analysis and Design: An Object-Oriented Approach with UML. Hoboken: John Wiley & Sons.
+
+
+Elmasri, R., & Navathe, S. (2017). Fundamentals of Database Systems. Boston: Pearson.
+
+
+Ermawati, E., Wahyuni, T., Indriyanti, I., Ichsan, N., & Fatah, H. (2022). Rancang Bangun Aplikasi Inventory dengan QR Code Berbasis Website pada RSI Assyifa Sukabumi. Jurnal Responsif, 4(1), 22-30. doi:https://doi.org/10.51977/jti.v4i1.658
+
+
+Laudon, K., & Kenneth C., J. (2022). Management Information Systems: Managing the Digital Firm. Harlow: Pearson.
+
+
+Lestari, N., Susanti, E. Y., & Revita, E. (2025). Rancang Bangun Sistem Informasi Inventaris Sekolah Menggunakan QR Code pada SMKN 2 Pulau Punjung Berbasis Website. Jurnal Pustaka Data, 5(1). doi:https://doi.org/10.55382/jurnalpustakadata.v5i1.1017
+
+
+Martin, F. (2025). Rancang Bangun Sistem Informasi Absensi QR Code Berbasis Web pada SMPN 2 Cikajang. Algorithmius: Jurnal Ilmu Komputer dan Informatika. Retrieved from https://jurnal.unipia.ac.id/index.php/ALGORITHMIUS/article/view/132
+
+
+Object Management Group. (2023). Retrieved from https://www.omg.org/spec/UML/2.5.1
+
+
+Oracle Corporation. (2025). Retrieved from https://dev.mysql.com/doc/
+
+
+PHP Documentation Group. (2025). Retrieved from https://www.php.net/docs.php
+
+
+Pressman, R., & Maxim, B. (2020). Software Engineering: A Practitioner's Approach. New York: McGraw-Hill Education.
+
+
+Sommerville, I. (2016). Software Engineering. Boston: Pearson.
+
+
+Stair, R., & Reynolds, G. (2021). Principles of Information Systems. Boston: Cengage Learning.
+
+
+Syahputra, H., Safira, S., & Rais, I. R. (2025). Rancang Bangun Sistem Informasi Inventaris Aset Berbasis Web. Journal of Software and Information Technology. Retrieved from https://rcf-indonesia.org/jurnal/index.php/jsit/article/view/849
+
+
+
+
+
+
+
+LAMPIRAN-LAMPIRAN
+
+
+Lembar Persetujuan Judul
+
+
+
+
+
+Lembar Penetapan Pembimbing Skripsi
+
+
+
+
+
+
