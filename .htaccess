@@ -70,3 +70,9 @@ RewriteRule ^laporan/export_excel\.php$ pages/laporan/export_excel.php [L,QSA]
 RewriteRule ^pengguna$ pages/pengguna/index.php [L,QSA]
 RewriteRule ^pengguna/tambah$ pages/pengguna/tambah.php [L,QSA]
 RewriteRule ^pengguna/edit$ pages/pengguna/edit.php [L,QSA]
+
+# Berita Acara
+RewriteRule ^berita-acara/peminjaman$ pages/berita_acara/peminjaman.php [L,QSA]
+RewriteRule ^berita-acara/pengembalian$ pages/berita_acara/pengembalian.php [L,QSA]
+RewriteRule ^berita-acara/mutasi$ pages/berita_acara/mutasi.php [L,QSA]
+RewriteRule ^berita-acara/penghapusan$ pages/berita_acara/penghapusan.php [L,QSA]

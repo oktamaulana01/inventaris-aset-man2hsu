@@ -154,13 +154,14 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                         <th>Lokasi Asal</th>
                         <th>Lokasi Tujuan</th>
                         <th>Keterangan</th>
-                        <th>Petugas Pemroses</th>
+                        <th>Petugas</th>
+                        <th style="text-align:center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($mutasiList)): ?>
                         <tr>
-                            <td colspan="8" class="text-center text-muted" style="padding: 24px;">Belum ada data transaksi mutasi aset</td>
+                            <td colspan="9" class="text-center text-muted" style="padding: 24px;">Belum ada data transaksi mutasi aset</td>
                         </tr>
                     <?php else: foreach ($mutasiList as $i => $m): ?>
                         <tr>
@@ -174,8 +175,13 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             <td>
                                 <strong style="color:var(--accent-primary);"><?= htmlspecialchars($m['lokasi_tujuan'] ?? '-') ?></strong>
                             </td>
-                            <td style="max-width:220px; font-size:0.85rem; color:var(--text-secondary);"><?= htmlspecialchars($m['keterangan'] ?? '-') ?></td>
+                            <td style="max-width:200px; font-size:0.85rem; color:var(--text-secondary);"><?= htmlspecialchars($m['keterangan'] ?? '-') ?></td>
                             <td style="font-size:0.85rem;"><?= htmlspecialchars($m['nama_petugas'] ?? 'Sistem') ?></td>
+                            <td style="text-align:center;">
+                                <a href="<?= BASE_URL ?>/berita-acara/mutasi?id=<?= $m['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Berita Acara Mutasi">
+                                    <i class="fas fa-file-contract"></i> BA Mutasi
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach; endif; ?>
                 </tbody>
