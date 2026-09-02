@@ -14,7 +14,7 @@ $data = $stmt->fetch();
 if ($data && $data['status'] === 'Menunggu Konfirmasi') {
     require_once __DIR__ . '/../../config/mailer.php';
     if ($action === 'approve') {
-        $pdo->prepare("UPDATE peminjaman SET status = 'Dipinjam' WHERE id = ?")->execute([$id]);
+        $pdo->prepare("UPDATE peminjaman SET status = 'Dipinjam', id_user = ? WHERE id = ?")->execute([$_SESSION['user_id'], $id]);
         logActivity($pdo, $_SESSION['user_id'], 'Konfirmasi', "Menyetujui peminjaman aset: {$data['nama_aset']} oleh {$data['nama_peminjam']}");
         
         $msg = "📢 <b>Persetujuan Peminjaman Aset</b>\n\n" .

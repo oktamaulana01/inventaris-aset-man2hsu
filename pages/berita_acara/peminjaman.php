@@ -11,7 +11,7 @@ $stmt = $pdo->prepare("
            k.nama_kategori,
            l.nama_lokasi as lokasi_awal,
            u.nama as nama_guru, u.nip as nip_guru, u.jabatan as jabatan_guru, u.no_telepon as telp_guru, u.email as email_guru,
-           petugas.nama as nama_petugas, petugas.jabatan as jabatan_petugas
+           petugas.nama as nama_petugas, petugas.nip as nip_petugas, petugas.jabatan as jabatan_petugas, petugas.role as role_petugas
     FROM peminjaman p
     JOIN aset a ON p.id_aset = a.id
     LEFT JOIN kategori k ON a.id_kategori = k.id
@@ -25,6 +25,23 @@ $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$data) {
     die('Data peminjaman tidak ditemukan.');
+}
+
+// Pastikan PIHAK PERTAMA adalah Petugas Sarpras (bukan guru peminjam)
+if (empty($data['nama_petugas']) || $data['role_petugas'] === 'guru' || (!empty($data['id_peminjam']) && $data['id_user'] == $data['id_peminjam'])) {
+    $petugasDb = $pdo->query("SELECT nama, nip, jabatan FROM users WHERE role = 'petugas' LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+    if ($petugasDb) {
+        $data['nama_petugas'] = $petugasDb['nama'];
+        $data['nip_petugas'] = $petugasDb['nip'];
+        $data['jabatan_petugas'] = $petugasDb['jabatan'] ?: 'Petugas Sarana & Prasarana';
+    } else {
+        $data['nama_petugas'] = 'Rudiannor, S.Sos';
+        $data['nip_petugas'] = '198011062005011004';
+        $data['jabatan_petugas'] = 'Petugas Sarana & Prasarana';
+    }
+}
+if (empty($data['jabatan_petugas'])) {
+    $data['jabatan_petugas'] = 'Petugas Sarana & Prasarana';
 }
 
 if (!function_exists('tglIndo')) {

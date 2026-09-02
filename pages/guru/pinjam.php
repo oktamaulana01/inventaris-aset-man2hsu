@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idLokasi = !empty($_POST['id_lokasi']) ? intval($_POST['id_lokasi']) : null;
     $namaPeminjam = $_SESSION['user_nama']; // Otomatis dari session
     
-    $stmt = $pdo->prepare("INSERT INTO peminjaman (id_aset, nama_peminjam, id_peminjam, id_lokasi, tanggal_pinjam, tanggal_kembali_rencana, keterangan, id_user, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Menunggu Konfirmasi')");
-    $stmt->execute([$idAset, $namaPeminjam, $_SESSION['user_id'], $idLokasi, $tglPinjam, $tglKembali, $ket, $_SESSION['user_id']]);
+    $stmt = $pdo->prepare("INSERT INTO peminjaman (id_aset, nama_peminjam, id_peminjam, id_lokasi, tanggal_pinjam, tanggal_kembali_rencana, keterangan, id_user, status) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, 'Menunggu Konfirmasi')");
+    $stmt->execute([$idAset, $namaPeminjam, $_SESSION['user_id'], $idLokasi, $tglPinjam, $tglKembali, $ket]);
     
     $asetNama = $pdo->query("SELECT nama_aset FROM aset WHERE id = $idAset")->fetchColumn();
     logActivity($pdo, $_SESSION['user_id'], 'Peminjaman', "Pengajuan peminjaman aset: $asetNama oleh $namaPeminjam");
