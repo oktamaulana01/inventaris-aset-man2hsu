@@ -85,12 +85,8 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                         <a href="javascript:void(0)" onclick="confirmAction('Tolak permintaan peminjaman ini?', '<?= BASE_URL ?>/peminjaman/proses-konfirmasi?action=reject', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Tolak"><i class="fas fa-times"></i></a>
                     <?php endif; ?>
                     <?php if ($p['status'] === 'Dipinjam'): ?>
-                        <a href="<?= BASE_URL ?>/berita-acara/peminjaman?id=<?= $p['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Berita Acara Peminjaman"><i class="fas fa-file-contract"></i></a>
-                        <a href="javascript:void(0)" onclick="confirmAction('Kirim reminder email & telegram ke peminjam?', '<?= BASE_URL ?>/peminjaman/kirim-notif', '<?= $p['id'] ?>')" class="btn btn-sm btn-info" title="Kirim Pengingat"><i class="fas fa-paper-plane"></i></a>
-                        <a href="<?= BASE_URL ?>/peminjaman/kembali?id=<?= $p['id'] ?>" class="btn btn-sm btn-success" title="Proses Pengembalian"><i class="fas fa-rotate-left"></i></a>
-                    <?php endif; ?>
-                    <?php if ($p['status'] === 'Dikembalikan'): ?>
-                        <a href="<?= BASE_URL ?>/berita-acara/pengembalian?id=<?= $p['id'] ?>" target="_blank" class="btn btn-sm btn-info" title="Cetak Berita Acara Pengembalian"><i class="fas fa-file-signature"></i></a>
+                        <a href="javascript:void(0)" onclick="confirmAction('Kirim email reminder ke peminjam?', '<?= BASE_URL ?>/peminjaman/kirim-notif', '<?= $p['id'] ?>')" class="btn btn-sm btn-info" title="Kirim Reminder Email"><i class="fas fa-envelope"></i></a>
+                        <a href="<?= BASE_URL ?>/peminjaman/kembali?id=<?= $p['id'] ?>" class="btn btn-sm btn-success" title="Kembalikan"><i class="fas fa-rotate-left"></i></a>
                     <?php endif; ?>
                     <a href="javascript:void(0)" onclick="confirmDelete('Hapus data peminjaman ini?', '<?= BASE_URL ?>/peminjaman/hapus', '<?= $p['id'] ?>')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                 </div></td>
