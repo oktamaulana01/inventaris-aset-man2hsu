@@ -148,14 +148,14 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tanggal Mutasi</th>
+                        <th>Tanggal Pengajuan</th>
                         <th>Kode Aset</th>
                         <th>Nama Aset</th>
                         <th>Lokasi Asal</th>
                         <th>Lokasi Tujuan</th>
-                        <th>Keterangan</th>
-                        <th>Petugas</th>
-                        <th style="text-align:center;">Aksi</th>
+                        <th>Status Mutasi</th>
+                        <th>Petugas Pengirim</th>
+                        <th style="text-align:center;">Aksi & BAST</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -175,12 +175,38 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                             <td>
                                 <strong style="color:var(--accent-primary);"><?= htmlspecialchars($m['lokasi_tujuan'] ?? '-') ?></strong>
                             </td>
-                            <td style="max-width:200px; font-size:0.85rem; color:var(--text-secondary);"><?= htmlspecialchars($m['keterangan'] ?? '-') ?></td>
+                            <td>
+                                <?php if ($m['status'] === 'pending'): ?>
+                                    <span class="badge badge-warning" style="font-size:0.75rem;"><i class="fas fa-truck-fast"></i> In Transit</span>
+                                <?php elseif ($m['status'] === 'completed'): ?>
+                                    <span class="badge badge-success" style="font-size:0.75rem;"><i class="fas fa-check"></i> Selesai</span>
+                                <?php else: ?>
+                                    <span class="badge badge-secondary" style="font-size:0.75rem;">Dibatalkan</span>
+                                <?php endif; ?>
+                            </td>
                             <td style="font-size:0.85rem;"><?= htmlspecialchars($m['nama_petugas'] ?? 'Sistem') ?></td>
                             <td style="text-align:center;">
-                                <a href="<?= BASE_URL ?>/berita-acara/mutasi?id=<?= $m['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Berita Acara Mutasi">
-                                    <i class="fas fa-file-contract"></i> BA Mutasi
-                                </a>
+                                <div class="btn-group" style="justify-content:center;">
+                                    <?php if ($m['status'] === 'pending'): ?>
+                                        <a href="<?= BASE_URL ?>/mutasi/konfirmasi-terima?id=<?= $m['id'] ?>" class="btn btn-sm btn-success" title="Konfirmasi Terima Barang (Upload BAST)">
+                                            <i class="fas fa-clipboard-check"></i> Terima
+                                        </a>
+                                        <a href="<?= BASE_URL ?>/berita-acara/mutasi?id=<?= $m['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Draft BAST">
+                                            <i class="fas fa-print"></i> Cetak BAST
+                                        </a>
+                                    <?php elseif ($m['status'] === 'completed'): ?>
+                                        <a href="<?= BASE_URL ?>/berita-acara/mutasi?id=<?= $m['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak BAST Resmi">
+                                            <i class="fas fa-print"></i> BAST
+                                        </a>
+                                        <?php if ($m['file_bast_scan']): ?>
+                                            <a href="<?= BASE_URL ?>/assets/uploads/bast_mutasi/<?= htmlspecialchars($m['file_bast_scan']) ?>" target="_blank" class="btn btn-sm btn-info" title="Lihat Scan BAST Bertanda Tangan">
+                                                <i class="fas fa-file-shield"></i> Scan BAST
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <span class="text-muted" style="font-size:0.8rem;">Dibatalkan</span>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; endif; ?>

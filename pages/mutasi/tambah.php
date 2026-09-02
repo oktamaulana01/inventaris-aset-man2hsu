@@ -29,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Data aset tidak ditemukan.';
     } elseif ($aset['status_penghapusan'] === 'pending') {
         $errors[] = 'Aset ini sedang dalam proses pengajuan penghapusan dan tidak dapat dimutasi.';
+    } elseif ($aset['status_mutasi'] === 'in_transit') {
+        $errors[] = 'Aset ini saat ini sedang dalam proses mutasi (In Transit). Silakan selesaikan penerimaan mutasi sebelumnya terlebih dahulu.';
     }
 
     if ($idLokasiTujuan <= 0) {
@@ -43,42 +45,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Transaction
         $pdo->beginTransaction();
         try {
-            // Insert mutasi_aset record
+            // 1. Insert mutasi_aset record dengan status = 'pending' (Sedang Dimutasi / In Transit)
             $stmtInsert = $pdo->prepare("
-                INSERT INTO mutasi_aset (id_aset, id_lokasi_asal, id_lokasi_tujuan, tanggal_mutasi, keterangan, id_user)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO mutasi_aset (id_aset, id_lokasi_asal, id_lokasi_tujuan, tanggal_mutasi, keterangan, status, id_user)
+                VALUES (?, ?, ?, ?, ?, 'pending', ?)
             ");
             $stmtInsert->execute([$idAset, $idLokasiAsal, $idLokasiTujuan, $tglMutasi, $keterangan ?: null, $_SESSION['user_id']]);
+            $mutasiId = $pdo->lastInsertId();
 
-            // Update aset current location
-            $stmtUpdateAset = $pdo->prepare("UPDATE aset SET id_lokasi = ? WHERE id = ?");
-            $stmtUpdateAset->execute([$idLokasiTujuan, $idAset]);
+            // 2. Update status aset menjadi 'in_transit' (LOKASI ASLI BELUM BERUBAH)
+            $stmtUpdateAset = $pdo->prepare("UPDATE aset SET status_mutasi = 'in_transit' WHERE id = ?");
+            $stmtUpdateAset->execute([$idAset]);
 
             // Get target location name for log
             $stmtTujuan = $pdo->prepare("SELECT nama_lokasi FROM lokasi WHERE id = ?");
             $stmtTujuan->execute([$idLokasiTujuan]);
             $namaTujuan = $stmtTujuan->fetchColumn() ?: 'Lokasi Baru';
 
-            logActivity($pdo, $_SESSION['user_id'], 'Mutasi Aset', "Mutasi aset {$aset['nama_aset']} ({$aset['kode_aset']}) dari " . ($aset['nama_lokasi'] ?? 'Tanpa Lokasi') . " ke $namaTujuan");
+            logActivity($pdo, $_SESSION['user_id'], 'Mutasi Aset', "Pengajuan mutasi aset {$aset['nama_aset']} ({$aset['kode_aset']}) dari " . ($aset['nama_lokasi'] ?? 'Tanpa Lokasi') . " ke $namaTujuan (Status: In Transit)");
 
             // Telegram Notification
             require_once __DIR__ . '/../../config/mailer.php';
-            $msg = "🔄 <b>Mutasi Aset Sekolah</b>\n\n" .
+            $msg = "🚚 <b>Pengajuan Mutasi Aset (In Transit)</b>\n\n" .
                    "Aset: <b>" . htmlspecialchars($aset['nama_aset']) . " (" . htmlspecialchars($aset['kode_aset']) . ")</b>\n" .
                    "Dari Ruangan: <b>" . htmlspecialchars($aset['nama_lokasi'] ?? 'Tanpa Lokasi') . "</b>\n" .
                    "Ke Ruangan: <b>" . htmlspecialchars($namaTujuan) . "</b>\n" .
                    "Tanggal Mutasi: " . date('d/m/Y', strtotime($tglMutasi)) . "\n" .
                    "Alasan: " . htmlspecialchars($keterangan ?: '-') . "\n\n" .
-                   "Petugas: " . htmlspecialchars($_SESSION['user_nama']);
+                   "Status: <i>Sedang Dikirim / Menunggu BAST & Penerimaan</i>\n" .
+                   "Petugas Pengaju: " . htmlspecialchars($_SESSION['user_nama']);
             sendTelegramNotification($pdo, $msg);
 
             $pdo->commit();
-            setFlash('success', "Mutasi lokasi aset {$aset['nama_aset']} berhasil dilakukan!");
-            header('Location: ' . BASE_URL . '/mutasi');
+            setFlash('success', "Pengajuan mutasi aset {$aset['nama_aset']} berhasil dibuat! Status aset saat ini: Sedang Dimutasi (In Transit). Silakan cetak BAST untuk serah terima fisik.");
+            header('Location: ' . BASE_URL . '/mutasi/konfirmasi-terima?id=' . $mutasiId);
             exit;
         } catch (Exception $e) {
             $pdo->rollBack();
-            $errors[] = 'Gagal menyimpan transaksi mutasi: ' . $e->getMessage();
+            $errors[] = 'Gagal menyimpan pengajuan mutasi: ' . $e->getMessage();
         }
     }
 }

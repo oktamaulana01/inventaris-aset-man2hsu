@@ -140,6 +140,8 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                                 </span>
                                 <?php if ($a['status_penghapusan'] === 'pending'): ?>
                                     <span class="badge badge-warning" style="display:block; margin-top:4px; font-size:0.7rem;">Menunggu Hapus</span>
+                                <?php elseif ($a['status_mutasi'] === 'in_transit'): ?>
+                                    <span class="badge badge-info" style="display:block; margin-top:4px; font-size:0.7rem;"><i class="fas fa-truck-fast"></i> In Transit</span>
                                 <?php endif; ?>
                             </td>
                             <td>
@@ -159,6 +161,8 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                                     <?php if ($a['status_penghapusan'] === 'pending'): ?>
                                         <a href="<?= BASE_URL ?>/aset/finalisasi-hapus?id=<?= $a['id'] ?>" class="btn btn-sm btn-danger" title="Finalisasi Penghapusan (Upload BA)"><i class="fas fa-stamp"></i></a>
                                         <a href="<?= BASE_URL ?>/berita-acara/penghapusan?id=<?= $a['id'] ?>" target="_blank" class="btn btn-sm btn-primary" title="Cetak Draft Berita Acara"><i class="fas fa-file-contract"></i></a>
+                                    <?php elseif ($a['status_mutasi'] === 'in_transit'): ?>
+                                        <a href="<?= BASE_URL ?>/mutasi" class="btn btn-sm btn-info" title="Sedang Dimutasi (Lihat di Menu Mutasi)"><i class="fas fa-truck-ramp-box"></i></a>
                                     <?php else: ?>
                                         <a href="<?= BASE_URL ?>/mutasi/tambah?id_aset=<?= $a['id'] ?>" class="btn btn-sm btn-primary" title="Mutasi Lokasi"><i class="fas fa-arrows-split-up-and-left"></i></a>
                                         <a href="<?= BASE_URL ?>/aset/edit?id=<?= $a['id'] ?>" class="btn btn-sm btn-warning" title="Edit"><i class="fas fa-edit"></i></a>

@@ -54,6 +54,7 @@ RewriteRule ^peminjaman/hapus$ pages/peminjaman/hapus.php [L,QSA]
 # Mutasi
 RewriteRule ^mutasi$ pages/mutasi/index.php [L,QSA]
 RewriteRule ^mutasi/tambah$ pages/mutasi/tambah.php [L,QSA]
+RewriteRule ^mutasi/konfirmasi-terima$ pages/mutasi/konfirmasi_terima.php [L,QSA]
 
 # Laporan
 RewriteRule ^laporan/keseluruhan$ pages/laporan/aset_keseluruhan.php [L,QSA]

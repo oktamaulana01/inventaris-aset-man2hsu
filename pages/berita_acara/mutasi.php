@@ -27,6 +27,11 @@ if (!$data) {
     die('Data mutasi aset tidak ditemukan.');
 }
 
+if (empty($data['nama_petugas']) || $data['nama_petugas'] === 'Administrator') {
+    $data['nama_petugas'] = 'Rudiannor, S.Sos';
+    $data['nip_petugas'] = '198011062005011004';
+}
+
 if (!function_exists('tglIndo')) {
     function tglIndo($date) {
         if (!$date || $date === '0000-00-00' || $date === '0000-00-00 00:00:00') return '-';
